@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ajouter une fiche — Les Pages Bleues</title>
+  <meta name="description" content="Partagez votre savoir-faire : rédigez une fiche de réparation.">
+  <meta name="theme-color" content="#050b18">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <main>
+    <section class="page-hero blueprint">
+      <div class="container">
+        <h1>Ajouter une <span class="accent">fiche</span></h1>
+        <p class="muted">Vous savez réparer quelque chose ? Transmettez-le, étape par étape.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <form class="form" id="add-form" novalidate>
+          <div class="field">
+            <label for="title">Titre de la fiche</label>
+            <input class="input" id="title" name="title" required maxlength="90" placeholder="Ex. : Remplacer le joint d'un réfrigérateur">
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="category">Domaine</label>
+              <select class="input" id="category" name="category"></select>
+            </div>
+            <div class="field">
+              <label for="difficulty">Difficulté</label>
+              <select class="input" id="difficulty" name="difficulty"><option>Facile</option><option>Moyen</option><option>Difficile</option></select>
+            </div>
+            <div class="field">
+              <label for="duration">Durée estimée</label>
+              <input class="input" id="duration" name="duration" placeholder="Ex. : 30 min">
+            </div>
+          </div>
+          <div class="field">
+            <label for="summary">Résumé <small>— le problème et la solution en deux phrases</small></label>
+            <textarea class="input" id="summary" name="summary" maxlength="300"></textarea>
+          </div>
+          <div class="form-row" style="grid-template-columns:1fr 1fr">
+            <div class="field">
+              <label for="tools">Outils <small>— un par ligne</small></label>
+              <textarea class="input" id="tools" name="tools"></textarea>
+            </div>
+            <div class="field">
+              <label for="parts">Pièces <small>— une par ligne</small></label>
+              <textarea class="input" id="parts" name="parts"></textarea>
+            </div>
+          </div>
+          <div class="field">
+            <label>Étapes</label>
+            <div class="step-editor" id="steps"></div>
+            <button type="button" class="btn btn-ghost" id="add-step" style="margin-top:10px"><span data-icon="plus"></span>Ajouter une étape</button>
+          </div>
+          <p class="muted" style="font-size:.85rem">Pour l'instant, votre fiche est enregistrée dans ce navigateur uniquement.</p>
+          <div id="form-msg" aria-live="polite"></div>
+          <div><button class="btn btn-primary" type="submit"><span data-icon="check"></span>Publier la fiche</button></div>
+        </form>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/ajouter.js"></script>
+</body>
+</html>

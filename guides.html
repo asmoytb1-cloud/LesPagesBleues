@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tous les guides — Les Pages Bleues</title>
+  <meta name="description" content="Parcourez tous les guides de réparation et d'entretien par domaine.">
+  <meta name="theme-color" content="#050b18">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <main>
+    <section class="page-hero blueprint">
+      <div class="container">
+        <h1>Tous les <span class="accent">guides</span></h1>
+        <p class="muted">Cherchez un objet, une panne, ou parcourez par domaine.</p>
+        <form class="search-bar" id="search-form" role="search">
+          <span data-icon="search"></span>
+          <input type="search" name="q" id="q" placeholder="Que voulez-vous réparer ?" aria-label="Que voulez-vous réparer ?" autocomplete="off">
+          <button class="btn btn-primary" type="submit"><span data-icon="search"></span><span>Rechercher</span></button>
+        </form>
+        <div class="filters" id="filters"></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <p class="result-count muted" id="count" aria-live="polite"></p>
+        <div class="guide-grid" id="results"></div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/guides.js"></script>
+</body>
+</html>
