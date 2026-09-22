@@ -35,6 +35,16 @@ const ICONS = {
   bulb: '<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>',
   volume: '<path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/>',
   mute: '<path d="M4 9h4l5-4v14l-5-4H4z"/><path d="m17 9 5 6M22 9l-5 6"/>',
+  mic: '<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/>',
+  micOff: '<path d="M15 9.3V6a3 3 0 0 0-5.7-1.3M9 9v2a3 3 0 0 0 4.7 2.5M5 11a7 7 0 0 0 11.3 5.5M19 11c0 .8-.1 1.5-.4 2.2M12 18v3M3 3l18 18"/>',
+  timer: '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M10 2h4M12 2v3"/>',
+  pause: '<path d="M8 5v14M16 5v14"/>',
+  print: '<path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/>',
+  trash: '<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>',
+  refresh: '<path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/>',
+  alert: '<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.5v.5"/>',
+  sort: '<path d="M7 4v16M3 16l4 4 4-4M17 20V4M13 8l4-4 4 4"/>',
+  download: '<path d="M12 3v12M7 10l5 5 5-5M4 19h16"/>',
   globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/>'
 };
 
@@ -46,48 +56,131 @@ function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 }
 
+/* Stockage local tolérant aux erreurs (navigation privée, stockage bloqué…) */
+const store = {
+  get(key, fallback) {
+    try { const v = localStorage.getItem(key); return v === null ? fallback : JSON.parse(v); } catch { return fallback; }
+  },
+  set(key, value) {
+    try { localStorage.setItem(key, JSON.stringify(value)); return true; } catch { return false; }
+  },
+  remove(key) { try { localStorage.removeItem(key); } catch {} }
+};
+
 /* Fiches ajoutées par l'utilisateur (stockées dans ce navigateur) */
-function loadUserGuides() {
-  try { return JSON.parse(localStorage.getItem("lpb-guides") || "[]"); } catch { return []; }
-}
-function saveUserGuide(g) {
-  const list = loadUserGuides();
-  list.unshift(g);
-  try { localStorage.setItem("lpb-guides", JSON.stringify(list)); return true; } catch { return false; }
+function loadUserGuides() { return store.get("lpb-guides", []); }
+function saveUserGuide(g) { return store.set("lpb-guides", [g, ...loadUserGuides()]); }
+function deleteUserGuide(id) {
+  store.set("lpb-guides", loadUserGuides().filter(g => g.id !== id));
+  store.remove("lpb-progress-" + id);
+  setFav(id, false);
 }
 function allGuides() { return [...loadUserGuides(), ...GUIDES]; }
+function guideById(id) { return allGuides().find(g => g.id === id); }
 function categoryById(id) { return CATEGORIES.find(c => c.id === id) || CATEGORIES[CATEGORIES.length - 1]; }
 
-function normalize(s) {
-  return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+/* Favoris */
+function getFavs() { return new Set(store.get("lpb-favs", [])); }
+function isFav(id) { return getFavs().has(id); }
+function setFav(id, on) {
+  const f = getFavs();
+  on ? f.add(id) : f.delete(id);
+  store.set("lpb-favs", [...f]);
+  updateFavBadge();
 }
-function searchGuides(query, cat) {
-  const words = normalize(query || "").split(/\s+/).filter(w => w.length > 1);
+
+/* Progression d'une réparation */
+function getProgress(id) { return new Set(store.get("lpb-progress-" + id, [])); }
+function saveProgress(id, done) { store.set("lpb-progress-" + id, [...done]); }
+function inProgressGuides() {
   return allGuides().filter(g => {
-    if (cat && g.category !== cat) return false;
-    if (!words.length) return true;
-    const hay = normalize([g.title, g.summary, categoryById(g.category).name, ...(g.steps || []).map(s => s.title)].join(" "));
-    return words.some(w => hay.includes(w));
+    const n = getProgress(g.id).size;
+    return n > 0 && n < g.steps.length;
   });
+}
+
+/* Recherche : pondérée (titre > mots-clés > résumé > étapes), insensible aux accents et au pluriel */
+function normalize(s) {
+  return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "");
+}
+const STOPWORDS = new Set("a au aux avec ce ces d de des du en et il la le les l ma mes mon ne ou par pas plus pour qu que qui sa se ses son sur un une y je j me m mais".split(" "));
+function queryWords(query) {
+  return normalize(query || "").split(/[^a-z0-9]+/)
+    .filter(w => w.length > 1 && !STOPWORDS.has(w))
+    .map(w => (w.length > 3 ? w.replace(/(s|x)$/, "") : w));
+}
+function scoreGuide(g, words) {
+  const fields = [
+    [g.title, 6],
+    [(g.keywords || []).join(" "), 4],
+    [categoryById(g.category).name, 2],
+    [g.summary || "", 2],
+    [(g.steps || []).map(s => s.title + " " + s.text).join(" "), 1]
+  ].map(([t, w]) => [normalize(t), w]);
+  let score = 0, matched = 0;
+  for (const w of words) {
+    let best = 0;
+    for (const [t, weight] of fields) if (t.includes(w)) best = Math.max(best, weight);
+    if (best) { matched++; score += best; }
+  }
+  // Bonus quand toutes les notions de la recherche sont trouvées
+  return matched ? score + (matched === words.length ? 2 * words.length : 0) : 0;
+}
+// minRatio écarte les résultats nettement moins pertinents que le meilleur
+function searchGuides(query, cat, minRatio = 0.25) {
+  const words = queryWords(query);
+  const list = allGuides().filter(g => !cat || g.category === cat);
+  if (!words.length) return list;
+  const scored = list.map(g => [g, scoreGuide(g, words)]).filter(([, s]) => s > 0);
+  const best = Math.max(0, ...scored.map(([, s]) => s));
+  return scored
+    .filter(([, s]) => s >= best * minRatio)
+    .sort((a, b) => b[1] - a[1])
+    .map(([g]) => g);
+}
+
+/* Petits messages temporaires */
+function toast(message) {
+  let box = document.getElementById("toasts");
+  if (!box) {
+    box = document.createElement("div");
+    box.id = "toasts";
+    box.className = "toasts";
+    box.setAttribute("role", "status");
+    box.setAttribute("aria-live", "polite");
+    document.body.appendChild(box);
+  }
+  const t = document.createElement("div");
+  t.className = "toast";
+  t.textContent = message;
+  box.appendChild(t);
+  setTimeout(() => t.classList.add("out"), 3200);
+  setTimeout(() => t.remove(), 3600);
 }
 
 /* Carte de guide : visuel « plan technique » + pastille catégorie */
 function guideCard(g) {
   const c = categoryById(g.category);
+  const done = getProgress(g.id).size;
+  const pct = Math.round(done / g.steps.length * 100);
   return `
     <a class="guide-card" href="guide.html?id=${encodeURIComponent(g.id)}">
       <div class="guide-visual" data-cat="${c.id}">
         ${icon(c.icon, "guide-visual-ico")}
         <span class="tag">${escapeHtml(c.short || c.name)}</span>
+        ${isFav(g.id) ? `<span class="card-fav" title="Dans vos favoris">${icon("heart", "fill")}</span>` : ""}
+        ${g.user ? `<span class="card-user">Ma fiche</span>` : ""}
       </div>
       <div class="guide-body">
         <h3>${escapeHtml(g.title)}</h3>
         <span class="round-btn">${icon("arrow")}</span>
       </div>
       <div class="guide-meta">
-        <span>${icon("gauge")} ${escapeHtml(g.difficulty)}</span>
+        <span class="diff diff-${normalize(g.difficulty)}">${icon("gauge")} ${escapeHtml(g.difficulty)}</span>
         <span>${icon("clock")} ${escapeHtml(g.duration)}</span>
+        ${g.savings ? `<span>${icon("euro")} ${escapeHtml(g.savings.replace("≈", "").trim())}</span>` : ""}
       </div>
+      ${done && pct < 100 ? `<div class="card-progress" title="${pct} % fait"><div style="width:${pct}%"></div></div>` : ""}
     </a>`;
 }
 
@@ -98,6 +191,12 @@ function renderHeader(active) {
     ["communaute", "Communauté", "index.html#communaute"],
     ["apropos", "À propos", "index.html#apropos"]
   ];
+  const skip = document.createElement("a");
+  skip.className = "skip-link";
+  skip.href = "#main";
+  skip.textContent = "Aller au contenu";
+  document.body.prepend(skip);
+
   const el = document.getElementById("site-header");
   el.className = "site-header";
   el.innerHTML = `
@@ -106,22 +205,36 @@ function renderHeader(active) {
         ${icon("book", "brand-ico")}
         <span><strong>Les Pages <em>Bleues</em></strong><small>Réparer. Comprendre. Transmettre.</small></span>
       </a>
-      <nav class="main-nav" id="main-nav">
-        ${links.map(([k, t, h]) => `<a href="${h}" class="${k === active ? "active" : ""}">${t}</a>`).join("")}
+      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
+        ${links.map(([k, t, h]) => `<a href="${h}" ${k === active ? 'class="active" aria-current="page"' : ""}>${t}</a>`).join("")}
       </nav>
       <div class="header-actions">
-        <a class="icon-btn" href="guides.html" aria-label="Rechercher">${icon("search")}</a>
-        <a class="btn btn-ghost hide-sm" href="#" onclick="alert('La connexion arrive bientôt !');return false;">Se connecter</a>
+        <a class="icon-btn hide-xs" href="guides.html?focus=1" aria-label="Rechercher un guide">${icon("search")}</a>
+        <a class="icon-btn fav-link" href="guides.html?fav=1" aria-label="Mes favoris">${icon("heart")}<span class="badge" id="fav-badge" hidden></span></a>
+        <button class="btn btn-ghost hide-sm" id="login-btn" type="button">Se connecter</button>
         <a class="btn btn-primary" href="ajouter.html">${icon("plus")}<span class="hide-xs">Ajouter une fiche</span></a>
-        <button class="icon-btn menu-btn" aria-label="Menu" aria-expanded="false">${icon("menu")}</button>
+        <button class="icon-btn menu-btn" type="button" aria-label="Menu" aria-controls="main-nav" aria-expanded="false">${icon("menu")}</button>
       </div>
     </div>`;
   const btn = el.querySelector(".menu-btn");
-  btn.addEventListener("click", () => {
-    const open = el.classList.toggle("nav-open");
+  const setOpen = open => {
+    el.classList.toggle("nav-open", open);
     btn.setAttribute("aria-expanded", open);
     btn.innerHTML = icon(open ? "close" : "menu");
-  });
+  };
+  btn.addEventListener("click", () => setOpen(!el.classList.contains("nav-open")));
+  el.querySelectorAll(".main-nav a").forEach(a => a.addEventListener("click", () => setOpen(false)));
+  document.getElementById("login-btn").addEventListener("click", () =>
+    toast("Les comptes arrivent bientôt : vos fiches seront partagées avec toute la communauté."));
+  updateFavBadge();
+}
+
+function updateFavBadge() {
+  const b = document.getElementById("fav-badge");
+  if (!b) return;
+  const n = getFavs().size;
+  b.hidden = !n;
+  b.textContent = n;
 }
 
 function renderFooter() {
@@ -134,8 +247,9 @@ function renderFooter() {
         <p class="muted">Le savoir à portée de tous. Réparer, comprendre, entretenir — pour un monde qui dure plus longtemps.</p>
       </div>
       <div class="footer-cols">
-        <div><h4>Explorer</h4><a href="index.html#categories">Catégories</a><a href="guides.html">Tous les guides</a><a href="ajouter.html">Ajouter une fiche</a></div>
+        <div><h4>Explorer</h4><a href="index.html#categories">Catégories</a><a href="guides.html">Tous les guides</a><a href="guides.html?fav=1">Mes favoris</a><a href="ajouter.html">Ajouter une fiche</a></div>
         <div><h4>Domaines</h4>${CATEGORIES.slice(0, 4).map(c => `<a href="guides.html?cat=${c.id}">${c.short || c.name}</a>`).join("")}</div>
+        <div><h4>&nbsp;</h4>${CATEGORIES.slice(4).map(c => `<a href="guides.html?cat=${c.id}">${c.short || c.name}</a>`).join("")}</div>
       </div>
     </div>
     <div class="container footer-bottom muted">© ${new Date().getFullYear()} Les Pages Bleues — La connaissance est notre meilleur outil.</div>`;
@@ -147,5 +261,12 @@ function hydrateIcons(root = document) {
     const tpl = document.createElement("template");
     tpl.innerHTML = icon(el.dataset.icon, el.hasAttribute("data-fill") ? "fill" : "").trim();
     el.replaceWith(tpl.content.firstChild);
+  });
+}
+
+/* Mode hors ligne : le site reste consultable au garage, même sans réseau */
+if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
   });
 }

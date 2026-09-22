@@ -7,6 +7,14 @@
   <meta name="description" content="Parcourez tous les guides de réparation et d'entretien par domaine.">
   <meta name="theme-color" content="#050b18">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Les Pages Bleues">
+  <meta property="og:title" content="Les Pages Bleues — Réparer. Comprendre. Transmettre.">
+  <meta property="og:description" content="Trouvez en quelques clics comment réparer vos objets, au lieu de les jeter. Guides pas à pas et mode accompagnement.">
+  <meta property="og:image" content="assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,7 +22,7 @@
 </head>
 <body>
   <header id="site-header"></header>
-  <main>
+  <main id="main" tabindex="-1">
     <section class="page-hero blueprint">
       <div class="container">
         <h1>Tous les <span class="accent">guides</span></h1>
@@ -24,7 +32,20 @@
           <input type="search" name="q" id="q" placeholder="Que voulez-vous réparer ?" aria-label="Que voulez-vous réparer ?" autocomplete="off">
           <button class="btn btn-primary" type="submit"><span data-icon="search"></span><span>Rechercher</span></button>
         </form>
-        <div class="filters" id="filters"></div>
+        <div class="filters" id="filters" role="group" aria-label="Filtrer par domaine"></div>
+        <div class="toolbar">
+          <div class="seg" id="diff" role="group" aria-label="Filtrer par difficulté"></div>
+          <button class="chip chip-fav" id="fav-toggle" type="button" aria-pressed="false"><span data-icon="heart"></span> Mes favoris</button>
+          <label class="sort"><span data-icon="sort"></span><span class="sr-only">Trier</span>
+            <select id="sort" class="input input-sm">
+              <option value="pertinence">Pertinence</option>
+              <option value="duree">Les plus rapides</option>
+              <option value="facile">Les plus faciles</option>
+              <option value="economie">Plus grosse économie</option>
+              <option value="az">A → Z</option>
+            </select>
+          </label>
+        </div>
       </div>
     </section>
     <section class="section">

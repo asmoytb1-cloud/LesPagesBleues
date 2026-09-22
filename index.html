@@ -7,6 +7,14 @@
   <meta name="description" content="L'encyclopédie collaborative de l'entretien et de la réparation : trouvez en quelques clics comment réparer vos objets, au lieu de les jeter.">
   <meta name="theme-color" content="#050b18">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Les Pages Bleues">
+  <meta property="og:title" content="Les Pages Bleues — Réparer. Comprendre. Transmettre.">
+  <meta property="og:description" content="Trouvez en quelques clics comment réparer vos objets, au lieu de les jeter. Guides pas à pas et mode accompagnement.">
+  <meta property="og:image" content="assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -15,7 +23,7 @@
 <body>
   <header id="site-header"></header>
 
-  <main>
+  <main id="main" tabindex="-1">
     <!-- ============ HERO ============ -->
     <section class="hero">
       <div class="container hero-inner">
@@ -23,11 +31,15 @@
           <h1>Réparer.<span class="accent">Comprendre.</span>Transmettre.</h1>
           <p class="hero-lead">Trouvez en quelques clics comment réparer vos objets, au lieu de les jeter.</p>
 
-          <form class="search-bar" action="guides.html" role="search">
-            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-            <input type="search" name="q" placeholder="Que voulez-vous réparer ?" aria-label="Que voulez-vous réparer ?" autocomplete="off">
-            <button class="btn btn-primary" type="submit"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span>Rechercher</span></button>
-          </form>
+          <div class="search-wrap">
+            <form class="search-bar" action="guides.html" role="search" id="hero-search">
+              <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+              <input type="search" name="q" id="hero-q" placeholder="Que voulez-vous réparer ?" aria-label="Que voulez-vous réparer ?" autocomplete="off"
+                     role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="suggest-box">
+              <button class="btn btn-primary" type="submit"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span>Rechercher</span></button>
+            </form>
+            <div class="suggest-box" id="suggest-box" role="listbox" aria-label="Guides suggérés" hidden></div>
+          </div>
 
           <div class="suggestions">
             <span>Suggestions :</span>
@@ -133,6 +145,16 @@
       </div>
     </section>
 
+    <!-- ============ REPRENDRE UNE RÉPARATION ============ -->
+    <section class="section section-tight" id="resume" hidden>
+      <div class="container">
+        <div class="section-head">
+          <h2>Reprendre ma <span class="accent">réparation</span></h2>
+        </div>
+        <div class="resume-list" id="resume-list"></div>
+      </div>
+    </section>
+
     <!-- ============ CATÉGORIES ============ -->
     <section class="section" id="categories">
       <div class="container">
@@ -170,6 +192,17 @@
           <a class="link-arrow" href="guides.html">Tous les guides <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         </div>
         <div class="guide-grid" id="popular"></div>
+      </div>
+    </section>
+
+    <!-- ============ RÉPARATIONS EXPRESS ============ -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Réparations <span class="accent">express</span> <small class="muted h-sub">20 minutes ou moins</small></h2>
+          <a class="link-arrow" href="guides.html?sort=duree">Les plus rapides <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="guide-grid" id="express"></div>
       </div>
     </section>
 

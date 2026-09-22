@@ -7,6 +7,14 @@
   <meta name="description" content="Partagez votre savoir-faire : rédigez une fiche de réparation.">
   <meta name="theme-color" content="#050b18">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Les Pages Bleues">
+  <meta property="og:title" content="Les Pages Bleues — Réparer. Comprendre. Transmettre.">
+  <meta property="og:description" content="Trouvez en quelques clics comment réparer vos objets, au lieu de les jeter. Guides pas à pas et mode accompagnement.">
+  <meta property="og:image" content="assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,7 +22,7 @@
 </head>
 <body>
   <header id="site-header"></header>
-  <main>
+  <main id="main" tabindex="-1">
     <section class="page-hero blueprint">
       <div class="container">
         <h1>Ajouter une <span class="accent">fiche</span></h1>
@@ -23,52 +31,95 @@
     </section>
     <section class="section">
       <div class="container">
+        <div class="add-layout">
         <form class="form" id="add-form" novalidate>
-          <div class="field">
-            <label for="title">Titre de la fiche</label>
-            <input class="input" id="title" name="title" required maxlength="90" placeholder="Ex. : Remplacer le joint d'un réfrigérateur">
-          </div>
-          <div class="form-row">
+          <div id="draft-note" class="notice notice-info" hidden></div>
+
+          <fieldset class="form-card">
+            <legend><span class="num">1</span> L'essentiel</legend>
             <div class="field">
-              <label for="category">Domaine</label>
-              <select class="input" id="category" name="category"></select>
+              <label for="title">Titre de la fiche <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" id="title" name="title" required maxlength="90" placeholder="Ex. : Remplacer le joint d'un réfrigérateur" aria-describedby="title-err">
+              <p class="field-err" id="title-err" hidden>Donnez un titre à votre fiche.</p>
             </div>
+            <div class="form-row">
+              <div class="field">
+                <label for="category">Domaine</label>
+                <select class="input" id="category" name="category"></select>
+              </div>
+              <div class="field">
+                <label for="difficulty">Difficulté</label>
+                <select class="input" id="difficulty" name="difficulty"><option>Facile</option><option>Moyen</option><option>Difficile</option></select>
+              </div>
+              <div class="field">
+                <label for="minutes">Durée <small>(minutes)</small></label>
+                <input class="input" id="minutes" name="minutes" type="number" min="1" max="1440" inputmode="numeric" placeholder="30">
+              </div>
+            </div>
+            <div class="form-row form-row-2">
+              <div class="field">
+                <label for="summary">Résumé <small>— le problème et la solution en deux phrases</small></label>
+                <textarea class="input" id="summary" name="summary" maxlength="300"></textarea>
+              </div>
+              <div class="field">
+                <label for="savings">Économie estimée <small>(€, facultatif)</small></label>
+                <input class="input" id="savings" name="savings" type="number" min="0" max="10000" inputmode="numeric" placeholder="60">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-card">
+            <legend><span class="num">2</span> Préparation</legend>
             <div class="field">
-              <label for="difficulty">Difficulté</label>
-              <select class="input" id="difficulty" name="difficulty"><option>Facile</option><option>Moyen</option><option>Difficile</option></select>
+              <label for="safety">Sécurité <small>— ce qu'il faut faire avant de commencer</small></label>
+              <input class="input" id="safety" name="safety" maxlength="200" placeholder="Ex. : Débranchez l'appareil et mettez des gants.">
             </div>
-            <div class="field">
-              <label for="duration">Durée estimée</label>
-              <input class="input" id="duration" name="duration" placeholder="Ex. : 30 min">
+            <div class="form-row form-row-2">
+              <div class="field">
+                <label for="tools">Outils <small>— un par ligne</small></label>
+                <textarea class="input" id="tools" name="tools" placeholder="Gants&#10;Clé à douille de 10"></textarea>
+              </div>
+              <div class="field">
+                <label for="parts">Pièces <small>— une par ligne</small></label>
+                <textarea class="input" id="parts" name="parts" placeholder="Courroie (référence sur l'ancienne)"></textarea>
+              </div>
             </div>
-          </div>
-          <div class="field">
-            <label for="summary">Résumé <small>— le problème et la solution en deux phrases</small></label>
-            <textarea class="input" id="summary" name="summary" maxlength="300"></textarea>
-          </div>
-          <div class="field">
-            <label for="safety">Sécurité <small>— ce qu'il faut faire avant de commencer (gants, couper le courant…)</small></label>
-            <input class="input" id="safety" name="safety" maxlength="200" placeholder="Ex. : Débranchez l'appareil et mettez des gants.">
-          </div>
-          <div class="form-row" style="grid-template-columns:1fr 1fr">
-            <div class="field">
-              <label for="tools">Outils <small>— un par ligne</small></label>
-              <textarea class="input" id="tools" name="tools"></textarea>
-            </div>
-            <div class="field">
-              <label for="parts">Pièces <small>— une par ligne</small></label>
-              <textarea class="input" id="parts" name="parts"></textarea>
-            </div>
-          </div>
-          <div class="field">
-            <label>Étapes</label>
+          </fieldset>
+
+          <fieldset class="form-card">
+            <legend><span class="num">3</span> Les étapes <span class="req" aria-hidden="true">*</span></legend>
             <div class="step-editor" id="steps"></div>
+            <p class="field-err" id="steps-err" hidden>Décrivez au moins une étape.</p>
             <button type="button" class="btn btn-ghost" id="add-step" style="margin-top:10px"><span data-icon="plus"></span>Ajouter une étape</button>
-          </div>
-          <p class="muted" style="font-size:.85rem">Pour l'instant, votre fiche est enregistrée dans ce navigateur uniquement.</p>
+          </fieldset>
+
+          <fieldset class="form-card">
+            <legend><span class="num">4</span> Si ça ne marche pas <small class="muted">(facultatif)</small></legend>
+            <div class="field">
+              <label for="troubleshoot">Pistes à vérifier <small>— une par ligne</small></label>
+              <textarea class="input" id="troubleshoot" name="troubleshoot" placeholder="Ex. : La courroie ressaute : vérifiez que le moteur est bien fixé."></textarea>
+            </div>
+          </fieldset>
+
           <div id="form-msg" aria-live="polite"></div>
-          <div><button class="btn btn-primary" type="submit"><span data-icon="check"></span>Publier la fiche</button></div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit"><span data-icon="check"></span>Publier la fiche</button>
+            <button class="btn btn-ghost" type="button" id="clear-draft">Tout effacer</button>
+          </div>
+          <p class="muted" style="font-size:.85rem">Pour l'instant, votre fiche est enregistrée dans ce navigateur uniquement. Votre brouillon est sauvegardé automatiquement.</p>
         </form>
+
+        <aside class="writing-tips">
+          <h3><span data-icon="bulb"></span> Bien rédiger une fiche</h3>
+          <ul>
+            <li><strong>Une action par étape.</strong> « Prenez la douille de 10 et retirez les vis du cache » plutôt que « démontez la machine ».</li>
+            <li><strong>Nommez l'outil exact</strong> : taille de clé, type de tournevis.</li>
+            <li><strong>Pensez sécurité</strong> : courant, gants, lunettes, chandelles…</li>
+            <li><strong>Indiquez les temps d'attente</strong> : le mode accompagnement lancera un minuteur.</li>
+            <li><strong>Partagez vos astuces</strong> : c'est ce qui fait gagner du temps aux autres.</li>
+          </ul>
+        </aside>
+        </div>
       </div>
     </section>
   </main>

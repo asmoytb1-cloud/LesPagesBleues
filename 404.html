@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page introuvable — Les Pages Bleues</title>
+  <meta name="theme-color" content="#050b18">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <main id="main" tabindex="-1">
+    <section class="section blueprint" style="min-height:60vh;display:grid;place-items:center">
+      <div class="container" style="text-align:center;max-width:560px">
+        <p class="annot" style="position:static;font-size:2rem">Pièce manquante !</p>
+        <h1 style="font-size:clamp(3rem,10vw,6rem);font-weight:800;color:var(--blue)">404</h1>
+        <p class="muted" style="margin:.8rem 0 1.6rem">Cette page n'existe pas… ou elle attend encore d'être réparée.</p>
+        <div class="empty-actions">
+          <a class="btn btn-primary" href="index.html">Retour à l'accueil</a>
+          <a class="btn btn-ghost" href="guides.html">Voir tous les guides</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script>renderHeader(""); renderFooter();</script>
+</body>
+</html>
