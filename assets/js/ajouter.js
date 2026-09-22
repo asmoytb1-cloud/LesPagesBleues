@@ -20,7 +20,8 @@ function addStep() {
     <span class="num"></span>
     <div>
       <input class="input step-title" placeholder="Titre de l'étape" maxlength="80">
-      <textarea class="input step-text" placeholder="Décrivez l'action à réaliser" rows="2"></textarea>
+      <textarea class="input step-text" placeholder="Décrivez l'action : ex. « Prenez la douille de 10 et retirez les vis du cache »" rows="2"></textarea>
+      <input class="input step-tip" placeholder="Astuce (facultatif)" maxlength="200">
     </div>
     <button type="button" class="icon-btn" aria-label="Supprimer l'étape">${icon("close")}</button>`;
   div.querySelector("button").addEventListener("click", () => {
@@ -40,9 +41,9 @@ form.addEventListener("submit", e => {
   const msg = document.getElementById("form-msg");
   const title = form.elements.title.value.trim();
   const steps = [...stepsEl.querySelectorAll(".step-edit")]
-    .map(d => ({ title: d.querySelector(".step-title").value.trim(), text: d.querySelector(".step-text").value.trim() }))
+    .map(d => ({ title: d.querySelector(".step-title").value.trim(), text: d.querySelector(".step-text").value.trim(), tip: d.querySelector(".step-tip").value.trim() }))
     .filter(s => s.title || s.text)
-    .map((s, i) => ({ title: s.title || `Étape ${i + 1}`, text: s.text }));
+    .map((s, i) => ({ title: s.title || `Étape ${i + 1}`, text: s.text, ...(s.tip && { tip: s.tip }) }));
 
   if (!title || !steps.length) {
     msg.innerHTML = `<p class="notice" style="border-color:#ff6b6b;background:rgba(255,107,107,.08)">Ajoutez au moins un titre et une étape.</p>`;
@@ -55,6 +56,7 @@ form.addEventListener("submit", e => {
     difficulty: form.elements.difficulty.value,
     duration: form.elements.duration.value.trim() || "—",
     summary: form.elements.summary.value.trim(),
+    safety: form.elements.safety.value.trim(),
     tools: lines(form.elements.tools.value),
     parts: lines(form.elements.parts.value),
     steps,
