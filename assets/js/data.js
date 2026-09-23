@@ -309,6 +309,91 @@ const GUIDES = [
 
   /* ================= ÉLECTROMÉNAGER ================= */
   {
+    id: "detartrer-bouilloire",
+    title: "Détartrer une bouilloire",
+    category: "electromenager",
+    difficulty: "Facile",
+    duration: "10 min + 1 h de pose",
+    minutes: 70,
+    savings: "≈ 30 €",
+    keywords: ["bouilloire", "tartre", "calcaire", "détartrage", "vinaigre", "eau calcaire", "dépôts blancs"],
+    summary: "Le tartre allonge le temps de chauffe et laisse des particules dans le thé. Une heure de vinaigre blanc à froid suffit, comme l'indiquent les notices des fabricants.",
+    safety: "Débranchez la bouilloire. Ne plongez jamais la bouilloire, son socle ou le cordon dans l'eau.",
+    tools: ["Brosse douce (pour le filtre)"],
+    parts: ["Vinaigre blanc à 8° (50 cl)"],
+    sources: [
+      { label: "Moulinex — notice et questions fréquentes, bouilloire Subito", url: "https://www.moulinex.ch/fr/notices/Produits/Boissons/Bouilloire/SUBITO/csp/7211000677" },
+      { label: "KitchenAid — comment détartrer une bouilloire", url: "https://www.kitchenaid.fr/blog/comment-detartrer-une-bouilloire" }
+    ],
+    steps: [
+      { title: "Vider et débrancher", text: "Débranchez la bouilloire et videz l'eau qui reste." },
+      { title: "Verser le vinaigre", text: "Versez 50 cl de vinaigre blanc dans la bouilloire, sans la faire chauffer, et laissez agir 1 heure.", timer: 3600, tip: "Détartrez au moins une fois par mois si votre eau est très calcaire." },
+      { title: "Nettoyer le filtre", text: "Pendant ce temps, retirez le filtre du bec s'il s'enlève, puis brossez-le ou faites-le tremper dans un peu de vinaigre." },
+      { title: "Rincer", text: "Videz la bouilloire et rincez-la 5 ou 6 fois à l'eau claire. S'il reste du tartre, recommencez." },
+      { title: "Chasser le goût", text: "Faites bouillir une fois de l'eau claire et jetez-la : il ne restera aucun goût de vinaigre." }
+    ],
+    troubleshoot: [
+      "Ne frottez jamais le fond avec une éponge abrasive : la résistance ne doit pas être grattée.",
+      "Bouilloire en plastique : utilisez de préférence un détartrant spécial, en suivant sa notice."
+    ]
+  },
+  {
+    id: "degivrer-congelateur",
+    title: "Dégivrer un congélateur",
+    category: "electromenager",
+    difficulty: "Facile",
+    duration: "1 h à 2 h",
+    minutes: 90,
+    savings: "≈ 15 € par an",
+    keywords: ["congélateur", "givre", "glace", "dégivrer", "dégivrage", "consommation", "freezer", "tiroir bloqué"],
+    summary: "Le givre isole les parois et fait grimper la consommation : selon l'ADEME, 3 mm de givre peuvent l'augmenter de 30 %. Un dégivrage deux à trois fois par an règle le problème.",
+    safety: "Débranchez l'appareil à la prise : la veille ne suffit pas. N'utilisez jamais de couteau ni d'objet pointu pour décoller la glace.",
+    tools: ["Glacière ou sacs isothermes", "Serpillière et serviettes", "Casserole et dessous-de-plat", "Spatule en plastique ou en bois"],
+    parts: [],
+    sources: [
+      { label: "Ekwateur — comment dégivrer un congélateur", url: "https://ekwateur.fr/blog/ma-consommation-d-energie/degivrage-congelateur/" },
+      { label: "Alpiq — dégivrer un congélateur pour économiser l'énergie", url: "https://particuliers.alpiq.fr/guide-energie/economie-energie/degivrer-congelateur" }
+    ],
+    steps: [
+      { title: "Mettre les aliments au froid", text: "Videz le congélateur et rangez les aliments bien serrés dans une glacière ou des sacs isothermes." },
+      { title: "Débrancher", text: "Débranchez l'appareil à la prise, laissez la porte ouverte et posez serpillière et serviettes au pied pour recueillir l'eau." },
+      { title: "Accélérer la fonte", text: "Posez une casserole d'eau bouillante sur un dessous-de-plat à l'intérieur, puis fermez la porte 15 minutes. Recommencez si besoin.", timer: 900, safety: "Ne posez jamais la casserole brûlante directement sur le plastique." },
+      { title: "Décoller la glace", text: "Détachez les plaques de glace ramollies à la main ou avec la spatule, sans forcer.", safety: "Jamais de couteau ni d'objet pointu : vous risquez de percer la paroi et de rendre l'appareil inutilisable." },
+      { title: "Nettoyer et sécher", text: "Nettoyez les parois et le joint avec de l'eau additionnée d'un peu de vinaigre blanc, puis séchez soigneusement : le givre reviendra moins vite." },
+      { title: "Remettre en route", text: "Rebranchez l'appareil et attendez qu'il soit redescendu à au moins −6 °C avant de remettre les aliments." }
+    ],
+    troubleshoot: [
+      "Le givre revient très vite : coincez une feuille de papier dans la porte fermée. Si elle glisse sans résistance, le joint est à changer (voir la fiche sur le joint de réfrigérateur)."
+    ]
+  },
+  {
+    id: "nettoyer-filtre-hotte",
+    title: "Nettoyer les filtres d'une hotte qui aspire mal",
+    category: "electromenager",
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 30 €",
+    keywords: ["hotte", "filtre", "graisse", "aspire mal", "aspiration", "odeur", "charbon", "cuisine", "hotte aspirante"],
+    summary: "Une hotte qui aspire mal a souvent un filtre saturé de graisse. Le filtre métallique se lave ; le filtre à charbon, lui, se remplace le plus souvent.",
+    safety: "Hotte éteinte et plaques de cuisson froides. Des filtres encrassés augmentent le risque d'incendie de graisse : ne tardez pas.",
+    tools: ["Éponge non abrasive", "Brosse souple", "Dégraissant ou liquide vaisselle"],
+    parts: ["Filtre à charbon neuf compatible avec votre hotte (hotte en recyclage d'air uniquement)"],
+    sources: [
+      { label: "Bosch — nettoyer et changer les filtres de sa hotte", url: "https://www.bosch-home.fr/nos-astuces/nos-conseils/hottes/entretien-filtres" },
+      { label: "Electrolux — nettoyer les filtres d'une hotte", url: "https://support.electrolux.fr/support-articles/article/filtres-a-charbon-pour-hotte-nettoyage-duree-de-vie" }
+    ],
+    steps: [
+      { title: "Retirer le filtre à graisse", text: "Ouvrez le loquet du filtre métallique, sous la hotte, et retirez-le en le tenant à deux mains. La notice indique où il se trouve sur votre modèle." },
+      { title: "Laver le filtre", text: "Au lave-vaisselle : seul, sans vaisselle, sur un programme court à basse température. À la main : faites-le tremper dans de l'eau chaude avec un dégraissant, brossez, puis rincez abondamment.", tip: "Un filtre en aluminium peut se ternir au lavage : cela ne change rien à son efficacité." },
+      { title: "Vérifier le filtre à charbon", text: "Si votre hotte n'a pas de conduit vers l'extérieur (recyclage d'air), un filtre à charbon se trouve derrière. La plupart ne se lavent pas et se remplacent tous les 4 à 6 mois ; certains modèles dits régénérables se lavent et se sèchent au four, selon la notice." },
+      { title: "Remonter", text: "Remettez le filtre à charbon, puis le filtre à graisse bien sec. Allumez la hotte pour vérifier l'aspiration.", tip: "Si vous cuisinez souvent, lavez le filtre métallique environ une fois par mois." }
+    ],
+    troubleshoot: [
+      "Les odeurs restent avec une hotte en recyclage : le filtre à charbon est saturé. Remplacez-le par un modèle compatible avec votre hotte."
+    ]
+  },
+  {
     id: "courroie-lave-linge",
     title: "Remplacer la courroie d'un lave-linge",
     category: "electromenager",
@@ -548,6 +633,63 @@ const GUIDES = [
   },
 
   /* ================= TÉLÉPHONIE & INFORMATIQUE ================= */
+  {
+    id: "touche-clavier-bloquee",
+    title: "Nettoyer un clavier et débloquer une touche",
+    category: "telephonie",
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 50 €",
+    keywords: ["clavier", "touche", "colle", "bloquée", "ne répond pas", "accroche", "miettes", "poussière", "ordinateur portable", "macbook", "pc"],
+    summary: "Une touche qui accroche, répond mal ou plus du tout : des miettes ou de la poussière sont souvent coincées dessous. De l'air comprimé suffit dans bien des cas.",
+    safety: "Ordinateur éteint et débranché. Ne vaporisez jamais de liquide directement sur le clavier.",
+    tools: ["Bombe d'air comprimé avec sa tige", "Chiffon microfibre", "Alcool isopropylique (70 % d'alcool pour 30 % d'eau)"],
+    parts: [],
+    sources: [
+      { label: "Apple — nettoyer le clavier d'un MacBook ou MacBook Pro", url: "https://support.apple.com/fr-fr/102365" },
+      { label: "Dell — nettoyer et entretenir votre ordinateur", url: "https://www.dell.com/support/kbdoc/fr-fr/000124077/comment-nettoyer-et-entretenir-votre-ordinateur-dell" }
+    ],
+    steps: [
+      { title: "Éteindre et débrancher", text: "Éteignez l'ordinateur, puis débranchez le chargeur et tous les accessoires." },
+      { title: "Incliner l'ordinateur", text: "Ouvrez l'écran et tenez l'ordinateur incliné à environ 75°, sans qu'il soit tout à fait vertical." },
+      { title: "Souffler", text: "Fixez la tige sur la bombe et soufflez sur le clavier, ou seulement sur la touche en cause, de gauche à droite, le bout de la tige à environ 1 cm des touches.", safety: "Ne retournez pas et n'inclinez pas la bombe : elle projetterait un liquide glacé qui abîme le clavier et la peau." },
+      { title: "Recommencer sur les côtés", text: "Tournez l'ordinateur sur son côté droit et soufflez de nouveau de gauche à droite. Faites de même sur le côté gauche." },
+      { title: "Nettoyer la surface", text: "Essuyez les touches avec le chiffon juste humide (pas mouillé) du mélange alcool et eau.", tip: "Pas d'aspirateur : il crée de l'électricité statique, dangereuse pour les composants." }
+    ],
+    troubleshoot: [
+      "La touche ne répond toujours pas : sur un MacBook, Apple conseille de passer par un centre de services agréé. Sur les autres ordinateurs, la touche ou le clavier se remplacent, souvent chez un réparateur."
+    ]
+  },
+  {
+    id: "ordinateur-portable-chauffe",
+    title: "Ordinateur portable qui chauffe : nettoyer les aérations",
+    category: "telephonie",
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 60 €",
+    keywords: ["ordinateur", "portable", "pc", "chauffe", "surchauffe", "ventilateur", "bruit", "souffle", "s'éteint", "brûlant", "aération", "poussière"],
+    summary: "Ventilateur qui souffle fort, dessous brûlant, ordinateur qui ralentit ou s'éteint : la poussière bouche souvent les aérations.",
+    safety: "Ordinateur éteint, chargeur et accessoires débranchés. Pas d'aspirateur : il crée de l'électricité statique qui peut endommager les composants.",
+    tools: ["Bombe d'air comprimé", "Chiffon microfibre sec"],
+    parts: [],
+    sources: [
+      { label: "Dell — prévenir la surchauffe d'un ordinateur", url: "https://www.dell.com/support/contents/fr-fr/article/product-support/self-support-knowledgebase/battery-and-power/fan" },
+      { label: "Dell — nettoyer et entretenir votre ordinateur", url: "https://www.dell.com/support/kbdoc/fr-fr/000124077/comment-nettoyer-et-entretenir-votre-ordinateur-dell" }
+    ],
+    steps: [
+      { title: "Éteindre et débrancher", text: "Éteignez complètement l'ordinateur, puis débranchez le chargeur et les accessoires." },
+      { title: "Repérer les aérations", text: "Cherchez les grilles d'aération : le plus souvent à l'arrière, sur les côtés et en dessous." },
+      { title: "Souffler la poussière", text: "Soufflez par petites pressions dans chaque grille.", safety: "Tenez la bombe bien verticale : penchée ou retournée, elle projette de l'humidité." },
+      { title: "Essuyer", text: "Retirez la poussière ressortie autour des grilles avec le chiffon sec." },
+      { title: "Bien le poser", text: "Rebranchez et utilisez l'ordinateur sur une surface dure et plane : un lit ou un canapé bouchent les aérations." }
+    ],
+    troubleshoot: [
+      "Toujours chaud : fermez les logiciels gourmands et installez les derniers pilotes depuis le site du fabricant.",
+      "Le ventilateur fait un bruit anormal ou ne tourne plus : faites-le vérifier par un réparateur."
+    ]
+  },
   {
     id: "ecran-telephone",
     title: "Remplacer un écran de téléphone",

@@ -193,7 +193,7 @@ const DIAGNOSTICS = [
     ],
     causes: [
       { title: "Poussière et surchauffe", base: 1, weights: { chauffe: { oui: 4, non: -2 } },
-        checks: ["Dépoussiérez les grilles d'aération : un ordinateur qui chauffe ralentit pour se protéger."], guide: "pc-lent", level: 1 },
+        checks: ["Dépoussiérez les grilles d'aération : un ordinateur qui chauffe ralentit pour se protéger."], guide: "ordinateur-portable-chauffe", level: 1 },
       { title: "Disque dur mécanique trop lent", base: 1, weights: { ssd: { hdd: 5, ssd: -4, nsp: 1 }, demarrage: { oui: 2 } },
         checks: ["Remplacer le disque dur par un SSD est l'amélioration la plus spectaculaire."], guide: "pc-lent", level: 2 },
       { title: "Trop de logiciels au démarrage", base: 2, weights: { demarrage: { oui: 2 } },
@@ -258,9 +258,12 @@ const DIAGNOSTICS = [
     questions: [
       { id: "feuille", text: "Une feuille de papier coincée dans la porte fermée glisse-t-elle sans résistance à certains endroits ?", options: YES_NO },
       { id: "arriere", text: "L'appareil est-il collé au mur ou dans un endroit très chaud (à côté du four, en plein soleil) ?", options: YES_NO },
-      { id: "moteur", text: "Le moteur (compresseur) tourne-t-il presque sans arrêt ?", options: YES_NO }
+      { id: "moteur", text: "Le moteur (compresseur) tourne-t-il presque sans arrêt ?", options: YES_NO },
+      { id: "epais", text: "La couche de givre dépasse-t-elle 3 mm, ou bloque-t-elle un tiroir ?", options: YES_NO }
     ],
     causes: [
+      { title: "Givre accumulé à faire fondre", base: 1, weights: { epais: { oui: 4, non: -2 } },
+        checks: ["Dégivrez l'appareil : au-delà de 3 mm, le givre isole les parois et fait grimper la consommation."], guide: "degivrer-congelateur", level: 1 },
       { title: "Joint de porte qui ne plaque plus", base: 2, weights: { feuille: { oui: 5, non: -3 } },
         checks: ["Nettoyez le joint et refaites le test de la feuille tout autour de la porte."], guide: "joint-refrigerateur", level: 1 },
       { title: "Mauvaise aération de l'appareil", base: 1, weights: { arriere: { oui: 4, non: -1 }, moteur: { oui: 1 } },
