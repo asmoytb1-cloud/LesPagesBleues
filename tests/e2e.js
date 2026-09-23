@@ -33,7 +33,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
   };
 
   const PAGES = ["index.html", "guides.html", "guides.html?q=frein", "categories.html", "fiches/courroie-lave-linge.html", "fiches/remplacer-prise-electrique.html",
-    "categories/electromenager.html", "categories/autres.html", "ajouter.html", "communaute.html", "profil.html", "diagnostic.html", "a-propos.html", "mentions-legales.html", "confidentialite.html", "LesPagesBleues/page-inconnue"];
+    "categories/electromenager.html", "categories/autres.html", "ajouter.html", "communaute.html", "profil.html", "materiel.html", "diagnostic.html", "a-propos.html", "mentions-legales.html", "confidentialite.html", "LesPagesBleues/page-inconnue"];
 
   /* ---------- 1. Toutes les pages : sans erreur, sans débordement, dans les deux thèmes ---------- */
   for (const [w, h, label] of [[1366, 900, "ordinateur"], [390, 844, "mobile"]]) {
@@ -288,6 +288,48 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     await ctx.close();
   });
 
+  await test("Mon matériel : lave-linge LG 2020 et Audi A3 2012 → fiches dédiées, diagnostic, filtre", async () => {
+    const ctx = await newCtx(); const p = await ctx.newPage();
+    const errs = []; watch(p, errs);
+    await p.goto(B + "materiel.html?type=lave-linge");
+    expect(await p.inputValue("#m-type") === "lave-linge", "le type passé dans l'adresse doit être présélectionné");
+    expect(await p.$$eval("#brand-list option", o => o.some(x => x.value === "LG")), "LG doit être proposé pour les lave-linge");
+    await p.fill("#m-brand", "lg");
+    await p.fill("#m-year", "2020");
+    await p.click("#mat-form [type=submit]");
+    await p.click('[data-kind="voiture"]');
+    await p.click("#mat-form [type=submit]");
+    expect(!(await p.isHidden("#mat-err")), "une voiture sans marque doit être refusée");
+    await p.selectOption("#m-make", "Audi");
+    const a3 = await p.$$eval("#m-car option", o => o.find(x => x.textContent.startsWith("A3 /")).value);
+    await p.selectOption("#m-car", a3);
+    await p.fill("#m-year", "1990");
+    expect(await p.$eval("#year-hint", e => e.classList.contains("warn")), "une année hors production doit être signalée");
+    await p.fill("#m-year", "2012");
+    await p.click("#mat-form [type=submit]");
+    const names = await p.$$eval(".mat-card .mat-head h3", h => h.map(x => x.textContent));
+    expect(names.join("|") === "Audi A3 / S3 / RS3|Lave-linge LG", "les deux matériels doivent être listés : " + names.join("|"));
+    const counts = await p.$$eval(".mat-count", e => e.map(x => parseInt(x.textContent, 10)));
+    const expected = await p.evaluate(() => [GUIDES.filter(g => inCategory(g, "automobile")).length, GUIDES.filter(g => (g.devices || []).includes("lave-linge")).length]);
+    expect(counts.join() === expected.join(), `nombre de fiches : ${counts} au lieu de ${expected}`);
+    const ids = await p.evaluate(() => loadMateriel().map(m => m.id));
+    await p.goto(B + "guides.html?materiel=" + ids[1]);
+    const shown = await p.$$eval("#guide-rows .grow h3", h => h.map(x => x.textContent));
+    expect(shown.length === expected[1] && shown.every(t => /lave-linge/i.test(t)), "le filtre doit n'afficher que les fiches du lave-linge : " + shown.join(" / "));
+    await p.goto(B + "fiches/courroie-lave-linge.html");
+    expect((await p.textContent(".guide-tags")).includes("Pour votre lave-linge LG"), "la fiche doit indiquer qu'elle concerne l'appareil");
+    await p.goto(B + "diagnostic.html?d=Lave-linge");
+    expect((await p.textContent("#chat")).includes("Quel est le problème avec : lave-linge"), "le diagnostic doit partir de l'appareil");
+    await p.goto(B + "index.html");
+    expect((await p.textContent("#mat-strip")).includes("Audi A3"), "l'accueil doit montrer le matériel enregistré");
+    await p.goto(B + "materiel.html");
+    await p.click(`[data-del="${ids[0]}"]`);
+    await p.click("#confirm-del");
+    expect((await p.$$(".mat-card")).length === 1, "la suppression doit retirer la voiture");
+    expect(!errs.length, errs.join(" | "));
+    await ctx.close();
+  });
+
   /* ---------- 8. Hors ligne ---------- */
   await test("Mode hors ligne (service worker)", async () => {
     const ctx = await newCtx(); const p = await ctx.newPage();
@@ -309,7 +351,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     for (const theme of ["dark", "light"]) {
       const ctx = await newCtx();
       await ctx.addInitScript(t => localStorage.setItem("lpb-theme", JSON.stringify(t)), theme);
-      for (const u of ["index.html", "guides.html?q=frein", "fiches/courroie-lave-linge.html", "diagnostic.html", "ajouter.html", "communaute.html", "profil.html", "categories.html", "categories/jardin.html", "a-propos.html"]) {
+      for (const u of ["index.html", "guides.html?q=frein", "fiches/courroie-lave-linge.html", "diagnostic.html", "ajouter.html", "communaute.html", "profil.html", "materiel.html", "categories.html", "categories/jardin.html", "a-propos.html"]) {
         const p = await ctx.newPage();
         await p.goto(B + u, { waitUntil: "load" });
         await p.addScriptTag({ content: axe });

@@ -5,6 +5,7 @@
      troubleshoot  pistes si le problème persiste
      sources       pages consultées pour vérifier la fiche [{ label, url }]
      photo         nom d'une photo de assets/img/photos (sinon celle de la catégorie)
+     devices       types d'appareils concernés (voir tools/materiel.js) ; les fiches Automobile valent pour toutes les voitures
    Champs d'une étape :
      tip / safety  astuce / point de vigilance
      timer         temps d'attente en secondes (minuteur dans le mode accompagnement) */
@@ -342,6 +343,7 @@ const GUIDES = [
     id: "filtre-seche-linge",
     title: "Sèche-linge qui sèche mal : nettoyer filtres et condenseur",
     category: "electromenager",
+    devices: ["seche-linge"],
     difficulty: "Facile",
     duration: "20 min",
     minutes: 20,
@@ -371,6 +373,7 @@ const GUIDES = [
     id: "detartrer-bouilloire",
     title: "Détartrer une bouilloire",
     category: "electromenager",
+    devices: ["bouilloire"],
     difficulty: "Facile",
     duration: "10 min + 1 h de pose",
     minutes: 70,
@@ -400,6 +403,7 @@ const GUIDES = [
     id: "degivrer-congelateur",
     title: "Dégivrer un congélateur",
     category: "electromenager",
+    devices: ["congelateur", "refrigerateur"],
     difficulty: "Facile",
     duration: "1 h à 2 h",
     minutes: 90,
@@ -429,6 +433,7 @@ const GUIDES = [
     id: "nettoyer-filtre-hotte",
     title: "Nettoyer les filtres d'une hotte qui aspire mal",
     category: "electromenager",
+    devices: ["hotte"],
     difficulty: "Facile",
     duration: "15 min",
     minutes: 15,
@@ -456,6 +461,7 @@ const GUIDES = [
     id: "courroie-lave-linge",
     title: "Remplacer la courroie d'un lave-linge",
     category: "electromenager",
+    devices: ["lave-linge"],
     difficulty: "Moyen",
     duration: "30 min",
     minutes: 30,
@@ -489,6 +495,7 @@ const GUIDES = [
     id: "lave-linge-ne-vidange-pas",
     title: "Lave-linge qui ne vidange plus",
     category: "electromenager",
+    devices: ["lave-linge"],
     difficulty: "Facile",
     duration: "20 min",
     minutes: 20,
@@ -518,6 +525,7 @@ const GUIDES = [
     id: "lave-vaisselle-lave-mal",
     title: "Lave-vaisselle qui lave mal",
     category: "electromenager",
+    devices: ["lave-vaisselle"],
     difficulty: "Facile",
     duration: "30 min",
     minutes: 30,
@@ -547,6 +555,7 @@ const GUIDES = [
     id: "joint-refrigerateur",
     title: "Réfrigérateur qui givre : vérifier le joint",
     category: "electromenager",
+    devices: ["refrigerateur", "congelateur", "cave-a-vin"],
     difficulty: "Facile",
     duration: "20 min",
     minutes: 20,
@@ -576,6 +585,7 @@ const GUIDES = [
     id: "aspirateur-aspire-mal",
     title: "Aspirateur qui n'aspire plus",
     category: "electromenager",
+    devices: ["aspirateur"],
     difficulty: "Facile",
     duration: "15 min",
     minutes: 15,
@@ -605,6 +615,7 @@ const GUIDES = [
     id: "detartrer-cafetiere",
     title: "Détartrer une cafetière filtre",
     category: "electromenager",
+    devices: ["cafetiere"],
     difficulty: "Facile",
     duration: "1 h 20",
     minutes: 80,
@@ -634,6 +645,7 @@ const GUIDES = [
     id: "lave-linge-ne-demarre-plus",
     title: "Lave-linge qui ne démarre plus",
     category: "electromenager",
+    devices: ["lave-linge"],
     difficulty: "Facile",
     duration: "15 min",
     minutes: 15,
@@ -665,6 +677,7 @@ const GUIDES = [
     id: "securite-porte-lave-linge",
     title: "Remplacer la sécurité de porte d'un lave-linge",
     category: "electromenager",
+    devices: ["lave-linge"],
     difficulty: "Moyen",
     duration: "40 min",
     minutes: 40,

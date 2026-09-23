@@ -12,6 +12,7 @@ const state = {
   diff: params.get("diff") || "",
   time: params.get("time") || "",
   fav: params.get("fav") === "1",
+  materiel: materielById(params.get("materiel") || "") || null,
   sort: params.get("sort") || "pertinence",
   shown: 10
 };
@@ -37,7 +38,8 @@ function guideResults() {
   let list = searchGuides(state.q, state.cat)
     .filter(g => !state.diff || g.difficulty === state.diff)
     .filter(g => !state.time || (g.minutes || 999) <= +state.time)
-    .filter(g => !state.fav || favs.has(g.id));
+    .filter(g => !state.fav || favs.has(g.id))
+    .filter(g => !state.materiel || guideFitsMateriel(g, state.materiel));
   if (SORTS[state.sort]) list = [...list].sort(SORTS[state.sort]);
   return list;
 }
@@ -77,6 +79,7 @@ function render() {
   const guides = guideResults(), diags = diagResults(), posts = postResults();
   $("page-title").innerHTML = state.q
     ? `Résultats pour <span class="accent">« ${escapeHtml(state.q)} »</span>`
+    : state.materiel ? `Pour votre <span class="accent">${escapeHtml(materielName(state.materiel, true))}</span>`
     : state.fav ? `Mes <span class="accent">favoris</span>`
     : state.cat ? `${escapeHtml(categoryById(state.cat).name)}`
     : `Tous les <span class="accent">guides</span>`;
@@ -90,6 +93,9 @@ function render() {
   favBtn.setAttribute("aria-pressed", state.fav);
 
   const out = [`<h2 class="sr-only">Résultats</h2>`];
+  if (state.materiel && state.tab !== "diag" && state.tab !== "posts") out.push(`<div class="mat-banner">${icon("box")}
+    <span>Fiches pour <strong>${escapeHtml(materielLabel(state.materiel))}</strong></span>
+    <button class="btn btn-ghost btn-sm" type="button" data-unmat>Voir toutes les fiches</button></div>`);
   let count = "";
   if (state.tab === "all" || state.tab === "guides") {
     count = `<strong>${guides.length}</strong> guide${guides.length > 1 ? "s" : ""}${state.q ? ` pour « ${escapeHtml(state.q)} »` : ""}`;
@@ -122,7 +128,7 @@ function render() {
 
   const url = new URL(location.href);
   url.searchParams.delete("focus");
-  for (const [k, v] of Object.entries({ q: state.q, tab: state.tab === "all" ? "" : state.tab, cat: state.cat, diff: state.diff, time: state.time, fav: state.fav ? "1" : "", sort: state.sort === "pertinence" ? "" : state.sort })) {
+  for (const [k, v] of Object.entries({ q: state.q, tab: state.tab === "all" ? "" : state.tab, cat: state.cat, diff: state.diff, time: state.time, fav: state.fav ? "1" : "", materiel: state.materiel ? state.materiel.id : "", sort: state.sort === "pertinence" ? "" : state.sort })) {
     v ? url.searchParams.set(k, v) : url.searchParams.delete(k);
   }
   history.replaceState(null, "", url);
@@ -146,8 +152,9 @@ for (const [el, key] of [[fCat, "cat"], [fDiff, "diff"], [fTime, "time"], [sortS
 favBtn.addEventListener("click", () => { state.fav = !state.fav; state.shown = PAGE; render(); });
 $("results").addEventListener("click", e => {
   if (e.target.closest("[data-more]")) { state.shown += PAGE; render(); }
+  if (e.target.closest("[data-unmat]")) { state.materiel = null; state.shown = PAGE; render(); }
   if (e.target.closest("[data-reset]")) {
-    Object.assign(state, { q: "", cat: "", diff: "", time: "", fav: false, shown: PAGE });
+    Object.assign(state, { q: "", cat: "", diff: "", time: "", fav: false, materiel: null, shown: PAGE });
     qInput.value = ""; fCat.value = ""; fDiff.value = ""; fTime.value = "";
     render();
   }

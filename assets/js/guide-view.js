@@ -41,6 +41,8 @@ function guidePageHTML(g, st = {}) {
           <span class="tag tag-soft">${escapeHtml(c.short || c.name)}</span>
           ${g.user ? `<span class="tag tag-user">Ma fiche · non relue</span>` : `<span class="tag tag-soft">${icon("shield")} Vérifiée</span>`}
           ${result === "ok" ? `<span class="tag tag-green">${icon("check")} Réparé</span>` : ""}
+          ${loadMateriel().filter(m => guideFitsMateriel(g, m)).slice(0, 2).map(m =>
+            `<a class="tag" href="${ROOT}materiel.html#mat-${m.id}">${icon("box")} Pour votre ${escapeHtml(materielName(m, true))}</a>`).join("")}
         </div>
         <h1>${accentTitle(g.title)}</h1>
         <p class="lead">${escapeHtml(g.summary || "")}</p>

@@ -1,0 +1,683 @@
+# Marques et modèles de voitures, relevés sur catcar.info (catalogues Europe) en septembre 2026.
+# Format : « Marque » puis une ligne par modèle : Nom ; début-fin (années de production quand catcar les indique).
+# Les variantes d'un même modèle (carrosseries, motorisations) sont regroupées.
+# Exceptions : catcar liste Mercedes par code de châssis (des milliers de variantes) ; les classes Mercedes
+# ci-dessous sont regroupées d'après les noms commerciaux. Fiat et Jeep viennent du catalogue Chrysler de catcar (2017).
+# Les modèles sortis après 2018 manquent souvent : le formulaire permet de saisir un autre modèle.
+
+= Audi
+A1 ; 2011-
+A2 ; 2000-2005
+A3 / S3 / RS3 ; 1997-
+A3 Cabriolet ; 2008-
+A4 / S4 / RS4 ; 1995-
+A4 allroad quattro ; 2010-2016
+A4 Cabriolet ; 2003-2009
+A5 / S5 / RS5 ; 2008-
+A6 / S6 / RS6 ; 1995-
+A6 allroad quattro ; 2000-
+A7 / RS7 Sportback ; 2011-
+A8 / S8 ; 1994-
+Q2 ; 2017-
+Q3 / RS Q3 ; 2012-
+Q5 ; 2009-
+Q7 ; 2007-
+R8 ; 2007-
+TT / TTS / TT RS ; 1999-
+50 ; 1975-1978
+80 / 90 ; 1973-1996
+100 ; 1977-1994
+200 ; 1980-1991
+Cabriolet ; 1992-2000
+Coupé ; 1981-1996
+quattro ; 1980-1991
+RS2 ; 1994-1996
+V8 ; 1989-1994
+
+= BMW
+Série 1 (E81, E82, E87, E88)
+Série 1 (F20, F21)
+Série 1 Berline (F52)
+Série 2 Coupé / Cabriolet (F22, F23)
+Série 2 Active Tourer (F45)
+Série 2 Gran Tourer (F46)
+M2 (F87)
+Série 3 (E46)
+Série 3 (E90, E91, E92, E93)
+Série 3 (F30, F31, F34 GT, F35)
+M3 (F80)
+Série 4 (F32, F33, F36 Gran Coupé)
+M4 (F82, F83)
+Série 5 (E60, E61)
+Série 5 (F10, F11, F18, F07 GT)
+Série 5 (G30, G31, G38)
+M5 (F90)
+Série 6 (E63, E64)
+Série 6 (F06, F12, F13)
+Série 6 GT (G32)
+Série 7 (E65, E66)
+Série 7 (F01, F02, F04)
+Série 7 (G11, G12)
+X1 (E84)
+X1 (F48, F49)
+X2 (F39)
+X3 (E83)
+X3 (F25)
+X3 (G01)
+X4 (F26)
+X5 (E53)
+X5 (E70)
+X5 (F15, F85 M)
+X6 (E71, E72)
+X6 (F16, F86 M)
+Z4 (E85, E86)
+Z4 (E89)
+i3 (I01)
+i8 (I12)
+
+= Citroën
+AX
+Berlingo
+BX
+C-Crosser
+C-Elysée
+C-Zero
+C1
+C2
+C3
+C3 II
+C3 Picasso
+C3 Pluriel
+C4
+C4 Aircross
+C4 Picasso
+C5
+C5 II
+C6
+C8
+DS3
+DS4
+DS5
+Nemo
+Saxo
+Synergie
+Xantia
+XM
+Xsara
+Xsara Picasso
+ZX
+
+= Dacia
+Duster
+Dokker
+Lodgy
+Logan / Sandero (1re génération)
+Logan / Sandero (2e génération)
+Pick-up
+Solenza
+SupeRNova
+
+= Fiat
+500
+500L
+500X
+124 Spider
+
+= Ford
+B-Max ; 2012-
+C-Max ; 2003-
+Cougar ; 1998-2000
+EcoSport ; 2013-
+Edge ; 2015-
+Escort ; 1981-2001
+Explorer ; 1992-
+Fiesta ; 1976-
+Focus ; 1998-
+Focus Cabriolet ; 2006-2010
+Fusion ; 2002-2012
+Galaxy ; 1994-
+Granada ; 1985-1994
+Ka ; 1996-
+Kuga ; 2008-
+Maverick ; 1993-2006
+Mondeo ; 1992-
+Mustang ; 2015-
+Probe ; 1992-1997
+Puma ; 1997-2001
+Ranger ; 1998-
+S-Max ; 2006-
+Scorpio ; 1994-1998
+Sierra ; 1982-1993
+StreetKa ; 2003-2005
+Tourneo / Transit Connect ; 2002-
+Tourneo / Transit Courier ; 2014-
+Tourneo / Transit Custom ; 2012-
+Transit ; 1985-
+
+= Honda
+Accord
+Accord Tourer
+Civic
+Civic Hybrid
+CR-V
+CR-Z
+Crosstour
+Insight
+Jazz
+
+= Hyundai
+Accent
+Atos
+Coupé
+Elantra / Lantra
+Genesis
+Getz
+Grandeur
+H-1
+H-100
+i10
+Grand i10
+i20
+i30
+i40
+ix20
+ix35
+ix55
+Matrix
+Santa Fe
+Grand Santa Fe
+Sonata
+Terracan
+Trajet
+Tucson
+Veloster
+
+= Infiniti
+EX / QX50 ; 2008-
+FX / QX70 ; 2006-
+G37 Cabriolet ; 2009-2016
+G37 Coupé ; 2007-2016
+G Berline ; 2006-2013
+M / Q70 ; 2006-
+Q30 / QX30 ; 2015-
+Q50 ; 2013-
+Q60 ; 2016-
+QX60 ; 2012-
+QX80 / QX56 ; 2008-
+
+= Jeep
+Cherokee
+Compass
+Grand Cherokee
+Renegade
+Wrangler
+
+= Kia
+Cadenza
+Carens
+Carnival / Sedona
+Ceed
+Cerato / Forte
+K2500 / K2700
+Magentis / Optima
+Mohave
+Opirus
+Picanto
+Pregio
+Rio
+Sorento
+Soul
+Soul EV
+Sportage
+Venga
+
+= Lexus
+CT 200h ; 2010-
+ES ; 2012-
+GS ; 1993-
+GX ; 2009-
+IS ; 1999-
+IS 250C ; 2009-2015
+LFA ; 2010-2012
+LS ; 1989-
+LX ; 2002-
+NX ; 2014-
+RC ; 2014-
+RX ; 2000-
+SC 430 ; 2001-2010
+
+= Mazda
+121
+323
+626
+929
+BT-50
+CX-3
+CX-5
+CX-7
+CX-9
+Demio
+Mazda2
+Mazda3
+Mazda5
+Mazda6
+MPV
+MX-3
+MX-5
+MX-6
+Premacy
+RX-7
+RX-8
+Série B (pick-up)
+Série E (utilitaire)
+Tribute
+Xedos 6
+Xedos 9
+
+= Mercedes-Benz
+Classe A
+Classe B
+Classe C
+CLA ; 2013-
+CLK
+CLS
+Classe E
+Classe G
+GLA
+GLC
+GLE
+GLK
+GLS
+Classe M (ML)
+Classe R
+Classe S
+SL
+SLK / SLC
+Citan
+Sprinter
+Classe V / Viano
+Vito
+
+= Mini
+Mini (R50, R53)
+Mini (R56)
+Mini (F55, F56)
+Mini Cabrio (R52)
+Mini Cabrio (R57)
+Mini Cabrio (F57)
+Mini Clubman (R55)
+Mini Clubman (F54)
+Mini Countryman (R60)
+Mini Countryman (F60)
+Mini Coupé (R58)
+Mini Paceman (R61)
+Mini Roadster (R59)
+
+= Mitsubishi
+3000 GT ; 1990-2000
+ASX ; 2010-
+Carisma ; 1995-2003
+Colt ; 1984-2012
+Colt CZC ; 2006-2008
+Eclipse ; 1989-1999
+Galant ; 1984-2010
+Grandis ; 2004-2010
+i-MiEV ; 2009-
+L200 ; 1986-
+L300 ; 1986-2008
+Lancer ; 1984-
+Outlander ; 2003-
+Outlander PHEV ; 2013-
+Pajero ; 1983-
+Pajero Pinin ; 1999-2005
+Pajero Sport ; 1998-
+Sigma ; 1990-1996
+Space Gear ; 1994-2001
+Space Runner ; 1991-2002
+Space Star ; 1998-
+Space Wagon ; 1983-2004
+Starion ; 1982-1990
+
+= Nissan
+100NX ; 1990-1994
+200SX ; 1994-1999
+300ZX ; 1990-1996
+350Z ; 2003-2009
+370Z ; 2009-
+Almera ; 1995-2006
+Almera Tino ; 2000-2005
+Cube ; 2009-
+GT-R ; 2008-
+Interstar ; 2002-
+Juke ; 2010-
+Kubistar ; 2003-
+Leaf ; 2010-
+Maxima ; 1994-2006
+Micra ; 1992-
+Micra C+C ; 2005-2009
+Murano ; 2004-
+Navara ; 2005-
+Note ; 2006-
+NV200 / e-NV200 ; 2009-
+NV300 ; 2016-
+NV400 ; 2011-
+Pathfinder ; 2005-
+Patrol ; 1997-
+Pixo ; 2009-2013
+Prairie ; 1988-1994
+Primastar ; 2002-
+Primera ; 1990-2007
+Pulsar ; 2014-
+Qashqai ; 2006-
+Qashqai+2 ; 2008-2013
+Serena ; 1992-2001
+Sunny ; 1990-2000
+Terrano ; 1993-2006
+X-Trail ; 2001-
+
+= Opel
+Adam ; 2013-
+Agila A ; 2000-2008
+Agila B ; 2008-
+Ampera ; 2012-
+Antara ; 2007-
+Arena ; 1997-2001
+Ascona C ; 1982-1988
+Astra F ; 1992-1998
+Astra G ; 1998-2010
+Astra H ; 2004-
+Astra J ; 2010-
+Calibra ; 1989-1997
+Campo ; 1991-2002
+Cascada ; 2013-
+Combo D ; 2012-
+Corsa A ; 1983-1992
+Corsa B ; 1993-2002
+Corsa C ; 2001-
+Corsa D ; 2007-
+Corsa E ; 2015-
+Frontera A ; 1992-1998
+Frontera B ; 1999-2004
+GT ; 2007-2009
+Insignia ; 2009-
+Kadett E ; 1985-1993
+Karl ; 2015-
+Meriva A ; 2003-2010
+Meriva B ; 2010-
+Mokka ; 2013-
+Monterey ; 1992-2000
+Movano A ; 1999-2010
+Movano B ; 2010-
+Omega A ; 1987-1993
+Omega B ; 1994-2003
+Senator B ; 1988-1994
+Signum ; 2003-2008
+Sintra ; 1997-1999
+Speedster ; 2001-2004
+Tigra A ; 1993-2002
+Tigra B ; 2004-
+Vectra A ; 1989-1995
+Vectra B ; 1996-2002
+Vectra C ; 2002-2008
+Vivaro A ; 2001-
+Vivaro B ; 2015-
+Zafira A ; 1998-2010
+Zafira B ; 2005-
+Zafira C ; 2012-
+
+= Peugeot
+106
+107
+205
+206
+206+
+207
+208
+301
+306
+307
+308
+309
+405
+406
+407
+605
+607
+806
+807
+1007
+2008
+3008
+4007
+4008
+5008
+508
+Bipper
+Expert
+iOn
+Partner
+RCZ
+
+= Renault
+Avantime (Espace III Avantime)
+Captur
+Clio
+Clio II
+Clio III
+Clio IV
+Clio RS V6
+Espace I
+Espace II
+Espace IV
+Espace V
+Fluence
+Kadjar
+Kangoo
+Kangoo II
+Koleos
+Koleos II
+Laguna
+Laguna II
+Laguna III
+Latitude
+Mascott
+Master I
+Master II
+Master III
+Mégane
+Mégane II
+Mégane III
+Mégane IV
+Mégane Coupé-Cabriolet
+Modus
+R4
+R5 / Super 5
+R19
+R21
+R25
+Safrane
+Scénic I
+Scénic II
+Scénic III
+Scénic IV
+Spider
+Symbol / Thalia
+Talisman
+Trafic
+Trafic II
+Trafic III
+Twingo
+Twingo II
+Twingo III
+Twizy
+Vel Satis
+Wind
+Zoé
+
+= Seat
+Alhambra ; 1996-
+Altea ; 2004-2015
+Arona ; 2018-
+Arosa ; 1997-2004
+Ateca ; 2016-
+Cordoba ; 1993-2009
+Exeo ; 2009-2014
+Ibiza ; 1993-
+Inca ; 1996-2003
+Leon ; 2000-
+Mii ; 2012-
+Toledo ; 1992-
+
+= Skoda
+Citigo ; 2012-
+Fabia ; 2000-
+Favorit / Forman ; 1988-1995
+Felicia ; 1995-2001
+Karoq ; 2018-
+Kodiaq ; 2017-
+Octavia ; 1997-
+Rapid ; 2012-
+Roomster ; 2006-2015
+Superb ; 2002-
+Yeti ; 2010-
+
+= Smart
+fortwo
+forfour
+roadster
+crossblade
+
+= SsangYong
+Actyon
+Actyon Sports
+Korando
+Kyron
+Musso
+Rexton
+Rodius
+
+= Subaru
+BRZ ; 2011-
+Exiga ; 2009-2014
+Forester ; 1997-
+Impreza ; 1992-
+Legacy ; 1989-
+Levorg / WRX ; 2013-
+SVX ; 1992-1996
+Tribeca ; 2006-2014
+Vivio ; 1992-2000
+XV ; 2011-
+
+= Suzuki
+Alto / Celerio
+Baleno
+Cappuccino
+Carry
+Grand Vitara
+Grand Vitara XL-7
+Ignis
+Jimny
+Kizashi
+Liana
+Samurai / SJ
+Splash
+Swift
+SX4
+Vitara
+Wagon R+
+X-90
+
+= Toyota
+4Runner ; 1983-2002
+86 / GT86 ; 2012-
+Auris ; 2006-
+Avensis ; 1997-
+Avensis Verso / Picnic ; 1996-2009
+Aygo ; 2005-
+C-HR ; 2016-
+Camry ; 1982-
+Carina / Carina E ; 1970-1997
+Celica ; 1977-2005
+Corolla ; 1974-
+Corolla Verso ; 2001-2009
+Highlander ; 2013-
+Hiace ; 1977-2011
+Hilux ; 1972-
+iQ ; 2008-2014
+Land Cruiser ; 1969-
+Land Cruiser Prado ; 2002-
+Mirai ; 2015-
+MR2 ; 1984-2005
+Paseo ; 1991-1999
+Previa ; 1990-2006
+Prius ; 2000-
+Prius+ ; 2012-
+Prius Rechargeable ; 2009-
+RAV4 ; 1994-
+Starlet ; 1978-1999
+Supra ; 1986-1998
+Urban Cruiser ; 2009-2016
+Verso ; 2009-
+Verso-S ; 2010-2015
+Yaris ; 1999-
+Yaris Verso ; 1999-2005
+
+= Volkswagen
+Amarok ; 2010-
+Arteon ; 2017-
+Coccinelle (Beetle) ; 1999-
+Coccinelle Cabriolet ; 2003-
+Coccinelle historique (1200) ; 1947-1986
+Bora ; 1999-2005
+Caddy ; 1983-
+CC / Passat CC ; 2009-2017
+Corrado ; 1989-1995
+Crafter ; 2006-
+e-Golf ; 2014-
+Eos ; 2006-2016
+Fox ; 2005-2012
+Golf ; 1975-
+Golf Cabriolet ; 1979-2016
+Golf Plus ; 2005-2014
+Golf Sportsvan ; 2014-
+Jetta ; 1979-
+LT ; 1975-2007
+Lupo ; 1999-2006
+Passat ; 1974-
+Phaeton ; 2002-2016
+Polo ; 1975-
+Scirocco ; 1974-2018
+Sharan ; 1996-
+Tiguan ; 2008-
+Tiguan Allspace ; 2018-
+Touareg ; 2003-
+Touran ; 2003-
+Transporter / Combi ; 1968-
+T-Roc ; 2018-
+up! / e-up! ; 2012-
+Vento ; 1992-1998
+XL1 ; 2015-2015
+
+= Volvo
+240 / 260
+340 / 360
+440 / 460 / 480
+740 / 760 / 780
+850
+940 / 960
+C30
+C70
+S40
+S60
+S70
+S80
+S90
+V40
+V40 Cross Country
+V50
+V60
+V70
+V90
+XC60
+XC70
+XC90

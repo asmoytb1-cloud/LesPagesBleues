@@ -185,4 +185,9 @@ document.getElementById("diag-side").innerHTML = `
 const s = params.get("s");
 const startDiag = s && DIAGNOSTICS.find(d => d.id === s);
 if (startDiag) { start(); lockChoices(); me(startDiag.title); begin(startDiag); }
-else start(params.get("q") || "");
+else {
+  start(params.get("q") || "");
+  // Depuis « Mon matériel » : l'appareil est déjà choisi
+  const d = params.get("d");
+  if (d && DEVICES.includes(d)) [...chat.querySelectorAll("[data-device]")].find(b => b.dataset.device === d)?.click();
+}

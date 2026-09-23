@@ -141,6 +141,22 @@ PAGES["index.html"] = dict(
 
     <section class="section section-tight">
       <div class="container">
+        <div class="section-head">
+          <h2>Mon <span class="accent">matériel</span></h2>
+          <a class="link-arrow" href="materiel.html">Gérer mon matériel ARROW</a>
+        </div>
+        <p class="muted" style="margin:-6px 0 14px">Enregistrez vos appareils et votre voiture : vous ne verrez que les fiches qui les concernent.</p>
+        <div class="mat-strip" id="mat-strip">
+          <a class="mat-chip" href="materiel.html?type=lave-linge"><span data-icon="washer"></span>Ajouter un lave-linge</a>
+          <a class="mat-chip" href="materiel.html?type=refrigerateur"><span data-icon="fridge"></span>Ajouter un réfrigérateur</a>
+          <a class="mat-chip" href="materiel.html?kind=voiture"><span data-icon="car"></span>Ajouter ma voiture</a>
+          <a class="mat-chip" href="materiel.html"><span data-icon="plus"></span>Autre appareil</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container">
         <div class="diag-band">
           <span class="diag-band-ico"><span data-icon="stethoscope"></span></span>
           <div>
@@ -299,6 +315,20 @@ PAGES["profil.html"] = dict(
     </section>
     <section class="section">
       <div class="container" id="profile-body"></div>
+    </section>""")
+
+PAGES["materiel.html"] = dict(
+  title="Mon matériel : vos appareils et votre voiture — Les Pages Bleues",
+  desc="Enregistrez votre électroménager et votre voiture (marque, modèle, année) : Les Pages Bleues vous montrent les fiches de réparation qui les concernent.",
+  scripts=["materiel-data.js", "materiel.js"], active="materiel",
+  body="""    <section class="page-hero">
+      <div class="container">
+        <h1>Mon <span class="accent">matériel</span></h1>
+        <p>Un lave-linge LG de 2020, une Audi A3 de 2012… Enregistrez ce que vous possédez : on vous montre les fiches qui le concernent.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container" id="materiel-root"></div>
     </section>""")
 
 PAGES["diagnostic.html"] = dict(

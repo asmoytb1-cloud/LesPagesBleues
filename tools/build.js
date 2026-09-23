@@ -7,6 +7,7 @@ const path = require("path");
 const vm = require("vm");
 
 const ROOT_DIR = path.resolve(__dirname, "..");
+require("./materiel.js").build();   // catalogue du matériel (assets/js/materiel-data.js)
 const SITE = "https://asmoytb1-cloud.github.io/LesPagesBleues/";
 const OUT = path.join(ROOT_DIR, "fiches");
 const CAT_OUT = path.join(ROOT_DIR, "categories");
@@ -199,7 +200,7 @@ fs.mkdirSync(CAT_OUT, { recursive: true });
 for (const f of fs.readdirSync(CAT_OUT)) if (f.endsWith(".html")) fs.unlinkSync(path.join(CAT_OUT, f));
 for (const c of CATEGORIES) fs.writeFileSync(path.join(CAT_OUT, `${c.id}.html`), categoryPage(c));
 
-const pages = ["", "categories.html", "guides.html", "diagnostic.html", "communaute.html", "a-propos.html", "ajouter.html", "mentions-legales.html", "confidentialite.html"];
+const pages = ["", "categories.html", "guides.html", "diagnostic.html", "materiel.html", "communaute.html", "a-propos.html", "ajouter.html", "mentions-legales.html", "confidentialite.html"];
 const urls = [
   ...pages.map(p => `  <url><loc>${SITE}${p}</loc><lastmod>${REVIEWED_ON}</lastmod></url>`),
   ...CATEGORIES.map(c => `  <url><loc>${SITE}categories/${c.id}.html</loc><lastmod>${REVIEWED_ON}</lastmod></url>`),

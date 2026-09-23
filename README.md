@@ -49,7 +49,7 @@ Les pages principales (accueil, recherche, catégories…) sont générées par 
 ```sh
 npm install                      # une seule fois
 npx playwright install chromium  # une seule fois
-npm test                         # génération + validation + 19 tests dans un vrai navigateur
+npm test                         # génération + validation + 20 tests dans un vrai navigateur
 ```
 
 Les tests couvrent toutes les pages (ordinateur et mobile, thèmes clair et sombre), la recherche, les fiches, le mode accompagnement, le diagnostic, la contribution avec photo, la communauté, le profil, le mode hors ligne, l'accessibilité (axe-core, ordre des titres) et la stabilité de la mise en page au chargement.

@@ -50,7 +50,7 @@ function render() {
       <div class="pstat"><strong>${s.posts.length}</strong><small>message${s.posts.length > 1 ? "s" : ""} dans la communauté</small></div>
     </div>`;
 
-  const tabs = [["guides", "Mes guides", s.mine.length], ["repairs", "Mes réparations", s.repaired.length + s.ongoing.length], ["favs", "Favoris", s.favs.length], ["badges", "Badges", earned.length], ["data", "Mes données", ""]];
+  const tabs = [["guides", "Mes guides", s.mine.length], ["repairs", "Mes réparations", s.repaired.length + s.ongoing.length], ["favs", "Favoris", s.favs.length], ["materiel", "Mon matériel", loadMateriel().length], ["badges", "Badges", earned.length], ["data", "Mes données", ""]];
   let body = "";
   if (tab === "guides") body = s.mine.length ? `<div class="rows">${s.mine.map(g => guideRow(g)).join("")}</div>`
     : `<div class="empty">${icon("doc")}<h3>Vous n'avez pas encore publié de fiche</h3><p>Vous savez réparer quelque chose ? Transmettez-le, étape par étape.</p><div class="empty-actions"><a class="btn btn-primary" href="ajouter.html">${icon("plus")} Partager un guide</a></div></div>`;
@@ -60,6 +60,13 @@ function render() {
     : `<div class="empty">${icon("wrench")}<h3>Aucune réparation pour l'instant</h3><p>Lancez le mode accompagnement d'une fiche : votre progression apparaîtra ici.</p><div class="empty-actions"><a class="btn btn-primary" href="guides.html">Trouver un guide</a></div></div>`;
   if (tab === "favs") body = s.favs.length ? `<div class="guide-grid">${s.favs.map(guideCard).join("")}</div>`
     : `<div class="empty">${icon("heart")}<h3>Pas encore de favoris</h3><p>Touchez le cœur d'une fiche pour la retrouver ici, même sans réseau.</p></div>`;
+  if (tab === "materiel") {
+    const mat = loadMateriel();
+    body = mat.length ? `<div class="mat-strip">${mat.map(m => { const n = guidesForMateriel(m).length;
+      return `<a class="mat-chip" href="materiel.html#mat-${m.id}">${icon(m.icon || "box")}${escapeHtml(materielLabel(m))} <small>· ${n} fiche${n > 1 ? "s" : ""}</small></a>`; }).join("")}</div>
+      <p style="margin-top:16px"><a class="btn btn-primary" href="materiel.html">${icon("plus")} Gérer mon matériel</a></p>`
+      : `<div class="empty">${icon("box")}<h3>Aucun matériel enregistré</h3><p>Indiquez vos appareils et votre voiture pour ne voir que les fiches qui les concernent.</p><div class="empty-actions"><a class="btn btn-primary" href="materiel.html">${icon("plus")} Ajouter du matériel</a></div></div>`;
+  }
   if (tab === "badges") body = `<div class="badge-grid">${BADGES.map(([name, how, ic, test]) => `
     <div class="badge-card ${test(s) ? "earned" : ""}"><span class="medal">${icon(ic)}</span><div><strong>${name}</strong><small>${test(s) ? "Obtenu" : how}</small></div></div>`).join("")}</div>`;
   if (tab === "data") body = `

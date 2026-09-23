@@ -19,6 +19,12 @@ const ICONS = {
   car: '<path d="M5 16V11l2-5h10l2 5v5"/><path d="M3 16h18v2H3z"/><path d="M5 11h14"/><circle cx="7.5" cy="13.5" r=".8"/><circle cx="16.5" cy="13.5" r=".8"/><path d="M6 18v2M18 18v2"/>',
   washer: '<rect x="4" y="2.5" width="16" height="19" rx="2"/><path d="M4 7h16"/><circle cx="12" cy="14" r="4.5"/><path d="M9.5 14.5c1-1 2-1 3 0s2 1 2.5 0"/><circle cx="7" cy="4.8" r=".5"/>',
   laptop: '<rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20l-2-4H4z"/>',
+  fridge: '<rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M5 10h14M8.5 5.5v2M8.5 13v3"/>',
+  oven: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 8h18"/><rect x="6.5" y="11" width="11" height="7" rx="1"/><circle cx="7" cy="5.5" r=".6"/><circle cx="10" cy="5.5" r=".6"/>',
+  fan: '<circle cx="12" cy="12" r="1.8"/><path d="M12 10.2C11 6 12 3 15 3c2 0 2.5 3-.5 5.5M13.6 12.9c4 1.5 6 4 4.5 6.5-1 1.7-4 .7-4.8-3M10.4 12.9c-3 3-6.2 3.5-7.4 1-.9-1.8 1.5-3.8 4.8-2.6"/><path d="M12 14v7"/>',
+  coffee: '<path d="M5 8h11v6a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 10h1.5a2.5 2.5 0 0 1 0 5H16M8 2.5v2.5M11 2.5v2.5M3 21.5h16"/>',
+  plug: '<path d="M9 2v6M15 2v6M6 8h12v3a6 6 0 0 1-12 0z"/><path d="M12 17v5"/>',
+  list: '<path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r=".8"/><circle cx="3.5" cy="12" r=".8"/><circle cx="3.5" cy="18" r=".8"/>',
   phone: '<rect x="6.5" y="2" width="11" height="20" rx="2"/><path d="M11 18.5h2"/>',
   drill: '<path d="M3 6h11v6H3z"/><path d="M14 8h4M18 9h3"/><path d="M7 12l-1 8h5l1-8"/>',
   bike: '<circle cx="5.5" cy="16" r="3.5"/><circle cx="18.5" cy="16" r="3.5"/><path d="M5.5 16 9 9h6l3.5 7M9 9l3 7h-6.5M12 16l3-7M8 6h3M15 9l-1-3h2"/>',
@@ -178,6 +184,21 @@ function initials(name) {
 /* ---------- Communauté locale (questions, astuces, retours de réparateurs) ---------- */
 function loadPosts() { return store.get("lpb-posts", []); }
 function savePosts(posts) { return store.set("lpb-posts", posts); }
+
+// Mon matériel : appareils et voitures enregistrés dans ce navigateur
+function loadMateriel() { return store.get("lpb-materiel", []); }
+function saveMateriel(list) { return store.set("lpb-materiel", list); }
+function materielById(id) { return loadMateriel().find(m => m.id === id); }
+// inSentence : « Pour votre lave-linge LG » plutôt que « Pour votre Lave-linge LG »
+function materielName(m, inSentence = false) {
+  const type = inSentence && m.typeName ? m.typeName.charAt(0).toLowerCase() + m.typeName.slice(1) : m.typeName;
+  return (m.kind === "voiture" ? [m.brand, m.model] : [type, m.brand]).filter(Boolean).join(" ");
+}
+function materielLabel(m) { return [materielName(m), m.year].filter(Boolean).join(" · "); }
+function guideFitsMateriel(g, m) {
+  return m.kind === "voiture" ? inCategory(g, "automobile") : (g.devices || []).includes(m.type);
+}
+function guidesForMateriel(m) { return allGuides().filter(g => guideFitsMateriel(g, m)); }
 
 /* ---------- Recherche : pondérée, insensible aux accents et au pluriel ---------- */
 function normalize(s) {
@@ -418,6 +439,7 @@ function renderHeader(active) {
       <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
         ${links.map(([k, t, h]) => `<a href="${ROOT}${h}" ${k === active ? 'class="active" aria-current="page"' : ""}>${t}</a>`).join("")}
         <a class="nav-extra" href="${ROOT}a-propos.html">À propos</a>
+        <a class="nav-extra" href="${ROOT}materiel.html">Mon matériel</a>
         <a class="nav-extra" href="${ROOT}guides.html?fav=1">Mes favoris</a>
       </nav>
       <div class="header-search search-wrap" role="search">
@@ -488,7 +510,8 @@ function renderFooter() {
       <div class="footer-cols">
         <div><h2>Explorer</h2>
           <a href="${ROOT}categories.html">Catégories</a><a href="${ROOT}guides.html">Tous les guides</a>
-          <a href="${ROOT}diagnostic.html">Diagnostic guidé</a><a href="${ROOT}guides.html?fav=1">Mes favoris</a></div>
+          <a href="${ROOT}diagnostic.html">Diagnostic guidé</a><a href="${ROOT}materiel.html">Mon matériel</a>
+          <a href="${ROOT}guides.html?fav=1">Mes favoris</a></div>
         <div><h2>Participer</h2>
           <a href="${ROOT}ajouter.html">Ajouter une fiche</a><a href="${ROOT}communaute.html">Communauté</a>
           <a href="${ROOT}profil.html">Mon profil</a></div>

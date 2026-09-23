@@ -66,3 +66,12 @@ if (started.length) {
 
 hydrateIcons();
 attachSuggest(document.getElementById("hero-q"), document.getElementById("hero-suggest"));
+
+// Mon matériel : raccourcis vers les fiches de chaque appareil enregistré
+const materiel = loadMateriel();
+if (materiel.length) {
+  document.getElementById("mat-strip").innerHTML = materiel.map(m => {
+    const n = guidesForMateriel(m).length;
+    return `<a class="mat-chip" href="${n ? "guides.html?materiel=" + m.id : "materiel.html#mat-" + m.id}">${icon(m.icon || "box")}${escapeHtml(materielName(m))}${m.year ? ` <small>${m.year}</small>` : ""} <small>· ${n} fiche${n > 1 ? "s" : ""}</small></a>`;
+  }).join("") + `<a class="mat-chip" href="materiel.html">${icon("plus")}Ajouter</a>`;
+}
