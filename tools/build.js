@@ -19,8 +19,8 @@ for (const f of ["data.js", "common.js", "guide-view.js", "diagnostics-data.js",
   vm.runInContext(fs.readFileSync(path.join(ROOT_DIR, "assets/js", f), "utf8") + "\n;globalThis.__ok = true;", sandbox, { filename: f });
 }
 const { GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon,
-  DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, guidesForType, imgSrc, photoUrl } = vm.runInContext(
-  "({ GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon, DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, guidesForType, imgSrc, photoUrl })", sandbox);
+  DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, CAR_MAKES, MOTO_MAKES, guidesForType, imgSrc, photoUrl } = vm.runInContext(
+  "({ GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon, DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, CAR_MAKES, MOTO_MAKES, guidesForType, imgSrc, photoUrl })", sandbox);
 
 const esc = s => escapeHtml(s);
 const iso = m => m ? `PT${Math.floor(m / 60) ? Math.floor(m / 60) + "H" : ""}${m % 60 ? m % 60 + "M" : ""}` : undefined;
@@ -89,8 +89,10 @@ function head({ title, desc, canonical, image, type = "website", extra = "" }) {
 /* Page statique d'un domaine : liste de ses fiches, lisible sans JavaScript */
 // Types d'équipement présentés sur la page d'un domaine (Auto / Moto : voiture et moto)
 function typesOf(c) {
-  if (c.id === "automobile") return [{ id: "voiture", name: "Voiture", icon: "car", group: "Véhicules", source: "catcar" }, { id: "moto", name: "Moto", icon: "moto", group: "Véhicules", source: "motobook" }];
-  if (c.id === "moto") return [{ id: "moto", name: "Moto", icon: "moto", group: "Véhicules", source: "motobook" }];
+  const vehicle = (id, name, icon, source, makes) => ({ id, name, icon, group: "Véhicules", source, brands: makes.map(m => m.name), refCount: makes.reduce((n, m) => n + m.models.length, 0) });
+  const car = () => vehicle("voiture", "Voiture", "car", "catcar", CAR_MAKES), moto = () => vehicle("moto", "Moto", "moto", "motobook", MOTO_MAKES);
+  if (c.id === "automobile") return [car(), moto()];
+  if (c.id === "moto") return [moto()];
   return APPLIANCE_TYPES.filter(t => t.category === c.id);
 }
 
@@ -104,12 +106,12 @@ function categoryPage(c) {
   const subs = subCategories(c.id).filter(sc => !types.some(t => t.id === sc.id));   // Moto est déjà une tuile d'Auto / Moto
   const groups = [...new Set(types.map(t => t.group))];
   const diags = DIAGNOSTICS.filter(d => inCategory({ category: d.category }, c.id));
-  const sources = [...new Set(types.map(t => t.source).filter(Boolean))].map(k => MATERIEL_SOURCES[k]).filter(Boolean);
+  const sources = [...new Set(types.flatMap(t => t.sources || [t.source]).filter(Boolean))].map(k => MATERIEL_SOURCES[k]).filter(Boolean);
   const plural = (k, w) => `${k} ${w}${k > 1 ? "s" : ""}`;
   const typeTile = t => `
           <a class="type-tile" href="${t.n ? `../guides.html?type=${t.id}` : `../materiel.html?type=${t.id}`}">
             <span class="type-ico">${icon(t.icon)}</span>
-            <span><strong>${esc(t.name)}</strong><small>${t.n ? plural(t.n, "fiche") : "Pas encore de fiche · l'enregistrer"}</small></span>
+            <span><strong>${esc(t.name)}</strong><small>${t.n ? plural(t.n, "fiche") : "Pas encore de fiche"}${t.brands?.length ? ` · ${t.brands.length.toLocaleString("fr-FR")} marque${t.brands.length > 1 ? "s" : ""}` : ""}${t.refCount ? ` · ${t.refCount.toLocaleString("fr-FR")} modèles` : ""}</small></span>
           </a>`;
   const page = {
     "@context": "https://schema.org", "@type": "CollectionPage", name: c.name, description: c.intro || c.desc,

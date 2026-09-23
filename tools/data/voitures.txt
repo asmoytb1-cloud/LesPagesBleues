@@ -2,7 +2,7 @@
 # Format : « Marque » puis une ligne par modèle : Nom ; début-fin (années de production quand catcar les indique).
 # Les variantes d'un même modèle (carrosseries, motorisations) sont regroupées.
 # Exceptions : catcar liste Mercedes par code de châssis (des milliers de variantes) ; les classes Mercedes
-# ci-dessous sont regroupées d'après les noms commerciaux. Fiat et Jeep viennent du catalogue Chrysler de catcar (2017).
+# ci-dessous sont regroupées d'après les noms commerciaux. Chrysler, Dodge, Jeep, Fiat et RAM viennent du catalogue Chrysler de catcar (marché nord-américain, années 1998 à 2017) : années omises quand le catalogue ne permet pas de les connaître pour l'Europe.
 # Les modèles sortis après 2018 manquent souvent : le formulaire permet de saisir un autre modèle.
 
 = Audi
@@ -117,12 +117,6 @@ Pick-up
 Solenza
 SupeRNova
 
-= Fiat
-500
-500L
-500X
-124 Spider
-
 = Ford
 B-Max ; 2012-
 C-Max ; 2003-
@@ -204,13 +198,6 @@ Q50 ; 2013-
 Q60 ; 2016-
 QX60 ; 2012-
 QX80 / QX56 ; 2008-
-
-= Jeep
-Cherokee
-Compass
-Grand Cherokee
-Renegade
-Wrangler
 
 = Kia
 Cadenza
@@ -681,3 +668,85 @@ V90
 XC60
 XC70
 XC90
+
+= Chrysler
+200 ; 2015-
+200 / Sebring / Avenger / Flavia ; 2007-2014
+300 ; 2005-
+300C ; 2007-2008
+300M / Concorde / Intrepid
+Aspen ; 2007-2009
+Crossfire ; 2004-2008
+Grand Voyager / Town & Country / Caravan ; 2001-
+PT Cruiser ; 2001-2010
+Pacifica ; 2004-2008
+Prowler ; 1999-2002
+Sebring ; 2007-2007
+Sebring / Stratus ; 2001-2006
+Sebring Cabriolet
+Sebring Coupé / Avenger / Talon
+Stratus / Cirrus
+Stratus / Cirrus / Breeze
+Stratus Cabriolet (R/T)
+Voyager
+Voyager / Caravan ; 2006-2010
+Voyager / Caravan / Town & Country
+
+= Dodge
+Caliber ; 2007-2012
+Challenger ; 2008-
+Charger ; 2011-
+Dakota
+Dart ; 2012-
+Durango
+Journey ; 2009-
+Neon
+Nitro ; 2007-2011
+Ram Van / Wagon
+Sprinter ; 2002-2009
+Viper
+
+= Fiat
+124 Spider
+500
+500L
+500X
+
+= Jeep
+Cherokee
+Commander ; 2006-2010
+Compass / Patriot ; 2007-
+Grand Cherokee
+Liberty ; 2002-2012
+Renegade ; 2015-
+Wrangler
+
+= RAM
+Ram 1500 Pickup ; 2002-
+Ram 2500 Pickup ; 2005-
+Ram 3500 Cab Chassis (<10K lb) ; 2016-
+Ram 3500 Cab Chassis ; 2007-
+Ram 3500 Pickup ; 2006-
+Ram 4500 / 5500 Cab Chassis ; 2008-
+Ram Pickup (Quad & Club Cab)
+Ram Pickup (Regular Cab)
+Ram Promaster ; 2014-
+Ram Promaster City ; 2015-
+
+= Rolls-Royce
+Phantom (RR1)
+Phantom Series II (RR1)
+Phantom (RR11)
+Phantom EWB (RR12)
+Phantom Drophead
+Phantom Drophead Series II
+Phantom Coupé
+Phantom Coupé Series II
+Ghost (RR4)
+Wraith (RR5)
+Dawn (RR6)
+
+= Isuzu
+TF (pick-up)
+SUV
+

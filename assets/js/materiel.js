@@ -18,6 +18,30 @@ const domains = () => CATEGORIES.filter(c => APPLIANCE_TYPES.some(t => t.categor
 const years = m => m.from ? (m.to && m.to !== m.from ? `${m.from}–${m.to}` : m.to ? `${m.from}` : `à partir de ${m.from}`) : "";
 const newId = () => "m" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
+// Références et modèles d'un type : fichiers assets/data/modeles/*.json, chargés seulement quand on en a besoin
+const modelFiles = new Map();
+function loadModels(t) {
+  if (!t?.refFile) return Promise.resolve(null);
+  if (!modelFiles.has(t.refFile)) modelFiles.set(t.refFile, fetch(`${ROOT}assets/data/modeles/${t.refFile}.json`)
+    .then(r => r.ok ? r.json() : null).catch(() => null));
+  return modelFiles.get(t.refFile).then(d => d && d[t.id]);
+}
+// Index de recherche d'un type : [texte affiché, forme simplifiée, marque] pour toutes les marques
+const modelIndex = new Map();
+async function typeIndex(t) {
+  if (!modelIndex.has(t.id)) {
+    const refs = await loadModels(t) || {};
+    const rows = [];
+    for (const [b, ms] of Object.entries(t.models || {})) for (const m of ms) rows.push([m, squash(m), b]);
+    for (const [b, list] of Object.entries(refs)) for (const r of list.split("\n")) { const shown = showRef(r); rows.push([shown, squash(shown), b]); }
+    modelIndex.set(t.id, rows);
+  }
+  return modelIndex.get(t.id);
+}
+// Les références Spareka sont stockées en minuscules avec des tirets : « f4wv309s0 » → « F4WV309S0 »
+const showRef = r => /^[a-z0-9-]+$/.test(r) ? r.replace(/-/g, " ").toUpperCase() : r;
+const squash = s => normalize(s).replace(/[^a-z0-9]/g, "");
+
 // Point de départ : ?type=lave-linge, ?type=voiture, ?kind=moto, ?cat=jardin
 let preType = params.get("type") || "";
 let kind = VEHICLES[preType] ? preType : VEHICLES[params.get("kind")] ? params.get("kind") : "appareil";
@@ -40,7 +64,7 @@ function applianceFields() {
         <datalist id="brand-list"></datalist>
         <p class="field-hint" id="brand-hint"></p></div>
       <div class="field"><label for="m-model">Modèle ou référence <small>(facultatif)</small></label>
-        <input class="input" id="m-model" list="model-list" autocomplete="off" maxlength="60" placeholder="ex. F4WV309S0">
+        <input class="input" id="m-model" list="model-list" autocomplete="off" maxlength="160" placeholder="ex. F4WV309S0">
         <datalist id="model-list"></datalist>
         <p class="field-hint" id="model-hint">Elle figure sur l'étiquette ou la plaque signalétique (dessous, dos ou encadrement de porte). Utile pour commander la bonne pièce.</p></div>
     </div>
@@ -112,7 +136,7 @@ function cardHtml(m) {
 }
 
 function sourcesNote() {
-  const used = [...new Set([...APPLIANCE_TYPES.map(t => t.source).filter(Boolean), "catcar", "motobook"])];
+  const used = [...new Set([...APPLIANCE_TYPES.flatMap(t => t.sources).filter(Boolean), "catcar", "motobook"])];
   return used.map(k => MATERIEL_SOURCES[k]).filter(Boolean)
     .map(s => `<a href="${s.url}" target="_blank" rel="noopener">${escapeHtml(s.name)}</a>`).join(", ");
 }
@@ -153,12 +177,38 @@ function wireForm() {
   $("m-year").addEventListener("input", yearHint);
 
   if (kind === "appareil") {
-    const fillModels = () => {
-      const t = typeById($("m-type").value);
-      const brand = t?.brands.find(b => normalize(b) === normalize($("m-brand").value.trim()));
-      const models = (t?.models && brand && t.models[brand]) || [];
-      $("model-list").innerHTML = models.map(m => `<option value="${escapeHtml(m)}"></option>`).join("");
-      $("m-model").placeholder = models[0] ? `ex. ${models[0]}` : "ex. F4WV309S0";
+    let rows = [], request = 0;
+    const brandOf = () => { const t = typeById($("m-type").value); return t?.brands.find(b => normalize(b) === normalize($("m-brand").value.trim())); };
+    const suggest = () => {
+      const q = squash($("m-model").value), brand = brandOf();
+      const hits = [];
+      for (const r of rows) {
+        if ((!brand || r[2] === brand) && (!q || r[1].includes(q))) hits.push(r);
+        if (hits.length >= 40) break;
+      }
+      $("model-list").innerHTML = hits.map(([m, , b]) => `<option value="${escapeHtml(m)}"${!brand && b ? ` label="${escapeHtml(b)}"` : ""}></option>`).join("");
+    };
+    const fillModels = async () => {
+      const t = typeById($("m-type").value), brand = brandOf();
+      const hint = $("model-hint"), ticket = ++request;
+      if (!t) { rows = []; suggest(); return; }
+      if (t.refFile && !modelIndex.has(t.id)) hint.textContent = "Chargement des modèles connus…";
+      const all = await typeIndex(t);
+      if (ticket !== request) return;
+      rows = all;
+      const n = brand ? all.filter(r => r[2] === brand).length : all.length;
+      const first = all.find(r => !brand || r[2] === brand);
+      $("m-model").placeholder = first ? `ex. ${first[0].slice(0, 40)}` : "ex. F4WV309S0";
+      hint.textContent = n
+        ? `${n.toLocaleString("fr-FR")} modèle${n > 1 ? "s" : ""} ou référence${n > 1 ? "s" : ""} connu${n > 1 ? "s" : ""}${brand ? ` pour ${brand}` : ""} : tapez le début du vôtre (étiquette ou plaque signalétique).`
+        : "Elle figure sur l'étiquette ou la plaque signalétique (dessous, dos ou encadrement de porte). Utile pour commander la bonne pièce.";
+      suggest();
+    };
+    // Modèle choisi dans la liste alors que la marque est vide : on la remplit
+    const pickModel = () => {
+      if ($("m-brand").value.trim()) return;
+      const v = $("m-model").value, row = rows.find(r => r[0] === v && r[2]);
+      if (row) { $("m-brand").value = row[2]; fillModels(); }
     };
     const fill = () => {
       const t = typeById($("m-type").value);
@@ -169,6 +219,7 @@ function wireForm() {
     $("m-domain").addEventListener("change", () => { domain = $("m-domain").value; preType = ""; render(); $("m-type").focus(); });
     $("m-type").addEventListener("change", fill);
     $("m-brand").addEventListener("input", fillModels);
+    $("m-model").addEventListener("input", () => { suggest(); pickModel(); });
     fill();
   } else {
     const makes = VEHICLES[kind].makes;

@@ -11,6 +11,7 @@ Trouvez en quelques clics comment réparer vos objets, au lieu de les jeter.
 | **69 guides vérifiés** | Automobile, électroménager, téléphonie, maison, vélo, jardin, loisirs, mode, instruments. Chaque fiche cite ses sources et sa date de vérification. |
 | **Mode accompagnement** | Une étape à la fois en plein écran : minuteurs, lecture à voix haute, commandes vocales (« suivant », « répète »…), écran maintenu allumé, reprise là où on s'est arrêté. |
 | **Diagnostic guidé** | 26 pannes courantes : on décrit le problème (texte ou voix), quelques questions, les causes sont classées avec un niveau de confiance, puis on va vers la bonne fiche… ou vers un réparateur labellisé. |
+| **Mon matériel** | On enregistre ses appareils, sa voiture ou sa moto et on ne voit que les fiches qui les concernent. Catalogue : 85 types d'équipement, 4 600 marques et près de 1,3 million de modèles et références (Spareka, Leroy Merlin, Boulanger, Micromania), 34 marques et 677 modèles de voitures (catcar.info), 7 marques et 235 modèles de motos (MotoBook). |
 | **Recherche** | Synonymes, accents et pluriels ignorés, suggestions instantanées ; onglets Guides / Diagnostics / Discussions, filtres domaine, difficulté, durée, favoris et tri. |
 | **Communauté** | Questions, astuces et retours de réparateurs structurés (symptôme, cause trouvée, réparation, temps, difficulté). |
 | **Profil** | Fiches publiées, réparations, favoris, 10 badges, export / import / effacement des données. |
@@ -43,6 +44,13 @@ Pour ajouter une photo : déposez-la en WebP (1000 px de large environ) dans `as
 Pensez à changer `REVIEWED_ON` dans `data.js` quand vous revérifiez les fiches, et à incrémenter `CACHE` dans `sw.js` quand vous publiez une nouvelle version (sinon les visiteurs hors ligne gardent l'ancienne).
 
 Les pages principales (accueil, recherche, catégories…) sont générées par `python3 tools/pages.py` à partir de gabarits : modifiez le gabarit dans ce fichier plutôt que le HTML directement.
+
+## Mettre à jour le catalogue du matériel
+
+Le catalogue est généré par `tools/materiel.js` (lancé par `node tools/build.js`) à partir de `tools/data/`.
+Les références Spareka et les produits Leroy Merlin viennent des plans de site publics de ces sites :
+`python3 tools/fetch-catalogues.py` les relit (compter une trentaine de minutes pour Leroy Merlin), puis relancez `node tools/build.js`.
+Les modèles sont écrits dans `assets/data/modeles/*.json` et chargés seulement quand on remplit « Mon matériel ».
 
 ## Tests
 

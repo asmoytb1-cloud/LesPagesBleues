@@ -295,6 +295,13 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     expect(await p.inputValue("#m-type") === "lave-linge", "le type passé dans l'adresse doit être présélectionné");
     expect(await p.$$eval("#brand-list option", o => o.some(x => x.value === "LG")), "LG doit être proposé pour les lave-linge");
     await p.fill("#m-brand", "lg");
+    await p.dispatchEvent("#m-brand", "input");
+    await p.waitForFunction(() => /modèles? ou références? connu/.test(document.getElementById("model-hint").textContent), null, { timeout: 15000 });
+    await p.fill("#m-model", "f4wv");
+    await p.dispatchEvent("#m-model", "input");
+    const refs = await p.$$eval("#model-list option", o => o.map(x => x.value));
+    expect(refs.length > 0 && refs.every(r => r.replace(/\s/g, "").startsWith("F4WV") || r.replace(/\s/g, "").includes("F4WV")), "références LG proposées : " + refs.slice(0, 3));
+    await p.fill("#m-model", "");
     await p.fill("#m-year", "2020");
     await p.click("#mat-form [type=submit]");
     await p.click('[data-kind="voiture"]');
@@ -333,6 +340,14 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
   await test("Mon matériel : console (modèles proposés) et moto (MotoBook) → fiches dédiées", async () => {
     const ctx = await newCtx(); const p = await ctx.newPage();
     const errs = []; watch(p, errs);
+    await p.goto(B + "materiel.html?type=robot-tondeuse");
+    await p.waitForFunction(() => /connu/.test(document.getElementById("model-hint").textContent), null, { timeout: 15000 });
+    await p.fill("#m-model", "sileno");
+    await p.dispatchEvent("#m-model", "input");
+    const first = await p.$$eval("#model-list option", o => o.find(x => x.label === "Gardena").value);
+    await p.fill("#m-model", first);
+    await p.dispatchEvent("#m-model", "input");
+    expect(await p.inputValue("#m-brand") === "Gardena", "choisir un modèle Gardena sans marque doit remplir la marque : " + await p.inputValue("#m-brand"));
     await p.goto(B + "materiel.html?cat=loisirs");
     expect(await p.inputValue("#m-domain") === "loisirs", "le domaine passé dans l'adresse doit être présélectionné");
     await p.selectOption("#m-type", "console");

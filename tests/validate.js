@@ -118,12 +118,22 @@ const { APPLIANCE_TYPES, CAR_MAKES, MOTO_MAKES, MATERIEL_SOURCES } = vm.runInCon
 const typeIds = new Set(APPLIANCE_TYPES.map(t => t.id));
 const diagDevices = new Set(DIAGNOSTICS.map(d => d.device));
 for (const t of APPLIANCE_TYPES) {
-  if (t.source && !t.brands.length) fail(`matériel ${t.id} : aucune marque relevée alors qu'une source est indiquée`);
-  if (t.source && !MATERIEL_SOURCES[t.source]) fail(`matériel ${t.id} : source inconnue ${t.source}`);
+  if (t.sources.length && !t.brands.length) fail(`matériel ${t.id} : aucune marque relevée alors qu'une source est indiquée`);
+  for (const src of t.sources) if (!MATERIEL_SOURCES[src]) fail(`matériel ${t.id} : source inconnue ${src}`);
   if (!catIds.has(t.category)) fail(`matériel ${t.id} : domaine inconnu ${t.category}`);
   for (const b of Object.keys(t.models || {})) if (!t.brands.includes(b)) fail(`matériel ${t.id} : modèles pour une marque absente (${b})`);
   if (t.diag && !diagDevices.has(t.diag)) fail(`matériel ${t.id} : appareil de diagnostic inconnu ${t.diag}`);
   if (vm.runInContext(`icon(${JSON.stringify(t.icon)})`, ctx) === icon0) fail(`matériel ${t.id} : icône inconnue ${t.icon}`);
+}
+for (const t of APPLIANCE_TYPES) {
+  if (!t.refFile) { if (t.refCount) fail(`matériel ${t.id} : ${t.refCount} modèles mais pas de fichier`); continue; }
+  const f = path.join(ROOT, "assets/data/modeles", t.refFile + ".json");
+  if (!fs.existsSync(f)) { fail(`matériel ${t.id} : fichier de modèles manquant ${t.refFile}.json`); continue; }
+  const refs = JSON.parse(fs.readFileSync(f, "utf8"))[t.id];
+  if (!refs) { fail(`matériel ${t.id} : absent de ${t.refFile}.json`); continue; }
+  const n = Object.values(refs).reduce((k, v) => k + v.split("\n").length, 0);
+  if (n !== t.refCount) fail(`matériel ${t.id} : ${n} modèles dans le fichier au lieu de ${t.refCount}`);
+  for (const b of Object.keys(refs)) if (b && !t.brands.includes(b)) fail(`matériel ${t.id} : marque ${b} absente de la liste`);
 }
 if (new Set(APPLIANCE_TYPES.map(t => t.id)).size !== APPLIANCE_TYPES.length) fail("matériel : identifiant de type en double");
 for (const g of GUIDES) for (const d of g.devices || []) if (!typeIds.has(d) && d !== "voiture" && d !== "moto") fail(`fiche ${g.id} : type d'appareil inconnu ${d} (voir tools/materiel.js)`);
@@ -131,9 +141,18 @@ for (const c of [...CAR_MAKES, ...MOTO_MAKES]) {
   if (!c.models.length) fail(`voiture ${c.name} : aucun modèle`);
   for (const m of c.models) if (m.from && m.to && m.to < m.from) fail(`voiture ${c.name} ${m.name} : années inversées`);
 }
-const regenerated = (() => { const out = []; const orig = fs.writeFileSync; fs.writeFileSync = (f, d) => out.push(d); const log = console.log; console.log = () => {};
-  try { require("../tools/materiel.js").build(); } finally { fs.writeFileSync = orig; console.log = log; } return out[0]; })();
-if (regenerated !== fs.readFileSync(path.join(ROOT, "assets/js/materiel-data.js"), "utf8")) fail("assets/js/materiel-data.js n'est pas à jour : lancez node tools/build.js");
+// Relance le générateur « à blanc » (aucune écriture ni suppression) et compare avec les fichiers présents
+const regenerated = (() => {
+  const out = {}, saved = { writeFileSync: fs.writeFileSync, rmSync: fs.rmSync, mkdirSync: fs.mkdirSync }, log = console.log;
+  fs.writeFileSync = (f, d) => { out[path.relative(ROOT, f)] = d; }; fs.rmSync = () => {}; fs.mkdirSync = () => {}; console.log = () => {};
+  try { require("../tools/materiel.js").build(); } finally { Object.assign(fs, saved); console.log = log; }
+  return out;
+})();
+for (const [f, d] of Object.entries(regenerated)) {
+  if (!fs.existsSync(path.join(ROOT, f)) || fs.readFileSync(path.join(ROOT, f), "utf8") !== d) fail(`${f} n'est pas à jour : lancez node tools/build.js`);
+}
+const extra = fs.readdirSync(path.join(ROOT, "assets/data/modeles")).filter(f => !regenerated[path.join("assets/data/modeles", f)]);
+if (extra.length) fail(`fichiers de modèles orphelins : ${extra.join(", ")} (lancez node tools/build.js)`);
 
 const credits = JSON.parse(fs.readFileSync(path.join(ROOT, "assets/img/photos/credits.json"), "utf8"));
 for (const f of fs.readdirSync(path.join(ROOT, "assets/img/photos")).filter(f => f.endsWith(".webp"))) {
