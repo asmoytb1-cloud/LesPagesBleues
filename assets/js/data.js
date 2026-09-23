@@ -31,6 +31,36 @@ const DIFFICULTIES = ["Facile", "Moyen", "Difficile"];
 const GUIDES = [
   /* ================= AUTOMOBILE ================= */
   {
+    id: "pression-pneus-voiture",
+    title: "Vérifier et régler la pression des pneus",
+    category: "automobile",
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 40 €",
+    keywords: ["pneus", "pression", "gonfler", "voiture", "station", "gonfleur", "manomètre", "sous-gonflé", "voyant", "roue de secours", "bar"],
+    summary: "Des pneus sous-gonflés s'usent plus vite, font consommer davantage et freinent moins bien. Un contrôle par mois, à froid, en station.",
+    safety: "Contrôlez à froid, après 10 km maximum : chaud, un pneu affiche une pression plus élevée que la réalité.",
+    tools: ["Gonfleur de station avec manomètre", "Gants ou chiffon"],
+    parts: [],
+    sources: [
+      { label: "Codes Rousseau — comment vérifier la pression des pneus", url: "https://public.codesrousseau.fr/conseils-pratiques/864-comment-verifier-la-pression-des-pneus.html" },
+      { label: "Allopneus — comment contrôler la pression des pneus", url: "https://www.allopneus.com/guide-pratique/auto/conseils-pneu/pression-pneu-comment-faire" }
+    ],
+    steps: [
+      { title: "Trouver la bonne pression", text: "Lisez l'étiquette collée sur la tranche de la portière conducteur, dans la trappe à carburant ou la boîte à gants, ou reportez-vous au manuel. La pression diffère souvent entre l'avant et l'arrière, et selon la charge." },
+      { title: "Rouler peu", text: "Allez à la station la plus proche : moins de 10 km, pour que les pneus restent froids." },
+      { title: "Brancher le gonfleur", text: "Dévissez le petit bouchon de la valve, au bord de la jante, et enfoncez fermement l'embout du gonfleur.", tip: "Gardez des gants ou un chiffon : les valves sont souvent sales." },
+      { title: "Ajuster", text: "Lisez la pression et ajustez-la à la valeur de l'étiquette. Mettez toujours la même pression sur les deux pneus d'un même essieu." },
+      { title: "Refermer les valves", text: "Revissez bien chaque bouchon : il protège la valve de la saleté et évite les fuites." },
+      { title: "Penser à la roue de secours", text: "Contrôlez-la une à deux fois par an : dégonflée, elle ne vous sauvera pas en cas de crevaison.", tip: "Contrôlez les quatre pneus au moins une fois par mois et avant chaque long trajet." }
+    ],
+    troubleshoot: [
+      "Un pneu perd régulièrement de la pression : il est peut-être endommagé, faites-le contrôler.",
+      "Le voyant de pression des pneus s'allume : contrôlez et regonflez dès que possible."
+    ]
+  },
+  {
     id: "pile-cle-voiture",
     title: "Changer la pile d'une clé de voiture",
     category: "automobile",
@@ -308,6 +338,35 @@ const GUIDES = [
   },
 
   /* ================= ÉLECTROMÉNAGER ================= */
+  {
+    id: "filtre-seche-linge",
+    title: "Sèche-linge qui sèche mal : nettoyer filtres et condenseur",
+    category: "electromenager",
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    savings: "≈ 80 €",
+    keywords: ["sèche-linge", "sèche mal", "linge humide", "filtre", "peluches", "condenseur", "échangeur", "voyant", "pompe à chaleur", "condensation", "long"],
+    summary: "Linge encore humide, cycles qui s'allongent, voyant « filtre » allumé : des peluches bouchent souvent le filtre ou le condenseur.",
+    safety: "Débranchez le sèche-linge avant d'intervenir.",
+    tools: ["Aspirateur avec brosse", "Chiffon humide"],
+    parts: [],
+    sources: [
+      { label: "Electrolux — nettoyage du condenseur et du filtre du sèche-linge", url: "https://support.electrolux.fr/support-articles/article/nettoyage-du-condenseur-et-du-filtre-du-seche-linge" },
+      { label: "Bosch — nettoyer le sèche-linge", url: "https://www.bosch-home.be/fr/nos-services/aide-en-ligne/nettoyer-le-seche-linge" },
+      { label: "Murfy — entretenir et nettoyer son sèche-linge", url: "https://murfy.fr/blog/entretien-nettoyage-seche-linge-pompe-a-chaleur-condensation-evacuation-2" }
+    ],
+    steps: [
+      { title: "Débrancher", text: "Débranchez l'appareil et laissez refroidir s'il vient de tourner." },
+      { title: "Nettoyer le filtre de porte", text: "Ouvrez la porte, tirez le filtre vers le haut, ouvrez-le et retirez les peluches à la main humide ou à l'aspirateur. Enlevez aussi celles coincées dans son logement et dans le joint.", tip: "À faire après chaque séchage : cela prend quelques secondes." },
+      { title: "Laver le filtre s'il est encrassé", text: "S'il est très sale ou entartré, lavez-le à l'eau courante. Il est propre quand on voit la lumière au travers ; sinon, remplacez-le." },
+      { title: "Vider le réservoir d'eau", text: "Sur un sèche-linge à condensation ou à pompe à chaleur, videz le réservoir d'eau après chaque cycle : plein, il interrompt le séchage suivant." },
+      { title: "Nettoyer le condenseur", text: "Environ une fois par mois : ouvrez la trappe en bas de l'appareil, déverrouillez le condenseur (échangeur), sortez-le et rincez-le sous le robinet jusqu'à ce qu'il n'y ait plus de peluches. Laissez-le égoutter avant de le remettre. Sur les modèles où il ne se retire pas, enlevez les peluches au chiffon humide ou à l'aspirateur avec une brosse.", safety: "Il est fragile : seulement de l'eau claire, jamais d'objet dur ou pointu." }
+    ],
+    troubleshoot: [
+      "Le voyant du condenseur reste allumé après nettoyage : vérifiez le verrouillage de la trappe, puis consultez la notice ou un réparateur."
+    ]
+  },
   {
     id: "detartrer-bouilloire",
     title: "Détartrer une bouilloire",
@@ -634,6 +693,35 @@ const GUIDES = [
 
   /* ================= TÉLÉPHONIE & INFORMATIQUE ================= */
   {
+    id: "tetes-impression-imprimante",
+    title: "Imprimante qui laisse des traits : nettoyer les têtes",
+    category: "telephonie",
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 60 €",
+    keywords: ["imprimante", "jet d'encre", "traits", "lignes blanches", "bandes", "couleur manquante", "buses", "tête d'impression", "nettoyage", "epson", "hp", "canon"],
+    summary: "Lignes blanches ou couleur qui manque : l'encre a souvent séché dans les buses. L'utilitaire de nettoyage de l'imprimante règle la plupart des cas.",
+    safety: "N'éteignez jamais l'imprimante pendant un cycle de nettoyage : vous risquez de l'endommager.",
+    tools: ["Menu Entretien de l'imprimante ou son logiciel", "Quelques feuilles de papier ordinaire"],
+    parts: [],
+    sources: [
+      { label: "Epson — vérification des buses et nettoyage des têtes (FAQ)", url: "https://www.epson.fr/fr_FR/faq/KA-01087/contents" },
+      { label: "Epson — nettoyage de la tête depuis le panneau de commande", url: "https://files.support.epson.com/docid/cpd3/cpd39354/source/printers/source/ink_functions/tasks/xp950/cleaning_head_lcd_xp950.html" },
+      { label: "Informaticien à domicile — nettoyer les têtes d'imprimante", url: "https://www.informaticienadomicile.com/blog/actualites-nouveautes-informatiques/comment-nettoyer-les-tetes-dimprimantes-2/" }
+    ],
+    steps: [
+      { title: "Vérifier les buses", text: "Chargez du papier ordinaire et lancez « Vérification des buses » depuis le menu Entretien de l'imprimante ou son logiciel. Des trous dans les lignes du motif signalent des buses bouchées." },
+      { title: "Lancer un nettoyage", text: "Dans le même menu, lancez « Nettoyage de la tête » et attendez la fin du cycle.", tip: "Chaque nettoyage consomme un peu d'encre : vérifiez le résultat avant d'en relancer un." },
+      { title: "Vérifier de nouveau", text: "Imprimez une nouvelle vérification des buses. S'il reste des trous, relancez un nettoyage." },
+      { title: "Laisser reposer", text: "Toujours des défauts après 2 ou 3 nettoyages : éteignez l'imprimante et laissez-la reposer au moins 6 heures (une nuit, c'est l'idéal), puis refaites une vérification.", safety: "Ne dépassez pas six nettoyages d'affilée." }
+    ],
+    troubleshoot: [
+      "Aucune amélioration : une cartouche est peut-être vide, trop ancienne ou abîmée. Remplacez-la.",
+      "Pour que ça ne revienne pas : imprimez une page de temps en temps, une par semaine suffit à éviter que l'encre sèche."
+    ]
+  },
+  {
     id: "touche-clavier-bloquee",
     title: "Nettoyer un clavier et débloquer une touche",
     category: "telephonie",
@@ -779,6 +867,34 @@ const GUIDES = [
   },
 
   /* ================= MAISON & BRICOLAGE ================= */
+  {
+    id: "detartrer-pommeau-douche",
+    title: "Détartrer un pommeau de douche",
+    category: "maison",
+    difficulty: "Facile",
+    duration: "10 min + une nuit",
+    minutes: 10,
+    savings: "≈ 20 €",
+    keywords: ["pommeau", "douche", "douchette", "calcaire", "tartre", "jets", "bouché", "vinaigre", "détartrer", "pression douche"],
+    summary: "Jets qui partent de travers ou faiblissent : le calcaire bouche les buses. Une nuit dans le vinaigre blanc suffit le plus souvent.",
+    safety: "Évitez les projections de vinaigre dans les yeux et aérez la salle de bain.",
+    tools: ["Sac plastique solide", "Élastique ou lien", "Vieille brosse à dents", "Chiffon microfibre"],
+    parts: ["Vinaigre blanc"],
+    sources: [
+      { label: "MesDépanneurs — détartrer un pommeau de douche", url: "https://www.mesdepanneurs.fr/blog/detartrer-pommeau-douche" },
+      { label: "Ma Salle de Bain — détartrer un pommeau de douche", url: "https://www.masalledebain.com/blog/materiaux-et-entretien-10/comment-detartrer-un-pommeau-de-douche-14" }
+    ],
+    steps: [
+      { title: "Dévisser le pommeau", text: "Dévissez le pommeau du flexible et plongez-le dans un récipient de vinaigre blanc." },
+      { title: "Sinon, l'emballer", text: "S'il ne se dévisse pas, remplissez un sac plastique de vinaigre blanc, enfilez-le autour du pommeau pour que les buses trempent, et fermez-le avec un élastique." },
+      { title: "Laisser agir", text: "Laissez tremper plusieurs heures, idéalement toute une nuit." },
+      { title: "Frotter les buses", text: "Frottez les picots avec la vieille brosse à dents pour déloger le calcaire restant.", tip: "Frottez doucement : trop appuyer peut enfoncer les dépôts dans les trous." },
+      { title: "Rincer et remonter", text: "Rincez abondamment à l'eau claire, puis revissez le pommeau et essuyez-le." }
+    ],
+    troubleshoot: [
+      "Pour espacer les détartrages : passez la main sur les picots en silicone de temps en temps et essuyez la douchette après la douche."
+    ]
+  },
   {
     id: "regler-porte-placard",
     title: "Régler une porte de placard qui frotte ou penche",
@@ -1345,6 +1461,35 @@ const GUIDES = [
   },
 
   /* ================= LOISIRS & SPORT ================= */
+  {
+    id: "matelas-gonflable-perce",
+    title: "Réparer un matelas gonflable percé",
+    category: "loisirs",
+    difficulty: "Facile",
+    duration: "20 min + 3 h de séchage",
+    minutes: 20,
+    savings: "≈ 30 €",
+    keywords: ["matelas gonflable", "gonflable", "fuite", "percé", "trou", "dégonfle", "rustine", "patch", "camping", "piscine", "bouée"],
+    summary: "Un matelas qui se dégonfle pendant la nuit a souvent un petit trou. On le trouve avec de l'eau savonneuse et on le bouche avec une rustine.",
+    safety: "Fuite au niveau de la valve ou d'une soudure : ne collez rien, contactez le vendeur ou le fabricant, surtout s'il est encore sous garantie.",
+    tools: ["Eau savonneuse (savon doux)", "Éponge ou vaporisateur", "Stylo", "Chiffon propre"],
+    parts: ["Kit de réparation pour vinyle (rustines et colle)"],
+    sources: [
+      { label: "Intex — réparer une fuite sur un matelas gonflable", url: "https://www.intex.fr/conseils/matelas/25-comment-reparer-une-fuite-sur-mon-matelas-gonflable-" },
+      { label: "Decathlon — réparer un matelas gonflable ou autogonflant", url: "https://conseilsport.decathlon.fr/comment-entretenir-et-reparer-un-matelas-gonflable-ou-autogonflant" }
+    ],
+    steps: [
+      { title: "Chercher la fuite", text: "Gonflez le matelas au maximum et passez de l'eau savonneuse sur la surface : des bulles se forment à l'endroit du trou. On peut aussi passer la main lentement pour sentir le souffle.", tip: "Prenez un savon doux : un produit agressif peut tacher le matelas." },
+      { title: "Marquer le trou", text: "Séchez la zone et entourez le trou au stylo pour ne pas le perdre." },
+      { title: "Dégonfler et préparer", text: "Dégonflez complètement le matelas. La zone doit être propre, sèche et dégraissée." },
+      { title: "Coller la rustine", text: "Mettez la colle sur la rustine, attendez quelques secondes qu'elle commence à blanchir, puis posez-la sur le trou et appuyez uniformément 1 à 2 minutes.", timer: 120 },
+      { title: "Laisser sécher", text: "Attendez 3 heures avant de regonfler.", timer: 10800 },
+      { title: "Vérifier", text: "Regonflez et refaites le test de l'eau savonneuse : plus de bulles, c'est réparé." }
+    ],
+    troubleshoot: [
+      "Pour éviter une nouvelle fuite : pas de bagues, bijoux ou objets pointus sur le matelas."
+    ]
+  },
   {
     id: "reinitialiser-manette-ps5",
     title: "Réinitialiser une manette PS5 qui ne répond plus",

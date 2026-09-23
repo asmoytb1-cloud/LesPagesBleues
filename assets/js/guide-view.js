@@ -2,7 +2,11 @@
    Fonction pure (aucun accès au DOM) : utilisée par la page guide.html et par tools/build.js
    pour générer les pages statiques de /fiches/ (bon référencement, lisibles sans JavaScript). */
 
-const fmtWait = sec => sec >= 60 ? `${Math.round(sec / 60)} min` : `${sec} s`;
+const fmtWait = sec => {
+  if (sec < 60) return `${sec} s`;
+  const m = Math.round(sec / 60);
+  return m >= 60 ? `${Math.floor(m / 60)} h${m % 60 ? " " + String(m % 60).padStart(2, "0") : ""}` : `${m} min`;
+};
 
 // Met en couleur le complément du titre : « Changer la courroie d'un <lave-linge> »
 function accentTitle(t) {

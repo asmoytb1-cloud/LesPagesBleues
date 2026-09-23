@@ -8,7 +8,7 @@ Trouvez en quelques clics comment réparer vos objets, au lieu de les jeter.
 
 | | |
 | --- | --- |
-| **53 guides vérifiés** | Automobile, électroménager, téléphonie, maison, vélo, jardin, loisirs, mode, instruments. Chaque fiche cite ses sources et sa date de vérification. |
+| **58 guides vérifiés** | Automobile, électroménager, téléphonie, maison, vélo, jardin, loisirs, mode, instruments. Chaque fiche cite ses sources et sa date de vérification. |
 | **Mode accompagnement** | Une étape à la fois en plein écran : minuteurs, lecture à voix haute, commandes vocales (« suivant », « répète »…), écran maintenu allumé, reprise là où on s'est arrêté. |
 | **Diagnostic guidé** | 25 pannes courantes : on décrit le problème (texte ou voix), quelques questions, les causes sont classées avec un niveau de confiance, puis on va vers la bonne fiche… ou vers un réparateur labellisé. |
 | **Recherche** | Synonymes, accents et pluriels ignorés, suggestions instantanées ; onglets Guides / Diagnostics / Discussions, filtres domaine, difficulté, durée, favoris et tri. |

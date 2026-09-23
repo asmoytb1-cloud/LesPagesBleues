@@ -11,7 +11,8 @@ const root = document.getElementById("guide");
 
 const fmtTime = sec => {
   sec = Math.max(0, Math.round(sec));
-  return `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
+  const h = Math.floor(sec / 3600), m = Math.floor(sec % 3600 / 60), s = String(sec % 60).padStart(2, "0");
+  return h ? `${h}:${String(m).padStart(2, "0")}:${s}` : `${m}:${s}`;
 };
 
 if (!guide) {
@@ -374,7 +375,9 @@ function startCoach(guide, done, setDone, onClose) {
     const s = steps[pos - 1];
     const i = pos - 1;
     const tLeft = timer && timer.step === i ? timeLeft() : s.timer;
-    const waitWords = s.timer ? (s.timer >= 60 ? `${Math.round(s.timer / 60)} minutes` : `${s.timer} secondes`) : "";
+    const mins = Math.round((s.timer || 0) / 60);
+    const waitWords = !s.timer ? "" : s.timer < 60 ? `${s.timer} secondes`
+      : mins >= 60 ? `${Math.floor(mins / 60)} heure${mins >= 120 ? "s" : ""}${mins % 60 ? ` ${mins % 60} minutes` : ""}` : `${mins} minute${mins > 1 ? "s" : ""}`;
     return {
       label: `Étape ${pos} sur ${total}`,
       speak: `Étape ${pos}. ${s.title}. ${s.text}${s.safety ? " Attention : " + s.safety : ""}${s.tip ? " Astuce : " + s.tip : ""}${s.timer ? ` Un minuteur de ${waitWords} est disponible.` : ""}`,
