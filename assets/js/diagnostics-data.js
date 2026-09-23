@@ -379,6 +379,51 @@ const DIAGNOSTICS = [
     ]
   },
   {
+    id: "toilettes-bouchees", title: "Les toilettes sont bouchées", device: "WC", category: "maison",
+    keywords: ["toilettes", "wc", "bouché", "bouchon", "cuvette", "déborde", "eau monte", "chasse d'eau", "ne s'évacue pas"],
+    intro: "Le bouchon se trouve le plus souvent dans la cuvette ou juste après : on commence par le plus simple.",
+    safety: "Ne tirez plus la chasse si l'eau est déjà remontée dans la cuvette.",
+    questions: [
+      { id: "objet", text: "Un objet (jouet, lingette, protection…) a-t-il pu tomber dans les toilettes ?", options: YES_NO },
+      { id: "plusieurs", text: "La douche ou l'évier s'écoulent-ils mal, eux aussi ?", options: YES_NO },
+      { id: "lent", text: "L'eau finit-elle par descendre, même lentement ?", options: YES_NO }
+    ],
+    causes: [
+      { title: "Bouchon de papier ou de matières", base: 3, weights: { lent: { oui: 2 }, objet: { oui: -2 } }, checks: ["Eau très chaude (pas bouillante) et liquide vaisselle, puis ventouse à collerette, puis furet."], guide: "deboucher-toilettes", level: 1 },
+      { title: "Objet coincé dans la cuvette", base: 0, weights: { objet: { oui: 5 } }, checks: ["Avec des gants, essayez de l'attraper. S'il est hors de portée, n'insistez pas avec la ventouse et appelez un plombier."], pro: true, level: 2 },
+      { title: "Canalisation principale bouchée", base: 0, weights: { plusieurs: { oui: 5 } }, checks: ["Quand plusieurs évacuations sont touchées, le bouchon est plus loin dans la canalisation : faites appel à un plombier."], pro: true, level: 3 }
+    ]
+  },
+  {
+    id: "manette-ne-repond-plus", title: "La manette ne répond plus ou se déconnecte", device: "Manette", category: "loisirs",
+    keywords: ["manette", "dualsense", "ne répond plus", "se déconnecte", "déconnexion", "connexion", "appairage", "ne s'allume plus", "ps5", "playstation"],
+    intro: "Avant de la remplacer, on vérifie qu'elle se charge et on la réinitialise.",
+    questions: [
+      { id: "voyant", text: "Branchée en USB sur la console allumée, un voyant de la manette s'allume-t-il ?", options: YES_NO },
+      { id: "autre", text: "Une autre manette fonctionne-t-elle normalement sur la même console ?", options: YES_NO }
+    ],
+    causes: [
+      { title: "Appairage perdu ou manette bloquée", base: 3, weights: { voyant: { oui: 2 }, autre: { oui: 1 } }, checks: ["Réinitialisez la manette avec le petit bouton au dos, puis reconnectez-la avec le câble USB."], guide: "reinitialiser-manette-ps5", level: 1 },
+      { title: "Câble, port de charge ou batterie", base: 1, weights: { voyant: { non: 4 } }, checks: ["Essayez un autre câble, de préférence celui d'origine. Si rien ne s'allume, contactez le service après-vente ou un réparateur."], pro: true, level: 2 },
+      { title: "Logiciel de la console", base: 0, weights: { autre: { non: 3 } }, checks: ["Si aucune manette ne fonctionne bien, installez la dernière version du logiciel système de la console."], level: 1 }
+    ]
+  },
+  {
+    id: "telecommande-cle-voiture", title: "La télécommande de la clé de voiture ne marche plus", device: "Voiture", category: "automobile",
+    keywords: ["clé", "télécommande", "plip", "bip", "ne verrouille plus", "ne s'ouvre plus", "centralisation", "portée", "pile clé"],
+    intro: "Le plus souvent, c'est la pile de la télécommande qui s'épuise.",
+    questions: [
+      { id: "pres", text: "La télécommande marche-t-elle encore de près, ou seulement de temps en temps ?", options: YES_NO },
+      { id: "alerte", text: "Un message « pile de clé » ou un voyant de clé s'affiche-t-il au tableau de bord ?", options: YES_NO },
+      { id: "double", text: "Le double de la clé fonctionne-t-il normalement ?", options: YES_NO }
+    ],
+    causes: [
+      { title: "Pile de la télécommande usée", base: 3, weights: { pres: { oui: 3 }, alerte: { oui: 5 }, double: { oui: 2, non: -2 } }, checks: ["Changez la pile (souvent une CR2032 ou une CR2025) en respectant son sens."], guide: "pile-cle-voiture", level: 1 },
+      { title: "Clé à resynchroniser", base: 0, weights: { pres: { non: 1 }, double: { oui: 1 } }, checks: ["Si une pile neuve ne suffit pas, suivez la procédure de synchronisation indiquée dans la notice du véhicule."], level: 1 },
+      { title: "Problème côté voiture", base: 0, weights: { double: { non: 5 } }, checks: ["Si le double ne marche pas non plus, vérifiez la batterie de la voiture, puis consultez un garage."], guide: "changer-batterie-voiture", level: 2 }
+    ]
+  },
+  {
     id: "prise-electrique", title: "Une prise électrique est abîmée ou chauffe", device: "Prise électrique", category: "maison",
     keywords: ["prise", "électricité", "prise cassée", "chauffe", "brûlé", "étincelle", "ne marche plus", "courant"],
     intro: "Une prise abîmée se remplace facilement, mais certains signes imposent d'appeler un électricien.",

@@ -31,6 +31,37 @@ const DIFFICULTIES = ["Facile", "Moyen", "Difficile"];
 const GUIDES = [
   /* ================= AUTOMOBILE ================= */
   {
+    id: "pile-cle-voiture",
+    title: "Changer la pile d'une clé de voiture",
+    category: "automobile",
+    difficulty: "Facile",
+    duration: "5 min",
+    minutes: 5,
+    savings: "≈ 20 €",
+    keywords: ["clé", "télécommande", "pile", "cr2032", "cr2025", "plip", "bip", "verrouillage", "centralisation", "portée", "ne marche plus"],
+    summary: "La télécommande ne verrouille plus qu'à bout portant ? Sa pile s'use en quelques années et se change en cinq minutes.",
+    safety: "Gardez les piles bouton, neuves comme usagées, hors de portée des enfants : avalées, elles provoquent des brûlures graves en quelques heures.",
+    tools: ["Petit tournevis plat ou levier en plastique", "Chiffon doux"],
+    parts: ["Pile bouton identique à l'ancienne (souvent CR2032 ou CR2025)"],
+    sources: [
+      { label: "Renault — manuel d'utilisation, remplacement de la pile de la télécommande", url: "https://www.user-manual.renault.com/fr/faites-connaissance-avec-votre-v%C3%A9hicule/cle-telecommande-16" },
+      { label: "Pièces et Pneus — télécommande : remplacement de la pile et précautions", url: "https://blog.piecesetpneus.com/telecommandes-de-verrouillage-programmation-remplacement-de-pile-et-solutions-en-cas-de-perte/" },
+      { label: "Sports Car Parts — changer la pile de sa clé sans l'abîmer", url: "https://www.sportscarparts.fr/comment-changer-pile-cle-voiture/" },
+      { label: "DGCCRF — piles bouton et jeunes enfants", url: "https://www.economie.gouv.fr/dgccrf/les-fiches-pratiques/piles-boutons-et-jeunes-enfants-des-consequences-graves-en-cas-dingestion" }
+    ],
+    steps: [
+      { title: "Identifier la pile", text: "Regardez dans la notice du véhicule quel modèle de pile utiliser et comment s'ouvre la clé. Sortez la clé de secours métallique si elle est intégrée au boîtier." },
+      { title: "Ouvrir le boîtier", text: "Glissez le tournevis dans la fente ou l'encoche du boîtier et faites levier doucement pour séparer les deux coques.", tip: "Enveloppez la lame dans un chiffon, ou utilisez un levier en plastique (un médiator convient) : le boîtier ne sera pas marqué." },
+      { title: "Noter le sens de la pile", text: "Avant de retirer l'ancienne pile, repérez de quel côté se trouve le « + ». Soulevez-la ensuite avec l'ongle ou un cure-dent.", safety: "Ne touchez pas les deux faces de la pile en même temps et évitez les outils métalliques : risque de court-circuit." },
+      { title: "Mettre la pile neuve", text: "Insérez la pile neuve, du même modèle, exactement dans le même sens que l'ancienne." },
+      { title: "Refermer et tester", text: "Emboîtez les deux coques jusqu'au clic, remettez la clé de secours, puis testez l'ouverture et la fermeture à distance." }
+    ],
+    troubleshoot: [
+      "Rien ne se passe : vérifiez le sens de la pile. Si c'est bon, consultez la notice : certains véhicules demandent de resynchroniser la clé.",
+      "La pile se vide vite : c'est normal sur les clés « mains libres », qui dialoguent en permanence avec la voiture."
+    ]
+  },
+  {
     id: "vidange-huile-moteur",
     title: "Changer l'huile moteur",
     category: "automobile",
@@ -607,6 +638,38 @@ const GUIDES = [
 
   /* ================= MAISON & BRICOLAGE ================= */
   {
+    id: "deboucher-toilettes",
+    title: "Déboucher des toilettes",
+    category: "maison",
+    difficulty: "Facile",
+    duration: "30 min",
+    minutes: 30,
+    savings: "≈ 100 €",
+    keywords: ["toilettes", "wc", "bouché", "bouchon", "cuvette", "déborde", "ventouse", "furet", "canalisation", "chasse d'eau", "évacuation"],
+    summary: "L'eau monte dans la cuvette et ne s'évacue plus ? Le plus souvent, eau chaude, ventouse puis furet suffisent, dans cet ordre.",
+    safety: "Ne tirez plus la chasse si l'eau est déjà remontée : la cuvette peut déborder. Portez des gants.",
+    tools: ["Gants de ménage", "Seau et petit récipient", "Ventouse à collerette (spéciale WC)", "Furet de plomberie (si besoin)"],
+    parts: ["Liquide vaisselle"],
+    sources: [
+      { label: "Castorama — comment déboucher un WC", url: "https://www.castorama.fr/idees-et-conseils/comment-deboucher-un-wc/CF_CC_npcart_100501.art" },
+      { label: "Yoojo — déboucher des toilettes soi-même", url: "https://yoojo.fr/bricolage/guides/comment-deboucher-des-toilettes-astuces-videos-43" },
+      { label: "MesDépanneurs — déboucher des WC : méthodes et erreurs à éviter", url: "https://www.mesdepanneurs.fr/blog/deboucher-WC" }
+    ],
+    steps: [
+      { title: "Couper l'eau et vider", text: "Fermez le robinet d'arrivée d'eau du réservoir (sur le côté ou en dessous), puis retirez le plus possible d'eau stagnante avec un petit récipient." },
+      { title: "Eau chaude et liquide vaisselle", text: "Versez un demi-verre de liquide vaisselle dans la cuvette et attendez 10 minutes, puis versez d'un coup 2 à 3 litres d'eau très chaude.", timer: 600, safety: "Jamais d'eau bouillante : elle peut abîmer la porcelaine et les joints. Attention aux éclaboussures." },
+      { title: "Observer", text: "Attendez quelques minutes. Si le niveau baisse, recommencez une fois. S'il ne bouge pas, passez à la ventouse." },
+      { title: "Utiliser la ventouse", text: "Placez la ventouse au fond de la cuvette pour boucher complètement l'orifice : elle doit être sous l'eau. Poussez doucement, puis faites des allers-retours énergiques et tirez d'un coup sec.", tip: "Une ventouse à collerette (jupe en caoutchouc) épouse bien mieux le fond des WC qu'une ventouse d'évier." },
+      { title: "Passer le furet si besoin", text: "Déroulez le furet dans la cuvette jusqu'à sentir le bouchon, puis tournez la manivelle en poussant : il perce le bouchon ou l'accroche pour le ressortir." },
+      { title: "Vérifier", text: "Rouvrez l'arrivée d'eau et tirez la chasse : l'eau doit s'évacuer normalement." }
+    ],
+    troubleshoot: [
+      "Un objet est tombé (jouet, lingette…) ou le bouchon résiste au furet : appelez un plombier plutôt que d'insister.",
+      "Déboucheur chimique : en dernier recours seulement, avec gants, pièce aérée, et jamais mélangé à un autre produit (vinaigre, eau de Javel).",
+      "Maison sur fosse septique : pas de soude ni de produit chimique, ils détruisent les bactéries utiles de la fosse."
+    ]
+  },
+  {
     id: "robinet-qui-fuit",
     title: "Réparer un robinet qui fuit",
     category: "maison",
@@ -1053,6 +1116,64 @@ const GUIDES = [
 
   /* ================= LOISIRS & SPORT ================= */
   {
+    id: "reinitialiser-manette-ps5",
+    title: "Réinitialiser une manette PS5 qui ne répond plus",
+    category: "loisirs",
+    difficulty: "Facile",
+    duration: "5 min",
+    minutes: 5,
+    savings: "≈ 70 €",
+    keywords: ["manette", "dualsense", "ps5", "playstation", "ne répond plus", "déconnexion", "se déconnecte", "appairage", "bluetooth", "reset", "réinitialiser", "bug"],
+    summary: "Manette qui se déconnecte, ne s'appaire plus ou ne répond plus ? Avant de la remplacer, une réinitialisation par le petit bouton au dos règle souvent le problème.",
+    safety: "Utilisez une épingle ou un trombone fin, sans forcer : le bouton se trouve au fond d'un petit orifice.",
+    tools: ["Épingle ou trombone déplié", "Câble USB fourni avec la manette"],
+    parts: [],
+    sources: [
+      { label: "PlayStation — résoudre les problèmes de manette DualSense", url: "https://www.playstation.com/fr-fr/support/hardware/troubleshoot-dualsense/" }
+    ],
+    steps: [
+      { title: "Éteindre la console", text: "Éteignez complètement votre PS5, puis débranchez la manette du câble USB." },
+      { title: "Trouver le bouton", text: "Retournez la manette : le bouton de réinitialisation est au fond du petit orifice situé à côté du logo Sony." },
+      { title: "Réinitialiser", text: "Enfoncez l'épingle et maintenez le bouton appuyé pendant au moins 5 secondes." },
+      { title: "Reconnecter", text: "Rallumez la console, branchez la manette avec le câble USB fourni, puis appuyez sur la touche PS.", tip: "Utilisez de préférence le câble d'origine : certains câbles ne font que charger, sans transmettre de données." },
+      { title: "Tester", text: "Vérifiez que la manette répond dans les menus, puis débranchez le câble pour jouer sans fil." }
+    ],
+    troubleshoot: [
+      "Toujours des soucis : installez la dernière version du logiciel système de la PS5, puis consultez la page d'assistance PlayStation pour les problèmes de touches ou de joystick.",
+      "Le personnage avance tout seul : c'est plutôt un « drift » du joystick, voir la fiche dédiée."
+    ]
+  },
+  {
+    id: "depoussierer-ps5",
+    title: "Dépoussiérer une PS5 qui chauffe ou souffle fort",
+    category: "loisirs",
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    savings: "≈ 40 €",
+    keywords: ["ps5", "playstation", "console", "poussière", "ventilateur", "bruit", "souffle", "chauffe", "surchauffe", "nettoyer", "dépoussiérer"],
+    summary: "La poussière bouche les aérations et fait chauffer la console. La PS5 d'origine a des attrape-poussière prévus pour être aspirés, sans rien dévisser à l'intérieur.",
+    safety: "Console complètement éteinte (pas en mode repos) et tous les câbles débranchés. Touchez un objet métallique avant de commencer pour évacuer l'électricité statique.",
+    tools: ["Aspirateur avec un embout fin", "Pinceau souple", "Chiffon doux et sec", "Pièce de monnaie ou tournevis plat (vis du socle)"],
+    parts: [],
+    sources: [
+      { label: "iFixit — nettoyer la poussière d'une PlayStation 5 sans l'ouvrir", url: "https://www.ifixit.com/Guide/How+to+Clean+Dust+Out+of+a+Playstation+5+Without+Opening+It/141735" },
+      { label: "We Are PlayStation — comment dépoussiérer sa PS5", url: "https://www.weareplaystation.fr/communautes/playstation-5/actualites-communaute/console-playstation-5-comment-depoussierer-sa-ps5" }
+    ],
+    steps: [
+      { title: "Éteindre et débrancher", text: "Éteignez complètement la console et débranchez tous les câbles. Posez-la sur une surface propre et douce." },
+      { title: "Retirer le socle", text: "Console debout : retournez-la, dévissez la vis du socle avec une pièce ou un tournevis plat et soulevez le socle. Console couchée : soulevez simplement le socle.", tip: "Rangez la vis dans le petit logement prévu sous le socle pour ne pas la perdre." },
+      { title: "Retirer la façade", text: "Posez la console, logo PlayStation vers le haut. Soulevez le coin de la façade blanche près du logo, puis faites-la glisser vers le bas de la console.", safety: "Ne forcez pas : si elle résiste, soulevez un peu plus le coin avant de la faire glisser. Sur une PS5 « Slim », la façade s'enlève autrement : suivez sa notice." },
+      { title: "Aspirer les attrape-poussière", text: "Deux orifices apparaissent sous la façade : ce sont les attrape-poussière. Aspirez-les avec l'embout fin, à faible puissance si possible." },
+      { title: "Dépoussiérer les grilles", text: "Passez le pinceau sur les grilles d'aération, puis essuyez la coque avec le chiffon sec.", safety: "Aucun produit liquide ni chimique sur la console." },
+      { title: "Remonter", text: "Replacez la façade en la faisant glisser jusqu'au clic, puis remettez le socle. Rebranchez et allumez." }
+    ],
+    troubleshoot: [
+      "Toujours bruyante ou chaude : sortez-la d'un meuble fermé et laissez de l'espace autour, surtout à l'arrière, d'où sort l'air chaud.",
+      "Ne démontez pas le ventilateur intérieur vous-même : au-delà de ce nettoyage, faites appel à un réparateur."
+    ]
+  },
+  {
     id: "joystick-drift",
     title: "Corriger le drift d'une manette",
     category: "loisirs",
@@ -1108,6 +1229,35 @@ const GUIDES = [
   },
 
   /* ================= AUTRES ================= */
+  {
+    id: "recoudre-bouton",
+    title: "Recoudre un bouton",
+    category: "mode",
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 10 €",
+    keywords: ["bouton", "coudre", "recoudre", "couture", "chemise", "veste", "manteau", "pantalon", "jean", "aiguille", "fil"],
+    summary: "Un bouton qui pend ou qui est tombé se recoud en dix minutes, même sans avoir jamais cousu.",
+    safety: "Piquez toujours en éloignant l'aiguille de vos doigts ; un dé à coudre aide sur les tissus épais.",
+    tools: ["Aiguille fine", "Fil solide, de la couleur du tissu", "Ciseaux", "Épingle, allumette ou cure-dent"],
+    parts: ["Le bouton"],
+    sources: [
+      { label: "Petit Citron — coudre un bouton", url: "https://www.petitcitron.com/techniques-de-couture/coudre-un-bouton/" },
+      { label: "YouSchool — coudre un bouton à la main", url: "https://www.youschool.fr/mode/coudre-un-bouton/" }
+    ],
+    steps: [
+      { title: "Préparer le fil", text: "Enfilez l'aiguille, doublez le fil et faites un nœud en prenant les deux extrémités ensemble." },
+      { title: "Ancrer le fil", text: "À l'emplacement du bouton, faites un tout petit point (2 mm) sur l'endroit du tissu pour bien fixer le fil, puis passez l'aiguille par un trou du bouton." },
+      { title: "Laisser un espace", text: "Posez une épingle, une allumette ou un cure-dent sur le bouton, entre les trous, et cousez par-dessus : cela laissera un petit espace entre bouton et tissu.", tip: "Sur un tissu fin, cette astuce n'est pas nécessaire." },
+      { title: "Coudre", text: "Passez l'aiguille d'un trou à l'autre plusieurs fois, en traversant le tissu, sans trop serrer. Pour un bouton à 4 trous : deux lignes parallèles ou un X." },
+      { title: "Former la tige", text: "Retirez l'épingle, ressortez l'aiguille sous le bouton, tirez légèrement le bouton et enroulez le fil 5 ou 6 fois autour des fils qui le tiennent." },
+      { title: "Arrêter le fil", text: "Terminez par quelques petits points serrés sur l'envers du tissu (ou un nœud), puis coupez le fil." }
+    ],
+    troubleshoot: [
+      "Le bouton passe mal dans la boutonnière : la tige est trop courte. Recommencez en laissant un peu plus d'espace."
+    ]
+  },
   {
     id: "fermeture-eclair",
     title: "Réparer une fermeture éclair qui s'ouvre",

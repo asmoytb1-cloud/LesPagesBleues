@@ -97,10 +97,15 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     const diffs = await p.$$eval("#results .grow .dots", els => els.map(e => e.getAttribute("aria-label")));
     expect(diffs.length && diffs.every(d => d.includes("Difficile")), "le filtre de difficulté doit s'appliquer");
     await p.selectOption("#f-diff", ""); await p.selectOption("#sort", "duree");
-    expect(/essuie-glace|charge|tuyau|fermeture|fusible|flexible/i.test(await p.textContent("#guide-rows .grow h3")), "tri par durée : une fiche de 10 min en premier");
+    const [first, shortest] = await p.evaluate(() => {
+      const t = document.querySelector("#guide-rows .grow h3").textContent.trim();
+      return [(allGuides().find(g => g.title === t) || {}).minutes, Math.min(...allGuides().map(g => g.minutes))];
+    });
+    expect(first === shortest, `tri par durée : la fiche la plus courte (${shortest} min) doit être en premier, obtenu ${first} min`);
     await p.selectOption("#f-cat", "autres");
     const cats = await p.$$eval("#results .grow .tag-soft", els => els.map(e => e.textContent.trim()));
-    expect(cats.length === 3 && cats.every(c => /Mode|Musique/.test(c)), "« Autres » doit inclure ses sous-catégories : " + cats);
+    const expected = await p.evaluate(() => GUIDES.filter(g => ["mode", "instruments"].includes(g.category)).length);
+    expect(cats.length === expected && cats.every(c => /Mode|Musique/.test(c)), `« Autres » doit inclure ses ${expected} fiches de sous-catégories : ` + cats);
     await ctx.close();
   });
 
