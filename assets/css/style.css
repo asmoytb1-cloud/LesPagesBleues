@@ -900,7 +900,8 @@ body.coach-open { overflow: hidden; }
   .hero-inner, .guide-top-inner, .join-inner { grid-template-columns: minmax(0, 1fr); }
   .hero-inner { padding-top: 40px; }
   .hero-side { min-height: 0; display: flex; flex-direction: column; gap: 18px; }
-  .handwritten { position: static; transform: rotate(-4deg); align-self: flex-end; }
+  .hero .handwritten { position: static; transform: rotate(-4deg); align-self: flex-end; }
+  .guide-photo .handwritten { display: none; }
   .hero-card { position: static; max-width: none; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .stat:nth-child(3) { border-left: 0; }

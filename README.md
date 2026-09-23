@@ -1,74 +1,82 @@
 # Les Pages Bleues
 
-L'encyclopédie de l'entretien — **Réparer. Comprendre. Transmettre.**
+L'encyclopédie collaborative de la réparation, en français — **Réparer. Comprendre. Transmettre.**
 
 Trouvez en quelques clics comment réparer vos objets, au lieu de les jeter.
 
-## Fonctionnalités
+## Ce que fait le site
 
-- **28 guides** dans 8 domaines (automobile, électroménager, téléphonie, maison, vélo, jardin, loisirs…), chacun avec consignes de sécurité, outils, pièces, astuces et pistes de dépannage.
-- **Mode accompagnement** : une étape à la fois en plein écran, écran de préparation avec liste à cocher, **minuteurs** pour les temps d'attente (alarme sonore + vibration), **lecture à voix haute**, **commandes vocales** (« suivant », « précédent », « répète », « minuteur », « quitter »), balayage sur mobile, écran maintenu allumé, reprise là où on s'est arrêté.
-- **Recherche intelligente** : synonymes (« machine à laver » → lave-linge), insensible aux accents, suggestions instantanées.
-- **Filtres et tri** : domaine, difficulté, favoris ; tri par rapidité, facilité, économie.
-- **Favoris**, **reprise d'une réparation en cours** depuis l'accueil, **guides similaires**, **impression** propre d'une fiche.
-- **Ajouter une fiche** : brouillon sauvegardé automatiquement, étapes réordonnables, minuteur et astuce par étape.
-- **Hors ligne** : le site s'installe sur le téléphone et reste consultable sans réseau (garage, cave, jardin).
-- Accessibilité : navigation au clavier, lien d'évitement, focus visible, animations réduites si demandé.
-
-## Pages
-
-| Fichier | Contenu |
+| | |
 | --- | --- |
-| `index.html` | Accueil : recherche, reprise, domaines, guides populaires et express, manifeste |
-| `guides.html` | Tous les guides : recherche (`?q=`), domaine (`?cat=`), difficulté (`?diff=`), favoris (`?fav=1`), tri (`?sort=`) |
-| `guide.html?id=…` | Un guide pas à pas ; `&coach=1` lance directement l'accompagnement |
-| `ajouter.html` | Rédiger une fiche (enregistrée dans le navigateur pour l'instant) |
-| `404.html` | Page introuvable |
+| **38 guides vérifiés** | Automobile, électroménager, téléphonie, maison, vélo, jardin, loisirs, mode, instruments. Chaque fiche cite ses sources et sa date de vérification. |
+| **Mode accompagnement** | Une étape à la fois en plein écran : minuteurs, lecture à voix haute, commandes vocales (« suivant », « répète »…), écran maintenu allumé, reprise là où on s'est arrêté. |
+| **Diagnostic guidé** | 22 pannes courantes : on décrit le problème (texte ou voix), quelques questions, les causes sont classées avec un niveau de confiance, puis on va vers la bonne fiche… ou vers un réparateur labellisé. |
+| **Recherche** | Synonymes, accents et pluriels ignorés, suggestions instantanées ; onglets Guides / Diagnostics / Discussions, filtres domaine, difficulté, durée, favoris et tri. |
+| **Communauté** | Questions, astuces et retours de réparateurs structurés (symptôme, cause trouvée, réparation, temps, difficulté). |
+| **Profil** | Fiches publiées, réparations, favoris, 10 badges, export / import / effacement des données. |
+| **Contribution** | Formulaire en 4 étapes (informations, contenu, images, publication), brouillon automatique, photos compressées, fiches modifiables. |
+| **Qualité** | Thème clair et sombre, version mobile avec barre d'onglets, hors ligne (installable sur téléphone), impression / PDF, accessibilité vérifiée (WCAG AA), une page statique par fiche pour le référencement. |
 
-## Lancer le site
+> **Important** : il n'y a pas encore de serveur. Fiches perso, messages, favoris et profil sont enregistrés **dans le navigateur de chaque visiteur**. Les comptes et le partage réel viendront avec un back-end.
 
-Site statique, sans dépendance ni compilation :
+## Lancer le site en local
+
+Il faut seulement [Node.js](https://nodejs.org/) (version 18 ou plus) :
 
 ```sh
-python3 -m http.server 8000
-# puis ouvrir http://localhost:8000
+npm start            # puis ouvrir http://localhost:8000
 ```
 
-## Publier sur GitHub Pages
+## Modifier le contenu
 
-1. Fusionner le travail dans `main`.
+1. Les guides sont dans `assets/js/data.js` (les champs sont décrits en haut du fichier).
+2. Les pannes du diagnostic sont dans `assets/js/diagnostics-data.js`.
+3. Après toute modification, régénérez les pages des fiches et vérifiez :
+
+```sh
+npm run build        # pages /fiches/*.html, sitemap.xml, robots.txt
+npm run validate     # contrôle des données et de tous les liens
+```
+
+Pensez à changer `REVIEWED_ON` dans `data.js` quand vous revérifiez les fiches, et à incrémenter `CACHE` dans `sw.js` quand vous publiez une nouvelle version (sinon les visiteurs hors ligne gardent l'ancienne).
+
+Les pages principales (accueil, recherche, catégories…) sont générées par `python3 tools/pages.py` à partir de gabarits : modifiez le gabarit dans ce fichier plutôt que le HTML directement.
+
+## Tests
+
+```sh
+npm install                      # une seule fois
+npx playwright install chromium  # une seule fois
+npm test                         # génération + validation + 17 tests dans un vrai navigateur
+```
+
+Les tests couvrent toutes les pages (ordinateur et mobile, thèmes clair et sombre), la recherche, les fiches, le mode accompagnement, le diagnostic, la contribution avec photo, la communauté, le profil, le mode hors ligne et l'accessibilité (axe-core).
+
+## Mettre en ligne (GitHub Pages)
+
+1. Fusionner la branche de travail dans `main`.
 2. Sur GitHub : **Settings → Pages**, source **Deploy from a branch**, branche **main**, dossier **/ (root)**.
-3. Le site est en ligne quelques minutes plus tard à l'adresse `https://<utilisateur>.github.io/LesPagesBleues/`.
+3. Le site est en ligne quelques minutes plus tard à l'adresse `https://asmoytb1-cloud.github.io/LesPagesBleues/`.
 
-## Structure
+Si vous utilisez un nom de domaine, remplacez l'adresse `SITE` dans `tools/build.js` et `tools/pages.py`, puis relancez `npm run build` et `python3 tools/pages.py`.
 
-- `assets/css/style.css` — thème sombre « plan technique », version mobile et impression
-- `assets/js/data.js` — catégories et guides (voir les champs documentés en tête du fichier)
-- `assets/js/common.js` — icônes, en-tête, pied de page, recherche, favoris, progression, stockage
-- `assets/js/home.js`, `guides.js`, `guide.js`, `ajouter.js` — script propre à chaque page
-- `sw.js` + `manifest.webmanifest` — mode hors ligne et installation sur téléphone
+## Organisation des fichiers
 
-## Ajouter un guide au site
-
-Ajoutez un objet dans le tableau `GUIDES` de `assets/js/data.js` :
-
-```js
-{
-  id: "mon-guide",               // identifiant unique, utilisé dans l'adresse
-  title: "Réparer …",
-  category: "maison",            // id d'une catégorie
-  difficulty: "Facile",          // Facile | Moyen | Difficile
-  duration: "20 min", minutes: 20,
-  savings: "≈ 40 €",
-  keywords: ["synonyme", "autre mot"],
-  summary: "…",
-  safety: "Coupez le courant…",
-  tools: ["…"], parts: ["…"],
-  steps: [
-    { title: "…", text: "…", tip: "…", safety: "…", timer: 600 }  // timer en secondes
-  ],
-  troubleshoot: ["…"]
-}
+```
+index.html, guides.html, categories.html, …   pages du site
+fiches/                                        une page statique par guide (générée)
+assets/css/style.css                           styles (couleurs en variables, thèmes, mobile, impression)
+assets/js/data.js                              catégories et guides
+assets/js/diagnostics-data.js                  base de connaissances du diagnostic
+assets/js/common.js                            fonctions partagées (recherche, cartes, en-tête, stockage…)
+assets/js/guide-view.js                        rendu d'une fiche (utilisé par le site et par la génération)
+assets/js/*.js                                 un script par page
+assets/img/photos/                             photos sous licence libre + credits.json
+tools/build.js, tools/pages.py, tools/serve.js génération et serveur local
+tests/validate.js, tests/e2e.js                tests
+sw.js, manifest.webmanifest                    hors ligne et installation
 ```
 
-Pensez à incrémenter `CACHE` dans `sw.js` quand vous modifiez des fichiers, pour que les visiteurs reçoivent la nouvelle version hors ligne.
+## Crédits
+
+Les photos proviennent de banques d'images sous licences libres (CC0, domaine public, CC BY) ; auteurs et licences sont listés dans `assets/img/photos/credits.json` et sur la page À propos.
