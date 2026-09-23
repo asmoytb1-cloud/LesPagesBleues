@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://asmoytb1-cloud.github.io/LesPagesBleues/sitemap.xml

@@ -2,18 +2,21 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tous les guides — Les Pages Bleues</title>
-  <meta name="description" content="Parcourez tous les guides de réparation et d'entretien par domaine.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Rechercher un guide de réparation — Les Pages Bleues</title>
+  <meta name="description" content="Tous les guides de réparation des Pages Bleues : recherchez une panne ou un objet, filtrez par domaine, difficulté et durée.">
   <meta name="theme-color" content="#050b18">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+  <link rel="canonical" href="https://asmoytb1-cloud.github.io/LesPagesBleues/guides.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Les Pages Bleues">
-  <meta property="og:title" content="Les Pages Bleues — Réparer. Comprendre. Transmettre.">
-  <meta property="og:description" content="Trouvez en quelques clics comment réparer vos objets, au lieu de les jeter. Guides pas à pas et mode accompagnement.">
-  <meta property="og:image" content="assets/img/og-image.png">
+  <meta property="og:title" content="Rechercher un guide de réparation — Les Pages Bleues">
+  <meta property="og:description" content="Tous les guides de réparation des Pages Bleues : recherchez une panne ou un objet, filtrez par domaine, difficulté et durée.">
+  <meta property="og:image" content="https://asmoytb1-cloud.github.io/LesPagesBleues/assets/img/og-image.png">
+  <meta property="og:locale" content="fr_FR">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,19 +26,32 @@
 <body>
   <header id="site-header"></header>
   <main id="main" tabindex="-1">
-    <section class="page-hero blueprint">
+    <section class="page-hero search-page">
       <div class="container">
-        <h1>Tous les <span class="accent">guides</span></h1>
-        <p class="muted">Cherchez un objet, une panne, ou parcourez par domaine.</p>
-        <form class="search-bar" id="search-form" role="search">
+        <h1 id="page-title">Tous les <span class="accent">guides</span></h1>
+        <p>Cherchez un objet ou une panne, puis affinez par domaine, difficulté ou durée.</p>
+        <form class="search-bar" id="search-form" role="search" style="margin-top:1.2rem">
           <span data-icon="search"></span>
-          <input type="search" name="q" id="q" placeholder="Que voulez-vous réparer ?" aria-label="Que voulez-vous réparer ?" autocomplete="off">
+          <input type="search" name="q" id="q" placeholder="Ex. : lave-linge ne démarre plus" aria-label="Rechercher un guide ou une panne" autocomplete="off">
           <button class="btn btn-primary" type="submit"><span data-icon="search"></span><span>Rechercher</span></button>
         </form>
-        <div class="filters" id="filters" role="group" aria-label="Filtrer par domaine"></div>
-        <div class="toolbar">
-          <div class="seg" id="diff" role="group" aria-label="Filtrer par difficulté"></div>
-          <button class="chip chip-fav" id="fav-toggle" type="button" aria-pressed="false"><span data-icon="heart"></span> Mes favoris</button>
+        <div class="tabs" role="tablist" id="tabs" aria-label="Type de résultats"></div>
+      </div>
+    </section>
+    <section class="section section-tight">
+      <div class="container">
+        <div class="filterbar" id="filterbar">
+          <label class="sr-only" for="f-cat">Domaine</label>
+          <select id="f-cat" class="input input-sm"></select>
+          <label class="sr-only" for="f-diff">Difficulté</label>
+          <select id="f-diff" class="input input-sm">
+            <option value="">Toutes difficultés</option><option>Facile</option><option>Moyen</option><option>Difficile</option>
+          </select>
+          <label class="sr-only" for="f-time">Durée</label>
+          <select id="f-time" class="input input-sm">
+            <option value="">Toutes durées</option><option value="20">20 min ou moins</option><option value="45">45 min ou moins</option><option value="90">1 h 30 ou moins</option>
+          </select>
+          <button class="chip" id="fav-toggle" type="button" aria-pressed="false"><span data-icon="heart"></span> Mes favoris</button>
           <label class="sort"><span data-icon="sort"></span><span class="sr-only">Trier</span>
             <select id="sort" class="input input-sm">
               <option value="pertinence">Pertinence</option>
@@ -46,12 +62,16 @@
             </select>
           </label>
         </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
         <p class="result-count muted" id="count" aria-live="polite"></p>
-        <div class="guide-grid" id="results"></div>
+        <div id="results"></div>
+        <div class="ask-band">
+          <span data-icon="chat"></span>
+          <div><strong>Vous ne trouvez pas la solution ?</strong><small>Le diagnostic guidé vous aide à trouver la cause, ou posez votre question à la communauté.</small></div>
+          <div class="btns">
+            <a class="btn btn-ghost" id="ask-diag" href="diagnostic.html">Diagnostic guidé</a>
+            <a class="btn btn-primary" id="ask-q" href="communaute.html?ask=1">Poser une question</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -59,6 +79,7 @@
 
   <script src="assets/js/data.js"></script>
   <script src="assets/js/common.js"></script>
+  <script src="assets/js/diagnostics-data.js"></script>
   <script src="assets/js/guides.js"></script>
 </body>
 </html>

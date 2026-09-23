@@ -2,18 +2,21 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ajouter une fiche — Les Pages Bleues</title>
-  <meta name="description" content="Partagez votre savoir-faire : rédigez une fiche de réparation.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Partager un guide — Les Pages Bleues</title>
+  <meta name="description" content="Transmettez votre savoir-faire : rédigez une fiche de réparation en quatre étapes.">
   <meta name="theme-color" content="#050b18">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+  <link rel="canonical" href="https://asmoytb1-cloud.github.io/LesPagesBleues/ajouter.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Les Pages Bleues">
-  <meta property="og:title" content="Les Pages Bleues — Réparer. Comprendre. Transmettre.">
-  <meta property="og:description" content="Trouvez en quelques clics comment réparer vos objets, au lieu de les jeter. Guides pas à pas et mode accompagnement.">
-  <meta property="og:image" content="assets/img/og-image.png">
+  <meta property="og:title" content="Partager un guide — Les Pages Bleues">
+  <meta property="og:description" content="Transmettez votre savoir-faire : rédigez une fiche de réparation en quatre étapes.">
+  <meta property="og:image" content="https://asmoytb1-cloud.github.io/LesPagesBleues/assets/img/og-image.png">
+  <meta property="og:locale" content="fr_FR">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,104 +26,14 @@
 <body>
   <header id="site-header"></header>
   <main id="main" tabindex="-1">
-    <section class="page-hero blueprint">
+    <section class="page-hero">
       <div class="container">
-        <h1>Ajouter une <span class="accent">fiche</span></h1>
-        <p class="muted">Vous savez réparer quelque chose ? Transmettez-le, étape par étape.</p>
+        <h1>Partager un <span class="accent">guide</span></h1>
+        <p>Transmettez votre savoir-faire à la communauté, en quatre étapes.</p>
       </div>
     </section>
     <section class="section">
-      <div class="container">
-        <div class="add-layout">
-        <form class="form" id="add-form" novalidate>
-          <div id="draft-note" class="notice notice-info" hidden></div>
-
-          <fieldset class="form-card">
-            <legend><span class="num">1</span> L'essentiel</legend>
-            <div class="field">
-              <label for="title">Titre de la fiche <span class="req" aria-hidden="true">*</span></label>
-              <input class="input" id="title" name="title" required maxlength="90" placeholder="Ex. : Remplacer le joint d'un réfrigérateur" aria-describedby="title-err">
-              <p class="field-err" id="title-err" hidden>Donnez un titre à votre fiche.</p>
-            </div>
-            <div class="form-row">
-              <div class="field">
-                <label for="category">Domaine</label>
-                <select class="input" id="category" name="category"></select>
-              </div>
-              <div class="field">
-                <label for="difficulty">Difficulté</label>
-                <select class="input" id="difficulty" name="difficulty"><option>Facile</option><option>Moyen</option><option>Difficile</option></select>
-              </div>
-              <div class="field">
-                <label for="minutes">Durée <small>(minutes)</small></label>
-                <input class="input" id="minutes" name="minutes" type="number" min="1" max="1440" inputmode="numeric" placeholder="30">
-              </div>
-            </div>
-            <div class="form-row form-row-2">
-              <div class="field">
-                <label for="summary">Résumé <small>— le problème et la solution en deux phrases</small></label>
-                <textarea class="input" id="summary" name="summary" maxlength="300"></textarea>
-              </div>
-              <div class="field">
-                <label for="savings">Économie estimée <small>(€, facultatif)</small></label>
-                <input class="input" id="savings" name="savings" type="number" min="0" max="10000" inputmode="numeric" placeholder="60">
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset class="form-card">
-            <legend><span class="num">2</span> Préparation</legend>
-            <div class="field">
-              <label for="safety">Sécurité <small>— ce qu'il faut faire avant de commencer</small></label>
-              <input class="input" id="safety" name="safety" maxlength="200" placeholder="Ex. : Débranchez l'appareil et mettez des gants.">
-            </div>
-            <div class="form-row form-row-2">
-              <div class="field">
-                <label for="tools">Outils <small>— un par ligne</small></label>
-                <textarea class="input" id="tools" name="tools" placeholder="Gants&#10;Clé à douille de 10"></textarea>
-              </div>
-              <div class="field">
-                <label for="parts">Pièces <small>— une par ligne</small></label>
-                <textarea class="input" id="parts" name="parts" placeholder="Courroie (référence sur l'ancienne)"></textarea>
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset class="form-card">
-            <legend><span class="num">3</span> Les étapes <span class="req" aria-hidden="true">*</span></legend>
-            <div class="step-editor" id="steps"></div>
-            <p class="field-err" id="steps-err" hidden>Décrivez au moins une étape.</p>
-            <button type="button" class="btn btn-ghost" id="add-step" style="margin-top:10px"><span data-icon="plus"></span>Ajouter une étape</button>
-          </fieldset>
-
-          <fieldset class="form-card">
-            <legend><span class="num">4</span> Si ça ne marche pas <small class="muted">(facultatif)</small></legend>
-            <div class="field">
-              <label for="troubleshoot">Pistes à vérifier <small>— une par ligne</small></label>
-              <textarea class="input" id="troubleshoot" name="troubleshoot" placeholder="Ex. : La courroie ressaute : vérifiez que le moteur est bien fixé."></textarea>
-            </div>
-          </fieldset>
-
-          <div id="form-msg" aria-live="polite"></div>
-          <div class="form-actions">
-            <button class="btn btn-primary" type="submit"><span data-icon="check"></span>Publier la fiche</button>
-            <button class="btn btn-ghost" type="button" id="clear-draft">Tout effacer</button>
-          </div>
-          <p class="muted" style="font-size:.85rem">Pour l'instant, votre fiche est enregistrée dans ce navigateur uniquement. Votre brouillon est sauvegardé automatiquement.</p>
-        </form>
-
-        <aside class="writing-tips">
-          <h3><span data-icon="bulb"></span> Bien rédiger une fiche</h3>
-          <ul>
-            <li><strong>Une action par étape.</strong> « Prenez la douille de 10 et retirez les vis du cache » plutôt que « démontez la machine ».</li>
-            <li><strong>Nommez l'outil exact</strong> : taille de clé, type de tournevis.</li>
-            <li><strong>Pensez sécurité</strong> : courant, gants, lunettes, chandelles…</li>
-            <li><strong>Indiquez les temps d'attente</strong> : le mode accompagnement lancera un minuteur.</li>
-            <li><strong>Partagez vos astuces</strong> : c'est ce qui fait gagner du temps aux autres.</li>
-          </ul>
-        </aside>
-        </div>
-      </div>
+      <div class="container" id="add-root"></div>
     </section>
   </main>
   <footer id="site-footer"></footer>

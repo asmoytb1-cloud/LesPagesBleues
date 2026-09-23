@@ -1,11 +1,13 @@
 /* Les Pages Bleues — service worker : le site reste utilisable sans réseau (garage, cave, jardin…) */
-const CACHE = "lpb-v3";
+const CACHE = "lpb-v4";
 const CORE = [
-  "./", "index.html", "guides.html", "guide.html", "ajouter.html", "404.html",
+  "./", "index.html", "guides.html", "guide.html", "categories.html", "diagnostic.html", "communaute.html",
+  "profil.html", "ajouter.html", "a-propos.html", "404.html",
   "assets/css/style.css",
-  "assets/js/data.js", "assets/js/common.js", "assets/js/home.js",
-  "assets/js/guides.js", "assets/js/guide.js", "assets/js/ajouter.js",
-  "assets/img/favicon.svg", "assets/img/icon-192.png", "manifest.webmanifest"
+  "assets/js/data.js", "assets/js/common.js", "assets/js/home.js", "assets/js/guides.js", "assets/js/categories.js",
+  "assets/js/guide-view.js", "assets/js/guide.js", "assets/js/ajouter.js", "assets/js/communaute.js",
+  "assets/js/profil.js", "assets/js/diagnostics-data.js", "assets/js/diagnostic.js", "assets/js/apropos.js",
+  "assets/img/favicon.svg", "assets/img/icon-192.png", "assets/img/photos/hero.webp", "manifest.webmanifest"
 ];
 
 self.addEventListener("install", e => {

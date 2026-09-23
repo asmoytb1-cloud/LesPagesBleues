@@ -1,24 +1,38 @@
-/* Les Pages Bleues — page d'un guide, avec suivi de progression et mode accompagnement */
+/* Les Pages Bleues — page d'une fiche : progression, favoris, avis, questions et mode accompagnement.
+   Le HTML de la fiche vient de guide-view.js (le même rendu sert aux pages statiques de /fiches/). */
 
 renderHeader("guides");
 renderFooter();
 
 const params = new URLSearchParams(location.search);
-const guide = guideById(params.get("id"));
+const guideId = (typeof window !== "undefined" && window.LPB_GUIDE_ID) || params.get("id");
+const guide = guideById(guideId);
 const root = document.getElementById("guide");
 
 const fmtTime = sec => {
   sec = Math.max(0, Math.round(sec));
   return `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
 };
-const fmtWait = sec => sec >= 60 ? `${Math.round(sec / 60)} min` : `${sec} s`;
 
 if (!guide) {
-  root.innerHTML = `<div class="empty">${icon("search")}<h1 class="empty-title">Guide introuvable</h1>
-    <p class="muted" style="margin:.5rem 0 1.2rem">Ce guide n'existe pas ou a été supprimé.</p>
-    <a class="btn btn-primary" href="guides.html">Voir tous les guides</a></div>`;
+  root.innerHTML = `<section class="section"><div class="container"><div class="empty">${icon("search")}<h1 class="empty-title">Guide introuvable</h1>
+    <p>Ce guide n'existe pas ou a été supprimé de cet appareil.</p>
+    <div class="empty-actions"><a class="btn btn-primary" href="${ROOT}guides.html">Voir tous les guides</a></div></div></div></section>`;
 } else {
+  if (!guide.user && !window.LPB_GUIDE_ID && !params.get("coach")) {
+    // Ancienne adresse guide.html?id=… : on redirige vers la page statique, mieux référencée
+    location.replace(guideUrl(guide));
+  }
   renderGuide();
+  if (params.get("coach") === "1" && !document.querySelector(".coach")) {
+    params.delete("coach");
+    history.replaceState(null, "", location.pathname + (params.toString() ? "?" + params : "") + location.hash);
+    document.getElementById("coach-start").click();
+  }
+}
+
+function guideQuestions() {
+  return loadPosts().filter(p => p.guide === guide.id && p.type === "question");
 }
 
 function renderGuide() {
@@ -26,86 +40,9 @@ function renderGuide() {
   document.title = `${guide.title} — Les Pages Bleues`;
   document.querySelector('meta[name="description"]')?.setAttribute("content", guide.summary || guide.title);
   const done = getProgress(guide.id);
-  const result = store.get("lpb-result-" + guide.id, null);
-
-  const list = items => items && items.length
-    ? `<ul>${items.map(i => `<li>${escapeHtml(i)}</li>`).join("")}</ul>`
-    : `<p class="muted" style="font-size:.9rem">Rien de particulier.</p>`;
-
-  const related = allGuides().filter(g => g.category === guide.category && g.id !== guide.id).slice(0, 3);
-
-  root.innerHTML = `
-    <a class="breadcrumb" href="guides.html?cat=${c.id}">${icon("back")} ${escapeHtml(c.name)}</a>
-    <div class="guide-layout">
-      <article>
-        <header class="guide-header">
-          <div class="guide-tags">
-            <span class="tag">${escapeHtml(c.short || c.name)}</span>
-            ${guide.user ? `<span class="tag tag-user">Ma fiche</span>` : ""}
-            ${result === "ok" ? `<span class="tag tag-ok">${icon("check")} Réparé</span>` : ""}
-          </div>
-          <h1>${escapeHtml(guide.title)}</h1>
-          <p class="lead">${escapeHtml(guide.summary || "")}</p>
-          <div class="facts">
-            <span class="fact diff-${normalize(guide.difficulty)}">${icon("gauge")} ${escapeHtml(guide.difficulty)}</span>
-            <span class="fact">${icon("clock")} ${escapeHtml(guide.duration || "—")}</span>
-            ${guide.savings ? `<span class="fact">${icon("euro")} Économie ${escapeHtml(guide.savings)}</span>` : ""}
-            <span class="fact">${icon("doc")} ${guide.steps.length} étapes</span>
-          </div>
-          <div class="guide-actions">
-            <button class="btn btn-primary btn-coach" id="coach-start" type="button">${icon("play")} <span id="coach-label"></span></button>
-            <button class="btn btn-ghost fav-btn" id="fav" type="button" aria-pressed="false"></button>
-            <button class="icon-btn icon-btn-line" id="print" type="button" aria-label="Imprimer la fiche" title="Imprimer">${icon("print")}</button>
-            <button class="icon-btn icon-btn-line" id="share" type="button" aria-label="Partager la fiche" title="Partager">${icon("share")}</button>
-          </div>
-          <p class="muted coach-hint">${icon("mic")} Mode accompagnement : une étape à la fois, en grand, avec lecture à voix haute, minuteurs et commandes vocales. Idéal les mains dans le cambouis.</p>
-        </header>
-
-        ${guide.safety ? `<div class="safety-box">${icon("shield")}<div><strong>Avant de commencer</strong><p>${escapeHtml(guide.safety)}</p></div></div>` : ""}
-
-        <ol class="step-list">
-          ${guide.steps.map((s, i) => `
-            <li class="step-item ${done.has(i) ? "done" : ""}" data-i="${i}">
-              <button class="step-check" type="button" aria-pressed="${done.has(i)}" aria-label="Étape ${i + 1} faite">${done.has(i) ? icon("check") : i + 1}</button>
-              <div>
-                <h3>${escapeHtml(s.title)} ${s.timer ? `<span class="wait-badge">${icon("timer")} ${fmtWait(s.timer)}</span>` : ""}</h3>
-                <p>${escapeHtml(s.text)}</p>
-                ${s.safety ? `<p class="note note-safety">${icon("shield")} <span>${escapeHtml(s.safety)}</span></p>` : ""}
-                ${s.tip ? `<p class="note note-tip">${icon("bulb")} <span><strong>Astuce :</strong> ${escapeHtml(s.tip)}</span></p>` : ""}
-              </div>
-            </li>`).join("")}
-        </ol>
-
-        ${guide.troubleshoot && guide.troubleshoot.length ? `
-          <details class="troubleshoot" ${result === "ko" ? "open" : ""}>
-            <summary>${icon("alert")} Ça ne marche toujours pas ?</summary>
-            <ul>${guide.troubleshoot.map(t => `<li>${escapeHtml(t)}</li>`).join("")}</ul>
-          </details>` : ""}
-
-        ${guide.user ? `
-          <div class="owner-box">
-            <p class="muted">Cette fiche est enregistrée uniquement dans ce navigateur.</p>
-            <button class="btn btn-ghost btn-danger" id="delete" type="button">${icon("trash")} Supprimer ma fiche</button>
-          </div>` : ""}
-      </article>
-
-      <aside class="guide-aside">
-        <div class="aside-card">
-          <h4>${icon("check")} Progression <span class="muted" id="pct" style="margin-left:auto;font-weight:500"></span></h4>
-          <div class="progress"><div id="bar"></div></div>
-          <button class="link-btn" id="reset" type="button" hidden>${icon("refresh")} Tout décocher</button>
-        </div>
-        <div class="aside-card"><h4>${icon("tool")} Outils</h4>${list(guide.tools)}</div>
-        <div class="aside-card"><h4>${icon("box")} Pièces</h4>${list(guide.parts)}</div>
-      </aside>
-    </div>
-
-    ${related.length ? `
-      <section class="related">
-        <div class="section-head"><h2>Dans le même <span class="accent">domaine</span></h2>
-          <a class="link-arrow" href="guides.html?cat=${c.id}">Tout voir ${icon("arrow")}</a></div>
-        <div class="guide-grid">${related.map(guideCard).join("")}</div>
-      </section>` : ""}`;
+  root.innerHTML = guidePageHTML(guide, {
+    done, result: getResult(guide.id), questions: guideQuestions(), related: relatedGuides(guide, allGuides())
+  });
 
   const update = () => {
     const pct = Math.round(done.size / guide.steps.length * 100);
@@ -142,6 +79,16 @@ function renderGuide() {
     toast("Progression remise à zéro.");
   });
 
+  // « Ça a marché ? »
+  root.querySelectorAll("[data-result]").forEach(b => b.addEventListener("click", () => {
+    store.set("lpb-result-" + guide.id, b.dataset.result);
+    if (b.dataset.result === "ok") guide.steps.forEach((_, i) => done.has(i) || setDone(i, true));
+    toast(b.dataset.result === "ok" ? "Bravo ! Un objet de plus sauvé de la poubelle." : "Voici les pistes à vérifier.");
+    renderGuide();
+    if (b.dataset.result === "ko") document.getElementById("conseils").scrollIntoView({ behavior: "smooth" });
+  }));
+
+  // Favori
   const favBtn = document.getElementById("fav");
   const paintFav = () => {
     const on = isFav(guide.id);
@@ -157,11 +104,53 @@ function renderGuide() {
     toast(on ? "Ajouté à vos favoris : retrouvez-le même sans réseau." : "Retiré de vos favoris.");
   });
 
-  document.getElementById("print").addEventListener("click", () => window.print());
-  window.addEventListener("beforeprint", () => root.querySelectorAll("details").forEach(d => { d.open = true; }));
+  // Note personnelle
+  const stars = [...root.querySelectorAll("[data-star]")];
+  const paintStars = n => stars.forEach(s => {
+    const on = +s.dataset.star <= n;
+    s.classList.toggle("on", on);
+    s.setAttribute("aria-checked", +s.dataset.star === n);
+  });
+  paintStars(store.get("lpb-rating-" + guide.id, 0));
+  stars.forEach(s => s.addEventListener("click", () => {
+    const n = +s.dataset.star;
+    store.set("lpb-rating-" + guide.id, n);
+    paintStars(n);
+    document.getElementById("rating-note").textContent = `Merci ! Vous avez donné ${n}/5 à ce guide.`;
+  }));
 
+  // Questions sur la fiche
+  document.getElementById("qa-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const ta = document.getElementById("qa-text");
+    const body = ta.value.trim();
+    if (!body) { ta.focus(); return; }
+    const prof = getProfile();
+    const posts = loadPosts();
+    posts.unshift({ id: "q" + Date.now().toString(36), type: "question", guide: guide.id, category: guide.category,
+      title: `Question sur « ${guide.title} »`, body, author: prof.name || "Vous", date: new Date().toISOString(), replies: [] });
+    savePosts(posts);
+    toast("Question publiée.");
+    renderGuide();
+    document.getElementById("qa").scrollIntoView();
+  });
+
+  // Onglets de section : suit le défilement
+  const tabs = [...root.querySelectorAll(".guide-tabs .tab")];
+  const sections = tabs.map(t => document.querySelector(t.getAttribute("href")));
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        tabs.forEach(t => t.setAttribute("aria-selected", t.getAttribute("href") === "#" + en.target.id));
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    sections.forEach(s => s && io.observe(s));
+  }
+
+  document.getElementById("print").addEventListener("click", () => window.print());
   document.getElementById("share").addEventListener("click", async () => {
-    const url = location.href.split("&coach")[0];
+    const url = location.href.split("?")[0].split("#")[0] + (guide.user ? `?id=${encodeURIComponent(guide.id)}` : "");
     try {
       if (navigator.share) await navigator.share({ title: guide.title, text: guide.summary, url });
       else { await navigator.clipboard.writeText(url); toast("Lien copié ✓"); }
@@ -173,20 +162,17 @@ function renderGuide() {
   document.getElementById("delete")?.addEventListener("click", () => {
     if (!confirm("Supprimer définitivement cette fiche de ce navigateur ?")) return;
     deleteUserGuide(guide.id);
-    location.href = "guides.html";
+    location.href = ROOT + "profil.html";
   });
 
-  const start = () => startCoach(guide, done, setDone, () => {
-    // Après l'accompagnement, la fiche reflète le résultat (badge « Réparé », dépannage ouvert…)
-    renderGuide();
-    document.getElementById("coach-start").focus();
+  document.getElementById("coach-start").addEventListener("click", e => {
+    e.preventDefault();
+    startCoach(guide, done, setDone, () => {
+      // Après l'accompagnement, la fiche reflète le résultat (badge « Réparé », pistes de dépannage…)
+      renderGuide();
+      document.getElementById("coach-start").focus();
+    });
   });
-  document.getElementById("coach-start").addEventListener("click", start);
-  if (params.get("coach") === "1" && !document.querySelector(".coach")) {
-    params.delete("coach");
-    history.replaceState(null, "", "?" + params.toString());
-    start();
-  }
 }
 
 /* ==========================================================
@@ -209,7 +195,7 @@ function startCoach(guide, done, setDone, onClose) {
   let ticker = null;
 
   const el = document.createElement("div");
-  el.className = "coach";
+  el.className = "coach theme-dark";
   el.setAttribute("role", "dialog");
   el.setAttribute("aria-modal", "true");
   el.setAttribute("aria-label", "Accompagnement : " + guide.title);
@@ -378,7 +364,7 @@ function startCoach(guide, done, setDone, onClose) {
               <button class="btn ${feedback === "ok" ? "btn-primary" : "btn-ghost"}" data-act="ok" type="button">${icon("check")} Oui, c'est réparé</button>
               <button class="btn ${feedback === "ko" ? "btn-primary" : "btn-ghost"}" data-act="ko" type="button">${icon("alert")} Pas encore</button>
             </div>
-            ${feedback === "ok" ? `<p class="coach-thanks">Génial ! Une astuce à partager ? <a href="ajouter.html">Écrivez votre propre fiche</a>.</p>` : ""}
+            ${feedback === "ok" ? `<p class="coach-thanks">Génial ! Une astuce à partager ? <a href="${ROOT}ajouter.html">Écrivez votre propre fiche</a>.</p>` : ""}
             ${feedback === "ko" ? (tips.length
               ? `<div class="coach-trouble"><h3>${icon("alert")} Pistes à vérifier</h3><ul>${tips.map(t => `<li>${escapeHtml(t)}</li>`).join("")}</ul></div>`
               : `<p class="muted">Reprenez les étapes une à une : une vis ou un connecteur oublié est souvent en cause.</p>`) : ""}
@@ -399,6 +385,7 @@ function startCoach(guide, done, setDone, onClose) {
           <div>
             <h2>${escapeHtml(s.title)}</h2>
             <p class="coach-text">${escapeHtml(s.text)}</p>
+            ${s.photo ? `<div class="coach-photo"><img src="${s.photo}" alt="Photo de l'étape ${pos}"></div>` : ""}
             ${s.safety ? `<p class="coach-safety">${icon("shield")} <span>${escapeHtml(s.safety)}</span></p>` : ""}
             ${s.tip ? `<p class="coach-tip">${icon("bulb")} <span><strong>Astuce :</strong> ${escapeHtml(s.tip)}</span></p>` : ""}
             ${s.timer ? `
