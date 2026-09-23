@@ -703,15 +703,16 @@ const GUIDES = [
     summary: "Cheville arrachée ou coup de poignée de porte ? Un trou dans du placo se rebouche proprement et ne se voit plus.",
     safety: "Vérifiez qu'aucun câble ou tuyau ne passe derrière avant de découper. Portez un masque en ponçant.",
     tools: ["Cutter", "Couteau à enduire", "Cale et papier de verre fin", "Masque anti-poussière"],
-    parts: ["Enduit de rebouchage", "Plaque de réparation autocollante (trou de plus de 3 cm)"],
+    parts: ["Enduit de rebouchage", "Plaque de réparation autocollante (trou de 2 à 8 cm)"],
     sources: [
-      { label: "Bricolage Facile — reboucher un trou dans du placo", url: "https://www.bricolage-facile.net/reboucher-trou-du-placo-ba13/" }
+      { label: "Castorama — réparer un trou dans un mur", url: "https://www.castorama.fr/idees-et-conseils/comment-reparer-un-trou-dans-un-mur/CF_CPRD_npcart_100536.art" },
+      { label: "Sauvegarde Junior — reboucher un trou dans du placo selon sa taille", url: "https://www.sauvegardejunior.com/reboucher-trou-placo/" }
     ],
     steps: [
       { title: "Nettoyer les bords", text: "Coupez au cutter les morceaux de carton et de plâtre qui dépassent, pour avoir des bords nets." },
-      { title: "Poser une plaque si le trou est grand", text: "Pour un trou de plus de 3 cm, collez une plaque de réparation autocollante bien centrée par-dessus." },
+      { title: "Poser une plaque si le trou est grand", text: "Mesurez le trou. Moins de 2 cm : l'enduit seul suffit. De 2 à 8 cm : collez une plaque de réparation autocollante bien centrée par-dessus, sinon l'enduit tombe dans le vide de la cloison.", safety: "Au-delà d'une dizaine de centimètres, il faut découper et remplacer un morceau de plaque : ce n'est plus un simple rebouchage." },
       { title: "Appliquer l'enduit", text: "Chargez le couteau d'enduit et lissez en croix, en débordant de 5 cm autour. Couche fine : mieux vaut deux passes qu'une épaisse." },
-      { title: "Laisser sécher et poncer", text: "Laissez sécher selon le pot (souvent 2 à 4 heures), puis poncez légèrement avec la cale jusqu'à ne plus sentir de bord au toucher.", tip: "Éclairez le mur de côté avec une lampe : les défauts apparaissent tout de suite." },
+      { title: "Laisser sécher et poncer", text: "Laissez sécher le temps indiqué sur le pot, puis poncez légèrement avec la cale (grain 180, puis 240 pour la finition) jusqu'à ne plus sentir de bord au toucher.", tip: "Éclairez le mur de côté avec une lampe : les défauts apparaissent tout de suite." },
       { title: "Finir", text: "Passez une deuxième couche fine si besoin, poncez, dépoussiérez, puis appliquez une sous-couche avant la peinture." }
     ],
     troubleshoot: [
@@ -1003,15 +1004,17 @@ const GUIDES = [
     summary: "Un trou dans le tuyau ne justifie pas d'en racheter un : un raccord réparateur coûte trois fois rien.",
     safety: "Fermez le robinet et videz la pression avant de couper.",
     tools: ["Cutter ou sécateur", "Mètre"],
-    parts: ["Raccord réparateur au diamètre du tuyau (15 ou 19 mm le plus souvent)"],
+    parts: ["Raccord réparateur au diamètre du tuyau (12,5, 15 ou 19 mm selon le tuyau)"],
     sources: [
-      { label: "Gamm vert — réparer un tuyau d'arrosage percé", url: "https://www.gammvert.fr/conseils-idees/comment-reparer-un-tuyau-d-arrosage-perce" }
+      { label: "Atoutloisir — réparer un tuyau d'arrosage", url: "https://www.atoutloisir.com/blog/reparer-tuyau-arrosage/" },
+      { label: "Hozelock — raccord réparateur de tuyau (12,5, 15 et 19 mm)", url: "https://www.hozelock.fr/produit/raccord-reparateur-de-tuyau/" },
+      { label: "Atoutloisir — assouplir un tuyau à l'eau chaude", url: "https://www.atoutloisir.com/blog/comment-raccorder-tuyau-darrosage-robinet-sans-fuite/" }
     ],
     steps: [
       { title: "Repérer la fuite", text: "Ouvrez l'eau, repérez le trou, marquez-le, puis fermez le robinet." },
-      { title: "Couper la partie abîmée", text: "Coupez le tuyau bien droit de part et d'autre du trou, en retirant 2 cm de chaque côté." },
-      { title: "Monter le raccord", text: "Dévissez les bagues du raccord, enfilez-les sur chaque bout de tuyau, puis enfoncez le raccord à fond et revissez fermement les bagues.", tip: "Trempez le bout du tuyau 1 minute dans l'eau chaude : il s'enfilera beaucoup plus facilement." },
-      { title: "Tester", text: "Rouvrez l'eau progressivement et vérifiez que rien ne fuit." }
+      { title: "Couper la partie abîmée", text: "Coupez le tuyau net et bien droit de part et d'autre du trou, pour retirer toute la partie abîmée ou fissurée." },
+      { title: "Monter le raccord", text: "Dévissez les bagues du raccord, enfilez-les sur chaque bout de tuyau, puis enfoncez le raccord à fond et revissez fermement les bagues.", tip: "Tuyau trop rigide ? Trempez le bout 2 à 3 minutes dans de l'eau chaude (pas bouillante) : il s'enfilera beaucoup plus facilement." },
+      { title: "Tester", text: "Vérifiez que tout est bien serré, puis rouvrez l'eau progressivement et contrôlez qu'aucune goutte ne perle au raccord." }
     ],
     troubleshoot: [
       "Ça fuit au raccord : la coupe n'est pas droite ou la bague n'est pas assez serrée."
