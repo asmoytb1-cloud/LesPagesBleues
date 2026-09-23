@@ -1,7 +1,9 @@
-/* Les Pages Bleues — génère assets/js/materiel-data.js (types d'appareils, marques, voitures)
+/* Les Pages Bleues — génère assets/js/materiel-data.js (types d'équipement, marques, voitures, motos)
    à partir de tools/data/ :
      electromenager-marques.json  marques par type d'appareil, relevées sur spareka.fr
+     boutiques.json               autres types d'équipement et leurs marques (Boulanger, Leroy Merlin, Micromania)
      voitures.txt                 marques, modèles et années de production, relevés sur catcar.info
+     motos.txt                    marques, modèles et millésimes de motos, relevés sur motobook.app
    Lancé automatiquement par tools/build.js. */
 
 const fs = require("fs");
@@ -10,7 +12,7 @@ const path = require("path");
 const ROOT_DIR = path.resolve(__dirname, "..");
 const DATA = path.join(__dirname, "data");
 
-/* Types d'appareils proposés. `spareka` = rubrique d'où viennent les marques ;
+/* Types d'appareils électroménagers. `spareka` = rubrique d'où viennent les marques ;
    `diag` = nom de l'appareil dans le diagnostic guidé (diagnostics-data.js). */
 const TYPES = [
   { id: "lave-linge", name: "Lave-linge", icon: "washer", group: "Linge", spareka: "lave-linge", diag: "Lave-linge" },
@@ -35,7 +37,7 @@ const TYPES = [
   { id: "raclette-grill", name: "Raclette, grill ou plancha", icon: "plug", group: "Petit électroménager", spareka: "raclette-grill" },
   { id: "aspirateur", name: "Aspirateur", icon: "plug", group: "Entretien de la maison", spareka: "aspirateur", diag: "Aspirateur" },
   { id: "aspirateur-robot", name: "Aspirateur robot", icon: "plug", group: "Entretien de la maison", spareka: "aspirateur-robot" },
-  { id: "nettoyeur-vapeur", name: "Nettoyeur vapeur ou haute pression", icon: "plug", group: "Entretien de la maison", spareka: "nettoyeur-vapeur-pression" },
+  { id: "nettoyeur-vapeur", name: "Nettoyeur vapeur", icon: "plug", group: "Entretien de la maison", spareka: "nettoyeur-vapeur-pression" },
   { id: "climatiseur", name: "Climatiseur", icon: "fan", group: "Confort", spareka: "climatiseur" },
   { id: "ventilateur", name: "Ventilateur", icon: "fan", group: "Confort", spareka: "ventilateur" },
   { id: "deshumidificateur", name: "Déshumidificateur", icon: "fan", group: "Confort", spareka: "deshumidificateur" },
@@ -58,18 +60,31 @@ function brandName(raw) {
   }).join("");
 }
 
+const SOURCES = {
+  spareka: { name: "Spareka", url: "https://www.spareka.fr/" },
+  boulanger: { name: "Boulanger", url: "https://www.boulanger.com/" },
+  leroymerlin: { name: "Leroy Merlin", url: "https://www.leroymerlin.fr/" },
+  micromania: { name: "Micromania", url: "https://www.micromania.fr/" },
+  catcar: { name: "catcar.info", url: "https://www.catcar.info/en/" },
+  motobook: { name: "MotoBook", url: "https://motobook.app/" }
+};
+
 function applianceTypes() {
   const raw = JSON.parse(fs.readFileSync(path.join(DATA, "electromenager-marques.json"), "utf8"));
-  return TYPES.map(t => {
+  const electro = TYPES.map(t => {
     const brands = [...new Set((raw[t.spareka] || []).map(brandName))].sort((a, b) => a.localeCompare(b, "fr"));
     const { spareka, ...rest } = t;
-    return { ...rest, brands };
+    return { ...rest, category: "electromenager", source: "spareka", brands };
   });
+  const shops = JSON.parse(fs.readFileSync(path.join(DATA, "boutiques.json"), "utf8")).types.map(t => ({
+    ...t, brands: [...t.brands].sort((a, b) => a.localeCompare(b, "fr"))
+  }));
+  return [...electro, ...shops];
 }
 
-function carMakes() {
+function vehicleMakes(file) {
   const makes = [];
-  for (const line of fs.readFileSync(path.join(DATA, "voitures.txt"), "utf8").split("\n")) {
+  for (const line of fs.readFileSync(path.join(DATA, file), "utf8").split("\n")) {
     const l = line.trim();
     if (!l || l.startsWith("#")) continue;
     if (l.startsWith("=")) { makes.push({ name: l.slice(1).trim(), models: [] }); continue; }
@@ -84,19 +99,25 @@ function carMakes() {
 
 function build() {
   const types = applianceTypes();
-  const cars = carMakes();
+  const cars = vehicleMakes("voitures.txt");
+  const motos = vehicleMakes("motos.txt");
   const out = `/* Les Pages Bleues — catalogue du matériel (fichier généré par tools/materiel.js, ne pas modifier à la main).
-   Marques d'électroménager relevées sur spareka.fr ; marques, modèles et années de production des voitures
-   relevés sur catcar.info (catalogues Europe). Voir tools/data/. */
+   Marques d'électroménager : spareka.fr. Autres équipements : Boulanger, Leroy Merlin, Micromania.
+   Voitures : catcar.info (catalogues Europe). Motos : motobook.app. Voir tools/data/. */
+
+const MATERIEL_SOURCES = ${JSON.stringify(SOURCES)};
 
 const APPLIANCE_TYPES = ${JSON.stringify(types)};
 
 const CAR_MAKES = ${JSON.stringify(cars)};
+
+const MOTO_MAKES = ${JSON.stringify(motos)};
 `;
   fs.writeFileSync(path.join(ROOT_DIR, "assets/js/materiel-data.js"), out);
   const nb = types.reduce((n, t) => n + t.brands.length, 0);
   const nm = cars.reduce((n, c) => n + c.models.length, 0);
-  console.log(`matériel : ${types.length} types d'appareils (${nb} marques), ${cars.length} marques de voitures (${nm} modèles)`);
+  const nmo = motos.reduce((n, c) => n + c.models.length, 0);
+  console.log(`matériel : ${types.length} types d'équipement (${nb} marques), ${cars.length} marques de voitures (${nm} modèles), ${motos.length} marques de motos (${nmo} modèles)`);
 }
 
 if (require.main === module) build();

@@ -8,7 +8,7 @@ Trouvez en quelques clics comment réparer vos objets, au lieu de les jeter.
 
 | | |
 | --- | --- |
-| **66 guides vérifiés** | Automobile, électroménager, téléphonie, maison, vélo, jardin, loisirs, mode, instruments. Chaque fiche cite ses sources et sa date de vérification. |
+| **69 guides vérifiés** | Automobile, électroménager, téléphonie, maison, vélo, jardin, loisirs, mode, instruments. Chaque fiche cite ses sources et sa date de vérification. |
 | **Mode accompagnement** | Une étape à la fois en plein écran : minuteurs, lecture à voix haute, commandes vocales (« suivant », « répète »…), écran maintenu allumé, reprise là où on s'est arrêté. |
 | **Diagnostic guidé** | 26 pannes courantes : on décrit le problème (texte ou voix), quelques questions, les causes sont classées avec un niveau de confiance, puis on va vers la bonne fiche… ou vers un réparateur labellisé. |
 | **Recherche** | Synonymes, accents et pluriels ignorés, suggestions instantanées ; onglets Guides / Diagnostics / Discussions, filtres domaine, difficulté, durée, favoris et tri. |
@@ -49,7 +49,7 @@ Les pages principales (accueil, recherche, catégories…) sont générées par 
 ```sh
 npm install                      # une seule fois
 npx playwright install chromium  # une seule fois
-npm test                         # génération + validation + 20 tests dans un vrai navigateur
+npm test                         # génération + validation + 22 tests dans un vrai navigateur
 ```
 
 Les tests couvrent toutes les pages (ordinateur et mobile, thèmes clair et sombre), la recherche, les fiches, le mode accompagnement, le diagnostic, la contribution avec photo, la communauté, le profil, le mode hors ligne, l'accessibilité (axe-core, ordre des titres) et la stabilité de la mise en page au chargement.

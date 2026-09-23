@@ -190,7 +190,7 @@ PAGES["index.html"] = dict(
 PAGES["guides.html"] = dict(
   title="Rechercher un guide de réparation — Les Pages Bleues",
   desc="Tous les guides de réparation des Pages Bleues : recherchez une panne ou un objet, filtrez par domaine, difficulté et durée.",
-  scripts=["diagnostics-data.js", "guides.js"], active="guides",
+  scripts=["diagnostics-data.js", "materiel-data.js", "guides.js"], active="guides",
   body="""    <section class="page-hero search-page">
       <div class="container">
         <h1 id="page-title">Tous les <span class="accent">guides</span></h1>

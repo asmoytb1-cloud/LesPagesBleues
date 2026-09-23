@@ -1,4 +1,4 @@
-/* Les Pages Bleues — « Mon matériel » : l'utilisateur enregistre ses appareils et sa voiture
+/* Les Pages Bleues — « Mon matériel » : l'utilisateur enregistre ses équipements, sa voiture ou sa moto
    (catalogue : assets/js/materiel-data.js) et ne voit ensuite que les fiches qui les concernent. */
 
 renderHeader("materiel");
@@ -8,61 +8,78 @@ const root = document.getElementById("materiel-root");
 const params = new URLSearchParams(location.search);
 const THIS_YEAR = new Date().getFullYear();
 const OTHER = "__autre";
-let kind = params.get("kind") === "voiture" ? "voiture" : "appareil";
-let preType = params.get("type") || "";
+const VEHICLES = {
+  voiture: { label: "Voiture", icon: "car", makes: CAR_MAKES, source: "catcar", yearPh: "2012", production: true },
+  moto: { label: "Moto", icon: "moto", makes: MOTO_MAKES, source: "motobook", yearPh: "2021", production: false }
+};
 
 const typeById = id => APPLIANCE_TYPES.find(t => t.id === id);
-const makeByName = name => CAR_MAKES.find(c => c.name === name);
-const years = m => m.from ? (m.to ? `${m.from}–${m.to}` : `à partir de ${m.from}`) : "";
+const domains = () => CATEGORIES.filter(c => APPLIANCE_TYPES.some(t => t.category === c.id));
+const years = m => m.from ? (m.to && m.to !== m.from ? `${m.from}–${m.to}` : m.to ? `${m.from}` : `à partir de ${m.from}`) : "";
 const newId = () => "m" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
-function typeOptions() {
-  const groups = [...new Set(APPLIANCE_TYPES.map(t => t.group))];
-  return `<option value="">Choisissez…</option>` + groups.map(gr => `<optgroup label="${escapeHtml(gr)}">${APPLIANCE_TYPES.filter(t => t.group === gr)
-    .map(t => `<option value="${t.id}" ${t.id === preType ? "selected" : ""}>${escapeHtml(t.name)}</option>`).join("")}</optgroup>`).join("");
-}
+// Point de départ : ?type=lave-linge, ?type=voiture, ?kind=moto, ?cat=jardin
+let preType = params.get("type") || "";
+let kind = VEHICLES[preType] ? preType : VEHICLES[params.get("kind")] ? params.get("kind") : "appareil";
+let domain = typeById(preType)?.category || (domains().some(c => c.id === params.get("cat")) ? params.get("cat") : "electromenager");
 
-function formHtml() {
-  const yearField = `<div class="field"><label for="m-year">Année <small>(facultatif)</small></label>
-    <input class="input" id="m-year" type="number" inputmode="numeric" min="1950" max="${THIS_YEAR + 1}" placeholder="${kind === "voiture" ? "2012" : "2020"}">
-    <p class="field-hint" id="year-hint" aria-live="polite"></p></div>`;
-  const body = kind === "appareil" ? `
+function applianceFields() {
+  const types = APPLIANCE_TYPES.filter(t => t.category === domain);
+  const groups = [...new Set(types.map(t => t.group))];
+  return `
     <div class="form-row form-row-2">
-      <div class="field"><label for="m-type">Type d'appareil</label>
-        <select class="input" id="m-type" required>${typeOptions()}</select></div>
-      <div class="field"><label for="m-brand">Marque</label>
-        <input class="input" id="m-brand" list="brand-list" autocomplete="off" placeholder="LG, Bosch, Whirlpool…">
-        <datalist id="brand-list"></datalist>
-        <p class="field-hint" id="brand-hint"></p></div>
+      <div class="field"><label for="m-domain">Domaine</label>
+        <select class="input" id="m-domain">${domains().map(c => `<option value="${c.id}" ${c.id === domain ? "selected" : ""}>${escapeHtml(c.name)}</option>`).join("")}</select></div>
+      <div class="field"><label for="m-type">Type d'équipement</label>
+        <select class="input" id="m-type" required><option value="">Choisissez…</option>${groups.map(gr => `<optgroup label="${escapeHtml(gr)}">${types.filter(t => t.group === gr)
+          .map(t => `<option value="${t.id}" ${t.id === preType ? "selected" : ""}>${escapeHtml(t.name)}</option>`).join("")}</optgroup>`).join("")}</select></div>
     </div>
     <div class="form-row form-row-2">
+      <div class="field"><label for="m-brand">Marque</label>
+        <input class="input" id="m-brand" list="brand-list" autocomplete="off" maxlength="40" placeholder="Tapez ou choisissez la marque">
+        <datalist id="brand-list"></datalist>
+        <p class="field-hint" id="brand-hint"></p></div>
       <div class="field"><label for="m-model">Modèle ou référence <small>(facultatif)</small></label>
-        <input class="input" id="m-model" autocomplete="off" maxlength="60" placeholder="ex. F4WV309S0">
-        <p class="field-hint">Elle figure sur la plaque signalétique, souvent dans l'encadrement de la porte ou au dos de l'appareil. Utile pour commander la bonne pièce.</p></div>
-      ${yearField}
-    </div>` : `
+        <input class="input" id="m-model" list="model-list" autocomplete="off" maxlength="60" placeholder="ex. F4WV309S0">
+        <datalist id="model-list"></datalist>
+        <p class="field-hint" id="model-hint">Elle figure sur l'étiquette ou la plaque signalétique (dessous, dos ou encadrement de porte). Utile pour commander la bonne pièce.</p></div>
+    </div>
+    <div class="form-row form-row-2">${yearField()}</div>`;
+}
+
+function vehicleFields() {
+  const v = VEHICLES[kind];
+  return `
     <div class="form-row form-row-2">
       <div class="field"><label for="m-make">Marque</label>
-        <select class="input" id="m-make" required><option value="">Choisissez…</option>${CAR_MAKES.map(c => `<option>${escapeHtml(c.name)}</option>`).join("")}<option value="${OTHER}">Autre marque</option></select>
+        <select class="input" id="m-make" required><option value="">Choisissez…</option>${v.makes.map(c => `<option>${escapeHtml(c.name)}</option>`).join("")}<option value="${OTHER}">Autre marque</option></select>
         <input class="input" id="m-make-other" maxlength="40" placeholder="Nom de la marque" aria-label="Autre marque" hidden style="margin-top:8px"></div>
       <div class="field"><label for="m-car">Modèle</label>
         <select class="input" id="m-car" disabled><option value="">Choisissez d'abord la marque</option></select>
         <input class="input" id="m-car-other" maxlength="40" placeholder="Nom du modèle" aria-label="Autre modèle" hidden style="margin-top:8px"></div>
     </div>
     <div class="form-row form-row-2">
-      ${yearField}
-      <div class="field"><label for="m-engine">Motorisation <small>(facultatif)</small></label>
-        <input class="input" id="m-engine" maxlength="40" autocomplete="off" placeholder="ex. 1.6 TDI 105 ch">
-        <p class="field-hint">Le type exact figure sur la carte grise, rubrique D.2 (type, variante, version).</p></div>
+      ${yearField()}
+      <div class="field"><label for="m-engine">${kind === "voiture" ? "Motorisation" : "Version ou cylindrée"} <small>(facultatif)</small></label>
+        <input class="input" id="m-engine" maxlength="40" autocomplete="off" placeholder="${kind === "voiture" ? "ex. 1.6 TDI 105 ch" : "ex. 800 cm³"}">
+        <p class="field-hint">${kind === "voiture" ? "Le type exact figure sur la carte grise, rubrique D.2 (type, variante, version)." : "La carte grise indique le type exact (rubrique D.2) et la cylindrée (rubrique P.1)."}</p></div>
     </div>`;
+}
+
+function yearField() {
+  return `<div class="field"><label for="m-year">Année <small>(facultatif)</small></label>
+    <input class="input" id="m-year" type="number" inputmode="numeric" min="1950" max="${THIS_YEAR + 1}" placeholder="${VEHICLES[kind]?.yearPh || "2020"}">
+    <p class="field-hint" id="year-hint" aria-live="polite"></p></div>`;
+}
+
+function formHtml() {
+  const kinds = [["appareil", "plug", "Équipement"], ["voiture", "car", "Voiture"], ["moto", "moto", "Moto"]];
   return `
     <form class="form-card mat-form" id="mat-form" novalidate>
       <h2>${icon("plus")} Ajouter du matériel</h2>
-      <div class="seg" role="radiogroup" aria-label="Type de matériel">
-        <button type="button" role="radio" data-kind="appareil" aria-checked="${kind === "appareil"}">${icon("washer")} Électroménager</button>
-        <button type="button" role="radio" data-kind="voiture" aria-checked="${kind === "voiture"}">${icon("car")} Voiture</button>
-      </div>
-      ${body}
+      <div class="seg" role="radiogroup" aria-label="Type de matériel">${kinds.map(([k, ic, label]) =>
+        `<button type="button" role="radio" data-kind="${k}" aria-checked="${kind === k}">${icon(ic)} ${label}</button>`).join("")}</div>
+      ${kind === "appareil" ? applianceFields() : vehicleFields()}
       <p class="field-err" id="mat-err" hidden></p>
       <div><button class="btn btn-primary" type="submit">${icon("check")} Enregistrer</button></div>
     </form>`;
@@ -70,20 +87,21 @@ function formHtml() {
 
 function cardHtml(m) {
   const guides = guidesForMateriel(m);
-  const t = m.kind === "appareil" ? typeById(m.type) : null;
+  const t = typeById(m.type);
   const diagDevice = m.kind === "voiture" ? "Voiture" : t?.diag;
-  const details = [m.model && m.kind === "appareil" ? `Réf. ${m.model}` : "", m.engine || "", m.year ? `${m.year}` : ""].filter(Boolean).join(" · ");
+  const details = [!isVehicle(m) && m.model ? m.model : "", m.engine || "", m.year ? `${m.year}` : ""].filter(Boolean).join(" · ");
+  const forWhat = m.kind === "voiture" ? "votre voiture" : m.kind === "moto" ? "votre moto" : "cet équipement";
   return `
     <article class="mat-card" id="mat-${m.id}">
       <header class="mat-head">
-        <span class="mat-ico">${icon(m.kind === "voiture" ? "car" : (t?.icon || "plug"))}</span>
+        <span class="mat-ico">${icon(m.icon || t?.icon || "box")}</span>
         <div><h3>${escapeHtml(materielName(m))}</h3>${details ? `<p class="muted">${escapeHtml(details)}</p>` : ""}</div>
         <button class="icon-btn" type="button" data-del="${m.id}" aria-label="Retirer ${escapeHtml(materielName(m))}">${icon("trash")}</button>
       </header>
       ${guides.length ? `
-        <p class="mat-count"><strong>${guides.length} fiche${guides.length > 1 ? "s" : ""}</strong> pour ${m.kind === "voiture" ? "votre voiture" : "cet appareil"}</p>
+        <p class="mat-count"><strong>${guides.length} fiche${guides.length > 1 ? "s" : ""}</strong> pour ${forWhat}</p>
         <div class="rows">${guides.slice(0, 4).map(g => guideRow(g)).join("")}</div>`
-      : `<p class="muted mat-count">Pas encore de fiche dédiée à ce type d'appareil. Vous savez le réparer ? Partagez votre méthode.</p>`}
+      : `<p class="muted mat-count">Pas encore de fiche dédiée à ce type de matériel. Vous savez le réparer ? Partagez votre méthode.</p>`}
       <div class="mat-actions">
         ${guides.length > 4 ? `<a class="btn btn-ghost btn-sm" href="guides.html?materiel=${m.id}">${icon("list")} Voir les ${guides.length} fiches</a>` : ""}
         ${diagDevice ? `<a class="btn btn-ghost btn-sm" href="diagnostic.html?d=${encodeURIComponent(diagDevice)}">${icon("stethoscope")} Diagnostiquer une panne</a>` : ""}
@@ -93,18 +111,24 @@ function cardHtml(m) {
     </article>`;
 }
 
+function sourcesNote() {
+  const used = [...new Set([...APPLIANCE_TYPES.map(t => t.source).filter(Boolean), "catcar", "motobook"])];
+  return used.map(k => MATERIEL_SOURCES[k]).filter(Boolean)
+    .map(s => `<a href="${s.url}" target="_blank" rel="noopener">${escapeHtml(s.name)}</a>`).join(", ");
+}
+
 function render() {
   const list = loadMateriel();
   root.innerHTML = `
     <div class="mat-layout">
       <div>${formHtml()}
-        <p class="muted mat-note">${icon("shield")} Enregistré dans ce navigateur uniquement. Marques d'électroménager d'après le catalogue de pièces Spareka ; marques, modèles et années de voitures d'après les catalogues constructeurs réunis par catcar.info.</p>
+        <p class="muted mat-note">${icon("shield")}<span>Enregistré dans ce navigateur uniquement. Types, marques et modèles proposés d'après les catalogues de ${sourcesNote()}. Votre modèle n'y est pas ? Tapez-le simplement.</span></p>
       </div>
       <section aria-labelledby="mat-list-title">
-        <h2 id="mat-list-title">Mes appareils <span class="chip-n">${list.length}</span></h2>
+        <h2 id="mat-list-title">Mon matériel <span class="chip-n">${list.length}</span></h2>
         ${list.length ? `<div class="mat-list">${list.map(cardHtml).join("")}</div>` : `
           <div class="empty">${icon("box")}<h3>Rien d'enregistré pour l'instant</h3>
-            <p>Ajoutez par exemple « lave-linge LG de 2020 » ou « Audi A3 de 2012 » : vous retrouverez ici les fiches qui les concernent, et un raccourci vers le bon diagnostic.</p></div>`}
+            <p>Ajoutez par exemple « lave-linge LG de 2020 », « Audi A3 de 2012 » ou votre moto : vous retrouverez ici les fiches qui les concernent, et un raccourci vers le bon diagnostic.</p></div>`}
       </section>
     </div>`;
   wireForm();
@@ -112,14 +136,14 @@ function render() {
 
 function wireForm() {
   const $ = id => document.getElementById(id);
+  const vehicleModel = () => VEHICLES[kind]?.makes.find(c => c.name === $("m-make").value)?.models[+$("m-car").value];
   const yearHint = () => {
     const y = +$("m-year").value, hint = $("year-hint");
     hint.classList.remove("warn");
     hint.textContent = "";
-    if (kind !== "voiture") return;
-    const make = makeByName($("m-make").value);
-    const model = make?.models[+$("m-car").value];
+    const model = VEHICLES[kind] && vehicleModel();
     if (!model?.from) return;
+    if (!VEHICLES[kind].production) { hint.textContent = `Millésimes connus : ${years(model)}.`; return; }
     hint.textContent = `Produit ${model.to ? "de " + model.from + " à " + model.to : "à partir de " + model.from}.`;
     if (y && (y < model.from - 1 || (model.to && y > model.to + 1))) {
       hint.classList.add("warn");
@@ -127,17 +151,29 @@ function wireForm() {
     }
   };
   $("m-year").addEventListener("input", yearHint);
+
   if (kind === "appareil") {
+    const fillModels = () => {
+      const t = typeById($("m-type").value);
+      const brand = t?.brands.find(b => normalize(b) === normalize($("m-brand").value.trim()));
+      const models = (t?.models && brand && t.models[brand]) || [];
+      $("model-list").innerHTML = models.map(m => `<option value="${escapeHtml(m)}"></option>`).join("");
+      $("m-model").placeholder = models[0] ? `ex. ${models[0]}` : "ex. F4WV309S0";
+    };
     const fill = () => {
       const t = typeById($("m-type").value);
       $("brand-list").innerHTML = t ? t.brands.map(b => `<option value="${escapeHtml(b)}"></option>`).join("") : "";
-      $("brand-hint").textContent = t ? `${t.brands.length} marques proposées, ou tapez la vôtre.` : "";
+      $("brand-hint").textContent = t ? (t.brands.length ? `${t.brands.length} marque${t.brands.length > 1 ? "s" : ""} proposée${t.brands.length > 1 ? "s" : ""}, ou tapez la vôtre.` : "Tapez la marque.") : "";
+      fillModels();
     };
+    $("m-domain").addEventListener("change", () => { domain = $("m-domain").value; preType = ""; render(); $("m-type").focus(); });
     $("m-type").addEventListener("change", fill);
+    $("m-brand").addEventListener("input", fillModels);
     fill();
   } else {
+    const makes = VEHICLES[kind].makes;
     $("m-make").addEventListener("change", () => {
-      const v = $("m-make").value, make = makeByName(v), sel = $("m-car");
+      const v = $("m-make").value, make = makes.find(c => c.name === v), sel = $("m-car");
       $("m-make-other").hidden = v !== OTHER;
       if (v === OTHER) $("m-make-other").focus();
       sel.disabled = !v;
@@ -154,6 +190,7 @@ function wireForm() {
       yearHint();
     });
   }
+
   $("mat-form").addEventListener("submit", e => {
     e.preventDefault();
     const err = $("mat-err");
@@ -165,19 +202,21 @@ function wireForm() {
     let item;
     if (kind === "appareil") {
       const t = typeById($("m-type").value);
-      if (!t) return fail("Choisissez le type d'appareil.", $("m-type"));
+      if (!t) return fail("Choisissez le type d'équipement.", $("m-type"));
       const typed = $("m-brand").value.trim();
       const known = t.brands.find(b => normalize(b) === normalize(typed));
-      item = { kind, type: t.id, typeName: t.name, icon: t.icon, brand: known || typed.slice(0, 40), model: $("m-model").value.trim() };
+      item = { kind, type: t.id, typeName: t.name, category: t.category, icon: t.icon, brand: known || typed.slice(0, 40), model: $("m-model").value.trim() };
     } else {
+      const v = VEHICLES[kind];
       const mv = $("m-make").value;
-      if (!mv) return fail("Choisissez la marque de la voiture.", $("m-make"));
+      const label = kind === "voiture" ? "de la voiture" : "de la moto";
+      if (!mv) return fail(`Choisissez la marque ${label}.`, $("m-make"));
       const brand = mv === OTHER ? $("m-make-other").value.trim() : mv;
-      if (!brand) return fail("Indiquez la marque de la voiture.", $("m-make-other"));
+      if (!brand) return fail(`Indiquez la marque ${label}.`, $("m-make-other"));
       const cv = $("m-car").value;
-      const model = cv === OTHER ? $("m-car-other").value.trim() : makeByName(mv)?.models[+cv]?.name;
-      if (!model) return fail("Indiquez le modèle de la voiture.", cv === OTHER ? $("m-car-other") : $("m-car"));
-      item = { kind, type: "voiture", typeName: "Voiture", icon: "car", brand, model, engine: $("m-engine").value.trim() };
+      const model = cv === OTHER ? $("m-car-other").value.trim() : v.makes.find(c => c.name === mv)?.models[+cv]?.name;
+      if (!model) return fail(`Indiquez le modèle ${label}.`, cv === OTHER ? $("m-car-other") : $("m-car"));
+      item = { kind, type: kind, typeName: v.label, category: "automobile", icon: v.icon, brand, model, engine: $("m-engine").value.trim() };
     }
     Object.assign(item, { id: newId(), year, added: new Date().toISOString() });
     if (!saveMateriel([item, ...loadMateriel()])) return fail("Enregistrement impossible : le stockage du navigateur est plein ou bloqué.", $("mat-form").querySelector("[type=submit]"));

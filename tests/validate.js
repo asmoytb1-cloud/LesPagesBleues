@@ -106,18 +106,28 @@ const sw = fs.readFileSync(path.join(ROOT, "sw.js"), "utf8");
 for (const m of sw.match(/const CORE = \[([\s\S]*?)\];/)[1].matchAll(/"([^"]+)"/g)) {
   if (m[1] !== "./" && !fs.existsSync(path.join(ROOT, m[1]))) fail(`sw.js : fichier à mettre en cache introuvable ${m[1]}`);
 }
+/* ---------- Domaines : texte d'introduction et précautions ---------- */
+for (const c of CATEGORIES) {
+  if (!c.intro || c.intro.length < 60) fail(`domaine ${c.id} : introduction manquante ou trop courte`);
+  if (!Array.isArray(c.tips) || !c.tips.length) fail(`domaine ${c.id} : précautions (« tips ») manquantes`);
+}
+
 /* ---------- Catalogue « Mon matériel » ---------- */
 vm.runInContext(fs.readFileSync(path.join(ROOT, "assets/js/materiel-data.js"), "utf8"), ctx, { filename: "materiel-data.js" });
-const { APPLIANCE_TYPES, CAR_MAKES } = vm.runInContext("({ APPLIANCE_TYPES, CAR_MAKES })", ctx);
+const { APPLIANCE_TYPES, CAR_MAKES, MOTO_MAKES, MATERIEL_SOURCES } = vm.runInContext("({ APPLIANCE_TYPES, CAR_MAKES, MOTO_MAKES, MATERIEL_SOURCES })", ctx);
 const typeIds = new Set(APPLIANCE_TYPES.map(t => t.id));
 const diagDevices = new Set(DIAGNOSTICS.map(d => d.device));
 for (const t of APPLIANCE_TYPES) {
-  if (!t.brands.length) fail(`matériel ${t.id} : aucune marque`);
+  if (t.source && !t.brands.length) fail(`matériel ${t.id} : aucune marque relevée alors qu'une source est indiquée`);
+  if (t.source && !MATERIEL_SOURCES[t.source]) fail(`matériel ${t.id} : source inconnue ${t.source}`);
+  if (!catIds.has(t.category)) fail(`matériel ${t.id} : domaine inconnu ${t.category}`);
+  for (const b of Object.keys(t.models || {})) if (!t.brands.includes(b)) fail(`matériel ${t.id} : modèles pour une marque absente (${b})`);
   if (t.diag && !diagDevices.has(t.diag)) fail(`matériel ${t.id} : appareil de diagnostic inconnu ${t.diag}`);
   if (vm.runInContext(`icon(${JSON.stringify(t.icon)})`, ctx) === icon0) fail(`matériel ${t.id} : icône inconnue ${t.icon}`);
 }
-for (const g of GUIDES) for (const d of g.devices || []) if (!typeIds.has(d)) fail(`fiche ${g.id} : type d'appareil inconnu ${d} (voir tools/materiel.js)`);
-for (const c of CAR_MAKES) {
+if (new Set(APPLIANCE_TYPES.map(t => t.id)).size !== APPLIANCE_TYPES.length) fail("matériel : identifiant de type en double");
+for (const g of GUIDES) for (const d of g.devices || []) if (!typeIds.has(d) && d !== "voiture" && d !== "moto") fail(`fiche ${g.id} : type d'appareil inconnu ${d} (voir tools/materiel.js)`);
+for (const c of [...CAR_MAKES, ...MOTO_MAKES]) {
   if (!c.models.length) fail(`voiture ${c.name} : aucun modèle`);
   for (const m of c.models) if (m.from && m.to && m.to < m.from) fail(`voiture ${c.name} ${m.name} : années inversées`);
 }

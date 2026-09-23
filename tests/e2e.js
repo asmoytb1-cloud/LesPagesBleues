@@ -310,7 +310,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     const names = await p.$$eval(".mat-card .mat-head h3", h => h.map(x => x.textContent));
     expect(names.join("|") === "Audi A3 / S3 / RS3|Lave-linge LG", "les deux matériels doivent être listés : " + names.join("|"));
     const counts = await p.$$eval(".mat-count", e => e.map(x => parseInt(x.textContent, 10)));
-    const expected = await p.evaluate(() => [GUIDES.filter(g => inCategory(g, "automobile")).length, GUIDES.filter(g => (g.devices || []).includes("lave-linge")).length]);
+    const expected = await p.evaluate(() => [GUIDES.filter(g => g.category === "automobile" && !(g.devices || []).length).length, GUIDES.filter(g => (g.devices || []).includes("lave-linge")).length]);
     expect(counts.join() === expected.join(), `nombre de fiches : ${counts} au lieu de ${expected}`);
     const ids = await p.evaluate(() => loadMateriel().map(m => m.id));
     await p.goto(B + "guides.html?materiel=" + ids[1]);
@@ -326,6 +326,51 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     await p.click(`[data-del="${ids[0]}"]`);
     await p.click("#confirm-del");
     expect((await p.$$(".mat-card")).length === 1, "la suppression doit retirer la voiture");
+    expect(!errs.length, errs.join(" | "));
+    await ctx.close();
+  });
+
+  await test("Mon matériel : console (modèles proposés) et moto (MotoBook) → fiches dédiées", async () => {
+    const ctx = await newCtx(); const p = await ctx.newPage();
+    const errs = []; watch(p, errs);
+    await p.goto(B + "materiel.html?cat=loisirs");
+    expect(await p.inputValue("#m-domain") === "loisirs", "le domaine passé dans l'adresse doit être présélectionné");
+    await p.selectOption("#m-type", "console");
+    await p.fill("#m-brand", "sony playstation");
+    await p.dispatchEvent("#m-brand", "input");
+    expect(await p.$$eval("#model-list option", o => o.some(x => x.value === "PlayStation 5")), "les modèles de consoles Sony doivent être proposés");
+    await p.fill("#m-model", "PlayStation 5");
+    await p.click("#mat-form [type=submit]");
+    await p.click('[data-kind="moto"]');
+    await p.selectOption("#m-make", "Yamaha");
+    const mt = await p.$$eval("#m-car option", o => o.find(x => x.textContent.startsWith("MT-07"))?.value);
+    expect(mt, "le MT-07 de Yamaha doit être proposé");
+    await p.selectOption("#m-car", mt);
+    expect(/Millésimes/.test(await p.textContent("#year-hint")), "les millésimes connus doivent être indiqués");
+    await p.click("#mat-form [type=submit]");
+    const names = await p.$$eval(".mat-card .mat-head h3", h => h.map(x => x.textContent));
+    expect(names[0].startsWith("Yamaha MT-07") && names[1] === "Console de jeux Sony PlayStation", "matériels enregistrés : " + names.join(" | "));
+    const counts = await p.$$eval(".mat-count", e => e.map(x => parseInt(x.textContent, 10)));
+    const expected = await p.evaluate(() => [GUIDES.filter(g => g.category === "moto").length, GUIDES.filter(g => (g.devices || []).includes("console")).length]);
+    expect(counts.join() === expected.join(), `fiches : ${counts} au lieu de ${expected}`);
+    expect(!errs.length, errs.join(" | "));
+    await ctx.close();
+  });
+
+  await test("Page d'introduction d'un domaine : présentation, équipements, pannes, précautions", async () => {
+    const ctx = await newCtx(); const p = await ctx.newPage();
+    const errs = []; watch(p, errs);
+    await p.goto(B + "categories/automobile.html");
+    expect((await p.textContent("h1")).trim() === "Auto / Moto", "titre du domaine");
+    expect((await p.$$(".guide-rows, main .rows .grow")).length === 0, "la page d'intro ne doit plus lister les fiches");
+    const tiles = await p.$$eval(".type-tile strong", t => t.map(x => x.textContent));
+    expect(tiles.join() === "Voiture,Moto", "tuiles Voiture et Moto : " + tiles);
+    expect((await p.$$(".diag-links li")).length > 0 && (await p.$$(".check-list li")).length > 0, "pannes fréquentes et précautions attendues");
+    await Promise.all([p.waitForNavigation(), p.click(".type-tile >> text=Moto")]);
+    const n = await p.evaluate(() => GUIDES.filter(g => g.category === "moto").length);
+    expect((await p.$$("#guide-rows .grow")).length === n, "le lien Moto doit filtrer les fiches moto");
+    await p.goto(B + "categories/jardin.html");
+    expect((await p.$$(".type-tile")).length >= 5, "le domaine Jardin doit présenter ses équipements");
     expect(!errs.length, errs.join(" | "));
     await ctx.close();
   });

@@ -15,11 +15,12 @@ const CAT_OUT = path.join(ROOT_DIR, "categories");
 // Charge les scripts du site dans un bac à sable, comme le ferait le navigateur (sans DOM)
 const sandbox = { window: { LPB_ROOT: "../" }, navigator: {}, console, URLSearchParams };
 vm.createContext(sandbox);
-for (const f of ["data.js", "common.js", "guide-view.js"]) {
+for (const f of ["data.js", "common.js", "guide-view.js", "diagnostics-data.js", "materiel-data.js"]) {
   vm.runInContext(fs.readFileSync(path.join(ROOT_DIR, "assets/js", f), "utf8") + "\n;globalThis.__ok = true;", sandbox, { filename: f });
 }
-const { GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon } = vm.runInContext(
-  "({ GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon })", sandbox);
+const { GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon,
+  DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, guidesForType, imgSrc, photoUrl } = vm.runInContext(
+  "({ GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon, DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, guidesForType, imgSrc, photoUrl })", sandbox);
 
 const esc = s => escapeHtml(s);
 const iso = m => m ? `PT${Math.floor(m / 60) ? Math.floor(m / 60) + "H" : ""}${m % 60 ? m % 60 + "M" : ""}` : undefined;
@@ -86,49 +87,117 @@ function head({ title, desc, canonical, image, type = "website", extra = "" }) {
 }
 
 /* Page statique d'un domaine : liste de ses fiches, lisible sans JavaScript */
+// Types d'équipement présentés sur la page d'un domaine (Auto / Moto : voiture et moto)
+function typesOf(c) {
+  if (c.id === "automobile") return [{ id: "voiture", name: "Voiture", icon: "car", group: "Véhicules", source: "catcar" }, { id: "moto", name: "Moto", icon: "moto", group: "Véhicules", source: "motobook" }];
+  if (c.id === "moto") return [{ id: "moto", name: "Moto", icon: "moto", group: "Véhicules", source: "motobook" }];
+  return APPLIANCE_TYPES.filter(t => t.category === c.id);
+}
+
+// Page d'introduction d'un domaine : présentation, équipements, pannes fréquentes, précautions
 function categoryPage(c) {
   const guides = GUIDES.filter(g => inCategory(g, c.id));
-  const subs = subCategories(c.id);
   const parent = c.parent ? categoryById(c.parent) : null;
-  const photo = c.photo || "hero";
+  const photo = c.photo || (parent && parent.photo) || "hero";
   const n = guides.length;
-  const list = {
-    "@context": "https://schema.org", "@type": "ItemList", name: c.name,
-    itemListElement: guides.map((g, i) => ({ "@type": "ListItem", position: i + 1, url: `${SITE}fiches/${g.id}.html`, name: g.title }))
+  const types = typesOf(c).map(t => ({ ...t, n: guidesForType(t.id).length })).sort((a, b) => (b.n > 0) - (a.n > 0));
+  const subs = subCategories(c.id).filter(sc => !types.some(t => t.id === sc.id));   // Moto est déjà une tuile d'Auto / Moto
+  const groups = [...new Set(types.map(t => t.group))];
+  const diags = DIAGNOSTICS.filter(d => inCategory({ category: d.category }, c.id));
+  const sources = [...new Set(types.map(t => t.source).filter(Boolean))].map(k => MATERIEL_SOURCES[k]).filter(Boolean);
+  const plural = (k, w) => `${k} ${w}${k > 1 ? "s" : ""}`;
+  const typeTile = t => `
+          <a class="type-tile" href="${t.n ? `../guides.html?type=${t.id}` : `../materiel.html?type=${t.id}`}">
+            <span class="type-ico">${icon(t.icon)}</span>
+            <span><strong>${esc(t.name)}</strong><small>${t.n ? plural(t.n, "fiche") : "Pas encore de fiche · l'enregistrer"}</small></span>
+          </a>`;
+  const page = {
+    "@context": "https://schema.org", "@type": "CollectionPage", name: c.name, description: c.intro || c.desc,
+    url: `${SITE}categories/${c.id}.html`, isPartOf: { "@type": "WebSite", name: "Les Pages Bleues", url: SITE }
   };
   return `${head({
-    title: `${c.name} : ${n} guide${n > 1 ? "s" : ""} de réparation — Les Pages Bleues`,
-    desc: `${n} guide${n > 1 ? "s" : ""} de réparation vérifiés en ${c.name.toLowerCase()} : ${guides.slice(0, 4).map(g => g.title.toLowerCase()).join(", ")}…`,
+    title: `${c.name} : réparer soi-même, ${plural(n, "guide")} — Les Pages Bleues`,
+    desc: (c.intro || c.desc).slice(0, 155),
     canonical: `${SITE}categories/${c.id}.html`, image: `${SITE}assets/img/photos/${photo}.webp`,
-    extra: `<script type="application/ld+json">${JSON.stringify(list).replace(/</g, "\\u003c")}</script>`
+    extra: `<script type="application/ld+json">${JSON.stringify(page).replace(/</g, "\\u003c")}</script>`
   })}
 <body>
   <header id="site-header"></header>
   <main id="main" tabindex="-1">
-    <section class="page-hero">
-      <div class="container">
-        <nav class="breadcrumb" aria-label="Fil d'Ariane">
-          <a href="../index.html">${icon("home")} Accueil</a>${icon("chevron")}
-          <a href="../categories.html">Catégories</a>${icon("chevron")}
-          ${parent ? `<a href="${parent.id}.html">${esc(parent.name)}</a>${icon("chevron")}` : ""}
-          <span aria-current="page">${esc(c.name)}</span>
-        </nav>
-        <h1>${esc(c.name)}</h1>
-        <p>${esc(c.desc)} · ${n} guide${n > 1 ? "s" : ""} vérifié${n > 1 ? "s" : ""}, pas à pas.</p>
+    <section class="cat-hero">
+      <div class="container cat-hero-inner">
+        <div class="cat-hero-text">
+          <nav class="breadcrumb" aria-label="Fil d'Ariane">
+            <a href="../index.html">${icon("home")} Accueil</a>${icon("chevron")}
+            <a href="../categories.html">Catégories</a>${icon("chevron")}
+            ${parent ? `<a href="${parent.id}.html">${esc(parent.name)}</a>${icon("chevron")}` : ""}
+            <span aria-current="page">${esc(c.name)}</span>
+          </nav>
+          <h1>${esc(c.name)}</h1>
+          <p class="lead">${esc(c.intro || c.desc)}</p>
+          <ul class="cat-stats">
+            <li><strong>${n}</strong> ${n > 1 ? "fiches vérifiées" : "fiche vérifiée"}</li>
+            <li><strong>${diags.length}</strong> ${diags.length > 1 ? "pannes diagnostiquées" : "panne diagnostiquée"}</li>
+            ${types.length ? `<li><strong>${types.length}</strong> ${types.length > 1 ? "types d'équipement" : "type d'équipement"}</li>` : ""}
+          </ul>
+          <div class="cat-actions">
+            <a class="btn btn-primary btn-lg" href="../guides.html?cat=${c.id}">${icon("doc")} Voir les ${plural(n, "fiche")}</a>
+            ${types.length ? `<a class="btn btn-ghost btn-lg" href="../materiel.html?${types.length === 1 ? `type=${types[0].id}` : `cat=${c.id}`}">${icon("box")} Enregistrer mon matériel</a>` : ""}
+          </div>
+        </div>
+        <figure class="cat-hero-photo"><img ${imgSrc(photoUrl(photo), "(max-width: 900px) 100vw, 480px")} alt="" width="960" height="640" fetchpriority="high"></figure>
       </div>
     </section>
-    <section class="section">
+
+    <section class="section section-tight" id="cat-mine" hidden>
       <div class="container">
-        ${subs.length ? `<div class="cat-small-grid" style="margin-bottom:24px">${subs.map(sc => `
-          <a class="cat-small" href="${sc.id}.html">${icon(sc.icon)}<strong>${esc(sc.name)}</strong><small>${GUIDES.filter(g => inCategory(g, sc.id)).length} fiche(s)</small></a>`).join("")}</div>` : ""}
-        <h2 class="sr-only">Les fiches du domaine ${esc(c.name)}</h2>
-        <div class="rows">${guides.map(g => guideRow(g)).join("")}</div>
+        <div class="section-head"><h2>Mon matériel <span class="accent">dans ce domaine</span></h2><a class="link-arrow" href="../materiel.html">Gérer ${icon("arrow")}</a></div>
+        <div class="mat-strip" id="cat-mine-list"></div>
+      </div>
+    </section>
+
+    ${types.length ? `<section class="section">
+      <div class="container">
+        <div class="section-head"><h2>Que voulez-vous <span class="accent">réparer ?</span></h2></div>
+        ${groups.map(gr => `${groups.length > 1 ? `<h3 class="type-group">${esc(gr)}</h3>` : ""}
+        <div class="type-grid">${types.filter(t => t.group === gr).map(typeTile).join("")}
+        </div>`).join("")}
+        ${sources.length ? `<p class="muted cat-sources">Types, marques et modèles d'après ${sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(", ")}.</p>` : ""}
+      </div>
+    </section>` : ""}
+
+    ${subs.length ? `<section class="section${types.length ? " section-tight" : ""}">
+      <div class="container">
+        <div class="section-head"><h2>${c.id === "autres" ? "Les domaines" : "Sous-domaines"}</h2></div>
+        <div class="cat-small-grid">${subs.map(sc => `
+          <a class="cat-small" href="${sc.id}.html">${icon(sc.icon)}<strong>${esc(sc.name)}</strong><small>${plural(GUIDES.filter(g => inCategory(g, sc.id)).length, "fiche")}</small></a>`).join("")}</div>
+      </div>
+    </section>` : ""}
+
+    <section class="section section-tight">
+      <div class="container cat-two">
+        <div class="card">
+          <h2>${icon("stethoscope")} Pannes fréquentes</h2>
+          ${diags.length ? `<ul class="diag-links">${diags.map(d => `
+            <li><a href="../diagnostic.html?s=${d.id}">${esc(d.title)}${icon("chevron")}</a></li>`).join("")}</ul>`
+          : `<p class="muted">Pas encore de diagnostic guidé dans ce domaine. Décrivez votre panne : le diagnostic cherchera parmi toutes les fiches.</p>`}
+          <p style="margin-top:12px"><a class="btn btn-ghost btn-sm" href="../diagnostic.html">${icon("stethoscope")} Décrire ma panne</a></p>
+        </div>
+        <div class="card">
+          <h2>${icon("shield")} Avant de commencer</h2>
+          <ul class="check-list">${(c.tips || []).map(t => `<li>${icon("check")}<span>${esc(t)}</span></li>`).join("")}</ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container">
         <div class="ask-band">
           ${icon("chat")}
-          <div><strong>Votre panne n'est pas dans la liste ?</strong><small>Lancez le diagnostic guidé ou filtrez tous les guides de ce domaine.</small></div>
+          <div><strong>Vous connaissez une réparation qui manque ?</strong><small>Partagez-la : elle aidera les prochains à ne pas jeter.</small></div>
           <div class="btns">
-            <a class="btn btn-ghost" href="../guides.html?cat=${c.id}">Filtrer ce domaine</a>
-            <a class="btn btn-primary" href="../diagnostic.html">Diagnostic guidé</a>
+            <a class="btn btn-ghost" href="../communaute.html?ask=1">Poser une question</a>
+            <a class="btn btn-primary" href="../ajouter.html">Partager une fiche</a>
           </div>
         </div>
       </div>
@@ -139,7 +208,10 @@ function categoryPage(c) {
   <script>window.LPB_ROOT = "../";</script>
   <script src="../assets/js/data.js"></script>
   <script src="../assets/js/common.js"></script>
-  <script>renderHeader("categories"); renderFooter();</script>
+  <script>
+    renderHeader("categories"); renderFooter();
+    renderCategoryMine(${JSON.stringify(c.id)});
+  </script>
 </body>
 </html>
 `;

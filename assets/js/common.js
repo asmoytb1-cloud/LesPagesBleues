@@ -16,6 +16,7 @@ const ICONS = {
   menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
   close: '<path d="M6 6l12 12M18 6 6 18"/>',
   home: '<path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>',
+  moto: '<circle cx="5.5" cy="16.5" r="3.5"/><circle cx="18.5" cy="16.5" r="3.5"/><path d="m5.5 16.5 4-6h5.5l3.5 6"/><path d="M13.5 6.5h2.5l1.5 4M8 10.5h4"/>',
   car: '<path d="M5 16V11l2-5h10l2 5v5"/><path d="M3 16h18v2H3z"/><path d="M5 11h14"/><circle cx="7.5" cy="13.5" r=".8"/><circle cx="16.5" cy="13.5" r=".8"/><path d="M6 18v2M18 18v2"/>',
   washer: '<rect x="4" y="2.5" width="16" height="19" rx="2"/><path d="M4 7h16"/><circle cx="12" cy="14" r="4.5"/><path d="M9.5 14.5c1-1 2-1 3 0s2 1 2.5 0"/><circle cx="7" cy="4.8" r=".5"/>',
   laptop: '<rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20l-2-4H4z"/>',
@@ -192,13 +193,34 @@ function materielById(id) { return loadMateriel().find(m => m.id === id); }
 // inSentence : « Pour votre lave-linge LG » plutôt que « Pour votre Lave-linge LG »
 function materielName(m, inSentence = false) {
   const type = inSentence && m.typeName ? m.typeName.charAt(0).toLowerCase() + m.typeName.slice(1) : m.typeName;
-  return (m.kind === "voiture" ? [m.brand, m.model] : [type, m.brand]).filter(Boolean).join(" ");
+  return (isVehicle(m) ? [m.brand, m.model] : [type, m.brand]).filter(Boolean).join(" ");
 }
+function isVehicle(m) { return m.kind === "voiture" || m.kind === "moto"; }
+function materielCategory(m) { return m.category || (isVehicle(m) ? "automobile" : "electromenager"); }
 function materielLabel(m) { return [materielName(m), m.year].filter(Boolean).join(" · "); }
+// Voiture : les fiches Auto sans appareil précisé ; moto : la sous-catégorie Moto ; sinon le type d'équipement
 function guideFitsMateriel(g, m) {
-  return m.kind === "voiture" ? inCategory(g, "automobile") : (g.devices || []).includes(m.type);
+  const devices = g.devices || [];
+  if (m.kind === "voiture") return (g.category === "automobile" && !devices.length) || devices.includes("voiture");
+  if (m.kind === "moto") return g.category === "moto" || devices.includes("moto");
+  return devices.includes(m.type);
+}
+function guidesForType(type) {
+  const m = type === "voiture" || type === "moto" ? { kind: type, type } : { kind: "appareil", type };
+  return allGuides().filter(g => guideFitsMateriel(g, m));
 }
 function guidesForMateriel(m) { return allGuides().filter(g => guideFitsMateriel(g, m)); }
+
+// Page d'un domaine : raccourcis vers le matériel enregistré dans ce domaine
+function renderCategoryMine(catId) {
+  const mine = loadMateriel().filter(m => materielCategory(m) === catId || (catId === "moto" && m.kind === "moto"));
+  if (!mine.length) return;
+  document.getElementById("cat-mine").hidden = false;
+  document.getElementById("cat-mine-list").innerHTML = mine.map(m => {
+    const n = guidesForMateriel(m).length;
+    return `<a class="mat-chip" href="${ROOT}${n ? "guides.html?materiel=" + m.id : "materiel.html#mat-" + m.id}">${icon(m.icon || "box")}${escapeHtml(materielName(m))} <small>· ${n} fiche${n > 1 ? "s" : ""}</small></a>`;
+  }).join("");
+}
 
 /* ---------- Recherche : pondérée, insensible aux accents et au pluriel ---------- */
 function normalize(s) {
