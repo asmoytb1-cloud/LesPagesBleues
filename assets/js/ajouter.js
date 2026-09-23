@@ -39,7 +39,7 @@ root.innerHTML = `
       </div>
     </form>
     <aside class="writing-tips">
-      <h3>${icon("bulb")} Nos conseils</h3>
+      <h2>${icon("bulb")} Nos conseils</h2>
       <ul>
         <li>${icon("check")}<span><strong>Soyez clair et précis.</strong> Une action par étape : « Prenez la douille de 10 et retirez les vis du cache ».</span></li>
         <li>${icon("check")}<span><strong>Ajoutez des photos</strong> : une image par étape vaut mieux qu'un long texte.</span></li>
@@ -159,9 +159,9 @@ function panelImages() {
     <fieldset class="form-card">
       <legend>${icon("camera")} Images</legend>
       <p class="muted">Une photo nette par étape aide énormément. Elles sont réduites automatiquement pour rester légères. Ne photographiez ni personne ni plaque d'immatriculation sans accord.</p>
-      <h3 style="font-size:1rem">Photo principale</h3>
+      <h2 style="font-size:1rem">Photo principale</h2>
       <div class="photo-grid">${photoSlot("cover", "Photo principale de la fiche", draft.cover)}</div>
-      <h3 style="font-size:1rem">Photos des étapes</h3>
+      <h2 style="font-size:1rem">Photos des étapes</h2>
       <div class="photo-grid">${draft.steps.map((s, i) => photoSlot("s" + i, `Étape ${i + 1}${s.title ? " — " + s.title : ""}`, s.photo)).join("")}</div>
     </fieldset>`;
 }

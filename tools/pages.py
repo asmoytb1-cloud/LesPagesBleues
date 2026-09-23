@@ -51,7 +51,7 @@ PAGES["index.html"] = dict(
   desc="L'encyclopédie collaborative de la réparation, en français : guides vérifiés pas à pas, diagnostic guidé et mode accompagnement pour réparer au lieu de jeter.",
   scripts=["home.js"],
   body="""    <section class="hero theme-dark">
-      <img class="hero-photo" src="assets/img/photos/hero.webp" alt="" fetchpriority="high">
+      <img class="hero-photo" src="assets/img/photos/hero.webp" srcset="assets/img/photos/hero-480.webp 480w, assets/img/photos/hero-800.webp 800w, assets/img/photos/hero.webp 1024w" sizes="100vw" alt="" fetchpriority="high">
       <div class="container hero-inner">
         <div>
           <h1>Réparer.<span class="accent">Comprendre.</span>Transmettre.</h1>
@@ -61,7 +61,7 @@ PAGES["index.html"] = dict(
               <span data-icon="search"></span>
               <input type="search" name="q" id="hero-q" placeholder="Quel est votre souci aujourd'hui ?" aria-label="Quel est votre souci aujourd'hui ?" autocomplete="off"
                      role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="hero-suggest">
-              <button class="btn btn-primary" type="submit"><span data-icon="search"></span><span>Rechercher</span></button>
+              <button class="btn btn-primary" type="submit" aria-label="Rechercher"><span data-icon="search"></span><span>Rechercher</span></button>
             </form>
             <div class="suggest-box" id="hero-suggest" role="listbox" aria-label="Fiches suggérées" hidden></div>
           </div>
@@ -153,7 +153,7 @@ PAGES["index.html"] = dict(
     </section>
 
     <section class="join theme-dark">
-      <img class="join-photo" src="assets/img/photos/terre.webp" alt="" loading="lazy">
+      <img class="join-photo" src="assets/img/photos/terre.webp" srcset="assets/img/photos/terre-480.webp 480w, assets/img/photos/terre-800.webp 800w, assets/img/photos/terre.webp 1024w" sizes="100vw" alt="" loading="lazy">
       <div class="container join-inner">
         <div>
           <h2>Un monde qui se <strong>répare</strong><br>va plus loin.</h2>
@@ -182,7 +182,7 @@ PAGES["guides.html"] = dict(
         <form class="search-bar" id="search-form" role="search" style="margin-top:1.2rem">
           <span data-icon="search"></span>
           <input type="search" name="q" id="q" placeholder="Ex. : lave-linge ne démarre plus" aria-label="Rechercher un guide ou une panne" autocomplete="off">
-          <button class="btn btn-primary" type="submit"><span data-icon="search"></span><span>Rechercher</span></button>
+          <button class="btn btn-primary" type="submit" aria-label="Rechercher"><span data-icon="search"></span><span>Rechercher</span></button>
         </form>
         <div class="tabs" role="tablist" id="tabs" aria-label="Type de résultats"></div>
       </div>
@@ -240,7 +240,7 @@ PAGES["categories.html"] = dict(
         <div class="section-head" style="margin-top:36px"><h2>Autres catégories</h2></div>
         <div class="cat-small-grid" id="cat-other"></div>
         <div class="earth-band">
-          <img src="assets/img/photos/terre.webp" alt="" loading="lazy">
+          <img src="assets/img/photos/terre.webp" srcset="assets/img/photos/terre-480.webp 480w, assets/img/photos/terre-800.webp 800w, assets/img/photos/terre.webp 1024w" sizes="(max-width: 1200px) 100vw, 1200px" alt="" loading="lazy">
           <div><span data-icon="leaf"></span><span>Réparer aujourd'hui,<br>un demain plus durable.</span></div>
         </div>
       </div>
@@ -283,6 +283,7 @@ PAGES["communaute.html"] = dict(
       <div class="container two-cols">
         <div>
           <div class="tabs" role="tablist" id="post-tabs" aria-label="Type de message" style="margin-top:0"></div>
+          <h2 class="sr-only">Discussions</h2>
           <div class="post-list" id="posts" style="margin-top:16px"></div>
         </div>
         <aside class="community-side" id="community-side"></aside>
@@ -312,6 +313,7 @@ PAGES["diagnostic.html"] = dict(
     </section>
     <section class="section">
       <div class="container diag-shell">
+        <h2 class="sr-only">Conversation avec le diagnostic</h2>
         <div class="chat" id="chat" aria-live="polite"></div>
         <aside id="diag-side"></aside>
       </div>

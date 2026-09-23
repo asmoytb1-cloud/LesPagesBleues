@@ -120,6 +120,7 @@ function categoryPage(c) {
       <div class="container">
         ${subs.length ? `<div class="cat-small-grid" style="margin-bottom:24px">${subs.map(sc => `
           <a class="cat-small" href="${sc.id}.html">${icon(sc.icon)}<strong>${esc(sc.name)}</strong><small>${GUIDES.filter(g => inCategory(g, sc.id)).length} fiche(s)</small></a>`).join("")}</div>` : ""}
+        <h2 class="sr-only">Les fiches du domaine ${esc(c.name)}</h2>
         <div class="rows">${guides.map(g => guideRow(g)).join("")}</div>
         <div class="ask-band">
           ${icon("chat")}

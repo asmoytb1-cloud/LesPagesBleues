@@ -8,12 +8,15 @@
     "build": "node tools/build.js",
     "validate": "node tests/validate.js",
     "test:e2e": "node tests/e2e.js",
-    "test": "node tools/build.js && node tests/validate.js && node tests/e2e.js"
+    "test": "node tools/build.js && node tests/validate.js && node tests/e2e.js",
+    "photos": "node tools/photos.js"
   },
   "devDependencies": {
     "axe-core": "4.13.0",
     "playwright": "1.56.1"
   },
-  "engines": { "node": ">=18" },
+  "engines": {
+    "node": ">=18"
+  },
   "license": "UNLICENSED"
 }

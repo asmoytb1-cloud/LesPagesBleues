@@ -38,6 +38,8 @@ npm run build        # pages /fiches/*.html, sitemap.xml, robots.txt
 npm run validate     # contrôle des données et de tous les liens
 ```
 
+Pour ajouter une photo : déposez-la en WebP (1000 px de large environ) dans `assets/img/photos/`, ajoutez ses crédits dans `credits.json`, puis lancez `npm run photos` pour créer ses versions légères destinées aux téléphones.
+
 Pensez à changer `REVIEWED_ON` dans `data.js` quand vous revérifiez les fiches, et à incrémenter `CACHE` dans `sw.js` quand vous publiez une nouvelle version (sinon les visiteurs hors ligne gardent l'ancienne).
 
 Les pages principales (accueil, recherche, catégories…) sont générées par `python3 tools/pages.py` à partir de gabarits : modifiez le gabarit dans ce fichier plutôt que le HTML directement.
@@ -47,10 +49,10 @@ Les pages principales (accueil, recherche, catégories…) sont générées par 
 ```sh
 npm install                      # une seule fois
 npx playwright install chromium  # une seule fois
-npm test                         # génération + validation + 18 tests dans un vrai navigateur
+npm test                         # génération + validation + 19 tests dans un vrai navigateur
 ```
 
-Les tests couvrent toutes les pages (ordinateur et mobile, thèmes clair et sombre), la recherche, les fiches, le mode accompagnement, le diagnostic, la contribution avec photo, la communauté, le profil, le mode hors ligne et l'accessibilité (axe-core).
+Les tests couvrent toutes les pages (ordinateur et mobile, thèmes clair et sombre), la recherche, les fiches, le mode accompagnement, le diagnostic, la contribution avec photo, la communauté, le profil, le mode hors ligne, l'accessibilité (axe-core, ordre des titres) et la stabilité de la mise en page au chargement.
 
 ## Mettre en ligne (GitHub Pages)
 

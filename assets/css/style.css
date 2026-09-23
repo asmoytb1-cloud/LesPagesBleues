@@ -121,6 +121,9 @@ button { font-family: inherit; }
 .muted { color: var(--muted); }
 .accent { color: var(--blue); }
 .ico { width: 1.25em; height: 1.25em; flex: none; }
+/* Emplacement des icônes avant leur dessin par le script : même taille, pour éviter les sauts */
+span[data-icon] { display: inline-block; width: 1.25em; height: 1.25em; flex: none; }
+.btn span[data-icon] { width: 1.15em; height: 1.15em; }
 .ico.fill { fill: currentColor; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .blueprint {
@@ -213,8 +216,8 @@ main:focus { outline: none; }
 .progress > * { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--blue), var(--green)); transition: width .3s; }
 .card { padding: 20px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); }
 .card + .card { margin-top: 14px; }
-.card h3, .card h4 { display: flex; align-items: center; gap: .5rem; font-size: 1rem; margin-bottom: .8rem; }
-.card h3 .ico, .card h4 .ico { color: var(--blue); }
+.card h2, .card h3, .card h4 { display: flex; align-items: center; gap: .5rem; font-size: 1rem; margin-bottom: .8rem; }
+.card h2 .ico, .card h3 .ico, .card h4 .ico { color: var(--blue); }
 .empty { text-align: center; padding: 48px 20px; border: 1px dashed var(--border-strong); border-radius: var(--radius-lg); }
 .empty > .ico { width: 44px; height: 44px; margin: 0 auto 12px; color: var(--blue); }
 .empty h2, .empty h3 { font-size: 1.2rem; }
@@ -314,6 +317,8 @@ select.input-sm { padding-right: 2rem; }
   border-bottom: 1px solid var(--border);
 }
 .header-inner { display: flex; align-items: center; gap: 1.4rem; height: 72px; }
+/* Place réservée avant que le script n'affiche l'en-tête : la page ne « saute » pas au chargement */
+#site-header:empty { display: block; height: 73px; }
 .brand { display: flex; align-items: center; gap: .7rem; flex: none; }
 .brand-ico { width: 44px; height: 44px; color: var(--blue); stroke-width: 1.6; filter: drop-shadow(0 0 10px var(--blue-glow)); }
 .brand strong { display: block; font-size: 1.2rem; font-weight: 700; white-space: nowrap; }
@@ -346,7 +351,7 @@ select.input-sm { padding-right: 2rem; }
 .footer-inner > div:first-child { max-width: 340px; }
 .footer-inner p { margin-top: .8rem; font-size: .88rem; }
 .footer-cols { display: flex; gap: 3.5rem; flex-wrap: wrap; }
-.footer-cols h4 { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: .8rem; }
+.footer-cols h2, .footer-cols h4 { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: .8rem; }
 .footer-cols a { display: block; font-size: .9rem; margin-bottom: .45rem; color: var(--text-2); }
 .footer-cols a:hover { color: var(--blue); }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem 1.5rem; padding: 16px 0 28px; border-top: 1px solid var(--border); font-size: .8rem; }
@@ -532,6 +537,10 @@ select.input-sm { padding-right: 2rem; }
 /* ---------- 8. Recherche ---------- */
 .search-page .search-bar { max-width: none; }
 .tabs { display: flex; gap: 1.6rem; border-bottom: 1px solid var(--border); margin-top: 1.4rem; overflow-x: auto; scrollbar-width: none; }
+/* Zones remplies par le script : place réservée pour que la page ne saute pas au chargement */
+.tabs:empty { min-height: 44px; }
+#results:empty, #profile-body:empty { min-height: 70vh; }
+#profile-head:empty { min-height: 218px; }
 .tabs::-webkit-scrollbar { display: none; }
 .tab { position: relative; padding: .8rem 0; border: 0; background: none; color: var(--muted); font: 600 .93rem var(--font); cursor: pointer; white-space: nowrap; }
 .tab:hover { color: var(--text); }
@@ -572,6 +581,7 @@ select.input-sm { padding-right: 2rem; }
 /* ---------- 9. Catégories ---------- */
 .cat-big-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .cat-big { min-height: 200px; }
+.cat-big-grid:empty { min-height: 416px; }   /* place des 8 tuiles avant leur affichage */
 .cat-big strong { font-size: 1.1rem; }
 .cat-big small { font-size: .82rem; }
 .cat-small-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
@@ -766,7 +776,7 @@ select.input-sm { padding-right: 2rem; }
 .preview-box ol { padding-left: 1.2rem; display: grid; gap: .4rem; margin-top: .6rem; }
 .form-actions { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: space-between; }
 .writing-tips { position: sticky; top: 92px; padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--border-strong); background: linear-gradient(180deg, var(--blue-soft), var(--surface)); }
-.writing-tips h3 { display: flex; align-items: center; gap: .5rem; font-size: 1rem; margin-bottom: .8rem; }
+.writing-tips h2, .writing-tips h3 { display: flex; align-items: center; gap: .5rem; font-size: 1rem; margin-bottom: .8rem; }
 .writing-tips ul { list-style: none; padding: 0; display: grid; gap: .7rem; font-size: .88rem; color: var(--text-2); }
 .writing-tips li { display: flex; gap: .5rem; }
 .writing-tips li .ico { width: 18px; height: 18px; color: var(--green); margin-top: .1rem; }
@@ -925,6 +935,7 @@ body.coach-open { overflow: hidden; }
   .guide-layout, .two-cols, .add-layout, .diag-shell { grid-template-columns: minmax(0, 1fr); }
   .guide-aside, .writing-tips { position: static; }
   .cat-big-grid { grid-template-columns: repeat(2, 1fr); }
+  .cat-big-grid:empty { min-height: 848px; }
   .diag-band { grid-template-columns: auto 1fr; }
   .diag-band .btn { grid-column: 1 / -1; }
   .pstats { grid-template-columns: repeat(2, 1fr); }
@@ -951,6 +962,8 @@ body.coach-open { overflow: hidden; }
 }
 @media (max-width: 640px) {
   .header-inner { gap: .6rem; height: 64px; }
+  #site-header:empty { height: 65px; }
+  #profile-head:empty { min-height: 320px; }
   .main-nav { top: 64px; }
   .guide-tabs { top: 64px; }
   .brand small { display: none; }
@@ -960,7 +973,7 @@ body.coach-open { overflow: hidden; }
   .header-actions { gap: .1rem; }
   .header-actions .icon-btn { width: 38px; height: 38px; }
   .hide-xs { display: none !important; }
-  .search-bar .btn span { display: none; }
+  .search-bar .btn span:not([data-icon]) { display: none; }
   .search-bar .btn { padding: .75rem; }
   .cat-grid { grid-template-columns: repeat(2, 1fr); }
   .benefits { grid-template-columns: 1fr; gap: .8rem; }
@@ -978,6 +991,7 @@ body.coach-open { overflow: hidden; }
   .step-item.has-photo .step-photo { grid-column: 2; }
   .step-check { width: 40px; height: 40px; font-size: 1rem; }
   .cat-big-grid { grid-template-columns: 1fr; }
+  .cat-big-grid:empty { min-height: 1472px; }
   .cat-big { min-height: 170px; }
   .step-edit { grid-template-columns: 1fr auto; }
   .step-edit > .num { display: none; }

@@ -82,6 +82,12 @@ for (const f of htmlFiles) {
     if (/^(https?:|mailto:|data:|\/\/)/.test(u) || u.includes("${")) continue;
     if (!fs.existsSync(path.resolve(dir, u))) fail(`${f} : lien cassé vers ${u}`);
   }
+  for (const m of html.matchAll(/\bsrcset="([^"]+)"/g)) {
+    for (const part of m[1].split(",")) {
+      const u = part.trim().split(/\s+/)[0];
+      if (!fs.existsSync(path.resolve(dir, u))) fail(`${f} : image de srcset introuvable ${u}`);
+    }
+  }
   if (!/<title>[^<]{10,}<\/title>/.test(html)) fail(`${f} : titre de page manquant`);
   if (!/<meta name="description" content="[^"]{30,}"/.test(html)) fail(`${f} : description manquante ou trop courte`);
   if (!html.includes('lang="fr"')) fail(`${f} : langue non déclarée`);
@@ -101,7 +107,9 @@ for (const m of sw.match(/const CORE = \[([\s\S]*?)\];/)[1].matchAll(/"([^"]+)"/
 }
 const credits = JSON.parse(fs.readFileSync(path.join(ROOT, "assets/img/photos/credits.json"), "utf8"));
 for (const f of fs.readdirSync(path.join(ROOT, "assets/img/photos")).filter(f => f.endsWith(".webp"))) {
-  if (!credits.find(c => c.file === f)) fail(`photo sans crédit : ${f}`);
+  const original = f.replace(/-(480|800)\.webp$/, ".webp");   // versions réduites d'une même photo
+  if (!credits.find(c => c.file === original)) fail(`photo sans crédit : ${f}`);
+  if (original === f && !fs.existsSync(path.join(ROOT, "assets/img/photos", f.replace(".webp", "-480.webp")))) fail(`version 480 px manquante pour ${f}`);
 }
 
 console.log(`${GUIDES.length} fiches, ${DIAGNOSTICS.length} diagnostics, ${htmlFiles.length} pages HTML vérifiées.`);

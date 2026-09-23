@@ -303,24 +303,45 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
   });
 
   /* ---------- 9. Accessibilité (axe-core) ---------- */
-  await test("Accessibilité : aucune violation grave (axe-core)", async () => {
+  await test("Accessibilité : aucune violation grave, titres dans l'ordre (axe-core)", async () => {
     const axe = fs.readFileSync(require.resolve("axe-core/axe.min.js"), "utf8");
     const problems = [];
     for (const theme of ["dark", "light"]) {
       const ctx = await newCtx();
       await ctx.addInitScript(t => localStorage.setItem("lpb-theme", JSON.stringify(t)), theme);
-      for (const u of ["index.html", "guides.html?q=frein", "fiches/courroie-lave-linge.html", "diagnostic.html", "ajouter.html", "communaute.html", "profil.html", "categories.html"]) {
+      for (const u of ["index.html", "guides.html?q=frein", "fiches/courroie-lave-linge.html", "diagnostic.html", "ajouter.html", "communaute.html", "profil.html", "categories.html", "categories/jardin.html", "a-propos.html"]) {
         const p = await ctx.newPage();
         await p.goto(B + u, { waitUntil: "load" });
         await p.addScriptTag({ content: axe });
         const res = await p.evaluate(async () => (await axe.run(document, { resultTypes: ["violations"] })).violations
-          .filter(v => ["serious", "critical"].includes(v.impact)).map(v => `${v.id} (${v.nodes.length}) : ${v.nodes[0].target.join(" ")}`));
+          .filter(v => ["serious", "critical"].includes(v.impact) || v.id === "heading-order").map(v => `${v.id} (${v.nodes.length}) : ${v.nodes[0].target.join(" ")}`));
         res.forEach(r => problems.push(`${theme} ${u} — ${r}`));
         await p.close();
       }
       await ctx.close();
     }
     expect(!problems.length, problems.slice(0, 20).join(" | ") + (problems.length > 20 ? ` … (${problems.length})` : ""));
+  });
+
+  await test("Pas de saut de mise en page au chargement (CLS < 0,1)", async () => {
+    const problems = [];
+    for (const [w, h] of [[412, 823], [1366, 900]]) {
+      const ctx = await newCtx({ viewport: { width: w, height: h } });
+      await ctx.addInitScript(() => {
+        window.__cls = 0;
+        new PerformanceObserver(l => { for (const e of l.getEntries()) if (!e.hadRecentInput) window.__cls += e.value; }).observe({ type: "layout-shift", buffered: true });
+      });
+      for (const u of ["index.html", "guides.html?q=frein", "categories.html", "diagnostic.html", "profil.html", "communaute.html", "fiches/deboucher-toilettes.html"]) {
+        const p = await ctx.newPage();
+        await p.goto(B + u, { waitUntil: "load" });
+        await p.waitForTimeout(600);
+        const cls = await p.evaluate(() => window.__cls);
+        if (cls >= 0.1) problems.push(`${u} en ${w}px : ${cls.toFixed(3)}`);
+        await p.close();
+      }
+      await ctx.close();
+    }
+    expect(!problems.length, problems.join(" | "));
   });
 
   await browser.close();

@@ -120,6 +120,17 @@ function guideUrl(g, extra = "") {
 }
 function categoryUrl(c) { return `${ROOT}categories/${typeof c === "string" ? c : c.id}.html`; }
 function photoUrl(name) { return name ? `${ROOT}assets/img/photos/${name}.webp` : null; }
+/* Les photos du site existent aussi en 480 px (et 800 px pour les grandes) : le navigateur choisit
+   la plus légère qui suffit à l'écran. sizes = largeur affichée de l'image. */
+const PHOTO_FULL = { hero: 1024, terre: 1024, velo: 960 };
+function imgSrc(src, sizes) {
+  const m = src && src.match(/^(.*assets\/img\/photos\/)([a-z]+)\.webp$/);
+  if (!m) return `src="${src}"`;
+  const [, dir, name] = m;
+  const full = PHOTO_FULL[name] || 1000;
+  const set = [`${dir}${name}-480.webp 480w`, ...(full > 1000 || name === "terre" ? [`${dir}${name}-800.webp 800w`] : []), `${src} ${full}w`];
+  return `src="${src}" srcset="${set.join(", ")}" sizes="${sizes}"`;
+}
 function guidePhoto(g) {
   if (g.cover) return g.cover;                    // photo envoyée par l'auteur (fiches perso)
   const c = categoryById(g.category);
@@ -217,10 +228,10 @@ function bars(g) {
   const lvl = levelOf(g);
   return `<span class="bars lvl-${lvl}" aria-hidden="true">${[1, 2, 3].map(i => `<i class="${i <= lvl ? "on" : ""}"></i>`).join("")}</span>`;
 }
-function media(g, alt = "") {
+function media(g, alt = "", sizes = "(max-width: 600px) 82vw, 300px") {
   const src = guidePhoto(g);
   return src
-    ? `<img src="${src}" alt="${escapeHtml(alt)}" loading="lazy" decoding="async">`
+    ? `<img ${imgSrc(src, sizes)} alt="${escapeHtml(alt)}" loading="lazy" decoding="async">`
     : `<div class="gcard-icon">${icon(categoryById(g.category).icon)}</div>`;
 }
 
@@ -272,7 +283,7 @@ function guideRow(g, words = []) {
   const c = categoryById(g.category);
   return `
     <a class="grow" href="${guideUrl(g)}">
-      <div class="grow-media">${media(g)}</div>
+      <div class="grow-media">${media(g, "", "160px")}</div>
       <div>
         <h3>${highlight(g.title, words)}</h3>
         <p>${escapeHtml(g.summary || "")}</p>
@@ -475,13 +486,13 @@ function renderFooter() {
         <p class="muted">L'encyclopédie collaborative de la réparation, en français. Un monde plus durable commence par un geste.</p>
       </div>
       <div class="footer-cols">
-        <div><h4>Explorer</h4>
+        <div><h2>Explorer</h2>
           <a href="${ROOT}categories.html">Catégories</a><a href="${ROOT}guides.html">Tous les guides</a>
           <a href="${ROOT}diagnostic.html">Diagnostic guidé</a><a href="${ROOT}guides.html?fav=1">Mes favoris</a></div>
-        <div><h4>Participer</h4>
+        <div><h2>Participer</h2>
           <a href="${ROOT}ajouter.html">Ajouter une fiche</a><a href="${ROOT}communaute.html">Communauté</a>
           <a href="${ROOT}profil.html">Mon profil</a></div>
-        <div><h4>Le projet</h4>
+        <div><h2>Le projet</h2>
           <a href="${ROOT}a-propos.html">À propos</a><a href="${ROOT}a-propos.html#verification">Comment on vérifie</a>
           <a href="${ROOT}a-propos.html#reparateur">Trouver un réparateur</a></div>
       </div>

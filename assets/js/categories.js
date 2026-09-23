@@ -8,7 +8,7 @@ const plural = n => `${n} fiche${n > 1 ? "s" : ""}`;
 
 document.getElementById("cat-main").innerHTML = topCategories().filter(c => c.photo).map(c => `
   <a class="cat-tile cat-big" href="${categoryUrl(c)}">
-    <img src="${photoUrl(c.photo)}" alt="" loading="lazy" decoding="async">
+    <img ${imgSrc(photoUrl(c.photo), "(max-width: 640px) 100vw, (max-width: 900px) 50vw, 300px")} alt="" loading="lazy" decoding="async">
     <span class="cat-count">${plural(countIn(c.id))}</span>
     <span class="cat-tile-body"><strong>${escapeHtml(c.name)}</strong><small>${escapeHtml(c.desc)}</small></span>
   </a>`).join("") + `

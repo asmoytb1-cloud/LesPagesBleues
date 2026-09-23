@@ -53,7 +53,7 @@ function guidePageHTML(g, st = {}) {
         <p class="coach-hint">${icon("mic")} Mode accompagnement : une étape à la fois, en grand, avec lecture à voix haute, minuteurs et commandes vocales.</p>
       </div>
       <figure class="guide-photo" style="margin:0">
-        ${photo ? `<img src="${photo}" alt="" width="1000" height="667">` : `<div class="gcard-icon">${icon(c.icon)}</div>`}
+        ${photo ? `<img ${imgSrc(photo, "(max-width: 900px) 100vw, 560px")} alt="" width="1000" height="667">` : `<div class="gcard-icon">${icon(c.icon)}</div>`}
         <p class="handwritten">Réparer<br>plutôt que<br>remplacer !</p>
       </figure>
     </div>

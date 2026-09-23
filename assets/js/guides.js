@@ -89,7 +89,7 @@ function render() {
   favBtn.classList.toggle("active", state.fav);
   favBtn.setAttribute("aria-pressed", state.fav);
 
-  const out = [];
+  const out = [`<h2 class="sr-only">Résultats</h2>`];
   let count = "";
   if (state.tab === "all" || state.tab === "guides") {
     count = `<strong>${guides.length}</strong> guide${guides.length > 1 ? "s" : ""}${state.q ? ` pour « ${escapeHtml(state.q)} »` : ""}`;

@@ -76,6 +76,7 @@ function render() {
   document.getElementById("profile-body").innerHTML = `
     <div class="tabs" role="tablist" id="ptabs" style="margin:0 0 20px">${tabs.map(([k, t, n]) =>
       `<button class="tab" role="tab" type="button" data-tab="${k}" aria-selected="${tab === k}">${t}${n !== "" ? `<span class="chip-n">${n}</span>` : ""}</button>`).join("")}</div>
+    <h2 class="sr-only">${(tabs.find(([k]) => k === tab) || tabs[0])[1]}</h2>
     ${body}`;
 }
 

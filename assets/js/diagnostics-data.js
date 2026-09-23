@@ -382,7 +382,7 @@ const DIAGNOSTICS = [
     ]
   },
   {
-    id: "toilettes-bouchees", title: "Les toilettes sont bouchées", device: "WC", category: "maison",
+    id: "toilettes-bouchees", title: "Les toilettes sont bouchées", device: "Toilettes", category: "maison",
     keywords: ["toilettes", "wc", "bouché", "bouchon", "cuvette", "déborde", "eau monte", "chasse d'eau", "ne s'évacue pas"],
     intro: "Le bouchon se trouve le plus souvent dans la cuvette ou juste après : on commence par le plus simple.",
     safety: "Ne tirez plus la chasse si l'eau est déjà remontée dans la cuvette.",

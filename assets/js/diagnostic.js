@@ -38,7 +38,7 @@ function start(prefill = "") {
       <label class="sr-only" for="symptom">Décrivez la panne</label>
       <input class="input" id="symptom" maxlength="200" autocomplete="off" placeholder="Décrivez la panne…" value="${escapeHtml(prefill)}">
       ${Recognition ? `<button class="icon-btn icon-btn-line" type="button" id="dictate" aria-label="Dicter la panne">${icon("mic")}</button>` : ""}
-      <button class="btn btn-primary" type="submit">${icon("send")}<span class="hide-xs">Analyser</span></button>
+      <button class="btn btn-primary" type="submit" aria-label="Analyser">${icon("send")}<span class="hide-xs">Analyser</span></button>
     </form>
     <div class="choices">${DEVICES.map(d => `<button class="chip" type="button" data-device="${escapeHtml(d)}">${escapeHtml(d)}</button>`).join("")}</div>`);
   const input = document.getElementById("symptom");
@@ -165,7 +165,7 @@ chat.addEventListener("click", e => {
 
 document.getElementById("diag-side").innerHTML = `
   <div class="card">
-    <h3>${icon("stethoscope")} Comment ça marche ?</h3>
+    <h2>${icon("stethoscope")} Comment ça marche ?</h2>
     <ul class="check-list">
       <li>${icon("check")}<span>Vous décrivez la panne, à l'écrit ou à la voix.</span></li>
       <li>${icon("check")}<span>Quelques questions simples réduisent les hypothèses.</span></li>
@@ -175,7 +175,7 @@ document.getElementById("diag-side").innerHTML = `
     <p class="muted" style="font-size:.85rem;margin-top:.8rem">${DIAGNOSTICS.length} pannes couvertes aujourd'hui. Les retours d'intervention partagés par les réparateurs dans la <a class="accent" href="communaute.html">communauté</a> enrichiront le diagnostic.</p>
   </div>
   <div class="card pro-card">
-    <h3>${icon("pin")} Besoin d'un pro ?</h3>
+    <h2>${icon("pin")} Besoin d'un pro ?</h2>
     <ul>
       <li><a href="https://www.e-reparation.eco/" target="_blank" rel="noopener">Réparateurs labellisés QualiRépar</a><br><small class="muted">Bonus réparation déduit de la facture.</small></li>
       <li><a href="https://www.repaircafe.org/fr/visiter/" target="_blank" rel="noopener">Repair Café près de chez vous</a><br><small class="muted">Des bénévoles vous aident gratuitement.</small></li>

@@ -7,7 +7,7 @@ renderFooter();
 const countIn = id => allGuides().filter(g => inCategory(g, id)).length;
 document.getElementById("cat-grid").innerHTML = topCategories().map(c => c.photo ? `
   <a class="cat-tile" href="${categoryUrl(c)}">
-    <img src="${photoUrl(c.photo)}" alt="" decoding="async">
+    <img ${imgSrc(photoUrl(c.photo), "(max-width: 600px) 50vw, 200px")} alt="" decoding="async">
     <span class="cat-count">${countIn(c.id)}</span>
     <span class="cat-tile-body"><strong>${escapeHtml(c.name)}</strong><small>${escapeHtml(c.desc)}</small></span>
   </a>` : `
@@ -53,7 +53,7 @@ if (started.length) {
     const src = guidePhoto(g);
     return `
       <a class="resume-card" href="${guideUrl(g, "coach=1")}">
-        ${src ? `<img class="resume-thumb" src="${src}" alt="" loading="lazy">` : `<span class="resume-thumb gcard-icon">${icon(categoryById(g.category).icon)}</span>`}
+        ${src ? `<img class="resume-thumb" ${imgSrc(src, "80px")} alt="" loading="lazy">` : `<span class="resume-thumb gcard-icon">${icon(categoryById(g.category).icon)}</span>`}
         <span class="resume-txt">
           <strong>${escapeHtml(g.title)}</strong>
           <small>Prochaine étape : ${nextStep + 1}. ${escapeHtml(g.steps[nextStep].title)}</small>
