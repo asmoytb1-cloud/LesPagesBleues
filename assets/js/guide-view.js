@@ -61,7 +61,7 @@ function guidePageHTML(g, st = {}) {
 
   <nav class="guide-tabs no-print" aria-label="Sections de la fiche">
     <div class="container tabs">
-      <a class="tab" href="#etapes" aria-selected="true">Étapes</a>
+      <a class="tab" href="#etapes" aria-current="true">Étapes</a>
       <a class="tab" href="#materiel">Matériel</a>
       <a class="tab" href="#conseils">Conseils</a>
       <a class="tab" href="#qa">Questions${questions.length ? `<span class="chip-n">${questions.length}</span>` : ""}</a>

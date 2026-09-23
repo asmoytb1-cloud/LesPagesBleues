@@ -95,7 +95,7 @@ function render() {
     count = `<strong>${guides.length}</strong> guide${guides.length > 1 ? "s" : ""}${state.q ? ` pour « ${escapeHtml(state.q)} »` : ""}`;
     if (state.tab === "all" && diags.length) out.push(`<h2 class="section-head" style="font-size:1.1rem;margin:0 0 10px">Diagnostics guidés</h2><div class="rows">${diags.slice(0, 2).map(diagCard).join("")}</div><h2 class="section-head" style="font-size:1.1rem;margin:22px 0 10px">Guides</h2>`);
     if (guides.length) {
-      out.push(`<div class="rows">${guides.slice(0, state.shown).map(g => guideRow(g, words)).join("")}</div>`);
+      out.push(`<div class="rows" id="guide-rows">${guides.slice(0, state.shown).map(g => guideRow(g, words)).join("")}</div>`);
       if (guides.length > state.shown) out.push(`<div class="more-row"><button class="btn btn-ghost" type="button" data-more>Voir plus de résultats (${guides.length - state.shown})</button></div>`);
     } else {
       const favEmpty = state.fav && !getFavs().size;

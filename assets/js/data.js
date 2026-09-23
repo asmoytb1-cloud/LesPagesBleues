@@ -169,6 +169,10 @@ const GUIDES = [
     safety: "Moteur coupé. Posez une serviette sur le pare-brise : un bras qui se rabat seul peut le fissurer.",
     tools: ["Serviette épaisse", "Mètre (pour la longueur)"],
     parts: ["Paire de balais à la bonne longueur et au bon type de fixation"],
+    sources: [
+      { label: "Mondial Pare-Brise — comment changer des essuie-glaces", url: "https://www.mondialparebrise.fr/nos-conseils/balais-d-essuie-glaces/comment-changer-des-essuie-glaces" },
+      { label: "Vroomly — changer des balais d'essuie-glaces", url: "https://www.vroomly.com/blog/comment-changer-des-balais-dessuie-glaces/" }
+    ],
     steps: [
       { title: "Relever les bras", text: "Posez une serviette sur le pare-brise et relevez le bras d'essuie-glace jusqu'à ce qu'il tienne seul." },
       { title: "Déclipser l'ancien balai", text: "Appuyez sur la languette de verrouillage au milieu du balai et faites-le glisser vers le bas pour le sortir du crochet." },
@@ -523,6 +527,9 @@ const GUIDES = [
     safety: "Éteignez et débranchez l'ordinateur. Touchez une surface métallique avant d'ouvrir pour décharger l'électricité statique.",
     tools: ["Tournevis cruciforme de précision", "Clé USB de 16 Go", "Bombe d'air sec", "Disque externe"],
     parts: ["SSD 2,5\" ou M.2 selon la machine (facultatif)", "Pâte thermique (facultatif)"],
+    sources: [
+      { label: "CDM Informatique — ordinateur lent, SSD et disque dur", url: "https://www.cdminformatique.fr/ordinateur-lent-windows-lenteur-ssd-disque-dur-aide-conseils/" }
+    ],
     steps: [
       { title: "Sauvegarder", text: "Copiez vos documents, photos et mots de passe sur un disque externe ou dans le cloud." },
       { title: "Faire le ménage logiciel", text: "Désinstallez les logiciels inutiles et désactivez ceux qui se lancent au démarrage (Gestionnaire des tâches > Démarrage)." },
@@ -697,11 +704,15 @@ const GUIDES = [
     safety: "Pas de danger particulier : prévoyez juste un chiffon, les mains vont noircir.",
     tools: ["2 démonte-pneus", "Pompe", "Bassine d'eau (facultatif)"],
     parts: ["Kit de rustines avec dissolution"],
+    sources: [
+      { label: "Decathlon — poser une rustine", url: "https://conseilsport.decathlon.fr/comment-poser-une-rustine" },
+      { label: "Wikilivres — réparer une chambre à air", url: "https://fr.wikibooks.org/wiki/M%C3%A9canique_v%C3%A9lo/R%C3%A9parer_une_chambre_%C3%A0_air" }
+    ],
     steps: [
       { title: "Démonter la roue", text: "Ouvrez le frein si besoin, desserrez le blocage rapide ou les écrous et sortez la roue.", tip: "Pour la roue arrière, passez sur le plus petit pignon avant de la démonter : ce sera plus simple à remonter." },
       { title: "Sortir la chambre à air", text: "Glissez un démonte-pneu sous le pneu, accrochez-le à un rayon, puis le deuxième 10 cm plus loin et faites le tour. Retirez la chambre." },
       { title: "Trouver le trou", text: "Gonflez un peu la chambre et écoutez, ou plongez-la dans l'eau : le trou fait des bulles. Marquez-le au stylo." },
-      { title: "Préparer et encoller", text: "Poncez autour du trou avec le papier du kit, étalez une fine couche de dissolution plus large que la rustine, et laissez sécher.", timer: 180, tip: "La dissolution doit être sèche au toucher : c'est le secret d'une rustine qui tient." },
+      { title: "Préparer et encoller", text: "Poncez autour du trou avec le papier du kit, étalez une fine couche de dissolution plus large que la rustine, et attendez qu'elle devienne mate.", timer: 300, tip: "La dissolution ne doit plus briller (environ 5 minutes) : c'est le secret d'une rustine qui tient." },
       { title: "Poser la rustine", text: "Retirez le film de la rustine sans toucher la face collante et pressez-la fort pendant une minute, en insistant sur les bords." },
       { title: "Vérifier le pneu", text: "Passez doucement les doigts à l'intérieur du pneu pour trouver l'épine ou le morceau de verre responsable, et retirez-le.", safety: "Allez-y délicatement : un éclat de verre peut couper." },
       { title: "Remonter et gonfler", text: "Remettez la chambre légèrement gonflée, rentrez le pneu à la main, gonflez à la pression écrite sur le flanc du pneu, puis remontez la roue." }
@@ -839,6 +850,9 @@ const GUIDES = [
     safety: "Fermez le robinet et videz la pression avant de couper.",
     tools: ["Cutter ou sécateur", "Mètre"],
     parts: ["Raccord réparateur au diamètre du tuyau (15 ou 19 mm le plus souvent)"],
+    sources: [
+      { label: "Gamm vert — réparer un tuyau d'arrosage percé", url: "https://www.gammvert.fr/conseils-idees/comment-reparer-un-tuyau-d-arrosage-perce" }
+    ],
     steps: [
       { title: "Repérer la fuite", text: "Ouvrez l'eau, repérez le trou, marquez-le, puis fermez le robinet." },
       { title: "Couper la partie abîmée", text: "Coupez le tuyau bien droit de part et d'autre du trou, en retirant 2 cm de chaque côté." },

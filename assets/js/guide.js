@@ -142,7 +142,7 @@ function renderGuide() {
     const io = new IntersectionObserver(entries => {
       entries.forEach(en => {
         if (!en.isIntersecting) return;
-        tabs.forEach(t => t.setAttribute("aria-selected", t.getAttribute("href") === "#" + en.target.id));
+        tabs.forEach(t => t.getAttribute("href") === "#" + en.target.id ? t.setAttribute("aria-current", "true") : t.removeAttribute("aria-current"));
       });
     }, { rootMargin: "-45% 0px -50% 0px" });
     sections.forEach(s => s && io.observe(s));

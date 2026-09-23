@@ -11,7 +11,11 @@ document.getElementById("cat-main").innerHTML = topCategories().filter(c => c.ph
     <img src="${photoUrl(c.photo)}" alt="" loading="lazy" decoding="async">
     <span class="cat-count">${plural(countIn(c.id))}</span>
     <span class="cat-tile-body"><strong>${escapeHtml(c.name)}</strong><small>${escapeHtml(c.desc)}</small></span>
-  </a>`).join("");
+  </a>`).join("") + `
+  <a class="cat-tile cat-big no-photo" href="#autres">
+    ${icon("more", "more-ico")}
+    <span class="cat-tile-body"><strong>Autres catégories</strong><small>Mode, instruments de musique… et bientôt les vôtres</small></span>
+  </a>`;
 
 const others = subCategories("autres");
 document.getElementById("cat-other").id = "autres";

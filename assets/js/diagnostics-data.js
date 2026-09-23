@@ -381,7 +381,13 @@ const DIAGNOSTICS = [
 function diagnosticScores(text) {
   const words = queryWords(text);
   if (!words.length) return [];
-  const scored = DIAGNOSTICS.map(d => [d, scoreText([[d.title, 6], [d.keywords.join(" "), 4], [d.device, 3], [d.intro, 1]], words)]).filter(([, s]) => s > 0);
+  const scored = DIAGNOSTICS.map(d => {
+    const hay = normalize([d.title, d.keywords.join(" "), d.device, d.intro].join(" "));
+    const matched = words.filter(w => hay.includes(w)).length;
+    // Au moins la moitié des mots doivent correspondre (« machine à coudre » n'est pas un lave-linge)
+    if (matched < Math.ceil(words.length / 2)) return [d, 0];
+    return [d, scoreText([[d.title, 6], [d.keywords.join(" "), 4], [d.device, 3], [d.intro, 1]], words)];
+  }).filter(([, s]) => s > 0);
   const best = Math.max(0, ...scored.map(([, s]) => s));
   return scored.filter(([, s]) => s >= best * 0.4).sort((a, b) => b[1] - a[1]);
 }
