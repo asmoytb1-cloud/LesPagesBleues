@@ -780,6 +780,34 @@ const GUIDES = [
 
   /* ================= MAISON & BRICOLAGE ================= */
   {
+    id: "regler-porte-placard",
+    title: "Régler une porte de placard qui frotte ou penche",
+    category: "maison",
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 50 €",
+    keywords: ["porte", "placard", "cuisine", "meuble", "charnière", "frotte", "penche", "ferme mal", "décalée", "réglage", "armoire"],
+    summary: "Porte qui frotte, penche ou ferme mal : les charnières de meuble se règlent dans trois directions avec un simple tournevis.",
+    safety: "Ne retirez jamais complètement les vis de l'embase : desserrez-les seulement, sinon la porte tombe.",
+    tools: ["Tournevis cruciforme PZ2"],
+    parts: [],
+    sources: [
+      { label: "Furnica — régler une charnière de meuble pas à pas", url: "https://furnica.fr/blogs/infos/regler-charniere-meuble-guide-etape-par-etape" },
+      { label: "MesDépanneurs — comment régler une porte de placard", url: "https://www.mesdepanneurs.fr/blog/regler-porte-placard" }
+    ],
+    steps: [
+      { title: "Observer le défaut", text: "Porte fermée, repérez ce qui ne va pas : elle frotte en haut ou en bas, penche côté poignée, les espaces entre les portes sont inégaux, ou elle ressort du meuble.", tip: "Réglez toujours dans cet ordre : hauteur, puis côté, puis profondeur." },
+      { title: "Régler la hauteur", text: "Ouvrez la porte. Sur la plupart des charnières, desserrez d'un demi-tour les deux vis de l'embase (la partie vissée dans le meuble), faites glisser la porte vers le haut ou le bas, puis resserrez en commençant par la charnière du haut. Certains modèles ont une vis dédiée à la hauteur." },
+      { title: "Régler le côté", text: "Tournez la vis de réglage latéral pour décaler la porte vers la gauche ou la droite. La charnière du haut agit sur le haut de la porte, celle du bas sur le bas : c'est ainsi qu'on redresse une porte qui penche." },
+      { title: "Régler la profondeur", text: "Tournez la vis de profondeur pour rapprocher ou éloigner la porte du meuble, jusqu'à ce qu'elle ferme à plat sans frotter." },
+      { title: "Vérifier", text: "Procédez par petits ajustements en refermant la porte à chaque fois. Visez des espaces réguliers de 1,5 à 3 mm entre les portes.", tip: "Utilisez bien un embout PZ2 : un embout PH ripe dans ces vis et abîme leur tête." }
+    ],
+    troubleshoot: [
+      "La porte ne se règle plus assez : la charnière est peut-être cassée. Notez sa marque et son modèle pour en racheter une identique."
+    ]
+  },
+  {
     id: "deboucher-toilettes",
     title: "Déboucher des toilettes",
     category: "maison",
@@ -1021,6 +1049,34 @@ const GUIDES = [
 
   /* ================= VÉLO, MOTO & MOBILITÉ ================= */
   {
+    id: "gonfler-pneu-velo",
+    title: "Gonfler un pneu de vélo à la bonne pression",
+    category: "velo",
+    difficulty: "Facile",
+    duration: "5 min",
+    minutes: 5,
+    savings: "≈ 10 €",
+    keywords: ["pneu", "gonfler", "pression", "valve", "presta", "schrader", "pompe", "dégonflé", "bar", "psi", "vélo", "roue"],
+    summary: "Un pneu trop peu gonflé crève plus facilement et s'use vite. La bonne pression est écrite sur le flanc du pneu : il suffit d'une pompe avec manomètre.",
+    safety: "Ne dépassez jamais la pression maximale gravée sur le flanc du pneu.",
+    tools: ["Pompe à pied avec manomètre"],
+    parts: [],
+    sources: [
+      { label: "Decathlon — comment bien gonfler un pneu de vélo", url: "https://conseilsport.decathlon.fr/comment-bien-gonfler-un-pneu-de-velo" }
+    ],
+    steps: [
+      { title: "Lire la pression", text: "Cherchez sur le flanc du pneu la fourchette de pression, par exemple « Min 4.0 – Max 6.0 bar ». Plus vous êtes lourd ou chargé, plus il faut viser le haut de la fourchette.", tip: "Repères moyens : 3,5 à 5 bars pour un vélo de ville, 6 à 7,5 bars pour un vélo de route." },
+      { title: "Préparer la valve", text: "Retirez le bouchon. Valve fine (Presta) : dévissez de quelques millimètres la petite molette au sommet et appuyez brièvement dessus jusqu'au « pfff ». Valve large (Schrader, comme sur une voiture) : rien d'autre à faire." },
+      { title: "Brancher la pompe", text: "Enfoncez l'embout bien droit sur la valve, perpendiculaire à la jante, puis verrouillez le levier." },
+      { title: "Gonfler", text: "Pompez régulièrement en surveillant le manomètre jusqu'à la pression visée." },
+      { title: "Retirer et refermer", text: "Déverrouillez le levier et retirez l'embout d'un coup sec, dans l'axe de la valve. Sur une valve Presta, revissez la molette à la main. Remettez le bouchon.", tip: "Un petit « pschit » en retirant l'embout est normal : la pression ne change pas." }
+    ],
+    troubleshoot: [
+      "Contrôlez la pression au moins une fois par mois : une chambre à air laisse toujours filer un peu d'air.",
+      "Le pneu est à plat en 24 à 48 heures : c'est une petite crevaison, voir la fiche « Réparer une crevaison »."
+    ]
+  },
+  {
     id: "crevaison-velo",
     title: "Réparer une crevaison de vélo",
     category: "velo",
@@ -1141,6 +1197,38 @@ const GUIDES = [
   },
 
   /* ================= JARDIN & EXTÉRIEUR ================= */
+  {
+    id: "fil-coupe-bordure",
+    title: "Recharger le fil d'un coupe-bordure",
+    category: "jardin",
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 15 €",
+    keywords: ["coupe-bordure", "débroussailleuse", "rotofil", "fil", "nylon", "bobine", "recharger", "casse", "tête de coupe"],
+    summary: "Plus de fil sur la bobine ? La recharger soi-même coûte bien moins cher qu'une bobine neuve, à condition de respecter le sens d'enroulement.",
+    safety: "Appareil éteint et moteur complètement arrêté : débranchez-le du secteur ou retirez sa batterie avant d'ouvrir la tête de coupe.",
+    tools: ["Gants", "Ciseaux ou pince coupante"],
+    parts: ["Fil nylon du diamètre indiqué dans la notice"],
+    sources: [
+      { label: "Stihl — enrouler le fil de coupe", url: "https://www.stihl.fr/fr/conseils-tutoriels/entretien-outils-motorises/conseils-debroussailleuse/enrouler-le-fil-de-coupe" },
+      { label: "Maintenir son jardin — changer le fil d'un coupe-bordures", url: "https://maintenirsonjardin.fr/changer-le-fil-dun-coupe-bordures/" },
+      { label: "Outillage de Pro — changer le fil d'un coupe-bordure", url: "https://outillage-de-pro.com/comment-changer-le-fil-dun-coupe-bordure/" },
+      { label: "Coupe-bordure.com — recharger ou remplacer la bobine", url: "https://www.coupe-bordure.com/comment-changer-fil-coupe-bordure/" }
+    ],
+    steps: [
+      { title: "Mettre en sécurité", text: "Éteignez l'appareil et attendez l'arrêt complet. Débranchez-le ou retirez la batterie." },
+      { title: "Ouvrir la tête", text: "Retournez l'appareil, déverrouillez le capot de la tête de coupe dans le sens indiqué dessus et sortez la bobine." },
+      { title: "Préparer le fil", text: "Coupez la longueur de fil indiquée dans la notice. Pour une bobine à deux fils, pliez-le en deux et accrochez le milieu dans l'encoche ou les trous prévus sur la bobine." },
+      { title: "Enrouler", text: "Enroulez bien serré, spires côte à côte sans chevauchement, dans le sens des flèches gravées sur la bobine. Sans flèche : dans le sens inverse de la rotation de la tête.", safety: "Un fil enroulé à l'envers ou en vrac ne sortira pas pendant la coupe." },
+      { title: "Bloquer les extrémités", text: "Coincez les bouts du fil dans les encoches de retenue de la bobine pour qu'il ne se déroule pas." },
+      { title: "Remonter", text: "Remettez la bobine, faites passer les bouts par les trous de la tête, replacez le capot jusqu'au clic, puis tirez légèrement sur le fil pour vérifier qu'il tient.", tip: "Laissez tremper la bobine 24 heures dans l'eau avant usage : le fil devient plus souple et casse moins." }
+    ],
+    troubleshoot: [
+      "Le fil casse souvent : diamètre inadapté ou chocs contre les murs et les pierres. Plus l'herbe est haute, plus le fil doit être épais, dans la limite indiquée par la notice.",
+      "Pressé ? La plupart des marques vendent des bobines déjà garnies, qui se remplacent en une minute."
+    ]
+  },
   {
     id: "tondeuse-ne-demarre-pas",
     title: "Tondeuse thermique qui ne démarre pas",
@@ -1372,6 +1460,35 @@ const GUIDES = [
 
   /* ================= AUTRES ================= */
   {
+    id: "patch-jean",
+    title: "Réparer un trou dans un jean sans couture",
+    category: "mode",
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 30 €",
+    keywords: ["jean", "trou", "accroc", "déchirure", "patch", "thermocollant", "pantalon", "genou", "entrejambe", "pièce", "repasser"],
+    summary: "Un trou au genou ou un accroc ? Une pièce thermocollante posée à l'envers le répare au fer à repasser, presque sans que ça se voie.",
+    safety: "Couvrez toujours la pièce d'un torchon en coton pendant le repassage, et ne laissez pas le fer chaud sans surveillance.",
+    tools: ["Fer à repasser", "Torchon en coton", "Petits ciseaux"],
+    parts: ["Pièce thermocollante de la couleur du jean"],
+    sources: [
+      { label: "Couture Retouches Rennes — réparer un trou dans un jean", url: "https://www.couture-retouches-rennes.fr/reparer-trou-jean-sans-machine" },
+      { label: "Mercerie Durand — réparer un jean sans couture", url: "https://www.merceriedurand.com/details-comment+reparer+un+trou+sur+mon+jeans+sans+couture+votre+mercerie+d+avignon+vous+donne+quelques+astuces-132.html" },
+      { label: "Comment économiser — réparer un jean troué", url: "https://www.comment-economiser.fr/reparer-jean-troue.html" }
+    ],
+    steps: [
+      { title: "Préparer le trou", text: "Retournez le jean sur l'envers et coupez les fils qui dépassent autour du trou." },
+      { title: "Découper la pièce", text: "Découpez une pièce qui dépasse d'au moins 2 cm tout autour du trou, en arrondissant les coins.", tip: "Des coins arrondis se décollent beaucoup moins avec les frottements." },
+      { title: "Positionner", text: "Posez la pièce sur le trou, face collante contre le tissu (c'est la face plus lisse ou brillante), puis couvrez-la d'un torchon en coton." },
+      { title: "Repasser", text: "Fer réglé sur « coton », sans vapeur : appuyez fermement 20 à 30 secondes, sans faire glisser le fer. Pour une grande pièce, recommencez zone par zone.", timer: 30 },
+      { title: "Laisser refroidir", text: "Laissez refroidir complètement, au moins 10 minutes, avant de retourner le jean : c'est en refroidissant que la colle prend.", timer: 600 }
+    ],
+    troubleshoot: [
+      "La pièce se décolle : évitez le sèche-linge, sa chaleur ramollit la colle. Repassez de nouveau quelques secondes si un bord se soulève."
+    ]
+  },
+  {
     id: "recoudre-bouton",
     title: "Recoudre un bouton",
     category: "mode",
@@ -1428,6 +1545,37 @@ const GUIDES = [
   },
 
   /* ================= INSTRUMENTS DE MUSIQUE ================= */
+  {
+    id: "cordes-guitare-classique",
+    title: "Changer les cordes d'une guitare classique",
+    category: "instruments",
+    difficulty: "Facile",
+    duration: "40 min",
+    minutes: 40,
+    savings: "≈ 20 €",
+    keywords: ["guitare classique", "guitare", "cordes", "nylon", "changer", "nœud", "chevalet", "mécanique", "accorder", "espagnole"],
+    summary: "Sur une guitare classique, les cordes en nylon se nouent au chevalet. Le geste paraît compliqué la première fois, puis devient vite naturel.",
+    safety: "Détendez complètement la corde à la mécanique avant de la dénouer ou de la couper.",
+    tools: ["Pince coupante ou ciseaux", "Accordeur"],
+    parts: ["Jeu de cordes nylon pour guitare classique"],
+    sources: [
+      { label: "HGuitare — changer les cordes de sa guitare classique", url: "https://www.hguitare.com/communaute/blog/materiel/changer-cordes-guitare-classique" },
+      { label: "Guitaratonton — changer une corde de guitare classique en images", url: "https://www.guitaratonton.fr/changer-une-corde-de-guitare-classique-en-images/" }
+    ],
+    steps: [
+      { title: "Retirer l'ancienne corde", text: "Détendez la corde à la mécanique jusqu'à ce qu'elle soit lâche, puis dénouez-la au chevalet.", tip: "Changez les cordes une par une et regardez comment le nœud est fait sur les autres : c'est votre modèle." },
+      { title: "Passer la corde au chevalet", text: "Passez la nouvelle corde dans le trou du chevalet et laissez dépasser 2 à 3 cm de l'autre côté." },
+      { title: "Faire le nœud", text: "Remontez le bout qui dépasse, passez-le derrière la corde et ramenez-le par-dessus. Repassez-le derrière la corde une deuxième fois, dans le même sens, puis glissez-le dans la boucle côté extérieur et tendez." },
+      { title: "Fixer à la mécanique", text: "Passez l'autre bout dans le trou de la mécanique en laissant un peu de mou, de quoi faire environ 2 tours : à peu près 4 doigts entre la corde et la touche pour les cordes aiguës, 3 doigts pour les graves." },
+      { title: "Tendre", text: "Gardez la corde tendue d'une main et tournez la mécanique de l'autre, dans le bon sens : regardez de quel côté de la tête se trouve la clé." },
+      { title: "Accorder et stabiliser", text: "Accordez, tirez légèrement sur la corde, réaccordez, et recommencez jusqu'à ce qu'elle ne bouge plus entre deux tirages.", tip: "Des cordes neuves se désaccordent souvent au début : c'est normal, le nylon s'étire." },
+      { title: "Couper l'excédent", text: "Une fois la corde enroulée et accordée, coupez ce qui dépasse, sans couper trop court." }
+    ],
+    troubleshoot: [
+      "Le nœud glisse au chevalet : refaites-le en serrant bien la boucle avant de tendre.",
+      "Combien de tours à la mécanique ? Trop, et la corde perd un peu de résonance ; pas assez, et elle tient moins bien l'accord. Environ 2 tours suffisent."
+    ]
+  },
   {
     id: "cordes-guitare-folk",
     title: "Changer les cordes d'une guitare folk",
