@@ -267,9 +267,28 @@ const DIAGNOSTICS = [
       { title: "Joint de porte qui ne plaque plus", base: 2, weights: { feuille: { oui: 5, non: -3 } },
         checks: ["Nettoyez le joint et refaites le test de la feuille tout autour de la porte."], guide: "joint-refrigerateur", level: 1 },
       { title: "Mauvaise aération de l'appareil", base: 1, weights: { arriere: { oui: 4, non: -1 }, moteur: { oui: 1 } },
-        checks: ["Laissez quelques centimètres d'espace à l'arrière et éloignez l'appareil des sources de chaleur."], level: 1 },
+        checks: ["Laissez 3 à 5 cm d'espace à l'arrière et éloignez l'appareil des sources de chaleur.", "Si la grille arrière (condenseur) est couverte de poussière, dépoussiérez-la."], guide: "nettoyer-condenseur-frigo", level: 1 },
       { title: "Thermostat, sonde ou circuit de froid", base: 0, weights: { moteur: { oui: 2 }, feuille: { non: 2 } },
         checks: ["Si le joint est bon et l'aération correcte, faites appel à un frigoriste : le circuit de froid ne se répare pas soi-même."], pro: true, level: 3 }
+    ]
+  },
+  {
+    id: "frigo-eau", title: "De l'eau dans le réfrigérateur ou sous l'appareil", device: "Réfrigérateur", category: "electromenager",
+    keywords: ["frigo", "réfrigérateur", "eau", "flaque", "fuite", "coule", "bac à légumes", "humide", "mouillé"],
+    intro: "Le plus souvent, c'est l'eau de dégivrage qui ne s'évacue plus : le petit trou au fond est bouché.",
+    safety: "Débranchez le réfrigérateur avant d'intervenir.",
+    questions: [
+      { id: "fond", text: "L'eau stagne-t-elle au fond du frigo, sous le bac à légumes ?", options: YES_NO },
+      { id: "derriere", text: "L'eau coule-t-elle au sol, à l'arrière de l'appareil ?", options: YES_NO },
+      { id: "porte", text: "La flaque est-elle plutôt devant, au pied de la porte ?", options: YES_NO }
+    ],
+    causes: [
+      { title: "Trou d'évacuation des eaux de dégivrage bouché", base: 2, weights: { fond: { oui: 5, non: -3 } },
+        checks: ["Débouchez le trou du fond avec un coton-tige, puis rincez à l'eau chaude."], guide: "frigo-eau-au-fond", level: 1 },
+      { title: "Bac de récupération arrière fissuré ou mal placé", base: 0, weights: { derriere: { oui: 5, non: -2 } },
+        checks: ["Écartez l'appareil et contrôlez le bac près du compresseur : nettoyez-le, remettez-le en place ou remplacez-le."], guide: "frigo-eau-au-fond", level: 2 },
+      { title: "Joint de porte abîmé : givre puis eau", base: 0, weights: { porte: { oui: 5, non: -2 } },
+        checks: ["Faites le test de la feuille de papier tout autour de la porte."], guide: "joint-refrigerateur", level: 1 }
     ]
   },
   {

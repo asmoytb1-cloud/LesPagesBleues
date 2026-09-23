@@ -338,6 +338,93 @@ const GUIDES = [
     ]
   },
 
+  {
+    id: "niveau-huile-moteur",
+    title: "Vérifier le niveau d'huile moteur et faire l'appoint",
+    category: "automobile",
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    keywords: ["huile", "niveau d'huile", "jauge", "appoint", "moteur", "voyant huile", "burette", "mini", "maxi", "entretien", "contrôle"],
+    summary: "Un chiffon et deux minutes : contrôler l'huile régulièrement, et en remettre si besoin, évite de lourds dégâts au moteur.",
+    safety: "Voyant d'huile rouge allumé en roulant : il signale une pression d'huile trop faible. Arrêtez-vous dès que c'est possible sans danger, coupez le moteur et consultez la notice. Contrôlez le niveau moteur froid, pour ne pas vous brûler.",
+    tools: ["Chiffon ou papier absorbant", "Entonnoir", "Huile moteur à la norme du constructeur"],
+    parts: [],
+    sources: [
+      { label: "TotalEnergies — vérifier le niveau d'huile moteur", url: "https://services.totalenergies.fr/faq/q/verifier-niveau-huile-moteur" },
+      { label: "Volkswagen — connaissance de l'huile moteur (niveau, norme, voyants)", url: "https://www.volkswagen.fr/fr/entretenir-ma-volkswagen/entretien-et-pieces/fluides-huile-moteur/connaissance-huile.html" }
+    ],
+    steps: [
+      { title: "Se garer à plat, moteur froid", text: "Garez-vous sur un sol plat, coupez le moteur et attendez qu'il soit froid : l'huile a alors eu le temps de redescendre." },
+      { title: "Sortir et essuyer la jauge", text: "Ouvrez le capot et repérez la jauge : une tige terminée par un anneau ou un crochet de couleur vive. Sortez-la et essuyez-la avec le chiffon.", tip: "Pas de jauge visible ? La notice indique comment contrôler le niveau sur votre modèle." },
+      { title: "Mesurer", text: "Replongez la jauge à fond, puis ressortez-la. Le trait d'huile doit se trouver entre les repères mini et maxi : dans ce cas, rien à faire." },
+      { title: "Choisir la bonne huile", text: "S'il en manque, prenez une huile qui respecte la norme indiquée dans la notice ; comparez-la avec l'étiquette du bidon. Chez certaines marques, la norme figure aussi sur un autocollant dans le compartiment moteur." },
+      { title: "Faire l'appoint petit à petit", text: "Ouvrez le bouchon de remplissage d'huile, sur le dessus du moteur, et versez lentement à l'entonnoir. Attendez quelques minutes que l'huile descende, puis mesurez de nouveau. Recommencez jusqu'à être entre mini et maxi.", safety: "Ne dépassez jamais le repère maxi." },
+      { title: "Refermer", text: "Revissez bien le bouchon de remplissage, remettez la jauge à fond et refermez le capot.", tip: "Contrôlez le niveau environ tous les 2 000 km." }
+    ],
+    troubleshoot: [
+      "Voyant d'huile jaune ou orange : le niveau est trop bas, ou le circuit d'huile a un défaut. Vérifiez le niveau ; si le voyant reste allumé, voyez un garage.",
+      "Vous devez souvent refaire l'appoint : le moteur consomme ou perd de l'huile. Faites-le contrôler.",
+      "Pour la vidange complète, voir la fiche « Changer l'huile moteur »."
+    ]
+  },
+  {
+    id: "liquide-refroidissement",
+    title: "Contrôler le liquide de refroidissement",
+    category: "automobile",
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    keywords: ["liquide de refroidissement", "vase d'expansion", "surchauffe", "température moteur", "antigel", "niveau", "appoint", "fuite", "voyant température"],
+    summary: "Le liquide de refroidissement empêche le moteur de surchauffer. Un coup d'œil au vase d'expansion chaque mois suffit.",
+    safety: "Ne jamais ouvrir le vase d'expansion moteur chaud : risque de brûlure. Travaillez moteur froid, avec gants et lunettes de protection.",
+    tools: ["Gants et lunettes de protection", "Chiffon", "Liquide de refroidissement du même type que celui en place"],
+    parts: [],
+    sources: [
+      { label: "TotalEnergies — quand et comment changer le liquide de refroidissement", url: "https://services.totalenergies.fr/particuliers/conseils/entretien-vehicule/centre-entretien/nos-conseils-entretien-auto/ou-mettre-le-liquide-de-refroidissement" },
+      { label: "Vroomly — niveau de liquide de refroidissement", url: "https://www.vroomly.com/blog/niveau-de-liquide-de-refroidissement-quand-et-comment-le-faire/" }
+    ],
+    steps: [
+      { title: "Moteur froid, voiture à plat", text: "Garez-vous sur un sol plat et attendez que le moteur ait refroidi. À chaud, on risque de se brûler, et le niveau monte avec la chaleur, ce qui fausse la mesure." },
+      { title: "Trouver le vase d'expansion", text: "Capot ouvert, cherchez un bocal en plastique transparent sur la partie haute du moteur, avec des repères mini et maxi. Le liquide est en général jaune, vert, rose ou orange." },
+      { title: "Lire le niveau", text: "Le liquide doit se trouver entre les repères mini et maxi. S'il est au-dessus du mini, refermez le capot : c'est terminé." },
+      { title: "Faire l'appoint si besoin", text: "Si le niveau est proche ou en dessous du mini, dévissez le bouchon en le couvrant d'un chiffon, puis ajoutez du liquide sans dépasser le maxi. Revissez bien.", safety: "Utilisez le même liquide que celui déjà en place, et n'ajoutez jamais d'eau. En cas de doute sur le type (minéral ou organique), consultez le carnet d'entretien." }
+    ],
+    troubleshoot: [
+      "Le niveau baisse sans cesse : durite desserrée, fuite au radiateur, à la pompe à eau ou au joint de culasse… Faites vérifier par un garage sans attendre.",
+      "Dépôts blanchâtres autour du vase ou odeur de liquide brûlé : signe de projections ou de fuite, à faire contrôler.",
+      "Au-delà de l'appoint, le liquide se remplace entièrement : tous les 2 ans ou 60 000 km environ, ou selon le constructeur."
+    ]
+  },
+  {
+    id: "filtre-habitacle",
+    title: "Changer le filtre d'habitacle (filtre à pollen)",
+    category: "automobile",
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    keywords: ["filtre d'habitacle", "filtre à pollen", "filtre charbon", "ventilation", "soufflerie", "buée", "désembuage", "odeur", "climatisation", "boîte à gants", "allergie"],
+    summary: "Ventilation faible, pare-brise qui désembue mal, mauvaise odeur à l'allumage de la clim : le filtre d'habitacle est sans doute encrassé.",
+    safety: "Moteur et contact coupés. Allez-y doucement avec les clips en plastique de la boîte à gants : ils cassent facilement.",
+    tools: ["Tournevis", "Lampe"],
+    parts: ["Filtre d'habitacle à la référence de la voiture"],
+    sources: [
+      { label: "Carglass — quand et comment changer le filtre d'habitacle", url: "https://www.carglass.fr/faq/answers/6220/comment-et-quand-changer-le-filtre-d-habitacle-de-ma-voiture" },
+      { label: "Vroomly — changer un filtre d'habitacle", url: "https://www.vroomly.com/blog/comment-changer-son-filtre-dhabitacle-voiture/" },
+      { label: "Tesla — remplacement des filtres de l'habitacle (sens de montage)", url: "https://service.tesla.com/docs/Public/diy/models/fr_ca/GUID-40C70444-9DFD-47C4-86ED-AB3F1AE3A97A.html" }
+    ],
+    steps: [
+      { title: "Repérer l'emplacement", text: "Le plus souvent, le filtre est derrière ou sous la boîte à gants. Sur d'autres voitures, il est sous le capot, au pied du pare-brise, ou près de la pédale d'accélérateur. La notice ou la revue technique vous le dira." },
+      { title: "Choisir le filtre", text: "Filtre à pollen simple (blanc) contre pollens et particules, à charbon actif (gris) qui arrête aussi pollution et odeurs, ou au polyphénol contre les allergènes. Prenez la référence qui correspond à votre voiture." },
+      { title: "Accéder au filtre", text: "Videz la boîte à gants, dévissez ses vis de fixation et tirez-la doucement pour la sortir. Retirez ensuite le cache en plastique placé devant le filtre." },
+      { title: "Sortir l'ancien filtre", text: "Avant de le retirer, repérez la flèche imprimée sur sa tranche : elle indique le sens du passage de l'air. Sortez-le en le gardant bien à plat pour ne pas semer la poussière." },
+      { title: "Poser le neuf dans le bon sens", text: "Glissez le filtre neuf avec la flèche dans le même sens que l'ancien. Sur une Tesla, par exemple, les flèches doivent pointer vers l'arrière de la voiture." },
+      { title: "Remonter", text: "Remettez le cache, puis la boîte à gants et ses vis. Mettez la ventilation en marche pour vérifier le souffle.", tip: "À changer environ tous les ans ou tous les 15 000 km, plus souvent si vous roulez beaucoup en ville (pollution) ou à la campagne (pollens)." }
+    ],
+    troubleshoot: [
+      "L'odeur persiste avec un filtre neuf : pulvérisez un produit antibactérien dédié dans les conduits de ventilation, ou faites-le faire en atelier."
+    ]
+  },
   /* ================= ÉLECTROMÉNAGER ================= */
   {
     id: "filtre-seche-linge",
@@ -707,6 +794,154 @@ const GUIDES = [
     ]
   },
 
+  {
+    id: "frigo-eau-au-fond",
+    title: "Eau au fond du réfrigérateur : déboucher le trou d'évacuation",
+    category: "electromenager",
+    devices: ["refrigerateur"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    keywords: ["réfrigérateur", "frigo", "eau", "flaque", "fuite", "coule", "bac à légumes", "trou d'évacuation", "drain", "dégivrage", "humide", "stagne"],
+    summary: "De l'eau stagne sous le bac à légumes ou coule au fond du frigo ? Le petit trou qui évacue l'eau de dégivrage est souvent bouché.",
+    safety: "Débranchez le réfrigérateur avant de nettoyer. N'enfoncez jamais d'outil rigide ou pointu dans le trou d'évacuation : vous pourriez abîmer l'appareil.",
+    tools: ["Coton-tige ou goupillon souple", "Eau chaude", "Éponge et chiffon"],
+    parts: [],
+    sources: [
+      { label: "Bosch — nettoyer le trou d'évacuation du frigo", url: "https://www.bosch-home.fr/nos-services/aide-en-ligne/assistance-refrigerateur-congelateur/entretien-frigo/nettoyer-trou-evacuation-frigo" },
+      { label: "Bosch — mon frigo fait de l'eau : les causes", url: "https://www.bosch-home.fr/nos-services/aide-en-ligne/assistance-refrigerateur-congelateur/reparer-frigo/mon-frigo-fait-de-eau" }
+    ],
+    steps: [
+      { title: "Comprendre d'où vient l'eau", text: "La paroi du fond du frigo givre puis dégivre régulièrement. L'eau descend par une rigole, puis par un petit trou vers un bac situé à l'arrière, près du compresseur, où elle s'évapore. Si ce trou se bouche (miettes, bout d'emballage), l'eau déborde à l'intérieur." },
+      { title: "Débrancher et dégager le fond", text: "Débranchez le réfrigérateur, sortez le bac à légumes et épongez l'eau. Le trou se trouve en général au fond, derrière le bac à légumes, au bas de la rigole." },
+      { title: "Déboucher en douceur", text: "Introduisez un coton-tige ou un goupillon souple dans le trou et tournez doucement pour ramener les saletés. Ne forcez pas.", safety: "Pas de tournevis, de pique ou de fil de fer : un outil rigide peut abîmer l'appareil." },
+      { title: "Rincer à l'eau chaude", text: "Versez un peu d'eau chaude dans l'orifice : elle doit s'écouler sans remonter. Recommencez le nettoyage si elle stagne." },
+      { title: "Nettoyer et rebrancher", text: "Essuyez les parois avec un chiffon humide et un produit adapté au réfrigérateur, remettez le bac à légumes et rebranchez.", tip: "Couvrez les aliments frais : leur humidité fait aussi de la condensation dans le frigo." }
+    ],
+    troubleshoot: [
+      "L'eau coule par terre, derrière l'appareil : le bac de récupération à l'arrière est peut-être fissuré ou mal placé. Contrôlez-le, nettoyez-le, remplacez-le si besoin.",
+      "Le trou est propre mais ça déborde encore : à l'arrière, entre le bac et le châssis, un petit clapet en caoutchouc peut être obstrué. Nettoyez-le, ou remplacez-le s'il est abîmé.",
+      "La flaque est devant, au pied de la porte : le joint de porte laisse sans doute entrer l'air chaud (voir la fiche sur le joint de réfrigérateur)."
+    ]
+  },
+  {
+    id: "nettoyer-condenseur-frigo",
+    title: "Nettoyer le condenseur du réfrigérateur",
+    category: "electromenager",
+    devices: ["refrigerateur", "congelateur"],
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    keywords: ["réfrigérateur", "frigo", "congélateur", "condenseur", "serpentins", "grille arrière", "poussière", "chauffe", "consommation", "refroidit mal", "bruit"],
+    summary: "La grille ou les serpentins à l'arrière du frigo évacuent la chaleur. Couverts de poussière, ils fatiguent l'appareil et font grimper la facture.",
+    safety: "Débranchez le réfrigérateur avant de commencer. Déplacez-le à deux : il est lourd et peut basculer.",
+    tools: ["Pinceau ou brosse à poils doux", "Aspirateur avec embout fin"],
+    parts: [],
+    sources: [
+      { label: "Bosch — nettoyer le condenseur du frigo", url: "https://www.bosch-home.fr/nos-services/aide-en-ligne/assistance-refrigerateur-congelateur/entretien-frigo/nettoyer-condenseur-frigo" }
+    ],
+    steps: [
+      { title: "Vérifier la notice", text: "Selon le modèle, le condenseur n'a pas besoin d'être nettoyé, ou ne doit l'être que par un technicien. Vérifiez dans la notice avant de commencer.", tip: "Un nettoyage régulier n'est utile que dans certains cas : animaux à poils, logement poussiéreux, cuisine grasse. Comptez alors tous les 2 à 3 mois." },
+      { title: "Débrancher et écarter l'appareil", text: "Débranchez le réfrigérateur puis, avec l'aide d'un proche, écartez-le du mur. Le condenseur est en général en bas et à l'arrière ; sur certains modèles récents, il est à l'avant." },
+      { title: "Retirer le panneau inférieur", text: "Déposez le panneau du bas (à l'arrière ou à l'avant selon le modèle). S'il résiste, ne forcez pas : soulevez-le délicatement avant de le tirer vers vous." },
+      { title: "Dépoussiérer", text: "Retirez un maximum de poussière au pinceau ou à la brosse douce, puis passez l'aspirateur avec un embout fin, sans vous presser." },
+      { title: "Remonter et replacer", text: "Remettez le panneau, replacez l'appareil en laissant 3 à 5 cm entre le frigo et le mur (ou la niche) pour qu'il respire, puis rebranchez." }
+    ],
+    troubleshoot: [
+      "Le frigo refroidit toujours mal : lancez le diagnostic « Le réfrigérateur givre ou refroidit mal », ou faites appel à un réparateur."
+    ]
+  },
+  {
+    id: "detartrer-centrale-vapeur",
+    title: "Détartrer une centrale vapeur",
+    category: "electromenager",
+    devices: ["fer-a-repasser"],
+    difficulty: "Facile",
+    duration: "30 min (+ 2 h de refroidissement)",
+    minutes: 30,
+    keywords: ["centrale vapeur", "fer à repasser", "repassage", "tartre", "calcaire", "détartrer", "vapeur faible", "taches", "collecteur", "anti-calc", "semelle"],
+    summary: "Vapeur faible ou par à-coups, taches brunes ou blanches sur le linge : le calcaire encrasse la cuve. Un détartrage régulier lui rend sa vapeur.",
+    safety: "Débranchez la centrale et laissez-la refroidir complètement (au moins 2 heures) avant de l'ouvrir. Chaque modèle a sa méthode : suivez d'abord la notice.",
+    tools: ["Produit détartrant adapté aux centrales vapeur", "Récipient ou évier", "Chiffon doux", "Coton-tige"],
+    parts: [],
+    sources: [
+      { label: "Calor — détartrer une centrale vapeur", url: "https://www.rowenta.fr/calor/centrales-vapeur-calor-basse-pression/detartrer-centrale-vapeur" }
+    ],
+    steps: [
+      { title: "Débrancher et laisser refroidir", text: "Débranchez la centrale et attendez au moins deux heures qu'elle refroidisse complètement.", timer: 7200 },
+      { title: "Rincer le collecteur de tartre (si présent)", text: "Beaucoup de modèles ont un collecteur anti-calcaire amovible dans la cuve. Retirez-le, rincez-le à l'eau claire et remettez-le en place.", tip: "Sur ces modèles, c'est souvent l'essentiel de l'entretien : voyez la notice." },
+      { title: "Vider la cuve", text: "Ouvrez le bouchon de vidange, sous l'appareil, pour évacuer l'eau restante et les premiers dépôts." },
+      { title: "Passer le détartrant", text: "Versez dans le réservoir un mélange d'eau et de détartrant adapté, au dosage indiqué sur le flacon. Rebranchez, attendez que le voyant indique que la centrale est prête, puis actionnez la vapeur plusieurs fois au-dessus d'un évier ou d'un vieux linge.", safety: "Pas de vinaigre blanc ni de bicarbonate : le fabricant les déconseille (joints abîmés, résidus dans les circuits)." },
+      { title: "Rincer à l'eau claire", text: "Débranchez, videz la cuve par le bouchon de vidange et rincez-la. Refaites un passage à l'eau claire en actionnant la vapeur, jusqu'à ce que l'eau sorte limpide." },
+      { title: "Nettoyer la semelle", text: "Appareil débranché et froid, passez un chiffon doux à peine humide (eau tiède) sur la semelle, puis un coton-tige humide dans les trous de vapeur. Ni abrasif ni détartrant sur la semelle.", tip: "Selon l'usage et la dureté de l'eau, détartrez tous les un à deux mois." }
+    ],
+    troubleshoot: [
+      "Le voyant d'entretien reste allumé : il s'éteint normalement une fois le détartrage bien fait ; sinon, voyez la manipulation décrite dans la notice de votre modèle.",
+      "Des traces sur le linge après détartrage : le rinçage était insuffisant. Refaites un passage à l'eau claire."
+    ]
+  },
+  {
+    id: "entretien-aspirateur-robot",
+    title: "Aspirateur robot qui nettoie mal : l'entretien complet",
+    category: "electromenager",
+    devices: ["aspirateur-robot"],
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    keywords: ["aspirateur robot", "robot aspirateur", "roomba", "deebot", "roborock", "brosse", "cheveux", "filtre", "capteurs", "roues", "aspire mal", "se perd", "station", "charge"],
+    summary: "Il laisse des saletés, se déplace mal ou se recharge mal ? Cheveux enroulés, filtre colmaté et capteurs sales en sont souvent la cause.",
+    safety: "Éteignez le robot et débranchez sa station avant de le nettoyer : un nettoyage programmé pourrait le mettre en route.",
+    tools: ["Chiffon microfibre sec", "Brosse souple (une vieille brosse à dents convient)", "Ciseaux", "Eau et savon doux"],
+    parts: ["Filtre de rechange (à changer tous les 6 mois à 1 an)"],
+    sources: [
+      { label: "Ecovacs — nettoyer un aspirateur robot", url: "https://www.ecovacs.com/fr/blog/comment-nettoyer-aspirateur-robot" },
+      { label: "Spareka — nettoyer son aspirateur robot", url: "https://www.spareka.fr/comment-reparer/electromenager/aspirateur-robot/comment-nettoyer-son-aspirateur-robot" }
+    ],
+    steps: [
+      { title: "Éteindre et débrancher", text: "Sortez le robot de sa station, éteignez-le avec son bouton, puis débranchez la station." },
+      { title: "Vider et laver le bac", text: "Videz le bac à poussière, brossez l'intérieur. S'il est très sale, lavez-le à l'eau et au savon doux, puis laissez-le sécher complètement avant de le remettre." },
+      { title: "Libérer le rouleau central", text: "Retournez le robot, retirez le couvercle du rouleau et sortez-le. Enlevez cheveux et fibres enroulés, aux ciseaux si besoin, sans entailler le rouleau. Nettoyez aussi la zone d'aspiration." },
+      { title: "Nettoyer les brosses latérales", text: "Retirez-les, lavez-les à l'eau et remontez-les une fois sèches.", tip: "Elles ne sont pas interchangeables : respectez les repères « L » (gauche) et « R » (droite) sur les brosses et sur le robot." },
+      { title: "Dépoussiérer le filtre", text: "Tapotez le filtre au-dessus d'une poubelle et finissez à la brosse douce. Ne le passez sous l'eau que si le fabricant l'autorise, et laissez-le sécher à l'air avant de le remettre.", tip: "Remplacez-le tous les six mois à un an." },
+      { title: "Roues et capteurs", text: "Nettoyez les roues au chiffon sec ou à la brosse. Essuyez les capteurs (dessous et avant du robot) au chiffon microfibre, sans appuyer.", safety: "Jamais d'eau sur les capteurs : l'humidité les abîme." },
+      { title: "Nettoyer la station", text: "Essuyez la base de charge au chiffon microfibre sec, en particulier ses contacts. Videz et nettoyez ses réservoirs ou son sac s'il y en a, et laissez sécher avant de rebrancher." }
+    ],
+    troubleshoot: [
+      "Il ne se recharge plus bien : des saletés sur les contacts de charge (robot et station) peuvent gêner. Nettoyez-les au chiffon sec.",
+      "Il se cogne ou tourne en rond : essuyez de nouveau les capteurs et vérifiez que rien n'est enroulé autour des roues."
+    ]
+  },
+  {
+    id: "climatiseur-mobile-refroidit-mal",
+    title: "Climatiseur mobile qui refroidit mal : filtres et vidange",
+    category: "electromenager",
+    devices: ["climatiseur"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    keywords: ["climatiseur", "clim", "climatiseur mobile", "refroidit mal", "souffle faible", "filtre", "réservoir", "eau", "FL", "vidange", "ne marche plus", "rangement"],
+    summary: "Souffle faible, pièce qui ne se rafraîchit plus, appareil arrêté avec un code : des filtres encrassés ou un réservoir d'eau plein en sont souvent la cause.",
+    safety: "Éteignez l'appareil et débranchez-le avant tout nettoyage. Ne le faites jamais fonctionner sans ses filtres.",
+    tools: ["Aspirateur", "Chiffon légèrement humide", "Récipient bas"],
+    parts: [],
+    sources: [
+      { label: "Rowenta — notice du climatiseur mobile RWAC1400H (entretien et dépannage)", url: "https://fc.darty.com/notices/6/2/5/5/6255f5e5d84d3c5dabc71ff8656f37eaa8420826.pdf" }
+    ],
+    steps: [
+      { title: "Éteindre et débrancher", text: "Arrêtez le climatiseur depuis son panneau de commande, puis débranchez-le." },
+      { title: "Sortir les filtres", text: "Retirez les grilles d'entrée d'air : les filtres se trouvent juste derrière." },
+      { title: "Nettoyer les filtres", text: "Aspirez-les ou tapotez-les pour enlever la poussière, puis rincez-les soigneusement à l'eau courante." },
+      { title: "Les laisser sécher", text: "Laissez-les sécher complètement avant de les remettre en place, puis reposez les grilles.", tip: "En période d'utilisation, nettoyez-les régulièrement : la notice cite des filtres sales comme première cause de rafraîchissement faible." },
+      { title: "Vider le réservoir si l'appareil l'indique", text: "Quand le réservoir interne est plein, l'appareil s'arrête et affiche un code (« FL » sur ce modèle Rowenta ; voyez la notice du vôtre). Débranchez, placez un récipient sous l'orifice de vidange du bas, retirez les bouchons, laissez couler, puis remettez-les." },
+      { title: "Nettoyer le boîtier", text: "Essuyez l'extérieur avec un chiffon légèrement humide. Jamais de produit chimique ni d'abrasif." }
+    ],
+    troubleshoot: [
+      "Toujours peu de fraîcheur : vérifiez que l'entrée et la sortie d'air ne sont pas bloquées, fermez portes, fenêtres et rideaux, et éloignez les sources de chaleur.",
+      "L'appareil est bruyant : posez-le sur une surface plane et rigide pour limiter les vibrations.",
+      "Le compresseur ne démarre pas tout de suite : une protection le retarde de quelques minutes après l'allumage. Patientez environ 3 minutes.",
+      "Pour le ranger en fin de saison : videz toute l'eau, faites-le tourner quelques heures en mode ventilation pour sécher l'intérieur, nettoyez les filtres et rangez-le au sec."
+    ]
+  },
   /* ================= TÉLÉPHONIE & INFORMATIQUE ================= */
   {
     id: "tetes-impression-imprimante",

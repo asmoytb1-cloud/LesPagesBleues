@@ -18,7 +18,9 @@ document.getElementById("cat-grid").innerHTML = topCategories().map(c => c.photo
 
 // Chiffres réels, calculés à partir du contenu du site (pas de chiffres inventés)
 const sourcesCount = GUIDES.reduce((n, g) => n + (g.sources || []).length, 0);
-const avgSaving = Math.round(GUIDES.reduce((n, g) => n + (parseInt((g.savings || "0").replace(/\D/g, ""), 10) || 0), 0) / GUIDES.length);
+// moyenne sur les fiches qui chiffrent une économie (les fiches d'entretien n'en indiquent pas)
+const priced = GUIDES.map(g => parseInt((g.savings || "").replace(/\D/g, ""), 10)).filter(n => n > 0);
+const avgSaving = Math.round(priced.reduce((n, v) => n + v, 0) / priced.length);
 document.getElementById("stats").innerHTML = `
   <div class="stat">${icon("doc")}<div><strong>${GUIDES.length} guides</strong><small>vérifiés, dans ${topCategories().length - 1} domaines</small></div></div>
   <div class="stat">${icon("shield")}<div><strong>${sourcesCount} sources</strong><small>citées pour vérifier les fiches</small></div></div>
