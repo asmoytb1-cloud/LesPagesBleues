@@ -84,7 +84,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     const diffs = await p.$$eval("#results .grow .dots", els => els.map(e => e.getAttribute("aria-label")));
     expect(diffs.length && diffs.every(d => d.includes("Difficile")), "le filtre de difficulté doit s'appliquer");
     await p.selectOption("#f-diff", ""); await p.selectOption("#sort", "duree");
-    expect(/essuie-glace|charge|tuyau|fermeture/i.test(await p.textContent(".grow h3")), "tri par durée : une fiche de 10 min en premier");
+    expect(/essuie-glace|charge|tuyau|fermeture|fusible|flexible/i.test(await p.textContent("#guide-rows .grow h3")), "tri par durée : une fiche de 10 min en premier");
     await p.selectOption("#f-cat", "autres");
     const cats = await p.$$eval("#results .grow .tag-soft", els => els.map(e => e.textContent.trim()));
     expect(cats.length === 3 && cats.every(c => /Mode|Musique/.test(c)), "« Autres » doit inclure ses sous-catégories : " + cats);

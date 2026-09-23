@@ -214,6 +214,68 @@ const GUIDES = [
     ]
   },
 
+  {
+    id: "changer-batterie-voiture",
+    title: "Changer la batterie d'une voiture",
+    category: "automobile",
+    difficulty: "Facile",
+    duration: "30 min",
+    minutes: 30,
+    savings: "≈ 50 €",
+    keywords: ["batterie", "voiture", "remplacer batterie", "batterie à plat", "batterie morte", "borne", "cosse"],
+    summary: "Batterie trop vieille pour tenir la charge ? La remplacer soi-même est simple, à condition de respecter l'ordre de branchement.",
+    safety: "Portez gants et lunettes : une batterie contient de l'acide. Retirez bagues et montre, ne fumez pas à proximité, et ne mettez jamais un outil en contact avec les deux bornes.",
+    tools: ["Gants et lunettes", "Clé plate ou à douille (souvent 10 mm)", "Brosse métallique", "Chiffon"],
+    parts: ["Batterie de même dimension, même polarité (position du +), même capacité (Ah) et même puissance de démarrage (A)"],
+    sources: [
+      { label: "Fiches-auto — ordre pour débrancher et rebrancher une batterie", url: "https://www.fiches-auto.fr/articles-auto/tutoriels/s-2293-ordre-pour-debrancher-et-rebrancher-une-batterie-de-voiture.php" },
+      { label: "Carglass — brancher et débrancher une batterie", url: "https://www.carglass.fr/faq/answers/6261/comment-brancher-et-debrancher-une-batterie-quelles-precautions-prendre" }
+    ],
+    steps: [
+      { title: "Préparer", text: "Coupez le contact, retirez la clé et éteignez tous les équipements. Si votre autoradio demande un code après une coupure, retrouvez-le dans les papiers du véhicule avant de commencer." },
+      { title: "Débrancher la borne –", text: "Desserrez l'écrou de la cosse noire (–) et retirez-la en premier. Écartez-la de la batterie pour qu'elle ne la touche plus.", safety: "Toujours le – en premier au démontage : si la clé touche la carrosserie en travaillant sur le +, il n'y a pas de court-circuit." },
+      { title: "Débrancher la borne +", text: "Soulevez le cache rouge, desserrez et retirez la cosse du +." },
+      { title: "Sortir l'ancienne batterie", text: "Retirez la bride ou la vis qui maintient la batterie, puis sortez-la en la gardant bien droite.", tip: "Une batterie pèse souvent 12 à 20 kg : pliez les jambes pour la soulever." },
+      { title: "Nettoyer les cosses", text: "Brossez l'intérieur des cosses et le support pour retirer les dépôts blanchâtres." },
+      { title: "Installer la neuve", text: "Posez la batterie neuve dans le même sens (le + du côté du câble rouge) et remettez la bride de fixation : la batterie ne doit pas bouger." },
+      { title: "Brancher le + puis le –", text: "Rebranchez d'abord la cosse +, puis la cosse –, et serrez-les fermement. Démarrez, puis réglez l'heure et réinitialisez les vitres électriques si besoin (voir la notice)." },
+      { title: "Recycler l'ancienne", text: "Rapportez l'ancienne batterie au magasin où vous achetez la neuve ou en déchetterie : elle se recycle presque entièrement." }
+    ],
+    troubleshoot: [
+      "La voiture ne démarre toujours pas : vérifiez le serrage des cosses, puis faites contrôler l'alternateur et le démarreur.",
+      "Des voyants restent allumés : certaines voitures demandent une initialisation de la batterie avec un outil de diagnostic."
+    ]
+  },
+  {
+    id: "changer-fusible-voiture",
+    title: "Remplacer un fusible de voiture",
+    category: "automobile",
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 40 €",
+    keywords: ["fusible", "voiture", "boîte à fusibles", "autoradio", "allume-cigare", "prise 12 V", "vitre électrique", "ne marche plus", "électricité"],
+    summary: "L'autoradio, l'allume-cigare ou une vitre ne marche plus d'un coup ? Un fusible a peut-être grillé. Il se change en quelques minutes.",
+    safety: "Coupez le contact. Ne remplacez jamais un fusible par un modèle plus fort (ampérage supérieur) : le circuit risquerait de chauffer.",
+    tools: ["Pince à fusibles (souvent fournie dans la boîte à fusibles) ou pince à becs fins", "Lampe"],
+    parts: ["Fusible de même type et de même ampérage (même couleur)"],
+    sources: [
+      { label: "Caradisiac — comment changer un fusible de voiture", url: "https://www.caradisiac.com/Changer-un-fusible-de-voiture-101165.htm" },
+      { label: "Mister Auto — vérifier et changer un fusible grillé", url: "https://www.mister-auto.com/blog/securite/comment-savoir-si-un-fusible-est-mort-sur-sa-voiture-et-pourquoi/" }
+    ],
+    steps: [
+      { title: "Couper le contact", text: "Arrêtez le moteur et retirez la clé." },
+      { title: "Trouver la boîte à fusibles", text: "Elle se trouve le plus souvent sur le côté du tableau de bord, sous le volant ou dans le compartiment moteur. La notice indique son emplacement." },
+      { title: "Repérer le bon fusible", text: "Le schéma sous le couvercle ou dans la notice indique quel fusible protège quel équipement." },
+      { title: "Le retirer et le contrôler", text: "Tirez le fusible bien droit avec la pince. Regardez à travers le plastique : si le filament métallique est coupé, il est grillé." },
+      { title: "Mettre un fusible identique", text: "Enfoncez un fusible neuf de même ampérage (le chiffre écrit dessus, et la même couleur), puis testez l'équipement.", tip: "Gardez quelques fusibles de rechange dans la boîte à gants." }
+    ],
+    troubleshoot: [
+      "Le fusible neuf grille aussitôt : il y a un court-circuit sur le circuit, faites-le contrôler par un professionnel.",
+      "Le fusible est bon mais l'équipement ne marche pas : le problème vient de l'équipement lui-même ou de son câblage."
+    ]
+  },
+
   /* ================= ÉLECTROMÉNAGER ================= */
   {
     id: "courroie-lave-linge",
@@ -690,6 +752,67 @@ const GUIDES = [
     ]
   },
 
+  {
+    id: "refaire-joint-silicone",
+    title: "Refaire un joint silicone de salle de bain",
+    category: "maison",
+    difficulty: "Facile",
+    duration: "1 h + 24 h de séchage",
+    minutes: 60,
+    savings: "≈ 80 €",
+    keywords: ["joint", "silicone", "salle de bain", "douche", "baignoire", "moisissure", "joint noir", "étanchéité", "évier"],
+    summary: "Un joint noirci ou décollé laisse passer l'eau derrière la baignoire ou la douche. Le refaire proprement est à la portée de tous.",
+    safety: "Aérez la pièce pendant et après l'application. Utilisez la lame du cutter avec précaution, en coupant toujours vers l'extérieur.",
+    tools: ["Cutter ou coupe-joint", "Grattoir en plastique", "Ruban de masquage", "Pistolet à silicone", "Lisseur à joint (ou le doigt)", "Chiffons"],
+    parts: ["Cartouche de silicone sanitaire (anti-moisissures)", "Alcool ménager", "Eau savonneuse"],
+    sources: [
+      { label: "Sika — comment refaire un joint de salle de bain", url: "https://fra.sika.com/fr/bricolage/conseils-astuces/conseil-joints.html" },
+      { label: "Travaux.com — refaire les joints de salle de bain", url: "https://www.travaux.com/sols-carrelage/articles/refaire-les-joints-de-salle-de-bains" }
+    ],
+    steps: [
+      { title: "Retirer l'ancien joint", text: "Incisez l'ancien silicone le long de ses deux bords au cutter, puis tirez-le pour l'enlever en longues bandes." },
+      { title: "Éliminer les résidus", text: "Grattez les restes avec le grattoir en plastique, sans rayer l'émail ni le carrelage." },
+      { title: "Dégraisser et sécher", text: "Nettoyez à l'alcool ménager et laissez sécher complètement : le silicone n'adhère pas sur un support humide ou gras.", tip: "Idéalement, n'utilisez pas la douche la veille pour que tout soit bien sec." },
+      { title: "Poser le ruban de masquage", text: "Collez un ruban de chaque côté du joint à refaire, en laissant l'espace à remplir entre les deux." },
+      { title: "Appliquer le silicone", text: "Coupez la buse en biseau à la largeur du joint et déposez un cordon régulier, d'un seul geste continu." },
+      { title: "Lisser", text: "Lissez aussitôt avec le lisseur ou le doigt trempé dans l'eau savonneuse, d'un geste continu." },
+      { title: "Retirer le ruban et laisser sécher", text: "Retirez le ruban immédiatement, avant que le silicone ne sèche, puis attendez 24 heures avant de mouiller le joint." }
+    ],
+    troubleshoot: [
+      "Le joint se décolle : le support n'était pas assez sec ou dégraissé, recommencez après un nettoyage à l'alcool.",
+      "Il noircit vite : aérez mieux la pièce après chaque douche et choisissez un silicone sanitaire anti-moisissures."
+    ]
+  },
+  {
+    id: "changer-flexible-douche",
+    title: "Changer un flexible de douche",
+    category: "maison",
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 60 €",
+    keywords: ["douche", "flexible", "fuite", "pommeau", "douchette", "tuyau de douche", "raccord", "joint"],
+    summary: "Un flexible qui fuit ou se perce se change en dix minutes, sans outil ou presque : le raccord est standard.",
+    safety: "Fermez le robinet de la douche avant de commencer. Pas de pince sur les raccords chromés sans chiffon de protection.",
+    tools: ["Clé à molette (au cas où)", "Chiffon"],
+    parts: ["Flexible de douche au raccord standard 1/2 pouce (15/21), livré avec ses joints"],
+    sources: [
+      { label: "OBI — changer un flexible de douche en 5 étapes", url: "https://www.obi.ch/fr/magazine/habitat/salle-de-bains/changer-un-flexible-de-douche" },
+      { label: "Guide plomberie — changer un flexible de douche", url: "https://www.guide-plomberie.fr/plomberie/changer-un-flexible-de-douche/" }
+    ],
+    steps: [
+      { title: "Fermer le robinet", text: "Fermez bien le mitigeur ou le robinet de la douche." },
+      { title: "Dévisser l'ancien flexible", text: "Dévissez à la main l'écrou côté robinet, puis celui côté douchette. Si c'est trop serré, utilisez la clé à molette en protégeant l'écrou avec un chiffon." },
+      { title: "Vérifier les joints", text: "Assurez-vous que chaque extrémité du nouveau flexible a son joint, bien à plat au fond de l'écrou.", tip: "Si un vieux joint est resté collé dans le robinet ou la douchette, retirez-le." },
+      { title: "Visser le nouveau flexible", text: "Vissez l'extrémité à écrou hexagonal sur le robinet et l'extrémité conique sur la douchette, à la main, sans forcer, pour ne pas écraser les joints." },
+      { title: "Tester", text: "Ouvrez l'eau et vérifiez les deux raccords. S'il y a une goutte, serrez d'un petit quart de tour à la clé, avec le chiffon." }
+    ],
+    troubleshoot: [
+      "Ça fuit toujours au raccord : démontez, vérifiez que le joint est bien à plat et en bon état, puis revissez.",
+      "Faible débit : détartrez la douchette en la trempant quelques heures dans du vinaigre blanc."
+    ]
+  },
+
   /* ================= VÉLO, MOTO & MOBILITÉ ================= */
   {
     id: "crevaison-velo",
@@ -780,6 +903,37 @@ const GUIDES = [
     ]
   },
 
+  {
+    id: "regler-derailleur-arriere",
+    title: "Régler le dérailleur arrière d'un vélo",
+    category: "velo",
+    difficulty: "Moyen",
+    duration: "30 min",
+    minutes: 30,
+    savings: "≈ 25 €",
+    keywords: ["vélo", "dérailleur", "vitesses", "chaîne saute", "passe mal", "indexation", "câble", "butée"],
+    summary: "Les vitesses passent mal ou la chaîne saute ? Un dérailleur se règle en suivant toujours le même ordre : butées, câble, puis écartement.",
+    safety: "Faites les réglages vélo sur un pied ou retourné, roue arrière libre, et gardez les doigts loin des pignons quand vous pédalez à la main.",
+    tools: ["Tournevis cruciforme", "Clé Allen de 5 mm", "Pied d'atelier (ou un vélo retourné)"],
+    parts: [],
+    sources: [
+      { label: "Decathlon — réglage de votre dérailleur arrière", url: "https://conseilsport.decathlon.fr/reglage-de-votre-derailleur-arriere-on-vous-explique" },
+      { label: "La Boîte à Cycle — réglage d'un dérailleur arrière Shimano", url: "https://laboiteacycle.com/blog/entretien-velo-maison/reglage-derailleur-arriere-shimano" }
+    ],
+    steps: [
+      { title: "Vérifier la patte", text: "Regardez le dérailleur de derrière : il doit pendre bien droit, dans l'axe des pignons. Une patte tordue (après une chute) empêche tout réglage et doit être redressée par un vélociste." },
+      { title: "Régler la butée H", text: "Passez sur le plus petit pignon. Tournez la vis marquée H jusqu'à ce que le galet du haut soit parfaitement aligné sous ce pignon." },
+      { title: "Régler la butée L", text: "Passez doucement sur le plus grand pignon. Réglez la vis L pour que la chaîne y monte bien, sans jamais pouvoir passer au-delà vers les rayons.", safety: "Une butée L mal réglée peut envoyer la chaîne dans les rayons et détruire la roue." },
+      { title: "Régler la tension du câble", text: "Revenez sur le petit pignon, puis passez une vitesse. Si la chaîne hésite à monter, dévissez la molette de réglage d'un demi-tour ; si elle monte de deux pignons, vissez-la. Répétez vitesse après vitesse.", tip: "Travaillez par demi-tours et testez à chaque fois : c'est un réglage de précision." },
+      { title: "Régler l'écartement", text: "Sur le grand pignon, réglez la vis B pour laisser environ 5 à 6 mm entre le galet du haut et les dents du pignon." },
+      { title: "Tester toute la cassette", text: "Passez toutes les vitesses en montant puis en descendant : le passage doit être net, sans bruit de frottement." }
+    ],
+    troubleshoot: [
+      "Impossible d'obtenir un passage net : le câble ou sa gaine sont peut-être usés ou encrassés, remplacez-les.",
+      "La chaîne saute sous l'effort malgré un bon réglage : la chaîne ou les pignons sont usés."
+    ]
+  },
+
   /* ================= JARDIN & EXTÉRIEUR ================= */
   {
     id: "tondeuse-ne-demarre-pas",
@@ -861,6 +1015,36 @@ const GUIDES = [
     ],
     troubleshoot: [
       "Ça fuit au raccord : la coupe n'est pas droite ou la bague n'est pas assez serrée."
+    ]
+  },
+
+  {
+    id: "affuter-lame-tondeuse",
+    title: "Affûter la lame d'une tondeuse",
+    category: "jardin",
+    difficulty: "Moyen",
+    duration: "45 min",
+    minutes: 45,
+    savings: "≈ 30 €",
+    keywords: ["tondeuse", "lame", "affûter", "aiguiser", "herbe arrachée", "pelouse", "gazon", "jardin"],
+    summary: "Une lame émoussée arrache l'herbe au lieu de la couper : la pelouse jaunit. Une lame affûtée et équilibrée coupe net et ménage le moteur.",
+    safety: "Débranchez le capuchon de bougie (tondeuse thermique) ou retirez la batterie et débranchez la prise (électrique). Portez des gants épais : même émoussée, la lame coupe.",
+    tools: ["Gants épais", "Clé à douille adaptée au boulon de lame", "Cale en bois", "Lime plate ou meule", "Étau", "Tournevis (pour l'équilibrage)", "Feutre"],
+    parts: [],
+    sources: [
+      { label: "Stihl — aiguiser une lame de tondeuse à gazon", url: "https://www.stihl.fr/fr/conseils-tutoriels/entretien-outils-motorises/conseils-tondeuse-gazon/affuter-lame-tondeuse" },
+      { label: "Webmotoculture — affûter une lame de tondeuse", url: "https://www.webmotoculture.com/guides/71-comment-affuter-une-lame-de-tondeuse" }
+    ],
+    steps: [
+      { title: "Mettre la tondeuse en sécurité", text: "Débranchez le capuchon de bougie ou la batterie, puis basculez la tondeuse sur le côté comme indiqué dans la notice.", safety: "Sur une tondeuse thermique, basculez-la en général bougie vers le haut, pour éviter que l'huile et l'essence coulent dans le filtre à air." },
+      { title: "Démonter la lame", text: "Bloquez la lame avec une cale en bois contre le carter, puis desserrez le boulon central avec la clé.", tip: "Marquez au feutre la face qui regarde le sol : la lame doit être remontée dans le même sens." },
+      { title: "Affûter", text: "Serrez la lame dans l'étau et limez chaque tranchant en respectant l'angle d'origine (environ 30°), en poussant la lime vers le tranchant. Faites le même nombre de passes de chaque côté." },
+      { title: "Équilibrer", text: "Posez la lame à plat sur un tournevis passé dans son trou central. Si un côté penche, retirez un peu de métal de ce côté à la lime, jusqu'à ce qu'elle reste horizontale.", safety: "Une lame déséquilibrée fait vibrer la tondeuse et fatigue le moteur." },
+      { title: "Remonter", text: "Remettez la lame dans le bon sens, serrez fermement le boulon (au couple indiqué dans la notice), puis rebranchez la bougie ou la batterie." }
+    ],
+    troubleshoot: [
+      "La tondeuse vibre : la lame est mal équilibrée ou tordue. Une lame tordue se remplace, elle ne se redresse pas.",
+      "La lame a des éclats profonds : remplacez-la par une lame d'origine."
     ]
   },
 

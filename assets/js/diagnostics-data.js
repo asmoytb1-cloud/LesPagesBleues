@@ -99,7 +99,7 @@ const DIAGNOSTICS = [
     ],
     causes: [
       { title: "Batterie déchargée", base: 2, weights: { tableau: { non: 4, oui: -1 }, clic: { oui: 3 }, froid: { oui: 2 }, lance: { oui: -3 } },
-        checks: ["Mesurez la batterie au multimètre : environ 12,6 V si elle est chargée, moins de 12,2 V si elle est à moitié vide.", "Tentez un démarrage avec des câbles ou un booster."], guide: "voiture-ne-demarre-plus", level: 1 },
+        checks: ["Mesurez la batterie au multimètre : environ 12,6 V si elle est chargée, moins de 12,2 V si elle est à moitié vide.", "Tentez un démarrage avec des câbles ou un booster.", "Si elle a plus de 5 ans et se décharge sans cesse, remplacez-la."], guide: "voiture-ne-demarre-plus", level: 1 },
       { title: "Cosses de batterie oxydées ou desserrées", base: 1, weights: { tableau: { non: 2 }, clic: { oui: 1 } },
         checks: ["Des dépôts blanchâtres ou une cosse qui bouge empêchent le courant de passer : nettoyez et resserrez."], guide: "voiture-ne-demarre-plus", level: 1 },
       { title: "Démarreur défaillant", base: 0, weights: { clic: { oui: 3 }, tableau: { oui: 2, non: -2 }, lance: { oui: -3 } },
@@ -125,6 +125,25 @@ const DIAGNOSTICS = [
         checks: ["Un disque creusé, avec un gros rebord, ou des vibrations dans la pédale indiquent qu'il faut changer les disques (par paire)."], pro: true, level: 3 },
       { title: "Humidité ou légère rouille de surface", base: 1, weights: { humide: { oui: 5, non: -3 }, metal: { non: 1 }, voyant: { oui: -3 } },
         checks: ["Un léger couinement qui disparaît après quelques freinages est normal après la pluie ou un stationnement prolongé."], level: 1 }
+    ]
+  },
+  {
+    id: "equipement-electrique-voiture", title: "Un équipement électrique de la voiture ne marche plus", device: "Voiture", category: "automobile",
+    keywords: ["voiture", "autoradio", "radio", "allume-cigare", "prise 12 v", "vitre électrique", "essuie-glace", "feu", "ne marche plus", "fusible", "électrique"],
+    intro: "Quand un seul équipement s'arrête d'un coup (autoradio, prise 12 V, vitre…), un fusible grillé est la première piste.",
+    safety: "Coupez le contact avant d'ouvrir la boîte à fusibles.",
+    questions: [
+      { id: "coup", text: "L'équipement s'est-il arrêté d'un coup, sans signe avant-coureur ?", options: YES_NO },
+      { id: "plusieurs", text: "Plusieurs équipements se sont-ils arrêtés en même temps ?", options: YES_NO },
+      { id: "regrille", text: "Avez-vous déjà remplacé le fusible, et a-t-il grillé de nouveau ?", options: YES_NO }
+    ],
+    causes: [
+      { title: "Fusible grillé", base: 2, weights: { coup: { oui: 3 }, plusieurs: { oui: 1 }, regrille: { oui: -3 } },
+        checks: ["Repérez le fusible sur le schéma de la boîte à fusibles et regardez si son filament est coupé."], guide: "changer-fusible-voiture", level: 1 },
+      { title: "Court-circuit sur le circuit", base: 0, weights: { regrille: { oui: 6, non: -2 } },
+        checks: ["Un fusible qui regrille aussitôt signale un court-circuit : ne mettez pas de fusible plus fort, faites contrôler le circuit."], pro: true, level: 3 },
+      { title: "Équipement lui-même en panne", base: 1, weights: { coup: { non: 2 }, plusieurs: { non: 1 } },
+        checks: ["Si le fusible est bon, l'équipement (moteur de vitre, autoradio…) ou son connecteur est en cause."], pro: true, level: 2 }
     ]
   },
   {
@@ -342,7 +361,7 @@ const DIAGNOSTICS = [
     causes: [
       { title: "Chaîne sale ou mal lubrifiée", base: 2, weights: { grince: { oui: 4, non: -2 } }, checks: ["Dégraissez, séchez, puis mettez une goutte de lubrifiant par maillon."], guide: "entretien-chaine-velo", level: 1 },
       { title: "Chaîne usée", base: 0, weights: { saute: { oui: 3 }, km: { oui: 3, non: -1 } }, checks: ["Mesurez l'allongement avec un contrôleur d'usure : une chaîne usée abîme aussi les pignons."], level: 2 },
-      { title: "Dérailleur à régler", base: 0, weights: { saute: { oui: 2 }, km: { non: 1 } }, checks: ["Si la chaîne est en bon état, faites régler le dérailleur (butées et tension de câble)."], pro: true, level: 2 }
+      { title: "Dérailleur à régler", base: 0, weights: { saute: { oui: 2 }, km: { non: 1 } }, checks: ["Si la chaîne est en bon état, réglez le dérailleur : butées, puis tension du câble."], guide: "regler-derailleur-arriere", level: 2 }
     ]
   },
   {
