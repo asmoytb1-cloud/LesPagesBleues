@@ -29,8 +29,8 @@ function guidePageHTML(g, st = {}) {
       <div>
         <nav class="breadcrumb" aria-label="Fil d'Ariane">
           <a href="${ROOT}index.html">${icon("home")} Accueil</a>${icon("chevron")}
-          ${parent ? `<a href="${ROOT}guides.html?cat=${parent.id}">${escapeHtml(parent.name)}</a>${icon("chevron")}` : ""}
-          <a href="${ROOT}guides.html?cat=${c.id}">${escapeHtml(c.name)}</a>${icon("chevron")}
+          ${parent ? `<a href="${categoryUrl(parent)}">${escapeHtml(parent.name)}</a>${icon("chevron")}` : ""}
+          <a href="${categoryUrl(c)}">${escapeHtml(c.name)}</a>${icon("chevron")}
           <span aria-current="page">${escapeHtml(g.title)}</span>
         </nav>
         <div class="guide-tags" style="display:flex;flex-wrap:wrap;gap:.4rem">
@@ -190,7 +190,7 @@ function guidePageHTML(g, st = {}) {
   ${related.length ? `
     <section class="container related">
       <div class="section-head"><h2>Guides <span class="accent">similaires</span></h2>
-        <a class="link-arrow" href="${ROOT}guides.html?cat=${c.id}">Voir plus de guides ${icon("arrow")}</a></div>
+        <a class="link-arrow" href="${categoryUrl(c)}">Voir plus de guides ${icon("arrow")}</a></div>
       <div class="guide-grid">${related.map(guideCard).join("")}</div>
     </section>` : ""}`;
 }

@@ -33,7 +33,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
   };
 
   const PAGES = ["index.html", "guides.html", "guides.html?q=frein", "categories.html", "fiches/courroie-lave-linge.html", "fiches/remplacer-prise-electrique.html",
-    "ajouter.html", "communaute.html", "profil.html", "diagnostic.html", "a-propos.html", "mentions-legales.html", "confidentialite.html", "LesPagesBleues/page-inconnue"];
+    "categories/electromenager.html", "categories/autres.html", "ajouter.html", "communaute.html", "profil.html", "diagnostic.html", "a-propos.html", "mentions-legales.html", "confidentialite.html", "LesPagesBleues/page-inconnue"];
 
   /* ---------- 1. Toutes les pages : sans erreur, sans débordement, dans les deux thèmes ---------- */
   for (const [w, h, label] of [[1366, 900, "ordinateur"], [390, 844, "mobile"]]) {

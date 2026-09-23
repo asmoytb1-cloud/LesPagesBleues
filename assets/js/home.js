@@ -6,7 +6,7 @@ renderFooter();
 // Domaines principaux, avec photo et nombre de fiches
 const countIn = id => allGuides().filter(g => inCategory(g, id)).length;
 document.getElementById("cat-grid").innerHTML = topCategories().map(c => c.photo ? `
-  <a class="cat-tile" href="guides.html?cat=${c.id}">
+  <a class="cat-tile" href="${categoryUrl(c)}">
     <img src="${photoUrl(c.photo)}" alt="" decoding="async">
     <span class="cat-count">${countIn(c.id)}</span>
     <span class="cat-tile-body"><strong>${escapeHtml(c.name)}</strong><small>${escapeHtml(c.desc)}</small></span>

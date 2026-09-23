@@ -70,7 +70,8 @@ for (const d of DIAGNOSTICS) {
 /* ---------- Liens internes de toutes les pages HTML ---------- */
 const htmlFiles = [
   ...fs.readdirSync(ROOT).filter(f => f.endsWith(".html")),
-  ...fs.readdirSync(path.join(ROOT, "fiches")).filter(f => f.endsWith(".html")).map(f => "fiches/" + f)
+  ...fs.readdirSync(path.join(ROOT, "fiches")).filter(f => f.endsWith(".html")).map(f => "fiches/" + f),
+  ...fs.readdirSync(path.join(ROOT, "categories")).filter(f => f.endsWith(".html")).map(f => "categories/" + f)
 ];
 for (const f of htmlFiles) {
   if (f === "404.html") continue; // chemins absolus prévus pour GitHub Pages
@@ -93,6 +94,7 @@ for (const g of GUIDES) if (!fs.existsSync(path.join(ROOT, "fiches", g.id + ".ht
 /* ---------- Plan du site et service worker ---------- */
 const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
 for (const g of GUIDES) if (!sitemap.includes(`fiches/${g.id}.html`)) fail(`sitemap.xml : fiche absente ${g.id}`);
+for (const c of CATEGORIES) if (!fs.existsSync(path.join(ROOT, "categories", c.id + ".html"))) fail(`page de domaine manquante : categories/${c.id}.html (lancez node tools/build.js)`);
 const sw = fs.readFileSync(path.join(ROOT, "sw.js"), "utf8");
 for (const m of sw.match(/const CORE = \[([\s\S]*?)\];/)[1].matchAll(/"([^"]+)"/g)) {
   if (m[1] !== "./" && !fs.existsSync(path.join(ROOT, m[1]))) fail(`sw.js : fichier à mettre en cache introuvable ${m[1]}`);

@@ -118,6 +118,7 @@ function guideUrl(g, extra = "") {
   return g.user ? `${ROOT}guide.html?id=${encodeURIComponent(g.id)}${extra ? "&" + extra : ""}`
                 : `${ROOT}fiches/${g.id}.html${extra ? "?" + extra : ""}`;
 }
+function categoryUrl(c) { return `${ROOT}categories/${typeof c === "string" ? c : c.id}.html`; }
 function photoUrl(name) { return name ? `${ROOT}assets/img/photos/${name}.webp` : null; }
 function guidePhoto(g) {
   if (g.cover) return g.cover;                    // photo envoyée par l'auteur (fiches perso)
