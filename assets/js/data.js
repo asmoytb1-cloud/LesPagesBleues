@@ -467,6 +467,7 @@ const GUIDES = [
     tools: ["Gants", "Clé à douille de 10", "Tournevis cruciforme", "Lampe", "Petit bol pour les vis"],
     parts: ["Courroie compatible (référence inscrite dessus)"],
     sources: [
+      { label: "Spareka — changer la courroie d'un lave-linge", url: "https://www.spareka.fr/comment-reparer/electromenager/lave-linge/comment-changer-la-courroie-d-un-lave-linge" },
       { label: "Tout-Électroménager — remplacer la courroie", url: "https://tout-electromenager.fr/129/tutoriels-de-depannage-electromenager/lave-linge-1/remplacer-la-courroie-de-son-lave-linge" },
       { label: "Adepem — changer la courroie d'un lave-linge", url: "https://www.adepem.com/blog/remplacer-courroie-lave-linge/" }
     ],
@@ -585,6 +586,7 @@ const GUIDES = [
     tools: ["Manche à balai", "Vieille brosse à dents", "Ciseaux"],
     parts: ["Sac neuf (si modèle à sac)"],
     sources: [
+      { label: "Rowenta — réparer un aspirateur qui n'aspire plus", url: "https://www.rowenta.fr/Aspirateurs-et-nettoyeurs/Aspirateurs-sans-fil/comment-r%C3%A9parer-un-aspirateur-qui-n'aspire-plus" },
       { label: "SOS Accessoire — aspirateur qui n'aspire plus", url: "https://www.sos-accessoire.com/aspirateur-aspire-plus.html" },
       { label: "Fiyo — l'aspirateur perd de la puissance", url: "https://www.fiyo.fr/conseils-de-reparation/aspirateur/aspirateur-perd-de-la-puissance-d-aspiration" }
     ],
@@ -673,6 +675,7 @@ const GUIDES = [
     tools: ["Tournevis plat", "Tournevis cruciforme ou Torx (selon le modèle)", "Téléphone pour prendre des photos"],
     parts: ["Sécurité de porte compatible (référence sur l'ancienne ou selon le modèle de la machine)"],
     sources: [
+      { label: "Spareka — remplacer la sécurité de porte d'un lave-linge", url: "https://www.spareka.fr/comment-reparer/electromenager/lave-linge/comment-remplacer-la-securite-de-porte-d-un-lave-linge" },
       { label: "SOS Accessoire — changer la sécurité de porte d'un lave-linge", url: "https://atelier.sos-accessoire.com/changer-securite-porte-lave-linge/" },
       { label: "Adepem — réparer la sécurité de porte", url: "https://www.adepem.com/blog/remplacer-securite-porte-lave-linge/" }
     ],
@@ -1562,16 +1565,18 @@ const GUIDES = [
     tools: ["Tournevis de précision", "Médiator", "Alcool isopropylique", "Coton-tige"],
     parts: ["Module joystick (si remplacement)"],
     sources: [
+      { label: "Nintendo — sticks des Joy-Con qui ne répondent pas correctement (drift)", url: "https://www.nintendo.com/fr-fr/Assistance/Nintendo-Switch/Depannage/Les-sticks-des-manettes-Joy-Con-ne-repondent-pas-correctement-ou-ne-fonctionnent-pas-bug-de-reactivite-du-stick-ou-drift--1908347.html" },
       { label: "JV Tech — nettoyer ses manettes sans abîmer les sticks", url: "https://www.jeuxvideo.com/news/2090082/manettes-ps5-xbox-et-switch-comment-les-nettoyer-sans-massacrer-les-sticks-et-les-boutons.htm" }
     ],
     steps: [
       { title: "Essayer sans ouvrir", text: "Appliquez une goutte d'alcool isopropylique à la base du stick avec un coton-tige et faites-le tourner dans tous les sens pendant une minute." },
-      { title: "Tester", text: "Laissez l'alcool s'évaporer, rebranchez et testez dans les réglages de la console.", timer: 600 },
+      { title: "Tester", text: "Laissez l'alcool s'évaporer, retirez étui et autocollants éventuels, rebranchez, puis calibrez les sticks et testez dans les réglages de la console.", timer: 600 },
       { title: "Ouvrir la manette", text: "Si le drift persiste : retirez les vis (parfois sous les poignées ou les étiquettes) et séparez les coques avec un médiator.", tip: "Photographiez chaque étape : les nappes et ressorts se remontent plus facilement ainsi." },
       { title: "Nettoyer le potentiomètre", text: "Appliquez l'alcool directement sur le mécanisme du stick, faites-le tourner, puis laissez sécher avant de refermer.", timer: 600 },
       { title: "Remonter et recalibrer", text: "Remontez la manette et lancez la calibration des sticks dans les réglages de la console." }
     ],
     troubleshoot: [
+      "Joy-Con de Nintendo Switch : Nintendo indique réparer sans frais, jusqu'à nouvel ordre, le drift dû à un défaut de fabrication ou à l'usure normale (conditions sur sa page d'assistance). Contactez-le avant d'ouvrir la manette.",
       "Le drift revient vite : le module joystick est usé, il se remplace (soudure nécessaire sur certains modèles)."
     ]
   },
