@@ -24,7 +24,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
   const browser = await chromium.launch(process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {});
   const newCtx = async (opts = {}) => {
     const ctx = await browser.newContext({ viewport: { width: 1366, height: 900 }, ...opts });
-    await ctx.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort());   // tests hors ligne et reproductibles
+    await ctx.route(/^https?:\/\/(?!localhost|127\.0\.0\.1)/, r => r.abort());   // aucune requête vers l'extérieur : tests reproductibles
     return ctx;
   };
   const watch = (page, errs) => {
@@ -57,6 +57,19 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
       });
     }
   }
+
+  await test("Polices hébergées sur le site, aucune requête vers un service tiers", async () => {
+    const ctx = await newCtx(); const p = await ctx.newPage(); const outside = [];
+    p.on("request", r => { if (!r.url().startsWith(B) && !r.url().startsWith("data:")) outside.push(r.url()); });
+    for (const u of ["index.html", "fiches/courroie-lave-linge.html", "categories/jardin.html"]) {
+      await p.goto(B + u, { waitUntil: "load" });
+      await p.evaluate(() => document.fonts.ready);
+      const ok = await p.evaluate(() => document.fonts.check("700 16px Inter") && [...document.fonts].some(f => f.family.replace(/"/g, "") === "Inter" && f.status === "loaded"));
+      expect(ok, `${u} : la police Inter n'est pas chargée depuis le site`);
+    }
+    await ctx.close();
+    expect(!outside.length, "requêtes externes : " + outside.slice(0, 3).join(", "));
+  });
 
   /* ---------- 2. Recherche ---------- */
   await test("Suggestions de l'en-tête et navigation au clavier", async () => {

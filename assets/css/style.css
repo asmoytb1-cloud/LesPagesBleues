@@ -4,6 +4,22 @@
    Toutes les couleurs passent par les variables ci-dessous.
    ========================================================== */
 
+/* ---------- 0. Polices hébergées sur le site (licence : assets/fonts/OFL.txt) ---------- */
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("../fonts/inter-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Caveat";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../fonts/caveat-600-latin.woff2") format("woff2");
+}
+
 /* ---------- 1. Couleurs (thème sombre par défaut) ---------- */
 :root,
 .theme-dark {

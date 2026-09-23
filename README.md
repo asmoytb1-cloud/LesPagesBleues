@@ -47,7 +47,7 @@ Les pages principales (accueil, recherche, catégories…) sont générées par 
 ```sh
 npm install                      # une seule fois
 npx playwright install chromium  # une seule fois
-npm test                         # génération + validation + 17 tests dans un vrai navigateur
+npm test                         # génération + validation + 18 tests dans un vrai navigateur
 ```
 
 Les tests couvrent toutes les pages (ordinateur et mobile, thèmes clair et sombre), la recherche, les fiches, le mode accompagnement, le diagnostic, la contribution avec photo, la communauté, le profil, le mode hors ligne et l'accessibilité (axe-core).
@@ -72,6 +72,7 @@ assets/js/common.js                            fonctions partagées (recherche, 
 assets/js/guide-view.js                        rendu d'une fiche (utilisé par le site et par la génération)
 assets/js/*.js                                 un script par page
 assets/img/photos/                             photos sous licence libre + credits.json
+assets/fonts/                                  polices Inter et Caveat (licence OFL)
 tools/build.js, tools/pages.py, tools/serve.js génération et serveur local
 tests/validate.js, tests/e2e.js                tests
 sw.js, manifest.webmanifest                    hors ligne et installation
@@ -80,3 +81,5 @@ sw.js, manifest.webmanifest                    hors ligne et installation
 ## Crédits
 
 Les photos proviennent de banques d'images sous licences libres (CC0, domaine public, CC BY) ; auteurs et licences sont listés dans `assets/img/photos/credits.json` et sur la page À propos.
+
+Les polices Inter et Caveat (SIL Open Font License) sont hébergées dans `assets/fonts/` : le site ne contacte aucun service tiers pendant la navigation.
