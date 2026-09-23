@@ -108,6 +108,7 @@ function build() {
   const legacy = readJSON("electromenager-marques.json");
   const findLm = lmBrandFinder(lmBrands);
   const lmProducts = readGz("leroymerlin-produits.jsonl.gz").split("\n").filter(Boolean).map(l => JSON.parse(l))
+    .map(([ty, title]) => [ty, title.replace(/\uFFFD/g, "").replace(/\s+/g, " ").trim()])   // caractères corrompus dans certains titres
     .filter(([, title]) => !ACCESSORY.test(title));
 
   const types = [], refsByType = {};
