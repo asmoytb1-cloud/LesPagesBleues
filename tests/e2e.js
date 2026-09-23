@@ -372,6 +372,42 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     await ctx.close();
   });
 
+  await test("Carnet d'entretien : plan adapté, saisie, contrôle défaillant, prévision au kilomètre, lien depuis une fiche", async () => {
+    const ctx = await newCtx(); const p = await ctx.newPage();
+    const errs = []; watch(p, errs);
+    await p.goto(B + "materiel.html");
+    await p.evaluate(() => {
+      const d = n => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
+      localStorage.setItem("lpb-materiel", JSON.stringify([{ kind: "moto", type: "moto", typeName: "Moto", category: "automobile", icon: "moto", brand: "Yamaha", model: "MT-07", id: "m1" }]));
+      localStorage.setItem("lpb-carnet-m1", JSON.stringify({ log: [{ id: "a", date: d(30), kind: "compteur", km: 10000 }] }));
+    });
+    await p.reload();
+    await Promise.all([p.waitForNavigation(), p.click(".mat-carnet")]);
+    expect((await p.textContent("h1")).includes("Yamaha MT-07"), "titre du carnet");
+    expect(await p.$('[data-log-task="graissage-chaine"]'), "le graissage de chaîne doit être proposé");
+    await p.selectOption('[data-setting="transmission"]', "cardan");
+    expect(!(await p.$('[data-log-task="graissage-chaine"]')), "pas de graissage de chaîne sur une transmission à cardan");
+    await p.selectOption('[data-setting="transmission"]', "chaine");
+    // relevé de compteur aujourd'hui : 300 km en 30 jours → 10 km/jour
+    await p.click("[data-odometer]"); await p.fill("#o-km", "10300"); await p.click("#odo-form [type=submit]");
+    await p.click('[data-log-task="graissage-chaine"]'); await p.fill("#e-cost", "12"); await p.click("#entry-form [type=submit]");
+    const txt = await p.$eval('[data-log-task="graissage-chaine"]', b => b.closest(".task").innerText);
+    expect(/à 10\s?800 km/.test(txt) && /dans 2 mois/.test(txt), "prochaine échéance prévue avec la moyenne de roulage : " + txt.replace(/\s+/g, " "));
+    await p.click('[data-log-task="pression-pneus"]'); await p.check('[name=e-state][value=defaillant]'); await p.fill("#e-note", "Pneu arrière sous-gonflé");
+    await p.click("#entry-form [type=submit]");
+    expect((await p.textContent(".overview-counts")).includes("1 défaillant"), "le contrôle défaillant doit apparaître dans la vue d'ensemble");
+    expect((await p.$$(".log-entry")).length === 4, "historique : 4 entrées attendues");
+    expect((await p.textContent(".cstats")).includes("12 €"), "statistiques : coût total");
+    await p.goto(B + "index.html");
+    expect((await p.textContent("#home-due")).includes("Pression des pneus"), "l'accueil doit signaler le contrôle défaillant");
+    await p.goto(B + "fiches/entretien-chaine-moto.html");
+    await p.click('[data-result="ok"]');
+    await Promise.all([p.waitForNavigation(), p.click('a[href*="carnet.html?id=m1&fiche=entretien-chaine-moto"]')]);
+    expect(await p.$("#entry-form"), "depuis la fiche, la saisie de l'intervention doit s'ouvrir");
+    expect(!errs.length, errs.join(" | "));
+    await ctx.close();
+  });
+
   await test("Page d'introduction d'un domaine : présentation, équipements, pannes, précautions", async () => {
     const ctx = await newCtx(); const p = await ctx.newPage();
     const errs = []; watch(p, errs);
@@ -411,7 +447,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     for (const theme of ["dark", "light"]) {
       const ctx = await newCtx();
       await ctx.addInitScript(t => localStorage.setItem("lpb-theme", JSON.stringify(t)), theme);
-      for (const u of ["index.html", "guides.html?q=frein", "fiches/courroie-lave-linge.html", "diagnostic.html", "ajouter.html", "communaute.html", "profil.html", "materiel.html", "categories.html", "categories/jardin.html", "a-propos.html"]) {
+      for (const u of ["index.html", "guides.html?q=frein", "fiches/courroie-lave-linge.html", "diagnostic.html", "ajouter.html", "communaute.html", "profil.html", "materiel.html", "carnet.html", "categories.html", "categories/jardin.html", "a-propos.html"]) {
         const p = await ctx.newPage();
         await p.goto(B + u, { waitUntil: "load" });
         await p.addScriptTag({ content: axe });

@@ -49,7 +49,7 @@ PAGES = {}
 PAGES["index.html"] = dict(
   title="Les Pages Bleues — Réparer. Comprendre. Transmettre.",
   desc="L'encyclopédie collaborative de la réparation, en français : guides vérifiés pas à pas, diagnostic guidé et mode accompagnement pour réparer au lieu de jeter.",
-  scripts=["home.js"],
+  scripts=["entretien-data.js", "carnet-core.js", "home.js"],
   body="""    <section class="hero theme-dark">
       <img class="hero-photo" src="assets/img/photos/hero.webp" srcset="assets/img/photos/hero-480.webp 480w, assets/img/photos/hero-800.webp 800w, assets/img/photos/hero.webp 1024w" sizes="100vw" alt="" fetchpriority="high">
       <div class="container hero-inner">
@@ -152,6 +152,7 @@ PAGES["index.html"] = dict(
           <a class="mat-chip" href="materiel.html?kind=voiture"><span data-icon="car"></span>Ajouter ma voiture</a>
           <a class="mat-chip" href="materiel.html"><span data-icon="plus"></span>Autre appareil</a>
         </div>
+        <div class="home-due" id="home-due" hidden></div>
       </div>
     </section>
 
@@ -320,7 +321,7 @@ PAGES["profil.html"] = dict(
 PAGES["materiel.html"] = dict(
   title="Mon matériel : vos appareils et votre voiture — Les Pages Bleues",
   desc="Enregistrez votre électroménager et votre voiture (marque, modèle, année) : Les Pages Bleues vous montrent les fiches de réparation qui les concernent.",
-  scripts=["materiel-data.js", "materiel.js"], active="materiel",
+  scripts=["materiel-data.js", "entretien-data.js", "carnet-core.js", "materiel.js"], active="materiel",
   body="""    <section class="page-hero">
       <div class="container">
         <h1>Mon <span class="accent">matériel</span></h1>
@@ -330,6 +331,12 @@ PAGES["materiel.html"] = dict(
     <section class="section">
       <div class="container" id="materiel-root"></div>
     </section>""")
+
+PAGES["carnet.html"] = dict(
+  title="Carnet d'entretien — Les Pages Bleues",
+  desc="Le carnet d'entretien de votre matériel : entretiens et contrôles à venir, historique avec factures, prévision selon votre kilométrage.",
+  scripts=["materiel-data.js", "entretien-data.js", "carnet-core.js", "carnet.js"], active="materiel",
+  body="""    <div id="carnet-root"></div>""")
 
 PAGES["diagnostic.html"] = dict(
   title="Diagnostic guidé : trouver ce qui est en panne — Les Pages Bleues",

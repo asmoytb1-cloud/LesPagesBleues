@@ -109,6 +109,20 @@ function formHtml() {
     </form>`;
 }
 
+// Résumé du carnet d'entretien, comme la vue d'ensemble de MotoBook
+function carnetLine(m) {
+  const s = carnetSummary(m);
+  const parts = [
+    s.defaillant && `<span class="st st-defaillant">${s.defaillant} défaillant${s.defaillant > 1 ? "s" : ""}</span>`,
+    s.retard && `<span class="st st-retard">${s.retard} en retard</span>`,
+    s.bientot && `<span class="st st-bientot">${s.bientot} bientôt</span>`,
+    s.ok && `<span class="st st-ok">${s.ok} à jour</span>`,
+    s.inconnu && `<span class="st st-inconnu">${s.inconnu} à renseigner</span>`
+  ].filter(Boolean);
+  return `<a class="mat-carnet" href="carnet.html?id=${m.id}">${icon("wrench")}<span><strong>Carnet d'entretien</strong>
+    <small>${parts.length ? parts.join("") : s.entries ? `${s.entries} entrée${s.entries > 1 ? "s" : ""}` : "Suivre les entretiens et garder l'historique"}</small></span>${icon("chevron")}</a>`;
+}
+
 function cardHtml(m) {
   const guides = guidesForMateriel(m);
   const t = typeById(m.type);
@@ -122,6 +136,7 @@ function cardHtml(m) {
         <div><h3>${escapeHtml(materielName(m))}</h3>${details ? `<p class="muted">${escapeHtml(details)}</p>` : ""}</div>
         <button class="icon-btn" type="button" data-del="${m.id}" aria-label="Retirer ${escapeHtml(materielName(m))}">${icon("trash")}</button>
       </header>
+      ${carnetLine(m)}
       ${guides.length ? `
         <p class="mat-count"><strong>${guides.length} fiche${guides.length > 1 ? "s" : ""}</strong> pour ${forWhat}</p>
         <div class="rows">${guides.slice(0, 4).map(g => guideRow(g)).join("")}</div>`
@@ -146,6 +161,9 @@ function render() {
   root.innerHTML = `
     <div class="mat-layout">
       <div>${formHtml()}
+        <p class="mat-import"><label class="btn btn-ghost btn-sm" for="carnet-file">${icon("upload")} Importer un carnet d'entretien</label>
+          <input type="file" id="carnet-file" accept="application/json" hidden>
+          <small class="muted">Vous achetez un objet d'occasion ? Importez le carnet que le vendeur a exporté.</small></p>
         <p class="muted mat-note">${icon("shield")}<span>Enregistré dans ce navigateur uniquement. Types, marques et modèles proposés d'après les catalogues de ${sourcesNote()}. Votre modèle n'y est pas ? Tapez-le simplement.</span></p>
       </div>
       <section aria-labelledby="mat-list-title">
@@ -279,6 +297,18 @@ function wireForm() {
   });
 }
 
+root.addEventListener("change", async e => {
+  if (e.target.id !== "carnet-file" || !e.target.files[0]) return;
+  try {
+    const data = JSON.parse(await e.target.files[0].text());
+    if (data.format !== "carnet-entretien" || !data.materiel || !data.carnet) throw new Error();
+    const item = { ...data.materiel, id: newId(), added: new Date().toISOString() };
+    saveMateriel([item, ...loadMateriel()]);
+    saveCarnet(item.id, data.carnet);
+    location.href = `carnet.html?id=${item.id}`;
+  } catch { toast("Ce fichier n'est pas un carnet d'entretien des Pages Bleues."); }
+});
+
 root.addEventListener("click", e => {
   const seg = e.target.closest("[data-kind]");
   if (seg && seg.dataset.kind !== kind) {
@@ -292,11 +322,13 @@ root.addEventListener("click", e => {
     const m = materielById(del.dataset.del);
     if (!m) return;
     openModal("Retirer ce matériel ?", `
-      <p>${escapeHtml(materielLabel(m))} sera retiré de votre liste. Vos fiches, favoris et réparations ne sont pas touchés.</p>
+      <p>${escapeHtml(materielLabel(m))} sera retiré de votre liste, avec son carnet d'entretien. Vos fiches, favoris et réparations ne sont pas touchés.</p>
+      ${carnetSummary(m).entries ? `<p class="muted">Pensez à exporter le carnet avant (page du carnet) si vous voulez le garder ou le transmettre.</p>` : ""}
       <div class="form-actions"><button class="btn btn-ghost" type="button" data-close>Annuler</button>
         <button class="btn btn-danger" type="button" id="confirm-del">${icon("trash")} Retirer</button></div>`, (wrap, close) => {
       wrap.querySelector("#confirm-del").addEventListener("click", () => {
         saveMateriel(loadMateriel().filter(x => x.id !== m.id));
+        store.remove("lpb-carnet-" + m.id);
         close();
         render();
         document.getElementById("mat-list-title").setAttribute("tabindex", "-1");

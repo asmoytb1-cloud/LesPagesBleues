@@ -99,6 +99,8 @@ function guidePageHTML(g, st = {}) {
             <button class="btn btn-sm ${result === "ok" ? "btn-primary" : "btn-ghost"}" type="button" data-result="ok">${icon("check")} Ça a marché</button>
             <button class="btn btn-sm ${result === "ko" ? "btn-primary" : "btn-ghost"}" type="button" data-result="ko">${icon("alert")} Pas encore</button>
           </div>
+          ${result === "ok" ? loadMateriel().filter(m => guideFitsMateriel(g, m)).slice(0, 2).map(m =>
+            `<a class="btn btn-sm btn-ghost no-print" href="${ROOT}carnet.html?id=${m.id}&fiche=${g.id}">${icon("wrench")} Noter dans le carnet : ${escapeHtml(materielName(m))}</a>`).join("") : ""}
         </div>
       </section>
 

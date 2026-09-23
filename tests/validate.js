@@ -106,6 +106,21 @@ const sw = fs.readFileSync(path.join(ROOT, "sw.js"), "utf8");
 for (const m of sw.match(/const CORE = \[([\s\S]*?)\];/)[1].matchAll(/"([^"]+)"/g)) {
   if (m[1] !== "./" && !fs.existsSync(path.join(ROOT, m[1]))) fail(`sw.js : fichier à mettre en cache introuvable ${m[1]}`);
 }
+/* ---------- Carnet d'entretien : plans par type ---------- */
+vm.runInContext(fs.readFileSync(path.join(ROOT, "assets/js/entretien-data.js"), "utf8"), ctx, { filename: "entretien-data.js" });
+const { MAINTENANCE } = vm.runInContext("({ MAINTENANCE })", ctx);
+for (const [type, plan] of Object.entries(MAINTENANCE)) {
+  if (typeof plan === "string") { if (!Array.isArray(MAINTENANCE[plan])) fail(`entretien ${type} : renvoie vers un plan inconnu ${plan}`); continue; }
+  const ids = new Set();
+  for (const t of plan) {
+    if (ids.has(t.id)) fail(`entretien ${type} : tâche en double ${t.id}`);
+    ids.add(t.id);
+    if (!["entretien", "controle"].includes(t.kind)) fail(`entretien ${type}/${t.id} : type inconnu ${t.kind}`);
+    if (t.guide && !GUIDES.some(g => g.id === t.guide)) fail(`entretien ${type}/${t.id} : fiche inconnue ${t.guide}`);
+    if ((t.months || t.days || t.km) && !t.guide) fail(`entretien ${type}/${t.id} : un intervalle doit venir d'une fiche sourcée`);
+  }
+}
+
 /* ---------- Domaines : texte d'introduction et précautions ---------- */
 for (const c of CATEGORIES) {
   if (!c.intro || c.intro.length < 60) fail(`domaine ${c.id} : introduction manquante ou trop courte`);
@@ -116,6 +131,7 @@ for (const c of CATEGORIES) {
 vm.runInContext(fs.readFileSync(path.join(ROOT, "assets/js/materiel-data.js"), "utf8"), ctx, { filename: "materiel-data.js" });
 const { APPLIANCE_TYPES, CAR_MAKES, MOTO_MAKES, MATERIEL_SOURCES } = vm.runInContext("({ APPLIANCE_TYPES, CAR_MAKES, MOTO_MAKES, MATERIEL_SOURCES })", ctx);
 const typeIds = new Set(APPLIANCE_TYPES.map(t => t.id));
+for (const type of Object.keys(MAINTENANCE)) if (!typeIds.has(type) && type !== "voiture" && type !== "moto") fail(`entretien : type de matériel inconnu ${type}`);
 const diagDevices = new Set(DIAGNOSTICS.map(d => d.device));
 for (const t of APPLIANCE_TYPES) {
   if (t.sources.length && !t.brands.length) fail(`matériel ${t.id} : aucune marque relevée alors qu'une source est indiquée`);

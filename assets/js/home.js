@@ -77,3 +77,23 @@ if (materiel.length) {
     return `<a class="mat-chip" href="${n ? "guides.html?materiel=" + m.id : "materiel.html#mat-" + m.id}">${icon(m.icon || "box")}${escapeHtml(materielName(m))}${m.year ? ` <small>${m.year}</small>` : ""} <small>· ${n} fiche${n > 1 ? "s" : ""}</small></a>`;
   }).join("") + `<a class="mat-chip" href="materiel.html">${icon("plus")}Ajouter</a>`;
 }
+
+// Carnets d'entretien : ce qui est en retard, défaillant ou proche, tous matériels confondus
+const due = [];
+for (const m of materiel) {
+  const c = loadCarnet(m.id);
+  for (const t of carnetPlan(m, c)) {
+    if (t.off) continue;
+    const st = taskStatus(m, c, t);
+    if (["defaillant", "retard", "bientot"].includes(st.state)) due.push({ m, t, st });
+  }
+}
+if (due.length) {
+  const rank = { defaillant: 0, retard: 1, bientot: 2 };
+  due.sort((a, b) => rank[a.st.state] - rank[b.st.state] || (a.st.days ?? 0) - (b.st.days ?? 0));
+  const box = document.getElementById("home-due");
+  box.hidden = false;
+  box.innerHTML = `<h3>${icon("wrench")} Entretiens à prévoir</h3><ul>${due.slice(0, 5).map(({ m, t, st }) => `
+    <li><a href="carnet.html?id=${m.id}"><span class="st st-${st.state}">${st.state === "defaillant" ? "Défaillant" : st.state === "retard" ? "En retard" : "Bientôt"}</span>
+      <strong>${escapeHtml(t.label)}</strong> <small>${escapeHtml(materielName(m))}${st.days != null ? ` · ${relDays(st.days)}` : ""}</small></a></li>`).join("")}</ul>`;
+}
