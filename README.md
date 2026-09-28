@@ -1,6 +1,6 @@
 # Les Pages Bleues
 
-L'encyclopédie collaborative de la réparation, en français — **Réparer. Comprendre. Transmettre.**
+L'encyclopédie collaborative de l'entretien et de la réparation, en français — **Réparer. Comprendre. Transmettre.**
 
 Trouvez en quelques clics comment réparer vos objets, au lieu de les jeter.
 

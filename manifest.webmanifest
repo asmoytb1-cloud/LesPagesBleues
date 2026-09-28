@@ -1,7 +1,7 @@
 {
   "name": "Les Pages Bleues — Réparer. Comprendre. Transmettre.",
   "short_name": "Pages Bleues",
-  "description": "L'encyclopédie de l'entretien : guides de réparation pas à pas, avec mode accompagnement.",
+  "description": "L'encyclopédie collaborative de l'entretien et de la réparation : guides pas à pas, carnet d'entretien et mode accompagnement.",
   "lang": "fr",
   "start_url": "index.html",
   "scope": "./",

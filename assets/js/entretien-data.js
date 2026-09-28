@@ -78,7 +78,40 @@ const MAINTENANCE = {
   smartphone: [{ id: "batterie", label: "État de la batterie", kind: "controle", guide: "telephone-ne-charge-plus", note: "Usée sous 80 %." }],
   tablette: [{ id: "batterie", label: "État de la batterie", kind: "controle", guide: "telephone-ne-charge-plus" }],
   "ordinateur-portable": [{ id: "ventilation", label: "Dépoussiérage des aérations", kind: "entretien", guide: "ordinateur-portable-chauffe" }],
-  imprimante: [{ id: "tetes", label: "Qualité d'impression (têtes)", kind: "controle", guide: "tetes-impression-imprimante" }]
+  imprimante: [{ id: "tetes", label: "Qualité d'impression (têtes)", kind: "controle", guide: "tetes-impression-imprimante" }],
+  "chauffe-eau": [{ id: "groupe-securite", label: "Manœuvre du groupe de sécurité", kind: "entretien", months: 1, guide: "groupe-securite-chauffe-eau", note: "Un quart de tour quelques secondes, puis refermer." }],
+  vmc: [
+    { id: "bouches", label: "Nettoyage des bouches et entrées d'air", kind: "entretien", months: 6, guide: "nettoyer-bouches-vmc", note: "Au printemps et à l'automne." },
+    { id: "filtres", label: "Remplacement des filtres (double flux)", kind: "entretien", months: 12, guide: "nettoyer-bouches-vmc", note: "Une à deux fois par an, plus souvent en ville." },
+    { id: "professionnel", label: "Contrôle par un professionnel", kind: "controle", months: 36, guide: "nettoyer-bouches-vmc", note: "Recommandé par l'ADEME tous les trois ans." }
+  ],
+  "poele-granules": [
+    { id: "cendrier", label: "Vidage du cendrier", kind: "entretien", days: 7, guide: "entretien-poele-granules", note: "Creuset : idéalement chaque jour de chauffe." },
+    { id: "reservoir", label: "Aspiration de la sciure du réservoir", kind: "entretien", months: 1, guide: "entretien-poele-granules" },
+    { id: "ramonage", label: "Ramonage du conduit", kind: "entretien", months: 6, guide: "entretien-poele-granules", note: "Obligatoire deux fois par an, par un professionnel." },
+    { id: "entretien-annuel", label: "Entretien annuel par un professionnel", kind: "entretien", months: 12, guide: "entretien-poele-granules", note: "Gardez l'attestation." }
+  ],
+  "trottinette-electrique": [
+    { id: "pneus", label: "Pression et état des pneus", kind: "controle", days: 7, guide: "entretien-trottinette-electrique" },
+    { id: "freins", label: "Réglage des freins", kind: "controle", months: 3, guide: "entretien-trottinette-electrique" },
+    { id: "vis", label: "Serrage de la visserie", kind: "controle", guide: "entretien-trottinette-electrique", note: "Guidon, roues, frein et pliage." }
+  ],
+  "robot-tondeuse": [
+    { id: "nettoyage", label: "Nettoyage du carter et des roues", kind: "entretien", days: 7, guide: "entretien-robot-tondeuse", note: "Pendant la saison de tonte." },
+    { id: "lames", label: "État des lames", kind: "controle", days: 28, guide: "entretien-robot-tondeuse", note: "Toutes les 4 à 6 semaines." },
+    { id: "hivernage", label: "Hivernage", kind: "entretien", months: 12, guide: "entretien-robot-tondeuse", note: "Batterie à environ 70 %, au sec." }
+  ],
+  "nettoyeur-haute-pression": [
+    { id: "hivernage", label: "Hivernage et filtre d'arrivée d'eau", kind: "entretien", months: 12, guide: "hivernage-nettoyeur-haute-pression", note: "Et vider la pompe après chaque utilisation." }
+  ],
+  "taille-haie": [
+    { id: "lames", label: "Nettoyage et huilage des lames", kind: "entretien", guide: "entretien-taille-haie", note: "Après chaque utilisation." },
+    { id: "hivernage", label: "Préparation pour l'hiver", kind: "entretien", months: 12, guide: "entretien-taille-haie" }
+  ],
+  deshumidificateur: [
+    { id: "filtre", label: "Nettoyage du préfiltre", kind: "entretien", months: 1, guide: "entretien-deshumidificateur" },
+    { id: "reservoir", label: "Lavage du réservoir", kind: "entretien", months: 1, guide: "entretien-deshumidificateur" }
+  ]
 };
 
 // Options qui adaptent le plan (comme la transmission d'une moto chez MotoBook)

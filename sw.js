@@ -1,5 +1,5 @@
 /* Les Pages Bleues — service worker : le site reste utilisable sans réseau (garage, cave, jardin…) */
-const CACHE = "lpb-v11";
+const CACHE = "lpb-v12";
 const CORE = [
   "./", "index.html", "guides.html", "guide.html", "categories.html", "diagnostic.html", "communaute.html",
   "profil.html", "ajouter.html", "materiel.html", "carnet.html", "a-propos.html", "404.html",

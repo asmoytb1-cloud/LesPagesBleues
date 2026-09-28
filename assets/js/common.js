@@ -527,7 +527,7 @@ function renderFooter() {
     <div class="container footer-inner">
       <div>
         <a class="brand" href="${ROOT}index.html">${icon("book", "brand-ico")}<span><strong>Les Pages <em>Bleues</em></strong><small>Réparer. Comprendre. Transmettre.</small></span></a>
-        <p class="muted">L'encyclopédie collaborative de la réparation, en français. Un monde plus durable commence par un geste.</p>
+        <p class="muted">L'encyclopédie collaborative de l'entretien et de la réparation, en français. Un monde plus durable commence par un geste.</p>
       </div>
       <div class="footer-cols">
         <div><h2>Explorer</h2>

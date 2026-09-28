@@ -2156,5 +2156,251 @@ const GUIDES = [
       "La corde glisse à la mécanique : ajoutez un tour d'enroulement en faisant passer la corde sous elle-même.",
       "Ça frise sur une case : ce n'est pas lié aux cordes, le réglage du manche est à revoir par un luthier."
     ]
+  },
+  {
+    id: "groupe-securite-chauffe-eau",
+    title: "Chauffe-eau : entretenir le groupe de sécurité",
+    category: "maison",
+    devices: ["chauffe-eau"],
+    difficulty: "Facile",
+    duration: "5 min",
+    minutes: 5,
+    savings: "≈ 100 €",
+    keywords: ["chauffe-eau", "ballon d'eau chaude", "cumulus", "groupe de sécurité", "soupape", "fuite", "goutte", "tartre", "calcaire", "pression", "7 bar", "entretien"],
+    summary: "Le groupe de sécurité protège votre ballon d'eau chaude contre une surpression. Le manœuvrer une fois par mois évite que le calcaire ne le bloque : trente secondes, sans outil.",
+    safety: "L'eau qui s'écoule par la soupape sort du ballon : elle peut être très chaude. Gardez les mains à l'écart de l'évacuation.",
+    tools: ["Aucun outil", "Une lampe si le ballon est dans un placard sombre"],
+    parts: [],
+    sources: [
+      { label: "Savelys (groupe ENGIE) — rôle et entretien du groupe de sécurité", url: "https://www.savelys.fr/dossiers/role-du-groupe-de-securite-chauffe-eau" },
+      { label: "Selectra — groupe de sécurité du chauffe-eau : fonctionnement et entretien", url: "https://climate.selectra.com/fr/renovation-energetique/chauffe-eau/groupe-de-securite" }
+    ],
+    steps: [
+      { title: "Repérer le groupe de sécurité", text: "C'est le petit bloc installé sur l'arrivée d'eau froide, sous le ballon ou à côté, relié à un entonnoir d'évacuation. Il libère automatiquement de l'eau si la pression dépasse 7 bar." },
+      { title: "Manœuvrer la soupape", text: "Tournez d'un quart de tour la molette ou le levier de vidange : un peu d'eau s'écoule dans l'entonnoir. Maintenez quelques secondes, puis refermez.", tip: "Ce geste chasse le calcaire qui finirait par bloquer la soupape." },
+      { title: "Vérifier que tout se referme", text: "Une fois la molette revenue en place, l'écoulement doit s'arrêter. Surveillez l'entonnoir une minute." },
+      { title: "Savoir ce qui est normal", text: "Pendant que le ballon chauffe, l'eau se dilate : quelques litres par cycle s'écoulent par le groupe de sécurité (3 à 5 litres pour un ballon de 200 litres). Ce n'est pas une panne." },
+      { title: "Recommencer chaque mois", text: "Notez la date dans le carnet d'entretien : la manœuvre est à refaire une fois par mois, surtout si votre eau est calcaire." }
+    ],
+    troubleshoot: [
+      "Ça goutte en permanence, même quand le ballon ne chauffe pas : du calcaire, une pression du réseau trop forte ou l'absence de vase d'expansion en sont les causes habituelles. Si la fuite persiste après quelques manœuvres, le groupe de sécurité est à remplacer.",
+      "La molette ne tourne plus ou rien ne s'écoule : la soupape est bloquée et ne protège plus le ballon. Faites-la remplacer rapidement.",
+      "La pression du réseau dépasse 5 bar : un réducteur de pression en amont prolonge la vie du groupe de sécurité.",
+      "Un groupe de sécurité dure en général 5 à 8 ans, moins en eau très calcaire."
+    ]
+  },
+  {
+    id: "nettoyer-bouches-vmc",
+    title: "Nettoyer les bouches et entrées d'air de la VMC",
+    category: "maison",
+    devices: ["vmc"],
+    difficulty: "Facile",
+    duration: "30 min",
+    minutes: 30,
+    savings: "≈ 130 €",
+    keywords: ["vmc", "ventilation", "bouche d'extraction", "entrée d'air", "aération", "humidité", "moisissure", "condensation", "double flux", "filtre", "salle de bain", "cuisine"],
+    summary: "Des bouches encrassées aspirent mal : l'humidité reste dans la maison. Deux nettoyages par an, au printemps et à l'automne, suffisent à garder une VMC efficace.",
+    safety: "Coupez l'alimentation électrique de la VMC avant de démonter les bouches.",
+    tools: ["Tournevis (selon les bouches)", "Eau savonneuse et éponge", "Chiffon humide", "Aspirateur avec embout brosse", "Une feuille de papier toilette pour le test"],
+    parts: ["Filtres de rechange pour une VMC double flux"],
+    sources: [
+      { label: "Qualitel — comment nettoyer votre VMC", url: "https://www.qualitel.org/particuliers/conseils/entretien-vmc/" },
+      { label: "Ventilation Direct — démonter et nettoyer les bouches de VMC", url: "https://www.ventildirect.fr/blog/comment-demonter-et-nettoyer-bouches-vmc-n36" }
+    ],
+    steps: [
+      { title: "Couper la VMC", text: "Coupez son disjoncteur au tableau électrique." },
+      { title: "Démonter les bouches d'extraction", text: "Dans la cuisine, la salle de bain et les WC, retirez la grille de chaque bouche : elle se déclipse ou se tourne, parfois une vis la maintient.", tip: "Prenez une photo avant de démonter : le remontage sera plus simple." },
+      { title: "Laver les grilles", text: "Lavez grille et volet à l'eau savonneuse, rincez et laissez sécher. Certaines grilles passent au lave-vaisselle : vérifiez la notice. Essuyez le corps de la bouche resté au plafond avec un chiffon humide." },
+      { title: "Dépoussiérer les entrées d'air", text: "Dans les pièces à vivre, passez l'aspirateur ou un chiffon humide sur les entrées d'air des fenêtres. Ne les bouchez jamais : c'est par là que l'air neuf entre." },
+      { title: "Changer les filtres (double flux)", text: "Si votre VMC est à double flux, remplacez ses filtres une à deux fois par an, plus souvent en ville." },
+      { title: "Remonter et tester", text: "Remontez les bouches, rallumez la VMC et approchez une feuille de papier toilette de chaque bouche : elle doit être aspirée et rester plaquée.", tip: "Faites contrôler l'installation par un professionnel tous les trois ans, comme le recommande l'ADEME." }
+    ],
+    troubleshoot: [
+      "La feuille ne tient pas après nettoyage : le moteur ou les gaines sont en cause (gaine écrasée ou débranchée dans les combles). Faites intervenir un professionnel.",
+      "La VMC est bruyante : une bouche mal remontée ou un caisson encrassé peuvent vibrer."
+    ]
+  },
+  {
+    id: "entretien-poele-granules",
+    title: "Poêle à granulés : l'entretien courant",
+    category: "maison",
+    devices: ["poele-granules"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 400 €",
+    keywords: ["poêle à granulés", "poêle à pellets", "pellets", "granulés", "creuset", "brasero", "cendrier", "cendres", "vitre", "ramonage", "entretien annuel", "chauffage"],
+    summary: "Un creuset encrassé et un cendrier plein font mal brûler les granulés. Quelques gestes réguliers, plus le ramonage et l'entretien professionnels, évitent les pannes et les feux de conduit.",
+    safety: "Travaillez uniquement sur un poêle éteint, froid et débranché. Les cendres peuvent rester chaudes longtemps : utilisez un aspirateur à cendres et un seau métallique avec couvercle.",
+    tools: ["Aspirateur à cendres (avec filtre)", "Seau métallique avec couvercle", "Chiffon microfibre humide"],
+    parts: [],
+    sources: [
+      { label: "Les Experts Chaleur Bois — ramonage et entretien d'un poêle à granulés", url: "https://www.expertschaleurbois.fr/poele-a-granules/entretien-poele-a-granules/" },
+      { label: "Proxi-TotalEnergies — ramonage et entretien d'un poêle à granulés", url: "https://proxi.totalenergies.fr/particuliers/actualites/tout-savoir-sur-le-ramonage-et-lentretien-dun-poele-a-granules" }
+    ],
+    steps: [
+      { title: "Éteindre et laisser refroidir", text: "Arrêtez le poêle, attendez qu'il soit complètement froid, puis débranchez-le." },
+      { title: "Vider le creuset", text: "Retirez le creuset (le petit bac percé où brûlent les granulés) et aspirez les cendres et résidus. Vérifiez que ses trous ne sont pas bouchés : c'est par eux qu'arrive l'air de combustion.", tip: "L'idéal est de le faire chaque jour de chauffe." },
+      { title: "Vider le cendrier", text: "Videz le cendrier dans le seau métallique, environ une fois par semaine selon votre consommation." },
+      { title: "Nettoyer la vitre", text: "Tous les deux ou trois jours, essuyez la vitre froide avec un chiffon microfibre humide." },
+      { title: "Aspirer le réservoir", text: "Une fois par mois, videz le réservoir et aspirez la sciure accumulée au fond : elle peut bloquer la vis sans fin." },
+      { title: "Planifier les interventions professionnelles", text: "Le ramonage du conduit est obligatoire deux fois par an, et l'entretien complet de l'appareil une fois par an. Gardez les attestations : l'assurance peut les demander.", tip: "Enregistrez ces rendez-vous dans le carnet d'entretien pour recevoir un rappel." }
+    ],
+    troubleshoot: [
+      "Les granulés s'accumulent sans brûler : le creuset est encrassé ou les granulés sont humides.",
+      "La vitre noircit très vite : combustion incomplète, souvent un creuset bouché ou un conduit à ramoner."
+    ]
+  },
+  {
+    id: "entretien-trottinette-electrique",
+    title: "Trottinette électrique : l'entretien régulier",
+    category: "velo",
+    devices: ["trottinette-electrique"],
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    savings: "≈ 60 €",
+    keywords: ["trottinette électrique", "trottinette", "xiaomi", "ninebot", "segway", "pneus", "pression", "crevaison", "freins", "vis", "batterie", "autonomie", "entretien", "edpm"],
+    summary: "Pneus mal gonflés, freins déréglés et vis desserrées causent la plupart des pannes évitables. Un contrôle par semaine et un serrage régulier prolongent la vie de la trottinette.",
+    safety: "Éteignez la trottinette avant toute intervention. Ne lavez jamais une trottinette au jet d'eau : l'eau abîme la batterie et l'électronique.",
+    tools: ["Pompe avec manomètre (embout adapté à la valve)", "Clés Allen", "Chiffon doux et éponge légèrement humide", "Brosse souple"],
+    parts: ["Plaquettes de frein si elles sont usées (freins à disque)"],
+    sources: [
+      { label: "Matmut — entretien de la trottinette électrique", url: "https://www.matmut.fr/assurance/nvei/conseils/guide-prevention-trottinette-electrique/entretien" },
+      { label: "Decathlon — guide d'entretien de la trottinette électrique", url: "https://conseilsport.decathlon.fr/notre-guide-dentretien-pour-votre-trottinette-electrique" }
+    ],
+    steps: [
+      { title: "Contrôler les pneus", text: "Chaque semaine, vérifiez la pression au manomètre et regonflez à la valeur indiquée sur le flanc du pneu ou dans la notice. Regardez aussi l'état : un pneu fissuré ou déformé est à changer.", tip: "Un pneu sous-gonflé crève plus facilement et réduit l'autonomie." },
+      { title: "Vérifier les freins", text: "Tous les trois mois, contrôlez le réglage : tambour à régler, plaquettes de disque à surveiller, frein électromagnétique sans réglage. Resserrez la molette du levier si le frein est trop mou.", tip: "N'huilez jamais un frein." },
+      { title: "Resserrer la visserie", text: "Vérifiez les vis du guidon, des roues, du frein et du système de pliage. Resserrez à la clé Allen d'environ un quart de tour, sans forcer." },
+      { title: "Nettoyer sans eau", text: "Après une sortie sale, passez une brosse souple puis une éponge à peine humide et un chiffon doux. Évitez les flaques en roulant." },
+      { title: "Soigner la batterie", text: "Utilisez uniquement le chargeur d'origine et évitez l'humidité et le froid. Si la trottinette reste longtemps au garage, rechargez-la tous les 3 à 4 mois à environ 70 %, dans un endroit sec et tempéré." }
+    ],
+    troubleshoot: [
+      "Le frein reste mou après réglage : plaquettes usées ou câble détendu, à faire contrôler.",
+      "Un jeu apparaît dans la colonne de direction : ne roulez pas avant de l'avoir fait resserrer.",
+      "Autonomie en baisse : vérifiez d'abord la pression des pneus, puis l'état de la batterie."
+    ]
+  },
+  {
+    id: "entretien-robot-tondeuse",
+    title: "Robot tondeuse : nettoyage, lames et hivernage",
+    category: "jardin",
+    devices: ["robot-tondeuse"],
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    savings: "≈ 80 €",
+    keywords: ["robot tondeuse", "tondeuse robot", "automower", "husqvarna", "worx", "gardena", "lames", "station de charge", "hivernage", "batterie", "coupe", "gazon jaunit"],
+    summary: "Herbe collée sous le carter, lames émoussées et contacts de charge sales dégradent la tonte. Un nettoyage par semaine en saison et un hivernage soigné suffisent.",
+    safety: "Arrêtez le robot et coupez son alimentation (bouton d'arrêt, code de sécurité ou batterie selon le modèle) avant de le retourner. Portez des gants : les lames coupent.",
+    tools: ["Gants de protection", "Brosse à poils durs", "Chiffon légèrement humide", "Tournevis adapté aux vis des lames"],
+    parts: ["Jeu de lames de rechange (avec leurs vis)"],
+    sources: [
+      { label: "eufy — entretien d'un robot tondeuse", url: "https://www.eufy.com/eu-fr/blogs/lawn-mower/robot-lawn-mower-maintenance" },
+      { label: "50 Factory — entretien robot tondeuse : nettoyage, lames, batterie", url: "https://www.50factory.com/content/20023-entretien-robot-tondeuse-nettoyage-lames-batterie-et-pieces-50-factory" }
+    ],
+    steps: [
+      { title: "Arrêter le robot", text: "Mettez-le hors tension et enfilez des gants avant de le manipuler." },
+      { title: "Nettoyer le carter et les roues", text: "Chaque semaine en saison, retournez le robot et brossez l'herbe collée sous le carter, autour du disque de coupe et des roues. Finissez au chiffon légèrement humide.", tip: "Jamais de jet d'eau ni de nettoyeur haute pression : l'eau atteint les joints, les roulements et l'électronique." },
+      { title: "Contrôler les lames", text: "Toutes les quatre à six semaines, regardez les lames : émoussées, tordues ou ébréchées, elles arrachent l'herbe au lieu de la couper, et le gazon jaunit." },
+      { title: "Remplacer les lames", text: "Changez toutes les lames en même temps pour garder le disque équilibré, avec des vis neuves si les anciennes sont usées." },
+      { title: "Nettoyer les contacts de charge", text: "Essuyez au chiffon sec les contacts du robot et de la station : sales, ils provoquent des charges ratées et des arrêts inattendus." },
+      { title: "Hiverner", text: "En fin de saison, nettoyez tout le robot, rechargez la batterie à environ 70 % et rangez-le dans un endroit sec et ventilé. Rentrez la station ou débranchez son alimentation.", tip: "Au printemps, vérifiez lames, roues et batterie avant la première tonte." }
+    ],
+    troubleshoot: [
+      "Le robot ne rentre pas se charger : nettoyez les contacts et vérifiez que le fil périphérique n'est pas coupé.",
+      "La coupe est irrégulière malgré des lames neuves : de l'herbe bloque peut-être le disque de coupe."
+    ]
+  },
+  {
+    id: "hivernage-nettoyeur-haute-pression",
+    title: "Nettoyeur haute pression : vidanger et hiverner",
+    category: "jardin",
+    devices: ["nettoyeur-haute-pression"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 150 €",
+    keywords: ["nettoyeur haute pression", "karcher", "kärcher", "pompe", "gel", "hiver", "hivernage", "antigel", "filtre", "pression faible", "lance", "pistolet"],
+    summary: "L'eau restée dans la pompe gèle et la fait éclater. Vider l'appareil après chaque usage et l'hiverner à l'abri du gel évite la panne la plus coûteuse.",
+    safety: "Débranchez l'appareil avant de démonter les accessoires, et relâchez la pression en appuyant sur la gâchette du pistolet.",
+    tools: ["Graisse ou lubrifiant pour les raccords", "Brosse et chiffon", "Antigel spécial nettoyeur (si l'appareil ne peut pas être rangé hors gel)"],
+    parts: [],
+    sources: [
+      { label: "Kärcher — stocker son nettoyeur haute pression en hiver", url: "https://www.kaercher.com/fr/comment-stocker-son-nettoyeur-haute-pression-en-hiver.html" },
+      { label: "Castorama — entretenir un nettoyeur haute pression", url: "https://www.castorama.fr/idees-et-conseils/entretenir-un-nettoyeur-haute-pression/CF_CPRD_npcart_100338.art" }
+    ],
+    steps: [
+      { title: "Couper l'eau et vider la pompe", text: "Après chaque utilisation, fermez l'arrivée d'eau puis appuyez quelques secondes sur la gâchette du pistolet pour vider la pompe. Débranchez ensuite l'appareil." },
+      { title: "Démonter les accessoires", text: "Débranchez le tuyau haute pression, le pistolet, la lance et le tuyau d'arrivée d'eau, et laissez-les s'égoutter." },
+      { title: "Nettoyer le filtre d'arrivée d'eau", text: "Une fois par an, au moment de l'hivernage, dévissez le raccord d'arrivée et rincez le petit filtre qui s'y trouve." },
+      { title: "Nettoyer et graisser", text: "Nettoyez l'appareil avant de le ranger : la saleté durcit pendant l'hiver. Mettez un peu de graisse sur les raccords filetés et clipsés pour qu'ils ne restent pas bloqués." },
+      { title: "Ranger à l'abri du gel", text: "Stockez l'appareil dans un local sec et hors gel. Une housse est possible, mais pas étanche à l'air.", tip: "Si le local peut geler, faites circuler un antigel spécial nettoyeur, selon la notice de l'appareil." }
+    ],
+    troubleshoot: [
+      "La pression est faible : filtre d'arrivée d'eau encrassé ou buse bouchée. Nettoyez le filtre et purgez l'appareil.",
+      "De l'eau fuit sous la pompe après l'hiver : la pompe a probablement gelé, faites-la contrôler."
+    ]
+  },
+  {
+    id: "entretien-taille-haie",
+    title: "Taille-haie : nettoyer et huiler les lames",
+    category: "jardin",
+    devices: ["taille-haie"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 50 €",
+    keywords: ["taille-haie", "taille haie", "lames", "résine", "sève", "huile", "rouille", "coupe mal", "stihl", "hivernage", "batterie"],
+    summary: "La sève et la résine durcissent sur les lames et freinent la coupe. Un nettoyage et un huilage après chaque usage gardent les lames efficaces et sans rouille.",
+    safety: "Rendez l'outil inerte avant de toucher aux lames : débranchez-le, retirez la batterie ou, sur un modèle thermique, le capuchon de bougie. Portez des gants.",
+    tools: ["Gants de protection", "Brosse", "Dissolvant de résine (spray d'entretien pour lames)", "Huile d'entretien", "Chiffon"],
+    parts: [],
+    sources: [
+      { label: "STIHL — comment nettoyer un taille-haie", url: "https://www.stihl.fr/fr/conseils-tutoriels/entretien-outils-motorises/conseils-taille-haie/nettoyer-taille-haie" },
+      { label: "Castorama — comment entretenir un taille-haie", url: "https://www.castorama.fr/idees-et-conseils/comment-entretenir-un-taille-haie/CF_CPRD_npcart_100378.art" }
+    ],
+    steps: [
+      { title: "Mettre l'outil hors service", text: "Débranchez le câble, retirez la batterie ou le capuchon de bougie, et enfilez des gants." },
+      { title: "Brosser les lames", text: "Après chaque utilisation, retirez à la brosse les feuilles et débris coincés entre les dents." },
+      { title: "Dissoudre la résine", text: "Pulvérisez un dissolvant de résine sur les lames. Sur un modèle qui le permet, faites-le tourner brièvement pour bien répartir le produit, puis remettez-le hors service." },
+      { title: "Huiler", text: "Essuyez puis appliquez une fine couche d'huile d'entretien des deux côtés des lames : elle les protège de la rouille.", tip: "Pendant une longue séance de taille, huilez aussi les lames de temps en temps." },
+      { title: "Préparer l'hiver", text: "Avant de ranger l'outil pour la saison, vérifiez l'affûtage et le jeu des lames. Modèle à batterie : stockez la batterie à part, chargée à 40-60 %, au frais. Modèle thermique : videz le réservoir et faites tourner le moteur jusqu'à l'arrêt." }
+    ],
+    troubleshoot: [
+      "Les lames arrachent les branches au lieu de les couper : elles sont émoussées. Faites-les affûter ou remplacez-les.",
+      "Les lames forcent ou chauffent : résine accumulée ou manque d'huile. Nettoyez et huilez."
+    ]
+  },
+  {
+    id: "entretien-deshumidificateur",
+    title: "Déshumidificateur : nettoyer le filtre et le réservoir",
+    category: "electromenager",
+    devices: ["deshumidificateur"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 40 €",
+    keywords: ["déshumidificateur", "humidité", "filtre", "réservoir", "bac", "odeur", "moisissure", "condensation", "capteur", "entretien"],
+    summary: "Un filtre poussiéreux fait chuter l'efficacité et l'eau qui stagne dans le réservoir sent mauvais. Un entretien mensuel suffit.",
+    safety: "Débranchez l'appareil avant de le nettoyer.",
+    tools: ["Aspirateur avec embout brosse", "Eau chaude et liquide vaisselle doux", "Vinaigre blanc (en cas d'odeur)", "Chiffon"],
+    parts: ["Filtre de rechange si le vôtre n'est pas lavable"],
+    sources: [
+      { label: "air&me — comment entretenir son déshumidificateur", url: "https://www.airandme.fr/blog/deshumidification/comment-entretenir-son-deshumidificateur/" },
+      { label: "Coolblue — comment entretenir mon déshumidificateur", url: "https://www.coolblue.be/fr/conseils/entretenir-deshumidificateur.html" }
+    ],
+    steps: [
+      { title: "Débrancher", text: "Éteignez et débranchez l'appareil." },
+      { title: "Nettoyer le préfiltre", text: "Retirez le filtre amovible (souvent derrière la grille d'entrée d'air), passez-le à l'aspirateur ou rincez-le à l'eau, puis laissez-le sécher complètement avant de le remettre.", tip: "Environ une fois par mois, plus souvent dans une pièce poussiéreuse." },
+      { title: "Laver le réservoir", text: "Videz le réservoir et lavez-le à l'eau chaude avec un peu de liquide vaisselle doux. En cas d'odeur, rincez à l'eau vinaigrée." },
+      { title: "Dépoussiérer grilles et capteur", text: "Passez l'aspirateur sur les grilles d'entrée et de sortie d'air et sur le capteur d'humidité : couvert de poussière, il mesure mal." },
+      { title: "Remonter et remettre en route", text: "Remettez le filtre sec et le réservoir, puis rebranchez. Videz ensuite le réservoir régulièrement pour ne pas laisser l'eau stagner.", tip: "Un filtre non lavable (jetable ou à charbon) se remplace : la notice indique sa durée de vie." }
+    ],
+    troubleshoot: [
+      "L'appareil tourne mais récupère peu d'eau : filtre encrassé, ou pièce trop froide pour certains modèles.",
+      "Il s'arrête tout seul : le réservoir est plein ou mal positionné."
+    ]
   }
 ];

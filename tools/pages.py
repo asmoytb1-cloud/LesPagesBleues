@@ -48,14 +48,14 @@ PAGES = {}
 
 PAGES["index.html"] = dict(
   title="Les Pages Bleues — Réparer. Comprendre. Transmettre.",
-  desc="L'encyclopédie collaborative de la réparation, en français : guides vérifiés pas à pas, diagnostic guidé et mode accompagnement pour réparer au lieu de jeter.",
+  desc="L'encyclopédie collaborative de l'entretien et de la réparation, en français : guides vérifiés pas à pas, diagnostic guidé, carnet d'entretien et mode accompagnement pour réparer au lieu de jeter.",
   scripts=["entretien-data.js", "carnet-core.js", "home.js"],
   body="""    <section class="hero theme-dark">
       <img class="hero-photo" src="assets/img/photos/hero.webp" srcset="assets/img/photos/hero-480.webp 480w, assets/img/photos/hero-800.webp 800w, assets/img/photos/hero.webp 1024w" sizes="100vw" alt="" fetchpriority="high">
       <div class="container hero-inner">
         <div>
           <h1>Réparer.<span class="accent">Comprendre.</span>Transmettre.</h1>
-          <p class="hero-lead">L'encyclopédie collaborative des réparations. Des guides concrets, vérifiés, écrits pour ceux qui n'ont jamais tenu un tournevis.</p>
+          <p class="hero-lead">L'encyclopédie collaborative de l'entretien et de la réparation. Des guides concrets, vérifiés, écrits pour ceux qui n'ont jamais tenu un tournevis.</p>
           <div class="search-wrap">
             <form class="search-bar" action="guides.html" role="search">
               <span data-icon="search"></span>
