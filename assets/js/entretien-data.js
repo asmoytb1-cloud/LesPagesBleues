@@ -111,7 +111,95 @@ const MAINTENANCE = {
   deshumidificateur: [
     { id: "filtre", label: "Nettoyage du préfiltre", kind: "entretien", months: 1, guide: "entretien-deshumidificateur" },
     { id: "reservoir", label: "Lavage du réservoir", kind: "entretien", months: 1, guide: "entretien-deshumidificateur" }
-  ]
+  ],
+  "table-a-repasser": [{ id: "housse", label: "État de la housse", kind: "controle", guide: "housse-table-a-repasser" }],
+  "cave-a-vin": [{ id: "joint", label: "Étanchéité du joint de porte", kind: "controle", guide: "joint-refrigerateur" }],
+  "machine-a-glacons": [{ id: "nettoyage", label: "Nettoyage et détartrage", kind: "entretien", guide: "nettoyer-machine-a-glacons", note: "Plus souvent en eau calcaire ; videz l'eau si la machine ne sert pas." }],
+  four: [
+    { id: "nettoyage", label: "Nettoyage ou pyrolyse", kind: "entretien", guide: "nettoyer-four" },
+    { id: "joint", label: "État du joint de porte", kind: "controle", guide: "nettoyer-four" }
+  ],
+  "plaque-de-cuisson": [{ id: "nettoyage", label: "Nettoyage complet et calcaire", kind: "entretien", guide: "nettoyer-plaque-vitroceramique" }],
+  "micro-ondes": [{ id: "nettoyage", label: "Nettoyage à la vapeur vinaigrée", kind: "entretien", guide: "nettoyer-micro-ondes" }],
+  "grille-pain": [{ id: "miettes", label: "Tiroir à miettes", kind: "entretien", guide: "nettoyer-grille-pain", note: "Idéalement après chaque utilisation." }],
+  "robot-de-cuisine": [{ id: "nettoyage", label: "Nettoyage du bol et des lames", kind: "entretien", guide: "nettoyer-robot-mixeur", note: "Après chaque utilisation." }],
+  "machine-a-pain": [{ id: "cuve", label: "Cuve et axe de la pale", kind: "controle", guide: "entretien-machine-a-pain" }],
+  friteuse: [
+    { id: "huile", label: "Changement de l'huile", kind: "entretien", guide: "entretien-friteuse", note: "Au plus tard toutes les 10 utilisations (5 pour tournesol et arachide)." },
+    { id: "filtre", label: "Filtre anti-odeur", kind: "entretien", guide: "entretien-friteuse", note: "Mousse : 20 fritures ; métal et charbon : 35 à 50." }
+  ],
+  cocotte: [
+    { id: "joint", label: "Remplacement du joint", kind: "entretien", months: 12, guide: "joint-cocotte-minute" },
+    { id: "soupapes", label: "Soupapes non obstruées", kind: "controle", guide: "joint-cocotte-minute", note: "Avant chaque utilisation." }
+  ],
+  "extracteur-de-jus": [{ id: "tamis", label: "Nettoyage du tamis", kind: "entretien", guide: "nettoyer-extracteur-de-jus", note: "Juste après chaque jus." }],
+  "raclette-grill": [{ id: "plaques", label: "Nettoyage des plaques et coupelles", kind: "entretien", guide: "nettoyer-appareil-raclette" }],
+  yaourtiere: [{ id: "pots", label: "Lavage et rinçage des pots", kind: "entretien", guide: "entretien-yaourtiere", note: "Après chaque fournée." }],
+  trancheuse: [{ id: "lame", label: "Nettoyage de la lame et du chariot", kind: "entretien", guide: "nettoyer-trancheuse", note: "Après chaque utilisation." }],
+  "tireuse-a-biere": [{ id: "tirage", label: "Nettoyage du robinet et du tube", kind: "entretien", guide: "nettoyer-tireuse-a-biere", note: "À chaque changement de fût." }],
+  "carafe-filtrante": [{ id: "cartouche", label: "Changement de la cartouche", kind: "entretien", days: 28, guide: "cartouche-carafe-filtrante" }],
+  "nettoyeur-vapeur": [{ id: "detartrage", label: "Détartrage de la chaudière", kind: "entretien", guide: "detartrer-nettoyeur-vapeur", note: "Dès que la vapeur faiblit." }],
+  cireuse: [{ id: "accessoires", label: "Nettoyage des brosses et feutres", kind: "entretien", guide: "entretien-cireuse" }],
+  ventilateur: [{ id: "pales", label: "Dépoussiérage des pales et de la grille", kind: "entretien", guide: "nettoyer-ventilateur" }],
+  purificateur: [
+    { id: "prefiltre", label: "Nettoyage du préfiltre", kind: "entretien", guide: "filtres-purificateur-air" },
+    { id: "hepa", label: "Remplacement du filtre HEPA", kind: "entretien", months: 12, guide: "filtres-purificateur-air", note: "Souvent tous les 6 à 12 mois." }
+  ],
+  broyeur: [{ id: "nettoyage", label: "Glaçons et gros sel", kind: "entretien", days: 7, guide: "debloquer-broyeur-evier" }],
+  "seche-cheveux": [{ id: "filtre", label: "Nettoyage du filtre arrière", kind: "entretien", months: 1, guide: "nettoyer-filtre-seche-cheveux" }],
+  rasoir: [
+    { id: "nettoyage", label: "Nettoyage et lubrification", kind: "entretien", guide: "entretien-rasoir-electrique" },
+    { id: "tetes", label: "Usure des têtes", kind: "controle", guide: "entretien-rasoir-electrique" }
+  ],
+  "brosse-a-dents": [{ id: "brossette", label: "Changement de la brossette", kind: "entretien", months: 3, guide: "entretien-brosse-a-dents-electrique" }],
+  puericulture: [{ id: "detartrage", label: "Détartrage du stérilisateur", kind: "entretien", days: 14, guide: "detartrer-sterilisateur-biberons" }],
+  "montre-connectee": [{ id: "nettoyage", label: "Nettoyage du boîtier et du bracelet", kind: "entretien", guide: "nettoyer-montre-connectee" }],
+  gps: [{ id: "cartes", label: "Mise à jour des cartes", kind: "entretien", guide: "mettre-a-jour-gps" }],
+  "ordinateur-bureau": [{ id: "lenteur", label: "Démarrage et espace disque", kind: "controle", guide: "pc-lent" }],
+  "ecran-pc": [{ id: "ecran", label: "Nettoyage de l'écran", kind: "entretien", guide: "nettoyer-ecran-tv" }],
+  television: [{ id: "ecran", label: "Nettoyage de l'écran et des aérations", kind: "entretien", guide: "nettoyer-ecran-tv" }],
+  videoprojecteur: [{ id: "filtre", label: "Nettoyage du filtre à air", kind: "entretien", guide: "filtre-videoprojecteur", note: "Plus souvent en pièce poussiéreuse." }],
+  "lecteur-video": [{ id: "logiciel", label: "Mise à jour du logiciel", kind: "entretien", guide: "lecteur-dvd-ne-lit-plus" }],
+  hifi: [{ id: "branchements", label: "Branchements et réglages audio", kind: "controle", guide: "barre-de-son-pas-de-son" }],
+  "casque-ecouteurs": [{ id: "grilles", label: "Nettoyage des grilles et embouts", kind: "entretien", guide: "nettoyer-ecouteurs-casque" }],
+  "casque-gaming": "casque-ecouteurs",
+  "appareil-photo": [{ id: "objectif", label: "Nettoyage de l'objectif", kind: "entretien", guide: "nettoyer-objectif-appareil-photo" }],
+  gyropode: [{ id: "calibrage", label: "Tenue de trajectoire (calibrage)", kind: "controle", guide: "calibrer-hoverboard" }],
+  perceuse: [
+    { id: "aerations", label: "Dépoussiérage des aérations", kind: "entretien", guide: "entretien-perceuse-visseuse" },
+    { id: "batterie", label: "Charge de la batterie rangée", kind: "controle", guide: "entretien-perceuse-visseuse", note: "Environ 40 % pour un long stockage." }
+  ],
+  "scie-ponceuse": [{ id: "nettoyage", label: "Plateau, sac et aérations", kind: "entretien", guide: "entretien-ponceuse", note: "Après chaque séance." }],
+  "aspirateur-chantier": [{ id: "filtre", label: "Décolmatage du filtre et vidage de la cuve", kind: "entretien", guide: "filtre-aspirateur-eau-poussiere" }],
+  robinet: [{ id: "pommeau", label: "Détartrage du pommeau", kind: "entretien", guide: "detartrer-pommeau-douche" }],
+  "chasse-eau": [{ id: "fuite", label: "La chasse ne coule pas en continu", kind: "controle", guide: "chasse-eau-coule" }],
+  "radiateur-electrique": [{ id: "grilles", label: "Dépoussiérage des grilles", kind: "entretien", months: 6, guide: "entretien-radiateur-electrique", note: "Au printemps et à l'automne." }],
+  "pompe-a-chaleur": [
+    { id: "professionnel", label: "Entretien obligatoire par un professionnel", kind: "entretien", months: 24, guide: "entretien-pompe-a-chaleur", note: "PAC de 4 à 70 kW. Gardez le rapport." },
+    { id: "unite-exterieure", label: "Unité extérieure dégagée et propre", kind: "controle", guide: "entretien-pompe-a-chaleur" }
+  ],
+  motorisation: [{ id: "entretien", label: "Cellules, rails et articulations", kind: "entretien", months: 6, guide: "entretien-portail-motorise", note: "Après l'été et avant l'hiver." }],
+  interphone: [{ id: "fonctionnement", label: "Sonnerie, son et image", kind: "controle", guide: "visiophone-ne-sonne-plus" }],
+  souffleur: [
+    { id: "filtre", label: "Filtre à air (thermique)", kind: "entretien", guide: "entretien-souffleur-feuilles", note: "Toutes les 10 à 15 heures d'utilisation." },
+    { id: "hivernage", label: "Hivernage", kind: "entretien", months: 12, guide: "entretien-souffleur-feuilles" }
+  ],
+  motobineuse: [
+    { id: "niveau-huile", label: "Niveau d'huile", kind: "controle", guide: "entretien-motobineuse", note: "Avant chaque utilisation." },
+    { id: "vidange", label: "Vidange", kind: "entretien", months: 36, guide: "entretien-motobineuse", note: "Ou toutes les 50 heures ; première vidange après 10 heures ou un an." },
+    { id: "hivernage", label: "Hivernage", kind: "entretien", months: 12, guide: "entretien-motobineuse" }
+  ],
+  pompe: [{ id: "hivernage", label: "Vidange et rangement hors gel", kind: "entretien", months: 12, guide: "amorcer-pompe-surface" }],
+  barbecue: [
+    { id: "fuite", label: "Test de fuite à l'eau savonneuse", kind: "controle", guide: "barbecue-gaz-fuite-nettoyage", note: "À chaque changement de bouteille." },
+    { id: "flexible", label: "Date limite du flexible", kind: "controle", guide: "barbecue-gaz-fuite-nettoyage", note: "Gravée sur le tuyau." }
+  ],
+  piscine: [
+    { id: "analyse", label: "Analyse pH et chlore", kind: "controle", days: 7, guide: "entretien-eau-piscine", note: "Deux à trois fois par semaine en pleine saison." },
+    { id: "skimmers", label: "Paniers de skimmers et préfiltre", kind: "entretien", days: 3, guide: "entretien-eau-piscine", note: "Au moins deux fois par semaine en saison." },
+    { id: "filtre", label: "Nettoyage du filtre (contre-lavage)", kind: "entretien", days: 21, guide: "entretien-eau-piscine", note: "Toutes les 2 à 4 semaines." }
+  ],
+  volant: [{ id: "calibrage", label: "Calibrage et micrologiciel", kind: "controle", guide: "volant-jeu-calibrage" }]
 };
 
 // Options qui adaptent le plan (comme la transmission d'une moto chez MotoBook)

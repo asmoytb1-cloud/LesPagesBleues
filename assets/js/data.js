@@ -2402,5 +2402,1414 @@ const GUIDES = [
       "L'appareil tourne mais récupère peu d'eau : filtre encrassé, ou pièce trop froide pour certains modèles.",
       "Il s'arrête tout seul : le réservoir est plein ou mal positionné."
     ]
+  },
+  {
+    id: "nettoyer-four",
+    title: "Nettoyer son four : pyrolyse ou nettoyage à la main",
+    category: "electromenager",
+    devices: ["four"],
+    difficulty: "Facile",
+    duration: "30 min (+ cycle)",
+    minutes: 30,
+    savings: "≈ 30 €",
+    keywords: ["four", "pyrolyse", "nettoyer four", "graisse", "vitre", "joint de porte", "bicarbonate", "odeur", "fumée", "autonettoyant", "catalyse"],
+    summary: "Graisses cuites et projections finissent par fumer et sentir. La pyrolyse réduit tout en cendres ; sans pyrolyse, une pâte de bicarbonate fait le travail.",
+    safety: "Travaillez four froid. Pendant une pyrolyse, la porte reste verrouillée : aérez la cuisine et éloignez enfants et animaux, les oiseaux en particulier sont sensibles aux fumées.",
+    tools: ["Chiffon humide et éponge douce", "Bicarbonate de soude", "Eau savonneuse"],
+    parts: [],
+    sources: [
+      { label: "Electrolux — utiliser le nettoyage pyrolytique de votre four", url: "https://support.electrolux.fr/support-articles/article/comment-utiliser-le-nettoyage-pyrolytique-sur-votre-four-electrolux" },
+      { label: "Le Petit Savoir — comment nettoyer un four à pyrolyse", url: "https://www.lepetitsavoir.fr/articles/comment-nettoyer-un-four-a-pyrolyse" }
+    ],
+    steps: [
+      { title: "Vider le four froid", text: "Retirez grilles, plaques et supports de grille amovibles : ils ne sont en général pas prévus pour la pyrolyse. Essuyez les gros résidus avec une éponge humide." },
+      { title: "Contrôler le joint de porte", text: "Regardez le joint en caoutchouc : s'il est déchiré ou écrasé, la pyrolyse sera moins efficace. Nettoyez-le seulement à l'eau savonneuse, jamais avec un produit abrasif." },
+      { title: "Lancer la pyrolyse", text: "Choisissez la durée selon l'encrassement (souvent 1 h pour un four peu sale, jusqu'à 2 h 30 à 3 h pour un four très sale). La porte se verrouille pendant le cycle. Ouvrez une fenêtre ou mettez la hotte en marche.", tip: "Pas de pyrolyse ? Étalez une pâte de bicarbonate et d'eau sur les taches, laissez agir, puis frottez à l'éponge douce et rincez." },
+      { title: "Essuyer les cendres", text: "Quand le four est redevenu froid, retirez les cendres avec un chiffon humide." },
+      { title: "Nettoyer les accessoires et remonter", text: "Lavez grilles et plaques à part, puis remettez-les en place." }
+    ],
+    troubleshoot: [
+      "La porte reste verrouillée après le cycle : c'est normal tant que le four n'a pas refroidi.",
+      "Des traces restent après la pyrolyse : relancez un cycle plus long ou terminez au bicarbonate.",
+      "Mauvaise odeur persistante ou porte qui ferme mal : faites contrôler le four."
+    ]
+  },
+  {
+    id: "nettoyer-micro-ondes",
+    title: "Nettoyer un micro-ondes avec un bol d'eau et de vinaigre",
+    category: "electromenager",
+    devices: ["micro-ondes"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 10 €",
+    keywords: ["micro-ondes", "micro-onde", "nettoyer", "vinaigre", "citron", "odeur", "graisse", "étincelles", "plaque de mica", "plateau"],
+    summary: "Un bol d'eau vinaigrée qui bout quelques minutes décolle les projections : il ne reste qu'à essuyer. Sans produit chimique.",
+    safety: "Utilisez un bol compatible micro-ondes et ne faites jamais fonctionner l'appareil à vide. Le bol sort très chaud : prenez une manique.",
+    tools: ["Bol compatible micro-ondes", "Vinaigre blanc", "Un citron", "Chiffon microfibre", "Manique"],
+    parts: [],
+    sources: [
+      { label: "Murfy — nettoyer son micro-ondes sans effort ni produit chimique", url: "https://murfy.fr/blog/nettoyer-son-micro-ondes-sans-effort-ni-produit-chimique" },
+      { label: "Shiva — nettoyer votre micro-ondes en 3 minutes", url: "https://www.shiva.fr/astuces-et-actualites/nettoyage-cuisine-et-salle-de-bain/comment-nettoyer-votre-micro-onde-en-trois-minutes" }
+    ],
+    steps: [
+      { title: "Préparer le bol", text: "Remplissez un bol aux deux tiers d'eau et au tiers de vinaigre blanc, puis ajoutez le jus d'un demi-citron." },
+      { title: "Faire bouillir", text: "Chauffez à pleine puissance environ 5 minutes, jusqu'à ébullition.", timer: 300 },
+      { title: "Laisser agir la vapeur", text: "Laissez la porte fermée 3 à 4 minutes : la vapeur ramollit les salissures.", timer: 210 },
+      { title: "Essuyer", text: "Sortez le bol avec une manique et passez un chiffon microfibre sur toutes les parois. Trempez l'éponge dans le mélange pour les taches tenaces. Lavez le plateau tournant à part." },
+      { title: "Ménager la plaque de mica", text: "La petite plaque cartonnée sur une paroi protège le guide d'ondes : essuyez-la avec un chiffon à peine humide, sans la détremper." }
+    ],
+    troubleshoot: [
+      "Des étincelles apparaissent : plaque de mica abîmée ou encrassée, ou objet métallique à l'intérieur. Arrêtez l'appareil ; la plaque de mica se remplace facilement.",
+      "L'odeur persiste : recommencez avec plus de citron."
+    ]
+  },
+  {
+    id: "nettoyer-plaque-vitroceramique",
+    title: "Nettoyer une plaque vitrocéramique ou à induction",
+    category: "electromenager",
+    devices: ["plaque-de-cuisson"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 20 €",
+    keywords: ["plaque", "vitrocéramique", "induction", "taches", "brûlé", "grattoir", "calcaire", "rayures", "sucre", "vinaigre", "bicarbonate"],
+    summary: "Un grattoir bien tenu, un nettoyant adapté et un coup de vinaigre pour le calcaire : la plaque retrouve son éclat sans une rayure.",
+    safety: "Attendez que la plaque refroidisse et vérifiez que tous les foyers sont éteints. La lame du grattoir coupe : manipulez-la avec soin.",
+    tools: ["Grattoir à lame pour vitrocéramique", "Éponge non abrasive", "Nettoyant pour vitrocéramique", "Vinaigre blanc", "Chiffon microfibre"],
+    parts: [],
+    sources: [
+      { label: "BUT — nettoyer une plaque vitrocéramique ou à induction", url: "https://blog.but.fr/article/comment-nettoyer-une-plaque-vitroceramique-ou-a-induction/" },
+      { label: "BUT — utiliser un grattoir pour vitrocéramique sans danger", url: "https://blog.but.fr/article/comment-utiliser-un-grattoir-pour-vitroceramique-sans-danger/" }
+    ],
+    steps: [
+      { title: "Essuyer après chaque cuisson", text: "Une tache fraîche part d'un coup d'éponge douce à l'eau chaude. C'est le meilleur entretien." },
+      { title: "Gratter les résidus cuits", text: "Humidifiez la zone, puis passez le grattoir presque à plat (environ 45°), en un seul geste glissé, sans à-coups. Il retire le brûlé sans rayer le verre." },
+      { title: "Appliquer un nettoyant adapté", text: "Laissez agir quelques minutes un nettoyant pour vitrocéramique, frottez à l'éponge non abrasive, puis essuyez." },
+      { title: "Dissoudre le calcaire", text: "Pour les auréoles blanches, imbibez un chiffon de vinaigre blanc, laissez agir une trentaine de minutes, puis rincez et séchez." },
+      { title: "Finir au chiffon sec", text: "Lustrez avec un chiffon microfibre sec pour éviter les traces." }
+    ],
+    troubleshoot: [
+      "Éponge grattoir, paille de fer ou poudre à récurer : à bannir, ils rayent définitivement le verre.",
+      "Le verre est fêlé : n'utilisez plus la plaque et coupez son disjoncteur, le remplacement du verre est une affaire de professionnel."
+    ]
+  },
+  {
+    id: "nettoyer-grille-pain",
+    title: "Grille-pain : retirer les miettes en toute sécurité",
+    category: "electromenager",
+    devices: ["grille-pain"],
+    difficulty: "Facile",
+    duration: "5 min",
+    minutes: 5,
+    savings: "≈ 25 €",
+    keywords: ["grille-pain", "toaster", "miettes", "tiroir à miettes", "odeur de brûlé", "fumée", "incendie", "nettoyer"],
+    summary: "Les miettes qui s'accumulent au fond chauffent, carbonisent et peuvent s'enflammer. Vider le tiroir à miettes après usage suffit à l'éviter.",
+    safety: "Débranchez le grille-pain et laissez-le refroidir. N'introduisez jamais de couteau ou de fourchette dans les fentes : risque d'électrocution.",
+    tools: ["Pinceau à pâtisserie souple", "Chiffon humide"],
+    parts: [],
+    sources: [
+      { label: "L'essentiel — retirer les miettes d'un grille-pain sans l'endommager", url: "https://www.lessentiel.lu/fr/story/entretien-comment-retirer-les-miettes-d-un-grille-pain-103638057" },
+      { label: "20 minutes — comment retirer les miettes d'un grille-pain", url: "https://www.20min.ch/fr/story/entretien-comment-retirer-les-miettes-d-un-grille-pain-103637751" }
+    ],
+    steps: [
+      { title: "Débrancher et laisser refroidir", text: "Retirez la prise et attendez que l'appareil soit froid." },
+      { title: "Vider le tiroir à miettes", text: "Sortez le tiroir situé en bas de l'appareil, videz-le, essuyez-le et remettez-le bien sec.", tip: "Le mieux est de le vider après chaque utilisation." },
+      { title: "Déloger les miettes restantes", text: "Retournez doucement le grille-pain au-dessus de l'évier et passez un pinceau souple dans les fentes. Ne le secouez pas fort : des miettes pourraient se coincer entre les résistances." },
+      { title: "Nettoyer l'extérieur", text: "Essuyez la coque avec un chiffon humide et une goutte de liquide vaisselle. Jamais d'eau à l'intérieur." }
+    ],
+    troubleshoot: [
+      "Une tranche reste coincée : débranchez d'abord, laissez refroidir, puis retirez-la avec une pince en bois.",
+      "Le grille-pain ne reste plus enclenché : souvent un défaut du mécanisme ou de l'électroaimant, à faire réparer."
+    ]
+  },
+  {
+    id: "joint-cocotte-minute",
+    title: "Cocotte-minute : entretenir le joint et les soupapes",
+    category: "electromenager",
+    devices: ["cocotte"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 60 €",
+    keywords: ["cocotte-minute", "autocuiseur", "seb", "joint", "soupape", "fuite de vapeur", "ne monte pas en pression", "couvercle", "entretien"],
+    summary: "Un joint usé laisse fuir la vapeur et la cocotte ne monte plus en pression. Le joint se change chaque année, et les soupapes se vérifient avant chaque cuisson.",
+    safety: "N'ouvrez jamais une cocotte encore sous pression, et ne forcez jamais sur le couvercle. N'utilisez que des pièces d'origine.",
+    tools: ["Éponge et liquide vaisselle", "Une aiguille pour déboucher le conduit de vapeur"],
+    parts: ["Joint de rechange adapté au modèle et au diamètre"],
+    sources: [
+      { label: "SEB — mode d'emploi et questions fréquentes Clipso Minut Eco", url: "https://www.seb.fr/notices/csp/1510001855" },
+      { label: "Spareka — joint de cocotte-minute Seb : entretien et remplacement", url: "https://aide.spareka.fr/choisir-joint-cocotte-minute/" }
+    ],
+    steps: [
+      { title: "Laver le joint après chaque cuisson", text: "Retirez le joint et nettoyez-le avec son logement à l'éponge et au liquide vaisselle. Ne mettez jamais le joint au lave-vaisselle." },
+      { title: "Vérifier les soupapes", text: "Avant chaque utilisation, vérifiez que les soupapes ne sont pas obstruées et que la soupape de fonctionnement bouge librement. Si le conduit de vapeur est bouché, retirez les dépôts avec une aiguille." },
+      { title: "Changer le joint chaque année", text: "Remplacez le joint tous les ans, plus tôt s'il est durci, fissuré ou déformé. Choisissez le joint correspondant au modèle et au diamètre de la cuve." },
+      { title: "Bien ranger", text: "Posez le couvercle retourné sur la cuve : le joint ne s'écrase pas entre deux utilisations." }
+    ],
+    troubleshoot: [
+      "De la vapeur fuit autour du couvercle : joint usé ou mal placé, ou bord de cuve abîmé.",
+      "La soupape de sécurité se déclenche : la soupape de fonctionnement est probablement bouchée. Arrêtez la cuisson et nettoyez-la.",
+      "Le couvercle ne se ferme plus : joint neuf trop sec, humidifiez-le légèrement."
+    ]
+  },
+  {
+    id: "entretien-friteuse",
+    title: "Friteuse : changer l'huile et entretenir les filtres",
+    category: "electromenager",
+    devices: ["friteuse"],
+    difficulty: "Facile",
+    duration: "30 min",
+    minutes: 30,
+    savings: "≈ 20 €",
+    keywords: ["friteuse", "huile", "changer l'huile", "filtre", "charbon", "odeur", "fumée", "claquements", "cuve", "seb"],
+    summary: "Une huile trop vieille fume, sent mauvais et donne des fritures moins bonnes. SEB conseille de la changer au plus tard toutes les 10 utilisations, 5 pour le tournesol et l'arachide.",
+    safety: "Attendez que l'huile soit complètement froide avant de la filtrer ou de la vider : de l'huile chaude brûle gravement. Débranchez la friteuse.",
+    tools: ["Filtre papier, tamis ou écumoire", "Récipient refermable pour l'huile usagée", "Papier absorbant", "Éponge non abrasive"],
+    parts: ["Filtre anti-odeur de rechange (selon le modèle)"],
+    sources: [
+      { label: "SEB — mode d'emploi et questions fréquentes Filtra One", url: "https://www.seb.fr/notices/csp/7211000829" },
+      { label: "SEB — questions fréquentes Oleoclean Pro", url: "https://www.seb.fr/notices/csp/7211001578" }
+    ],
+    steps: [
+      { title: "Filtrer après chaque utilisation", text: "Une fois l'huile refroidie, filtrez-la avec un filtre papier, un tamis ou une écumoire : les résidus accélèrent sa dégradation." },
+      { title: "Changer l'huile à temps", text: "Au plus tard après 10 utilisations ; après 5 pour les huiles de tournesol et d'arachide. Plus souvent si vous faites frire poisson, fruits de mer ou beignets." },
+      { title: "Vider et nettoyer la cuve", text: "Cuve amovible : lavez-la à l'eau chaude savonneuse et séchez-la. Cuve fixe : essuyez l'huile au papier absorbant, puis nettoyez à l'eau savonneuse sans jamais mouiller la partie électrique." },
+      { title: "Remplacer les filtres", text: "Filtre métallique au charbon actif : après 35 à 50 fritures selon le modèle. Filtre en mousse : toutes les 20 fritures." },
+      { title: "Jeter l'huile usagée", text: "Versez-la dans un récipient fermé et déposez-la en déchetterie. Jamais dans l'évier." }
+    ],
+    troubleshoot: [
+      "De petits claquements pendant la chauffe : il y a de l'eau dans le bain, changez l'huile.",
+      "L'huile fume à température normale : elle est usée."
+    ]
+  },
+  {
+    id: "nettoyer-robot-mixeur",
+    title: "Nettoyer un robot de cuisine ou un blender sans se couper",
+    category: "electromenager",
+    devices: ["robot-de-cuisine"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 15 €",
+    keywords: ["robot", "mixeur", "blender", "hachoir", "bol", "lames", "nettoyer", "odeur", "bol opaque", "moteur"],
+    summary: "Un peu d'eau chaude savonneuse qu'on fait tourner dans le bol nettoie les lames sans y mettre les doigts. Le bloc moteur, lui, ne va jamais sous l'eau.",
+    safety: "Débranchez l'appareil avant de démonter les lames. Ne plongez jamais le bloc moteur dans l'eau.",
+    tools: ["Liquide vaisselle", "Éponge douce", "Bicarbonate de soude (bol terne)", "Chiffon doux"],
+    parts: [],
+    sources: [
+      { label: "Allo Réparateurs — comment bien nettoyer son mixeur", url: "https://www.allo-reparateurs.fr/electromenager/petit-electromenager/petit-electromenager-cuisine/robot-de-cuisine/depannage-electromenager,comment-bien-nettoyer-son-mixeur,2036.html" },
+      { label: "Matériel Horeca — comment laver un blender mixeur", url: "https://www.materiel-horeca.com/guide/comment-laver-un-blender-mixeur/" }
+    ],
+    steps: [
+      { title: "Faire tourner de l'eau savonneuse", text: "Juste après usage, versez de l'eau tiède et quelques gouttes de liquide vaisselle dans le bol, fermez et faites tourner une trentaine de secondes. Videz et rincez." },
+      { title: "Débrancher et démonter", text: "Débranchez, puis démontez bol, couvercle et lames. Lavez-les à l'eau chaude savonneuse en tenant les lames par leur support." },
+      { title: "Vérifier le lave-vaisselle", text: "Ne passez au lave-vaisselle que les pièces que la notice autorise." },
+      { title: "Essuyer le bloc moteur", text: "Passez un chiffon doux légèrement humide et savonneux, puis séchez. Jamais sous le robinet." },
+      { title: "Raviver un bol terne", text: "Remplissez le bol d'eau chaude avec deux cuillerées de bicarbonate, faites tourner 30 secondes, puis lavez normalement." }
+    ],
+    troubleshoot: [
+      "Le robot ne démarre pas : bol ou couvercle mal verrouillé, la sécurité bloque le moteur.",
+      "Odeur de chaud : laissez refroidir le moteur, il est peut-être en surchauffe après un usage prolongé."
+    ]
+  },
+  {
+    id: "entretien-machine-a-pain",
+    title: "Machine à pain : entretenir la cuve et le pétrin",
+    category: "electromenager",
+    devices: ["machine-a-pain"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 40 €",
+    keywords: ["machine à pain", "cuve", "pétrin", "pale", "couteau pétrisseur", "antiadhésif", "grince", "bruit", "pâte collée"],
+    summary: "Le revêtement antiadhésif de la cuve est fragile. Un nettoyage doux, un trempage pour la pâte collée et une goutte d'huile sur l'axe prolongent sa vie.",
+    safety: "Débranchez la machine et laissez refroidir la cuve avant de la manipuler.",
+    tools: ["Spatule plate et souple", "Éponge douce", "Huile végétale"],
+    parts: ["Cuve et pale de rechange, si l'axe grince toujours"],
+    sources: [
+      { label: "NPM Lille — entretien d'une machine à pain", url: "https://www.npm.fr/petit-menager-a-11/conseils-d-entretien-petit-menager-b-451/entretien-d-une-machine-a-pain-c-57441" },
+      { label: "Spareka — remplacer la cuve et la lame de pétrissage", url: "https://www.spareka.fr/comment-reparer/electromenager/machine-a-pain/comment-remplacer-la-cuve-et-la-lame-de-petrissage-d-une-machine-a-pain" }
+    ],
+    steps: [
+      { title: "Démouler sans abîmer", text: "Utilisez une spatule plate et souple, jamais d'ustensile pointu ou métallique qui rayerait le revêtement." },
+      { title: "Faire tremper", text: "Si de la pâte reste collée, laissez tremper la cuve et la pale dans de l'eau tiède : les résidus se décollent seuls." },
+      { title: "Laver en douceur", text: "Éponge douce et eau suffisent. Évitez les produits agressifs, qui abîment le revêtement et peuvent donner un goût au pain." },
+      { title: "Lubrifier l'axe", text: "Si la machine grince pendant le pétrissage, mettez une goutte d'huile végétale sur l'axe de la pale." }
+    ],
+    troubleshoot: [
+      "Le bruit continue malgré l'huile : le roulement de la cuve est usé. Changez la cuve pour éviter que le moteur ne force.",
+      "La pale ne tourne plus mais le moteur tourne : la courroie ou l'entraînement de la cuve est en cause."
+    ]
+  },
+  {
+    id: "nettoyer-extracteur-de-jus",
+    title: "Nettoyer un extracteur de jus et son tamis",
+    category: "electromenager",
+    devices: ["extracteur-de-jus"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 30 €",
+    keywords: ["extracteur de jus", "centrifugeuse", "tamis", "filtre", "pulpe", "brosse", "taches", "curcuma", "carotte", "vis"],
+    summary: "La pulpe qui sèche dans les mailles du tamis se retire très mal et finit par l'abîmer. Rincer tout de suite après le jus règle le problème.",
+    safety: "Débranchez l'appareil avant de le démonter. Le bloc moteur ne doit jamais toucher l'eau.",
+    tools: ["Brosse fournie ou brosse souple", "Liquide vaisselle", "Vinaigre blanc (taches)"],
+    parts: [],
+    sources: [
+      { label: "Ctendance — nettoyer un extracteur de jus", url: "https://www.ctendance.fr/entretien/nettoyer-extracteur-de-jus/" },
+      { label: "Darty — conseils pour nettoyer sa machine à jus", url: "https://www.darty.com/darty-et-vous/cuisine/equipement/petit-electromenager/nos-conseils-pour-nettoyer-sa-machine-jus" }
+    ],
+    steps: [
+      { title: "Nettoyer tout de suite", text: "Dès le jus terminé, débranchez et démontez les pièces amovibles : la pulpe sèche très vite." },
+      { title: "Rincer", text: "Passez chaque pièce sous l'eau courante." },
+      { title: "Brosser le tamis", text: "Frottez les mailles du tamis avec la brosse fournie, doucement pour ne pas les déformer. Une vieille brosse à dents aide dans les recoins." },
+      { title: "Laver et sécher", text: "Lavez au liquide vaisselle, rincez et laissez sécher. Vérifiez dans la notice quelles pièces passent au lave-vaisselle." },
+      { title: "Essuyer le bloc moteur", text: "Un chiffon humide suffit." }
+    ],
+    troubleshoot: [
+      "Pièces colorées (curcuma, carotte) : laissez-les tremper une nuit dans du vinaigre blanc, puis frottez.",
+      "Le jus contient beaucoup de pulpe : tamis colmaté ou mal monté."
+    ]
+  },
+  {
+    id: "nettoyer-appareil-raclette",
+    title: "Nettoyer un appareil à raclette ou un grill",
+    category: "electromenager",
+    devices: ["raclette-grill"],
+    difficulty: "Facile",
+    duration: "15 min (+ 1 h de pose)",
+    minutes: 15,
+    savings: "≈ 20 €",
+    keywords: ["raclette", "pierrade", "grill", "plancha", "croque-monsieur", "gaufrier", "coupelles", "fromage brûlé", "antiadhésif", "bicarbonate"],
+    summary: "Le fromage cuit colle aux plaques et aux coupelles. Une pâte de bicarbonate le décolle sans rayer le revêtement antiadhésif.",
+    safety: "Débranchez l'appareil et laissez-le refroidir complètement. N'immergez jamais la base électrique.",
+    tools: ["Bicarbonate de soude", "Chiffon microfibre", "Éponge douce", "Vinaigre blanc"],
+    parts: [],
+    sources: [
+      { label: "Matériel Horeca — nettoyer un appareil à raclette en 3 étapes", url: "https://www.materiel-horeca.com/guide/comment-nettoyer-un-appareil-a-raclette-3-etapes-a-suivre/" },
+      { label: "Le Bicarbonate La Baleine — nettoyer votre appareil à raclette", url: "https://www.le-bicarbonate.com/nettoyer-votre-appareil-raclette" }
+    ],
+    steps: [
+      { title: "Faire fondre les restes", text: "En fin de repas, laissez chauffer quelques minutes pour ramollir le fromage, puis débranchez et laissez refroidir complètement." },
+      { title: "Appliquer une pâte de bicarbonate", text: "Mélangez deux doses de bicarbonate pour une dose d'eau, étalez sur la plaque froide et laissez poser une heure.", timer: 3600 },
+      { title: "Essuyer", text: "Retirez la pâte avec un chiffon microfibre, puis passez un chiffon imbibé de vinaigre blanc contre les odeurs." },
+      { title: "Faire tremper les coupelles", text: "Laissez-les une heure dans l'eau chaude additionnée de bicarbonate, puis lavez-les à l'éponge douce et au liquide vaisselle." },
+      { title: "Essuyer la base", text: "Un chiffon humide sur la base, sans jamais la plonger dans l'eau. Plaques et coupelles passent parfois au lave-vaisselle : vérifiez la notice." }
+    ],
+    troubleshoot: [
+      "Poudre à récurer et éponge grattoir sont à éviter : elles détruisent le revêtement antiadhésif.",
+      "L'appareil ne chauffe plus : vérifiez le cordon et le bouton ; sinon la résistance ou le thermostat est en cause."
+    ]
+  },
+  {
+    id: "entretien-yaourtiere",
+    title: "Yaourtière : nettoyage et yaourts trop liquides",
+    category: "electromenager",
+    devices: ["yaourtiere"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 15 €",
+    keywords: ["yaourtière", "yaourts", "pots", "yaourt liquide", "ferment", "nettoyer", "multi délices"],
+    summary: "Des pots mal rincés et une yaourtière qu'on bouge pendant la fermentation donnent des yaourts liquides. Entretien et astuces pour des yaourts fermes.",
+    safety: "Débranchez l'appareil avant de le nettoyer et ne mettez jamais sa base dans l'eau.",
+    tools: ["Chiffon humide", "Eau chaude savonneuse"],
+    parts: [],
+    sources: [
+      { label: "SEB — mode d'emploi et questions fréquentes La Yaourtière 8 pots", url: "https://www.seb.fr/notices/Produits/Cuisson-%C3%A9lectrique/Yaourti%C3%A8re/La-Yaourti%C3%A8re-8-pots/csp/1500887221" },
+      { label: "Yaourt Maison — nettoyer et entretenir sa yaourtière", url: "https://www.yaourtmaison.fr/guides/conseils-astuces-nettoyage-yaourrtiere.html" }
+    ],
+    steps: [
+      { title: "Nettoyer la base", text: "Débranchez-la, puis essuyez-la avec un chiffon humide, de l'eau chaude et du savon. Jamais sous l'eau." },
+      { title: "Laver les pots", text: "Pots et couvercles passent au lave-vaisselle sur la plupart des modèles." },
+      { title: "Rincer à fond", text: "Rincez bien les pots : un reste de produit vaisselle empêche les yaourts de prendre." },
+      { title: "Soigner la fermentation", text: "Lait et ferment à température ambiante, yaourtière posée sur un support stable et immobile (pas sur le réfrigérateur qui vibre), ferment frais." }
+    ],
+    troubleshoot: [
+      "Yaourts liquides : ajoutez un peu de lait en poudre, allongez le temps de fermentation ou changez de ferment.",
+      "Yaourts aux fruits qui ne prennent pas : faites d'abord cuire les fruits, leur acidité gêne la fermentation."
+    ]
+  },
+  {
+    id: "nettoyer-trancheuse",
+    title: "Nettoyer une trancheuse électrique sans se couper",
+    category: "electromenager",
+    devices: ["trancheuse"],
+    difficulty: "Moyen",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 30 €",
+    keywords: ["trancheuse", "trancheuse à jambon", "couteau électrique", "lame", "nettoyer", "gants anti-coupure", "chariot", "hygiène"],
+    summary: "Les résidus de charcuterie sur la lame sont un nid à bactéries. Un nettoyage après chaque usage, lame à zéro et gants aux mains.",
+    safety: "Débranchez la trancheuse et mettez le réglage d'épaisseur sur 0 : la lame est alors protégée. Portez des gants anti-coupure. N'immergez jamais l'appareil.",
+    tools: ["Gants anti-coupure", "Chiffon doux", "Eau savonneuse ou nettoyant pour inox non abrasif", "Quelques gouttes d'huile"],
+    parts: [],
+    sources: [
+      { label: "Matériel Horeca — avec quel produit nettoyer une trancheuse à jambon", url: "https://www.materiel-horeca.com/guide/avec-quel-produit-nettoyer-une-trancheuse-a-jambon/" },
+      { label: "Matériel Horeca — comment nettoyer une trancheuse", url: "https://www.materiel-horeca.com/guide/comment-nettoyer-une-trancheuse-professionnelle/" }
+    ],
+    steps: [
+      { title: "Sécuriser", text: "Débranchez, réglez l'épaisseur sur 0 et enfilez les gants anti-coupure." },
+      { title: "Retirer les pièces amovibles", text: "Démontez le chariot ou plateau (souvent retenu par une molette) et les protections prévues pour être retirées." },
+      { title: "Nettoyer la lame", text: "Avec un chiffon et de l'eau savonneuse, essuyez la lame du centre vers l'extérieur, jamais en travers du tranchant." },
+      { title: "Nettoyer le reste", text: "Essuyez le bâti au chiffon savonneux, rincez au chiffon humide et séchez bien." },
+      { title: "Lubrifier et remonter", text: "Mettez quelques gouttes d'huile sur les barres de glissement du chariot, puis remontez." }
+    ],
+    troubleshoot: [
+      "La coupe devient déchirée : la lame est émoussée, faites-la affûter ou remplacez-la.",
+      "Le chariot accroche : nettoyez et huilez ses barres de glissement."
+    ]
+  },
+  {
+    id: "nettoyer-machine-a-glacons",
+    title: "Nettoyer et détartrer une machine à glaçons",
+    category: "electromenager",
+    devices: ["machine-a-glacons"],
+    difficulty: "Facile",
+    duration: "30 min",
+    minutes: 30,
+    savings: "≈ 30 €",
+    keywords: ["machine à glaçons", "glaçons", "calcaire", "détartrer", "vinaigre", "goût", "odeur", "réservoir"],
+    summary: "L'eau stagnante et le calcaire donnent un goût aux glaçons et encrassent la machine. Un nettoyage au vinaigre blanc suivi de rinçages règle le problème.",
+    safety: "Débranchez la machine avant de la nettoyer et rincez abondamment : les premiers glaçons après nettoyage sont à jeter.",
+    tools: ["Vinaigre blanc", "Éponge douce", "Chiffon sec"],
+    parts: [],
+    sources: [
+      { label: "Iceshop — comment nettoyer une machine à glaçons", url: "https://www.iceshop.fr/guide/comment-nettoyer-une-machine-a-glacons/" },
+      { label: "Darty — nettoyer et détartrer sa machine à glaçons", url: "https://www.darty.com/darty-et-vous/cuisine/equipement/froid/comment-nettoyer-et-detartrer-sa-machine-glacons" }
+    ],
+    steps: [
+      { title: "Débrancher et vider", text: "Débranchez, retirez les glaçons et videz l'eau du réservoir." },
+      { title: "Frotter au vinaigre", text: "Nettoyez l'intérieur avec une éponge humide imbibée de quelques cuillerées de vinaigre blanc, en insistant sur les dépôts blancs." },
+      { title: "Lancer un cycle de nettoyage", text: "Si la machine a un programme de nettoyage, lancez-le avec de l'eau vinaigrée selon la notice." },
+      { title: "Rincer", text: "Rincez plusieurs fois à l'eau claire, puis faites deux cycles de glaçons que vous jetterez." },
+      { title: "Sécher et redémarrer", text: "Séchez le bac à glaçons et laissez sécher une dizaine de minutes avant de relancer.", tip: "Ne laissez pas l'eau stagner si la machine ne sert pas : videz-la." }
+    ],
+    troubleshoot: [
+      "Les glaçons ont un goût : eau restée trop longtemps, nettoyez et changez l'eau.",
+      "La machine ne produit plus : calcaire sur le capteur ou l'évaporateur, détartrez ; sinon capteur ou pompe à vérifier."
+    ]
+  },
+  {
+    id: "nettoyer-tireuse-a-biere",
+    title: "Nettoyer une tireuse à bière à chaque changement de fût",
+    category: "electromenager",
+    devices: ["tireuse-a-biere"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 20 €",
+    keywords: ["tireuse à bière", "perfectdraft", "beertender", "fût", "tube de tirage", "robinet", "mousse", "goût", "égouttoir"],
+    summary: "Des résidus de bière dans le robinet donnent un mauvais goût et trop de mousse. On nettoie les pièces de tirage à chaque changement de fût.",
+    safety: "Débranchez la tireuse avant de la nettoyer.",
+    tools: ["Eau chaude et un peu de liquide vaisselle", "Chiffon humide", "Torchon propre"],
+    parts: ["Tube de tirage neuf (à usage unique sur certains modèles, dont PerfectDraft)"],
+    sources: [
+      { label: "PerfectDraft — nettoyer les pièces de la tireuse", url: "https://www.perfectdraft.com/fr-fr/blog/post/comment-nettoyer-pieces-tireuse-biere-perfectdraft" },
+      { label: "PerfectDraft — nettoyer et entretenir ma tireuse", url: "https://support.perfectdraft.com/hc/fr/articles/5555637974175-Comment-nettoyer-et-entretenir-ma-tireuse-PerfectDraft" }
+    ],
+    steps: [
+      { title: "Débrancher", text: "Débranchez la tireuse et retirez le fût vide." },
+      { title: "Nettoyer le robinet", text: "Démontez la poignée du robinet et rincez les pièces à l'eau chaude, avec un peu de liquide vaisselle si besoin. Le robinet ne va pas au lave-vaisselle." },
+      { title: "Changer le tube de tirage", text: "Sur les modèles où il est à usage unique, installez le tube neuf fourni avec le fût." },
+      { title: "Laver bec et égouttoir", text: "Lavez-les à l'eau chaude savonneuse ou au lave-vaisselle, et videz l'égouttoir chaque jour d'utilisation." },
+      { title: "Essuyer l'extérieur", text: "Un chiffon humide, sans produit abrasif, acide ni détartrant." }
+    ],
+    troubleshoot: [
+      "Trop de mousse : fût pas assez froid, ou robinet mal rincé.",
+      "De l'eau sous la tireuse : c'est souvent de la condensation, pas une fuite. Videz l'égouttoir."
+    ]
+  },
+  {
+    id: "cartouche-carafe-filtrante",
+    title: "Carafe filtrante : changer et préparer la cartouche",
+    category: "electromenager",
+    devices: ["carafe-filtrante"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 10 €",
+    keywords: ["carafe filtrante", "brita", "cartouche", "filtre", "maxtra", "eau", "calcaire", "goût", "4 semaines"],
+    summary: "Une cartouche usée ne filtre plus. Elle se change au moins toutes les quatre semaines, après une courte préparation.",
+    safety: "Gardez l'eau filtrée au frais, à l'abri du soleil, et buvez-la dans la journée.",
+    tools: ["Un récipient d'eau froide"],
+    parts: ["Cartouche filtrante compatible"],
+    sources: [
+      { label: "BRITA — FAQ filtres et cartouches", url: "https://www.brita.fr/faq/filtres-cartouches?sc=general" },
+      { label: "BRITA — FAQ filtres et cartouches filtrantes", url: "https://www.brita.fr/pages/faq-filtres-cartouches" }
+    ],
+    steps: [
+      { title: "Tremper la cartouche neuve", text: "Plongez-la dans un récipient d'eau froide et secouez-la doucement pour chasser les bulles d'air." },
+      { title: "La mettre en place", text: "Insérez-la dans l'entonnoir de la carafe jusqu'au clic." },
+      { title: "Jeter les deux premières filtrations", text: "Remplissez et laissez filtrer deux fois : cette eau peut arroser les plantes." },
+      { title: "Noter la date", text: "Changez la cartouche au moins toutes les quatre semaines, plus tôt si l'eau est très calcaire ou si vous consommez beaucoup.", tip: "Le carnet d'entretien vous le rappellera." },
+      { title: "Laver la carafe", text: "Lavez régulièrement la carafe et l'entonnoir à l'eau et au liquide vaisselle doux." }
+    ],
+    troubleshoot: [
+      "L'eau filtre très lentement : bulles d'air dans la cartouche, retrempez-la.",
+      "Des particules noires dans l'eau : des grains de charbon actif, sans danger ; rincez la cartouche."
+    ]
+  },
+  {
+    id: "debloquer-broyeur-evier",
+    title: "Broyeur sous évier bloqué : le débloquer et l'entretenir",
+    category: "electromenager",
+    devices: ["broyeur"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 120 €",
+    keywords: ["broyeur", "broyeur sous évier", "insinkerator", "bloqué", "ronronne", "ne tourne plus", "clé de déblocage", "reset", "odeur", "évier"],
+    summary: "Le moteur ronronne mais rien ne tourne ? Une clé de déblocage glissée sous l'appareil et le bouton de réarmement suffisent souvent. Et un entretien hebdomadaire évite de recommencer.",
+    safety: "Coupez l'alimentation du broyeur avant toute intervention. Ne mettez jamais la main dans le broyeur : utilisez une pince pour retirer un objet.",
+    tools: ["Clé de déblocage fournie ou clé Allen adaptée", "Pince longue", "Lampe de poche", "Glaçons et gros sel"],
+    parts: [],
+    sources: [
+      { label: "MonBroyeur (distributeur InSinkErator) — FAQ des broyeurs", url: "https://monbroyeur.com/content/18-faq-insinkerator" },
+      { label: "MonBroyeur — entretenir votre broyeur InSinkErator", url: "https://monbroyeur.com/blog/post/comment-entretenir-votre-broyeur-de-dechets-pour-evier-insinkerator" }
+    ],
+    steps: [
+      { title: "Couper l'alimentation", text: "Débranchez le broyeur ou coupez son disjoncteur." },
+      { title: "Retirer ce qui bloque", text: "À la lampe, regardez dans la chambre de broyage et retirez à la pince tout objet tombé dedans (couvert, noyau, capsule)." },
+      { title: "Débloquer le disque", text: "Insérez la clé dans l'empreinte au centre, sous l'appareil. Tournez-la dans un sens puis dans l'autre jusqu'à ce qu'elle fasse un tour complet librement." },
+      { title: "Réarmer", text: "Retirez la clé, appuyez sur le bouton de réarmement sous le broyeur, puis remettez le courant et testez avec l'eau froide qui coule." },
+      { title: "Entretenir chaque semaine", text: "Versez une douzaine de glaçons et une poignée de gros sel, puis faites tourner 30 secondes avec l'eau froide.", tip: "Faites toujours couler l'eau froide avant, pendant et 15 secondes après le broyage : elle fige les graisses." }
+    ],
+    troubleshoot: [
+      "À ne pas mettre : huile et graisses de cuisson, objets non alimentaires, grandes quantités de coquilles d'œuf.",
+      "Mauvaise odeur : broyez quelques quartiers de citron avec l'eau froide.",
+      "Rien ne se passe, pas même un bruit : vérifiez l'alimentation et l'interrupteur (souvent pneumatique, sur le bord de l'évier)."
+    ]
+  },
+  {
+    id: "nettoyer-filtre-seche-cheveux",
+    title: "Sèche-cheveux qui chauffe trop ou se coupe : nettoyer le filtre",
+    category: "electromenager",
+    devices: ["seche-cheveux"],
+    difficulty: "Facile",
+    duration: "5 min",
+    minutes: 5,
+    savings: "≈ 30 €",
+    keywords: ["sèche-cheveux", "séchoir", "filtre", "grille arrière", "surchauffe", "se coupe", "s'arrête", "odeur de brûlé", "cheveux", "poussière"],
+    summary: "Un filtre bouché par les cheveux et la poussière empêche l'air d'entrer : l'appareil surchauffe et sa sécurité le coupe. Le nettoyer prend cinq minutes.",
+    safety: "Débranchez l'appareil et laissez-le refroidir. Des étincelles, un fil abîmé ou un bruit anormal : ne l'utilisez plus et faites-le réparer.",
+    tools: ["Brosse souple et sèche (une vieille brosse à dents convient)", "Chiffon doux"],
+    parts: ["Grille arrière de rechange si elle est abîmée"],
+    sources: [
+      { label: "Coiffea — comment entretenir son sèche-cheveux", url: "https://www.coiffea.com/blog/comment-entretenir-son-seche-cheveux" },
+      { label: "Protégez-Vous — utiliser et nettoyer votre séchoir à cheveux", url: "https://www.protegez-vous.ca/habitation/entretien-sechoir-cheveux" }
+    ],
+    steps: [
+      { title: "Débrancher et laisser refroidir", text: "Attendez que l'appareil soit froid." },
+      { title: "Retirer le filtre arrière", text: "Tournez ou déclipsez la grille à l'arrière, là où l'air est aspiré, et sortez le filtre." },
+      { title: "Brosser", text: "Retirez cheveux et poussière avec une brosse souple et sèche, sur les deux faces du filtre et sur la grille." },
+      { title: "Remonter", text: "Remettez le filtre et la grille bien en place avant de rebrancher.", tip: "Environ une fois par mois ; toutes les semaines en usage quotidien intensif." },
+      { title: "Bien ranger", text: "Laissez refroidir avant de ranger et n'enroulez pas le cordon serré autour de l'appareil : cela abîme le fil." }
+    ],
+    troubleshoot: [
+      "Il se coupe tout seul puis repart après refroidissement : c'est la sécurité thermique. Nettoyez le filtre.",
+      "Il souffle mais ne chauffe plus : la résistance ou le thermostat est en cause, réparation à confier."
+    ]
+  },
+  {
+    id: "entretien-rasoir-electrique",
+    title: "Rasoir électrique : nettoyer, lubrifier et changer les têtes",
+    category: "electromenager",
+    devices: ["rasoir"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 40 €",
+    keywords: ["rasoir électrique", "rasoir", "philips", "braun", "têtes", "grille", "lames", "irritation", "tire les poils", "lubrifier", "tondeuse"],
+    summary: "Des poils coincés et des lames sèches font tirer le rasoir et irritent la peau. Un nettoyage régulier, une goutte d'huile et des têtes neuves en temps voulu.",
+    safety: "Éteignez le rasoir et débranchez-le. Ne rincez sous l'eau que si le rasoir est indiqué étanche.",
+    tools: ["Brosse fournie", "Chiffon propre", "Huile pour rasoir (ou huile minérale)"],
+    parts: ["Têtes ou cassette de rechange de la même série"],
+    sources: [
+      { label: "Philips — guide du nettoyage pour rasoir électrique", url: "https://www.philips.fr/c-e/soins-pour-homme/rasage/astuces-rasage/guide-du-nettoyage-pour-rasoir-electrique.html" },
+      { label: "Braun — nettoyer et entretenir votre rasoir", url: "https://fr.braun.com/fr-fr/male-grooming/face-shaving-tips/how-to-clean-and-look-after-your-shaver" }
+    ],
+    steps: [
+      { title: "Ouvrir les têtes", text: "Suivez la notice pour ouvrir ou retirer l'unité de rasage." },
+      { title: "Chasser les poils", text: "Brossez ou soufflez les poils coincés entre les lames. Évitez de frotter la grille fine avec la brosse : elle est fragile." },
+      { title: "Rincer si le rasoir est étanche", text: "Rincez sous l'eau tiède, avec une solution de nettoyage si vous en avez une, puis laissez sécher à l'air ou au chiffon propre." },
+      { title: "Lubrifier", text: "Déposez une ou deux gouttes d'huile sur les lames, puis faites tourner le rasoir quelques secondes pour la répartir." },
+      { title: "Changer les têtes à temps", text: "Quand le rasage devient moins précis ou irritant, remplacez les têtes par celles de la même série (la référence figure sur l'ancienne unité ou dans la notice)." }
+    ],
+    troubleshoot: [
+      "Le rasoir tire les poils : lames émoussées ou encrassées.",
+      "L'autonomie chute : la batterie vieillit ; sur beaucoup de modèles elle se remplace en atelier."
+    ]
+  },
+  {
+    id: "entretien-brosse-a-dents-electrique",
+    title: "Brosse à dents électrique : entretien et brossette",
+    category: "electromenager",
+    devices: ["brosse-a-dents"],
+    difficulty: "Facile",
+    duration: "5 min",
+    minutes: 5,
+    savings: "≈ 15 €",
+    keywords: ["brosse à dents électrique", "oral-b", "sonicare", "brossette", "tête", "3 mois", "nettoyer", "manche", "dentifrice"],
+    summary: "Une brossette s'use en trois mois et du dentifrice séché s'accumule sous la tête. Rincer, sécher, remplacer à temps.",
+    safety: "Retirez la brosse de son chargeur avant de la nettoyer.",
+    tools: ["Serviette douce", "Détergent doux"],
+    parts: ["Brossettes de rechange compatibles"],
+    sources: [
+      { label: "Oral-B — comment et quand remplacer votre brosse", url: "https://www.oralb.fr/fr-fr/guide-de-demarrage/comment-et-quand-remplacer-votre-brosse" },
+      { label: "Oral-B — comment nettoyer votre brosse à dents électrique", url: "https://www.oralb.ca/fr-ca/sante-buccodentaire/pourquoi-oral-b/brosses-a-dents-electriques/comment-nettoyer-une-brosse-a-dents-electrique" }
+    ],
+    steps: [
+      { title: "Rincer après chaque brossage", text: "Rincez la brossette à l'eau du robinet pour retirer dentifrice et débris." },
+      { title: "Nettoyer sous la brossette", text: "Régulièrement, retirez la brossette et rincez séparément la brossette et le haut du manche, où le dentifrice s'accumule. Nettoyez l'extérieur du manche au détergent doux." },
+      { title: "Sécher debout", text: "Essuyez avec une serviette douce et rangez la brosse à la verticale pour qu'elle sèche à l'air." },
+      { title: "Changer la brossette", text: "Tous les trois mois, ou plus tôt quand les poils indicateurs ont perdu la moitié de leur couleur ou s'écartent." }
+    ],
+    troubleshoot: [
+      "La brosse ne charge plus : essuyez le socle et le bas du manche, et vérifiez la prise.",
+      "Elle vibre moins fort : batterie faible ou brossette mal enfoncée."
+    ]
+  },
+  {
+    id: "detartrer-sterilisateur-biberons",
+    title: "Détartrer un stérilisateur de biberons",
+    category: "electromenager",
+    devices: ["puericulture"],
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    savings: "≈ 40 €",
+    keywords: ["stérilisateur", "biberons", "philips avent", "calcaire", "taches blanches", "plaque chauffante", "vinaigre", "détartrer", "puériculture", "chauffe-biberon"],
+    summary: "Les taches blanches ou brunes sur la plaque chauffante, c'est du calcaire. Un cycle au vinaigre blanc toutes les deux semaines garde le stérilisateur efficace.",
+    safety: "Débranchez l'appareil et laissez-le refroidir avant de le vider. Rincez très soigneusement : aucun résidu de vinaigre ne doit rester pour les biberons.",
+    tools: ["Vinaigre blanc à 5 % (ou détartrant à l'acide citrique)", "Éponge", "Chiffon humide"],
+    parts: [],
+    sources: [
+      { label: "Philips Avent — éliminer les taches blanches ou brunes de la plaque chauffante", url: "https://www.philips.fr/c-f/XC000019369/comment-%C3%A9liminer-les-taches-blanches-brunes-sur-la-plaque-chauffante-de-mon-st%C3%A9rilisateur-philips-avent" },
+      { label: "Philips — mode d'emploi du stérilisateur SCF291", url: "https://www.documents.philips.com/assets/20220407/afb7ae9216394e229956ae7000264a74.pdf" }
+    ],
+    steps: [
+      { title: "Préparer le mélange", text: "Versez dans le réservoir 12 ml de vinaigre blanc à 5 % (2,5 cuillères à café) et 120 ml d'eau. Chaque modèle a ses propres quantités : vérifiez la notice." },
+      { title: "Lancer un cycle", text: "Remettez panier et couvercle, puis mettez l'appareil en marche environ 5 minutes (ou un cycle complet selon la notice).", timer: 300 },
+      { title: "Laisser refroidir", text: "Attendez au moins 5 minutes, appareil débranché.", timer: 300 },
+      { title: "Rincer", text: "Videz, frottez les traces de calcaire à l'éponge et rincez soigneusement le réservoir, le panier et le couvercle. Essuyez le socle au chiffon humide." },
+      { title: "Recommencer toutes les deux semaines", text: "Plus souvent si l'eau est calcaire.", tip: "N'utilisez que du vinaigre blanc ou un détartrant à l'acide citrique." }
+    ],
+    troubleshoot: [
+      "Il reste des taches : refaites un cycle.",
+      "L'appareil s'arrête trop tôt : c'est souvent le calcaire sur la plaque qui fausse la détection."
+    ]
+  },
+  {
+    id: "nettoyer-ventilateur",
+    title: "Nettoyer les pales et la grille d'un ventilateur",
+    category: "electromenager",
+    devices: ["ventilateur"],
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    savings: "≈ 20 €",
+    keywords: ["ventilateur", "pales", "grille", "poussière", "bruit", "ventilateur sur pied", "colonne", "nettoyer", "rangement"],
+    summary: "La poussière sur les pales est brassée dans la pièce et fait forcer le moteur. Un démontage de la grille et un coup de chiffon suffisent.",
+    safety: "Débranchez le ventilateur et attendez quelques minutes que le moteur refroidisse. Pas d'eau sur le bloc moteur.",
+    tools: ["Tournevis (si la grille est vissée)", "Chiffon microfibre", "Brosse douce", "Eau tiède et savon doux"],
+    parts: [],
+    sources: [
+      { label: "BUT — nettoyer un ventilateur", url: "https://blog.but.fr/article/comment-nettoyer-efficacement-votre-ventilateur/" },
+      { label: "Casafan — nettoyer les pales d'un ventilateur sur pied", url: "https://www.casafan.fr/news/ventilateurs-silencieux/comment-nettoyer-les-pales-dun-ventilateur-sur-pied" }
+    ],
+    steps: [
+      { title: "Débrancher", text: "Débranchez et laissez le moteur refroidir." },
+      { title: "Ouvrir la grille", text: "Retirez la grille avant : clips sur le pourtour ou petite vis selon les modèles." },
+      { title: "Dépoussiérer les pales", text: "Essuyez chaque pale, devant et derrière, avec un chiffon légèrement humide et savonneux, puis séchez." },
+      { title: "Laver la grille", text: "Dépoussiérez-la à la brosse ou passez-la sous l'eau savonneuse, puis séchez-la entièrement." },
+      { title: "Dépoussiérer le moteur et remonter", text: "Passez une brosse sèche sur les aérations du moteur, puis remontez une fois tout bien sec." }
+    ],
+    troubleshoot: [
+      "Il vibre ou fait du bruit : pale mal serrée ou grille mal clipsée.",
+      "Les pales tournent lentement : poussière dans le moteur ; si le problème reste, le condensateur de démarrage est souvent en cause."
+    ]
+  },
+  {
+    id: "filtres-purificateur-air",
+    title: "Purificateur d'air : entretenir et changer les filtres",
+    category: "electromenager",
+    devices: ["purificateur"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 50 €",
+    keywords: ["purificateur d'air", "filtre", "hepa", "préfiltre", "charbon actif", "odeur", "débit", "bruit", "voyant filtre"],
+    summary: "Un filtre saturé fait chuter le débit d'air, augmente le bruit et laisse revenir les odeurs. Préfiltre à nettoyer, filtre HEPA à remplacer.",
+    safety: "Éteignez et débranchez le purificateur avant d'ouvrir le capot.",
+    tools: ["Aspirateur avec brosse douce", "Chiffon sec"],
+    parts: ["Filtre HEPA ou charbon de rechange (référence du fabricant)"],
+    sources: [
+      { label: "IQAir — à quelle fréquence changer le filtre d'un purificateur d'air", url: "https://www.iqair.com/fr/newsroom/how-often-should-you-change-an-air-purifier-filter" },
+      { label: "Smart Air — quand remplacer les filtres HEPA", url: "https://smartairfilters.com/fr/quand-remplacer-filtres-hepa-purificateurs-air/" }
+    ],
+    steps: [
+      { title: "Éteindre et ouvrir", text: "Débranchez l'appareil et retirez le capot d'accès aux filtres." },
+      { title: "Nettoyer le préfiltre", text: "Passez l'aspirateur à faible puissance, ou lavez-le à l'eau tiède s'il est lavable, puis laissez-le sécher complètement." },
+      { title: "Contrôler le filtre HEPA", text: "La plupart ne se lavent pas. Remplacez-le s'il est gris et encrassé, souvent tous les 6 à 12 mois en usage courant." },
+      { title: "Remplacer le filtre à charbon", text: "Il absorbe les odeurs et se remplace souvent tous les 3 à 12 mois." },
+      { title: "Remonter et réinitialiser", text: "Remettez les filtres dans le bon sens, refermez, puis réinitialisez le voyant de filtre selon la notice." }
+    ],
+    troubleshoot: [
+      "Débit d'air plus faible au même réglage, bruit accru ou odeurs qui reviennent : filtre à changer.",
+      "Les filtres s'encrassent vite : fumée, animaux, cuisine ou fonctionnement continu à grande vitesse."
+    ]
+  },
+  {
+    id: "detartrer-nettoyeur-vapeur",
+    title: "Nettoyeur vapeur : bonne eau et détartrage",
+    category: "electromenager",
+    devices: ["nettoyeur-vapeur"],
+    difficulty: "Facile",
+    duration: "30 min",
+    minutes: 30,
+    savings: "≈ 60 €",
+    keywords: ["nettoyeur vapeur", "balai vapeur", "karcher", "calcaire", "détartrer", "chaudière", "eau déminéralisée", "moins de vapeur", "patins"],
+    summary: "Le calcaire réduit la vapeur jusqu'à boucher l'appareil. Choisir la bonne eau et détartrer dès que le débit baisse prolonge sa vie.",
+    safety: "N'ouvrez jamais le bouchon de la chaudière tant qu'elle est sous pression : risque de brûlure grave. Travaillez appareil débranché et froid.",
+    tools: ["Détartrant recommandé par le fabricant", "Eau déminéralisée"],
+    parts: ["Patins microfibre de rechange"],
+    sources: [
+      { label: "Le Coin Ménage — entretenir et détartrer son nettoyeur vapeur", url: "https://www.lecoinmenage.fr/blog/nettoyeurs/entretenir-detartrer-nettoyeur-vapeur/" },
+      { label: "Kärcher — mode d'emploi du nettoyeur vapeur SC 1", url: "https://www.notice-facile.com/notice/6821/karcher+sc1-_f" }
+    ],
+    steps: [
+      { title: "Choisir la bonne eau", text: "L'eau du robinet convient le plus souvent. En eau calcaire, coupez-la avec de l'eau déminéralisée. N'ajoutez ni parfum, ni vinaigre, ni additif non prévu par la notice." },
+      { title: "Refroidir et débrancher", text: "Avant tout entretien, débranchez et attendez le refroidissement complet." },
+      { title: "Détartrer", text: "Suivez la notice : introduisez le détartrant du fabricant dans la chaudière froide, laissez agir le temps indiqué." },
+      { title: "Rincer", text: "Videz et rincez la chaudière plusieurs fois à l'eau claire." },
+      { title: "Entretenir les accessoires", text: "Lavez les patins microfibre en machine sans adoucissant, videz le réservoir après chaque usage et rangez l'appareil sec.", tip: "Détartrez dès que la vapeur faiblit." }
+    ],
+    troubleshoot: [
+      "Peu ou pas de vapeur : calcaire, détartrez.",
+      "Des gouttes d'eau au lieu de vapeur : l'appareil n'a pas fini de chauffer, ou la chaudière est entartrée."
+    ]
+  },
+  {
+    id: "housse-table-a-repasser",
+    title: "Table à repasser : changer la housse",
+    category: "electromenager",
+    devices: ["table-a-repasser"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 30 €",
+    keywords: ["table à repasser", "planche à repasser", "housse", "mousse", "feutre", "cordon", "brûlée", "tâchée", "brabantia"],
+    summary: "Une housse brûlée, tachée ou tassée marque le linge. On la change en dix minutes, sans changer de table.",
+    safety: "Débranchez le fer et attendez qu'il refroidisse avant de manipuler la table.",
+    tools: ["Ciseaux"],
+    parts: ["Housse à la taille du plateau (longueur × largeur)"],
+    sources: [
+      { label: "Brabantia — à quel moment changer la housse de votre table à repasser", url: "https://www.brabantia.com/be_fr/blog/a-quel-moment-devez-vous-changer-la-housse-de-votre-table-a-repasser-1" },
+      { label: "Brabantia — fixer une nouvelle housse de table à repasser", url: "https://service.brabantia.com/hc/en-us/articles/4407473747089-How-do-I-attach-a-new-ironing-board-cover" }
+    ],
+    steps: [
+      { title: "Mesurer le plateau", text: "Mesurez la longueur et la largeur du plateau pour choisir une housse à la bonne taille." },
+      { title: "Retirer l'ancienne housse", text: "Desserrez le cordon ou les attaches sous le plateau et retirez la housse. Gardez la mousse ou le feutre s'ils sont en bon état et que la nouvelle housse n'en a pas." },
+      { title: "Poser la nouvelle housse", text: "Enfilez-la par la pointe, puis tirez-la sur l'arrière du plateau en la centrant." },
+      { title: "Serrer le cordon", text: "Tirez sur le cordon pour tendre la housse sous le plateau, bloquez l'arrêt-cordon, puis nouez ou coupez l'excédent en laissant 15 à 20 cm." },
+      { title: "Ranger au sec", text: "Pliez la table et rangez-la dans un endroit sec : l'humidité fait moisir la housse." }
+    ],
+    troubleshoot: [
+      "La housse glisse : resserrez le cordon ou ajoutez des attaches élastiques sous le plateau.",
+      "Le réglage de hauteur ne se bloque plus : le levier ou le crantage est usé, consultez la notice."
+    ]
+  },
+  {
+    id: "entretien-cireuse",
+    title: "Cireuse à parquet : cirer, lustrer et entretenir",
+    category: "electromenager",
+    devices: ["cireuse"],
+    difficulty: "Facile",
+    duration: "1 h (+ séchage)",
+    minutes: 60,
+    savings: "≈ 50 €",
+    keywords: ["cireuse", "lustreuse", "parquet", "cire", "brosses", "feutres", "lustrage", "entretien du parquet"],
+    summary: "Brosses et feutres encrassés de vieille cire étalent la saleté. Préparer le sol, cirer, lustrer, puis nettoyer les accessoires.",
+    safety: "Débranchez la cireuse avant de changer une brosse ou un feutre. Aérez pendant le cirage.",
+    tools: ["Aspirateur", "Cire liquide pour parquet", "Chiffon coton"],
+    parts: ["Brosses et feutres de rechange"],
+    sources: [
+      { label: "Syntilor — cireuse à parquet : bien la choisir et l'utiliser", url: "https://www.syntilor.com/blog/cireuse-a-parquet-mode-demploi" },
+      { label: "PagesJaunes — cireuse à parquet", url: "https://parquet.pagesjaunes.fr/astuce/voir/518871/cireuse-a-parquet" }
+    ],
+    steps: [
+      { title: "Préparer le sol", text: "Aspirez soigneusement le parquet ; s'il est très encrassé, utilisez un décapant adapté avant de cirer." },
+      { title: "Choisir l'accessoire", text: "Brosse dure pour nettoyer, brosse souple pour étaler la cire, feutre pour lustrer." },
+      { title: "Cirer", text: "Remplissez le réservoir de cire liquide et passez la machine régulièrement sur toute la surface, bords compris. Laissez sécher le temps indiqué par le fabricant de la cire, souvent quelques heures." },
+      { title: "Lustrer", text: "Une fois la cire sèche, passez le feutre de lustrage." },
+      { title: "Nettoyer les accessoires", text: "Débranchez, retirez brosses et feutres et débarrassez-les de la cire et de la poussière avant de les ranger." }
+    ],
+    troubleshoot: [
+      "Le parquet reste terne : cire pas assez sèche avant le lustrage, ou feutre encrassé.",
+      "La cireuse saute ou vibre : brosse mal enclenchée ou usée de façon inégale."
+    ]
+  },
+  {
+    id: "nettoyer-montre-connectee",
+    title: "Nettoyer une montre connectée et son bracelet",
+    category: "telephonie",
+    devices: ["montre-connectee"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 30 €",
+    keywords: ["montre connectée", "apple watch", "garmin", "fitbit", "bracelet", "capteurs", "irritation", "nettoyer", "fréquence cardiaque"],
+    summary: "Sueur, crème solaire et lotion se déposent sur les capteurs et le bracelet : mesures faussées et peau irritée. Un nettoyage à l'eau douce suffit.",
+    safety: "Éteignez la montre et retirez-la du chargeur. Pas de savon, de produit ménager, d'air comprimé ni d'ultrasons.",
+    tools: ["Chiffon doux non pelucheux", "Eau douce"],
+    parts: [],
+    sources: [
+      { label: "Apple — nettoyage de votre Apple Watch", url: "https://support.apple.com/fr-afri/108893" },
+      { label: "Apple — informations d'entretien du bracelet", url: "https://support.apple.com/fr-afri/guide/watch/apda101f4abe/5.0/watchos" }
+    ],
+    steps: [
+      { title: "Éteindre et retirer le bracelet", text: "Éteignez la montre, retirez-la du chargeur et détachez le bracelet, surtout s'il est en cuir." },
+      { title: "Essuyer le boîtier", text: "Passez un chiffon non pelucheux légèrement humidifié d'eau douce. Sur un modèle étanche, un filet d'eau tiède peut retirer les résidus : vérifiez la notice." },
+      { title: "Sécher", text: "Séchez entièrement au chiffon doux, capteurs compris." },
+      { title: "Nettoyer le bracelet", text: "Essuyez-le au chiffon légèrement humide et laissez-le sécher à l'air avant de le remettre. Ne plongez jamais un bracelet en cuir dans l'eau." }
+    ],
+    troubleshoot: [
+      "Mesures cardiaques irrégulières : capteurs sales ou montre trop lâche au poignet.",
+      "La montre ne charge plus : essuyez le dos de la montre et le chargeur."
+    ]
+  },
+  {
+    id: "mettre-a-jour-gps",
+    title: "Mettre à jour les cartes d'un GPS voiture",
+    category: "telephonie",
+    devices: ["gps"],
+    difficulty: "Facile",
+    duration: "1 h",
+    minutes: 60,
+    savings: "≈ 80 €",
+    keywords: ["gps", "garmin", "tomtom", "cartes", "mise à jour", "garmin express", "carte micro sd", "radars", "logiciel"],
+    summary: "Un GPS aux cartes périmées ne connaît pas les routes récentes. La mise à jour se fait depuis un ordinateur avec le logiciel du fabricant.",
+    safety: "Ne débranchez pas le GPS pendant l'installation : une mise à jour interrompue peut le bloquer.",
+    tools: ["Ordinateur avec connexion Internet", "Câble USB du GPS"],
+    parts: ["Carte microSD si la mémoire est insuffisante"],
+    sources: [
+      { label: "Garmin — mise à jour de cartes et de logiciels avec Garmin Express (Drive 51/61)", url: "https://www8.garmin.com/manuals/webhelp/drive51-61/FR-FR/GUID-AB01F4C7-F1B1-4169-BC92-A222FF8344EC.html" },
+      { label: "Garmin — mise à jour des cartes et logiciels automobiles avec Garmin Express", url: "https://support.garmin.com/fr-CH/?faq=xAwoBhInw15dPzLj52ekCA" }
+    ],
+    steps: [
+      { title: "Installer le logiciel", text: "Sur l'ordinateur, installez le logiciel du fabricant (Garmin Express sur garmin.com/express, ou l'outil équivalent de votre marque)." },
+      { title: "Brancher le GPS", text: "Lancez le logiciel et reliez le GPS à l'ordinateur avec son câble USB." },
+      { title: "Ajouter l'appareil", text: "Cliquez sur « Ajouter un appareil » et suivez les instructions." },
+      { title: "Installer les mises à jour", text: "Choisissez « Tout installer », ou affichez le détail pour choisir. Suivez les consignes, qui peuvent demander de débrancher puis rebrancher le GPS.", tip: "Les cartes sont volumineuses : prévoyez du temps avec une connexion lente." },
+      { title: "Libérer de la place si besoin", text: "Si la mémoire manque, ajoutez une carte microSD pour recevoir les cartes." }
+    ],
+    troubleshoot: [
+      "Le GPS n'est pas reconnu : essayez un autre câble ou un autre port USB.",
+      "Mises à jour payantes : certains modèles ont des cartes à vie, d'autres non. Vérifiez sur le compte du fabricant."
+    ]
+  },
+  {
+    id: "nettoyer-ecran-tv",
+    title: "Nettoyer un écran de télé ou d'ordinateur sans l'abîmer",
+    category: "telephonie",
+    devices: ["television", "ecran-pc"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 400 €",
+    keywords: ["écran", "télévision", "tv", "moniteur", "écran pc", "oled", "qled", "lcd", "traces", "poussière", "nettoyer", "microfibre"],
+    summary: "Un produit vitre ou un essuie-tout peut ruiner une dalle en une fois. Un chiffon microfibre, un peu d'eau déposée sur le chiffon, et c'est tout.",
+    safety: "Éteignez l'écran et débranchez-le. Ne vaporisez jamais de liquide directement sur l'écran : il peut couler à l'intérieur.",
+    tools: ["Chiffon microfibre propre, réservé à l'écran", "Eau distillée (ou eau du robinet)"],
+    parts: [],
+    sources: [
+      { label: "Lecoindunet — bien nettoyer un écran QLED, OLED, LED ou LCD", url: "https://www.lecoindunet.com/nettoyer-ecran-led" },
+      { label: "Samsung — conseils pour nettoyer correctement l'écran de votre TV", url: "https://ushl.samsung.com/fr/support/tv-audio-video/conseils-pour-nettoyer-correctement-l-ecran-de-votre-tv" }
+    ],
+    steps: [
+      { title: "Éteindre et débrancher", text: "Éteignez l'écran, attendez qu'il refroidisse et débranchez-le. Écran noir, les traces se voient mieux." },
+      { title: "Dépoussiérer à sec", text: "Passez le chiffon microfibre sec, en mouvements doux, sans appuyer." },
+      { title: "Humidifier le chiffon pour les traces", text: "Déposez un peu d'eau distillée sur un coin du chiffon, jamais sur l'écran, puis essuyez doucement." },
+      { title: "Sécher", text: "Repassez avec la partie sèche du chiffon pour ne laisser aucune humidité." },
+      { title: "Nettoyer le cadre et les aérations", text: "Dépoussiérez le cadre, le pied et les grilles d'aération." }
+    ],
+    troubleshoot: [
+      "À proscrire : alcool, ammoniaque, produit vitre, essuie-tout, vieux torchon, pression forte.",
+      "Une tache persiste sous la surface : c'est un défaut de dalle (pixel mort, marque), pas une salissure."
+    ]
+  },
+  {
+    id: "filtre-videoprojecteur",
+    title: "Vidéoprojecteur : nettoyer le filtre à air",
+    category: "telephonie",
+    devices: ["videoprojecteur"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 150 €",
+    keywords: ["vidéoprojecteur", "projecteur", "filtre", "poussière", "surchauffe", "voyant", "lampe", "image terne", "epson", "ventilateur"],
+    summary: "Un filtre encrassé fait chauffer le projecteur, l'arrête par sécurité et use la lampe plus vite. Le nettoyer se fait à l'aspirateur ou au pinceau.",
+    safety: "Éteignez le projecteur, débranchez-le et laissez-le refroidir : la lampe est brûlante.",
+    tools: ["Petit aspirateur pour ordinateur ou pinceau très souple"],
+    parts: ["Filtre de rechange si le filtre est abîmé"],
+    sources: [
+      { label: "Epson — nettoyage du filtre à air et des orifices d'aération", url: "https://files.support.epson.com/docid/cpd5/cpd59708/source/maintenance/tasks/cleaning_air_filter.html" },
+      { label: "Epson — entretien du filtre à air et des évents", url: "https://files.support.epson.com/docid/cpd4/cpd41027/source/maintenance/concepts/maint_filter_vent.html" }
+    ],
+    steps: [
+      { title: "Éteindre et débrancher", text: "Mettez le projecteur hors tension, débranchez-le et laissez-le refroidir." },
+      { title: "Retirer le filtre", text: "Ouvrez le couvercle du filtre (voir la notice) et sortez le filtre." },
+      { title: "Dépoussiérer", text: "Aspirez délicatement les deux faces avec un petit aspirateur, ou passez un pinceau très souple. Dépoussiérez aussi les grilles d'aération." },
+      { title: "Remonter", text: "Remettez le filtre et le couvercle, puis rebranchez.", tip: "Plus souvent si la pièce est poussiéreuse ou enfumée, et tout de suite en cas d'alerte de surchauffe." }
+    ],
+    troubleshoot: [
+      "Pas d'eau, de détergent, de solvant ni d'air comprimé sur le filtre.",
+      "La poussière ne part pas ou le filtre est déchiré : remplacez-le.",
+      "Image plus sombre qu'avant : la lampe approche de sa fin de vie ; le mode Éco la ménage."
+    ]
+  },
+  {
+    id: "lecteur-dvd-ne-lit-plus",
+    title: "Lecteur DVD ou Blu-ray qui ne lit plus les disques",
+    category: "telephonie",
+    devices: ["lecteur-video"],
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    savings: "≈ 80 €",
+    keywords: ["lecteur dvd", "blu-ray", "ne lit plus", "disque", "lentille", "mise à jour", "firmware", "zone", "rayé", "sony"],
+    summary: "Avant d'accuser la lentille, vérifiez le disque, sa zone et le logiciel du lecteur. Et évitez les disques de nettoyage.",
+    safety: "N'ouvrez pas le lecteur : le laser peut être dangereux pour les yeux et l'appareil reste sous tension à l'intérieur.",
+    tools: ["Chiffon doux et sec", "Clé USB (pour une mise à jour)"],
+    parts: [],
+    sources: [
+      { label: "Sony — mode d'emploi d'un lecteur Blu-ray (entretien des disques)", url: "https://www.sony.fr/electronics/support/res/manuals/4261/42610922M.pdf" },
+      { label: "Sony — procédure de mise à jour du logiciel du lecteur Blu-ray", url: "https://www.sony.fr/electronics/support/home-video-blu-ray-disc-players-recorders/ubp-x700/articles/00069793" }
+    ],
+    steps: [
+      { title: "Essayer un autre disque", text: "Si un autre disque passe, le problème vient du premier (sale, rayé ou d'une autre zone géographique)." },
+      { title: "Nettoyer le disque", text: "Essuyez-le avec un chiffon doux, en lignes droites du centre vers l'extérieur. Pas de solvant ni d'antistatique pour vinyle." },
+      { title: "Vérifier la zone", text: "Un DVD ou Blu-ray d'une autre région que le lecteur ne sera pas lu." },
+      { title: "Mettre à jour le logiciel", text: "Installez la dernière mise à jour du lecteur, par Internet ou par clé USB, en suivant la procédure du fabricant. Ne coupez pas le courant pendant la mise à jour." },
+      { title: "Réinitialiser", text: "En dernier recours, rétablissez les réglages d'usine depuis le menu." }
+    ],
+    troubleshoot: [
+      "N'utilisez pas de disque de nettoyage de lentille ni de nettoyant en spray : Sony les déconseille, ils peuvent provoquer une panne.",
+      "Aucun disque ne passe après tout cela : la lentille ou le bloc optique est en cause, réparation en atelier."
+    ]
+  },
+  {
+    id: "barre-de-son-pas-de-son",
+    title: "Barre de son ou home cinéma sans son avec la télé",
+    category: "telephonie",
+    devices: ["hifi"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 60 €",
+    keywords: ["barre de son", "home cinéma", "pas de son", "hdmi arc", "earc", "cec", "anynet", "optique", "bluetooth", "télé"],
+    summary: "Le plus souvent, ce n'est pas une panne : mauvais port HDMI, CEC désactivé ou sortie audio de la télé mal réglée.",
+    safety: "Éteignez les appareils avant de débrancher ou rebrancher un câble.",
+    tools: ["Télécommandes de la télé et de la barre de son", "Câble HDMI compatible ARC/eARC"],
+    parts: [],
+    sources: [
+      { label: "Samsung — que faire si ma barre de son n'émet aucun son", url: "https://www.samsung.com/fr/support/tv-audio-video/ma-barre-de-son-samsung-n-emet-aucun-son/" },
+      { label: "Samsung — aucun son avec l'eARC", url: "https://www.samsung.com/ca_fr/support/tv-audio-video/samsung-tv-no-sound-from-soundbar-when-using-earc/" }
+    ],
+    steps: [
+      { title: "Vérifier l'évidence", text: "Tout est allumé, le son n'est coupé ni sur la télé ni sur la barre, le volume est monté." },
+      { title: "Brancher sur les bons ports", text: "Le câble HDMI doit aller du port HDMI marqué ARC ou eARC de la télé au port « HDMI TO TV (ARC/eARC) » de la barre." },
+      { title: "Activer le HDMI-CEC", text: "Dans les réglages de la télé, activez la fonction CEC (Anynet+ chez Samsung, SimpLink chez LG, Bravia Sync chez Sony)." },
+      { title: "Choisir la sortie audio", text: "Réglez la sortie son de la télé sur la barre de son ou « système audio externe », et la source de la barre sur l'entrée TV/ARC." },
+      { title: "Redémarrer et tester", text: "Éteignez tout, débranchez quelques minutes, rebranchez. Essayez un autre câble HDMI si le problème persiste." }
+    ],
+    troubleshoot: [
+      "En Bluetooth : supprimez l'appairage et refaites-le depuis la télé.",
+      "Son décalé : cherchez le réglage de synchronisation audio (lip sync) dans la télé ou la barre."
+    ]
+  },
+  {
+    id: "nettoyer-ecouteurs-casque",
+    title: "Nettoyer des écouteurs ou un casque",
+    category: "telephonie",
+    devices: ["casque-ecouteurs", "casque-gaming"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 30 €",
+    keywords: ["écouteurs", "airpods", "casque", "casque gaming", "cérumen", "grille", "son faible", "coussinets", "embouts", "boîtier de charge"],
+    summary: "Le cérumen qui bouche les grilles fait baisser le son d'un côté. Un nettoyage à sec, sans liquide dans les orifices, suffit généralement.",
+    safety: "Ne faites entrer aucun liquide dans les orifices ni dans le port de charge. Pas d'objet pointu ni abrasif.",
+    tools: ["Chiffon doux, sec et non pelucheux", "Coton-tige sec", "Brosse à poils souples et secs"],
+    parts: ["Embouts ou coussinets de rechange"],
+    sources: [
+      { label: "Apple — comment nettoyer vos AirPods", url: "https://support.apple.com/fr-afri/HT208729" },
+      { label: "Apple — utiliser des écouteurs filaires Apple", url: "https://support.apple.com/fr-afri/108042" }
+    ],
+    steps: [
+      { title: "Débrancher", text: "Déconnectez le casque ou sortez les écouteurs de leur boîtier." },
+      { title: "Dégager les grilles", text: "Retirez les débris des grilles du haut-parleur et du micro avec une brosse souple sèche ou un coton-tige sec, sans appuyer." },
+      { title: "Essuyer le corps", text: "Passez un chiffon doux, sec ou très légèrement humide d'eau claire, puis séchez." },
+      { title: "Nettoyer embouts et coussinets", text: "Les embouts en silicone amovibles se rincent à l'eau claire et se sèchent à fond avant d'être remis. Essuyez les coussinets de casque au chiffon légèrement humide." },
+      { title: "Nettoyer le boîtier de charge", text: "Retirez les débris à la brosse sèche, puis passez un chiffon sec. Laissez tout sécher avant de recharger." }
+    ],
+    troubleshoot: [
+      "Un seul côté est faible : grille encrassée ; sur un casque filaire, testez aussi un autre câble.",
+      "Le boîtier ne charge plus un écouteur : poussière sur les contacts, nettoyez-les au coton-tige sec."
+    ]
+  },
+  {
+    id: "nettoyer-objectif-appareil-photo",
+    title: "Nettoyer l'objectif d'un appareil photo",
+    category: "telephonie",
+    devices: ["appareil-photo"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 60 €",
+    keywords: ["appareil photo", "objectif", "lentille", "poussière", "traces", "soufflette", "capteur", "reflex", "hybride", "tamron"],
+    summary: "Poussières et traces de doigts donnent des photos voilées. Du moins agressif au plus : soufflette, pinceau, puis chiffon humidifié.",
+    safety: "Pas d'air comprimé en bombe, pas de mouchoir ni d'essuie-tout : ils rayent les traitements de la lentille.",
+    tools: ["Poire soufflante", "Pinceau doux", "Chiffon microfibre pour optique", "Liquide de nettoyage pour optique"],
+    parts: [],
+    sources: [
+      { label: "Tamron — comment nettoyer votre objectif", url: "https://www.tamron.eu/fr-FR/actualites/actualites-du-blog/comment-nettoyer-votre-objectif-" },
+      { label: "Conseils Photos — nettoyer son objectif sans le rayer", url: "https://www.conseils-photos.com/articles/nettoyer-entretenir-objectif-photo-sans-rayure-poussiere-traces-buee-capteur-tuto-2026" }
+    ],
+    steps: [
+      { title: "Éteindre", text: "Éteignez l'appareil. Pour un objectif interchangeable, retirez-le et bouchez le boîtier." },
+      { title: "Souffler", text: "Chassez les poussières avec la poire soufflante, sans toucher la lentille." },
+      { title: "Brosser", text: "Passez un pinceau doux pour les particules qui restent." },
+      { title: "Essuyer", text: "Déposez une ou deux gouttes de liquide sur le chiffon, jamais sur la lentille, puis essuyez en cercles du centre vers l'extérieur." },
+      { title: "Protéger", text: "Remettez les bouchons et rangez l'objectif au sec, avec un sachet de gel de silice." }
+    ],
+    troubleshoot: [
+      "Des taches au même endroit sur toutes les photos : c'est le capteur. Lancez le nettoyage automatique du boîtier, puis une soufflette capteur ; sinon confiez-le au SAV.",
+      "Buée à l'intérieur de l'objectif : laissez-le sécher à température ambiante ; si elle revient, faites-le contrôler."
+    ]
+  },
+  {
+    id: "calibrer-hoverboard",
+    title: "Hoverboard qui tire d'un côté : le recalibrer",
+    category: "velo",
+    devices: ["gyropode"],
+    difficulty: "Facile",
+    duration: "5 min",
+    minutes: 5,
+    savings: "≈ 80 €",
+    keywords: ["hoverboard", "gyropode", "gyroroue", "calibrer", "recalibrer", "tire d'un côté", "voyant rouge", "bip", "gyroscope", "réinitialiser"],
+    summary: "Il tourne plus lentement d'un côté, penche ou bipe ? Un recalibrage des capteurs règle souvent le problème en quelques minutes.",
+    safety: "Faites l'essai après calibrage sur un sol dégagé, avec casque et protections.",
+    tools: ["Une surface plane et horizontale"],
+    parts: [],
+    sources: [
+      { label: "Mobilité Douce — calibrer ou réinitialiser un hoverboard", url: "https://www.mobilite-douce.fr/hoverboard-electrique/guides-techniques/comment-calibrer-reinitialiser-un-hoverboard/" },
+      { label: "Hover-Store — recalibrer un hoverboard", url: "https://hover-store.fr/recalibrer-un-hoverboard/" }
+    ],
+    steps: [
+      { title: "Éteindre", text: "Éteignez l'hoverboard avec son bouton (pas avec la télécommande)." },
+      { title: "Poser à plat", text: "Placez-le sur un sol plat et horizontal, les deux plateaux bien alignés." },
+      { title: "Lancer le calibrage", text: "Maintenez le bouton d'alimentation enfoncé environ 5 secondes (jusqu'à 15 selon les modèles), jusqu'au bip et au clignotement des voyants." },
+      { title: "Attendre sans toucher", text: "Laissez-le immobile une trentaine de secondes.", timer: 30 },
+      { title: "Éteindre et tester", text: "Éteignez-le pour enregistrer le calibrage, rallumez-le puis testez des virages dans les deux sens.", tip: "La procédure varie selon les marques : vérifiez la notice." }
+    ],
+    troubleshoot: [
+      "Voyant rouge qui clignote : le nombre de clignotements indique la panne (batterie, capteur...). Consultez le tableau de la notice.",
+      "Le problème revient après calibrage : un capteur (gyroscope) ou une carte est à remplacer."
+    ]
+  },
+  {
+    id: "entretien-perceuse-visseuse",
+    title: "Perceuse-visseuse sans fil : batterie, mandrin et aérations",
+    category: "maison",
+    devices: ["perceuse"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 60 €",
+    keywords: ["perceuse", "visseuse", "perceuse-visseuse", "batterie", "lithium", "autonomie", "mandrin", "aérations", "sans fil", "makita", "bosch", "ryobi"],
+    summary: "Une batterie mal stockée perd de la capacité, des aérations bouchées font chauffer le moteur. Quelques habitudes prolongent la vie de l'outil.",
+    safety: "Retirez la batterie avant tout nettoyage ou changement d'embout. Portez des lunettes si vous soufflez les aérations.",
+    tools: ["Pinceau ou soufflette", "Chiffon sec", "Graisse pour métaux (mandrin)"],
+    parts: ["Batterie de rechange d'origine si l'autonomie s'effondre"],
+    sources: [
+      { label: "Bricotou — utiliser et entretenir les batteries de perceuse-visseuse", url: "https://www.bricotou.com/les-batteries-et-accus-perceuse-visseuse-sans-fil-comment-les-utiliser-et-les-entretenir/" },
+      { label: "Les-Outils.com — maintenance préventive de la perceuse-visseuse sans fil", url: "https://www.les-outils.com/maintenance-preventive-de-votre-perceuse-visseuse-sans-fil-guide-complet/" }
+    ],
+    steps: [
+      { title: "Retirer la batterie après usage", text: "Sortez la batterie de l'outil à la fin du travail." },
+      { title: "Recharger sans attendre la panne", text: "Une batterie lithium-ion n'a pas d'effet mémoire : rechargez-la quand vous voulez, mais évitez de la vider complètement, cela lui fait perdre de la capacité. Utilisez le chargeur d'origine." },
+      { title: "Bien stocker", text: "Pour un rangement de plusieurs semaines, laissez-la à environ 40 % de charge, dans un endroit frais et sec." },
+      { title: "Dépoussiérer les aérations", text: "Chassez la poussière des ouïes du moteur au pinceau ou à la soufflette, à une quinzaine de centimètres." },
+      { title: "Entretenir le mandrin", text: "Nettoyez les mors et mettez un peu de graisse pour métaux quand le serrage devient dur." }
+    ],
+    troubleshoot: [
+      "L'outil s'arrête en plein effort : la protection de la batterie ou du moteur se déclenche, laissez refroidir.",
+      "Des étincelles visibles dans les aérations et une perte de puissance (outil filaire ou moteur à charbons) : les charbons sont usés, ils se remplacent."
+    ]
+  },
+  {
+    id: "entretien-ponceuse",
+    title: "Ponceuse : changer l'abrasif et nettoyer le plateau",
+    category: "maison",
+    devices: ["scie-ponceuse"],
+    difficulty: "Facile",
+    duration: "10 min",
+    minutes: 10,
+    savings: "≈ 40 €",
+    keywords: ["ponceuse", "abrasif", "papier de verre", "scratch", "velcro", "plateau", "poussière", "sac", "aspiration", "excentrique", "vibrante", "scie"],
+    summary: "La poussière de ponçage bouche le scratch du plateau et le moteur. Un nettoyage après chaque usage et un abrasif bien posé changent tout.",
+    safety: "Débranchez l'outil (ou retirez la batterie) avant de changer l'abrasif. Portez masque et lunettes : la poussière de ponçage est nocive.",
+    tools: ["Soufflette ou aspirateur avec brosse", "Ruban adhésif", "Brosse à dents"],
+    parts: ["Abrasifs au bon format et au bon grain", "Plateau ou velcro de rechange si le scratch ne tient plus"],
+    sources: [
+      { label: "Ponceuse-vibrante.com — comment entretenir une ponceuse vibrante", url: "https://ponceuse-vibrante.com/comment-entretenir-une-ponceuse-vibrante/" },
+      { label: "Le Bon Abrasif — réparer le velcro de la ponceuse", url: "https://www.lebonabrasif.com/blog/index/billet/14051_comment-changer-le-velcro-du-plateau-de-poncage" }
+    ],
+    steps: [
+      { title: "Débrancher", text: "Débranchez l'outil ou retirez sa batterie." },
+      { title: "Retirer l'abrasif usé", text: "Décollez l'abrasif du plateau à scratch ou libérez-le des pinces." },
+      { title: "Nettoyer le scratch", text: "Soufflez ou aspirez la poussière du plateau. Pour les poils et débris incrustés, collez et décollez un ruban adhésif, ou passez une brosse à dents." },
+      { title: "Poser le nouvel abrasif", text: "Alignez bien ses trous sur ceux du plateau pour que l'aspiration fonctionne, puis appuyez." },
+      { title: "Vider le sac et dépoussiérer le moteur", text: "Videz le sac ou le bac à poussière, branchez un aspirateur si possible, et soufflez les aérations du moteur après chaque séance." }
+    ],
+    troubleshoot: [
+      "L'abrasif se décroche : scratch encrassé ou usé ; nettoyez-le, sinon remplacez le plateau ou son velcro.",
+      "Le moteur crache des étincelles ou ne démarre plus : charbons à changer (modèles filaires)."
+    ]
+  },
+  {
+    id: "filtre-aspirateur-eau-poussiere",
+    title: "Aspirateur eau et poussières : nettoyer le filtre",
+    category: "maison",
+    devices: ["aspirateur-chantier"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 40 €",
+    keywords: ["aspirateur eau et poussières", "aspirateur de chantier", "karcher", "wd", "filtre", "cartouche", "aspire mal", "cuve", "décolmatage"],
+    summary: "Un filtre cartouche colmaté fait perdre l'aspiration et chauffer le moteur. On le tape, on le rince, on le laisse sécher.",
+    safety: "Débranchez l'aspirateur avant d'ouvrir la cuve. Portez un masque si vous videz des poussières fines (plâtre, ciment).",
+    tools: ["Poubelle ou sac à gravats", "Jet d'eau"],
+    parts: ["Filtre cartouche de rechange du même modèle", "Sacs filtrants"],
+    sources: [
+      { label: "Comment-entretenir.fr — entretenir son aspirateur Kärcher", url: "https://www.comment-entretenir.fr/entretenir-son-aspirateur-karcher/" },
+      { label: "Kärcher — mode d'emploi WD 2", url: "https://www.modesdemploi.fr/karcher/wd2/mode-d-emploi" }
+    ],
+    steps: [
+      { title: "Débrancher et vider la cuve", text: "Videz la cuve, ou changez le sac s'il est plein. Rincez de temps en temps l'intérieur de la cuve." },
+      { title: "Décolmater le filtre", text: "Tapotez le filtre au-dessus d'une poubelle, ou utilisez le bouton de décolmatage si votre modèle en a un." },
+      { title: "Rincer si besoin", text: "Rincez le filtre cartouche à l'eau courante, sans le frotter ni le brosser." },
+      { title: "Laisser sécher entièrement", text: "Ne le remontez que parfaitement sec." },
+      { title: "Nettoyer les suceurs", text: "Retirez cheveux et débris des embouts et vérifiez que le flexible n'est pas bouché." }
+    ],
+    troubleshoot: [
+      "La poussière ressort : filtre mal monté ou déchiré, remplacez-le.",
+      "Pour aspirer de l'eau, suivez la notice : sur beaucoup de modèles, on retire le sac, et parfois on change de filtre."
+    ]
+  },
+  {
+    id: "entretien-radiateur-electrique",
+    title: "Radiateur électrique : le dépoussiérer avant l'hiver",
+    category: "maison",
+    devices: ["radiateur-electrique"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 30 €",
+    keywords: ["radiateur électrique", "convecteur", "radiateur à inertie", "poussière", "odeur de brûlé", "grilles", "chauffage", "atlantic", "entretien"],
+    summary: "La poussière dans les grilles brûle au démarrage, sent mauvais et freine la chauffe. Deux dépoussiérages par an suffisent ; pas de purge sur un radiateur électrique.",
+    safety: "Coupez l'alimentation (disjoncteur ou interrupteur sur 0) et laissez refroidir. Ne touchez pas aux connexions électriques.",
+    tools: ["Aspirateur avec embout fin ou brosse souple", "Sèche-cheveux en air froid", "Eau tiède avec savon ou vinaigre blanc", "Chiffon"],
+    parts: [],
+    sources: [
+      { label: "Atlantic — quel entretien pour mon radiateur électrique", url: "https://www.atlantic.fr/aide/chauffage-electrique/informations/quel-entretien-pour-mon-radiateur-electrique" },
+      { label: "IZI by EDF — comment entretenir ses radiateurs électriques", url: "https://www.izi-by-edf-renov.fr/blog/radiateur-electrique-comment-entretenir" }
+    ],
+    steps: [
+      { title: "Couper et refroidir", text: "Coupez le radiateur au tableau ou mettez son interrupteur sur 0, et attendez qu'il refroidisse." },
+      { title: "Dépoussiérer les grilles", text: "Aspirez les grilles d'entrée et de sortie d'air avec un embout fin ou une brosse douce. Un sèche-cheveux en air froid chasse la poussière de l'arrière." },
+      { title: "Nettoyer la façade", text: "Passez un chiffon imbibé d'eau tiède savonneuse ou vinaigrée, sans produit abrasif. Les grilles amovibles se lavent à part." },
+      { title: "Sécher avant de rallumer", text: "Séchez tout avec un chiffon propre avant de remettre en marche.", tip: "Au printemps à l'arrêt du chauffage et à l'automne avant de le relancer." }
+    ],
+    troubleshoot: [
+      "Ne couvrez jamais un radiateur en fonctionnement (linge à sécher, meuble contre la grille).",
+      "Odeur de brûlé au premier allumage : poussière qui brûle, normal quelques minutes ; si elle persiste, coupez et faites contrôler.",
+      "Le radiateur ne chauffe plus : vérifiez le disjoncteur et le mode (hors-gel, fil pilote) avant de soupçonner une panne."
+    ]
+  },
+  {
+    id: "entretien-pompe-a-chaleur",
+    title: "Pompe à chaleur : entretien obligatoire et gestes simples",
+    category: "maison",
+    devices: ["pompe-a-chaleur"],
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    savings: "≈ 180 €",
+    keywords: ["pompe à chaleur", "pac", "climatisation réversible", "unité extérieure", "entretien obligatoire", "décret", "feuilles", "filtres", "attestation"],
+    summary: "Une pompe à chaleur de 4 à 70 kW doit être entretenue par un professionnel au moins tous les deux ans. Entre deux visites, dégager et dépoussiérer l'unité extérieure l'aide à bien fonctionner.",
+    safety: "Coupez l'alimentation de la pompe à chaleur avant de nettoyer l'unité extérieure. Ne touchez jamais au circuit frigorifique : seul un professionnel certifié y est autorisé.",
+    tools: ["Balai", "Brosse souple", "Eau savonneuse"],
+    parts: [],
+    sources: [
+      { label: "Légifrance — décret n° 2020-912 du 28 juillet 2020", url: "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000042164734" },
+      { label: "IZI by EDF — l'entretien d'une pompe à chaleur est-il obligatoire", url: "https://www.izi-by-edf-renov.fr/blog/obligation-entretien-pompe-a-chaleur" }
+    ],
+    steps: [
+      { title: "Planifier l'entretien obligatoire", text: "Faites entretenir la pompe à chaleur par un professionnel certifié au moins tous les deux ans (puissance de 4 à 70 kW). Il contrôle notamment l'étanchéité du circuit frigorifique et vous remet un rapport à conserver." },
+      { title: "Couper l'alimentation", text: "Avant de nettoyer l'unité extérieure, coupez son alimentation." },
+      { title: "Dégager l'unité extérieure", text: "Retirez feuilles, branches et débris autour et devant l'unité pour que l'air circule librement." },
+      { title: "Dépoussiérer", text: "Nettoyez la carrosserie avec une brosse souple et de l'eau savonneuse, sans jet sous pression sur les ailettes." },
+      { title: "Nettoyer les filtres intérieurs", text: "Si votre système a des unités intérieures (PAC air-air), nettoyez leurs filtres selon la notice." }
+    ],
+    troubleshoot: [
+      "Sans attestation d'entretien, l'assureur ou la garantie peut refuser une prise en charge.",
+      "Givre sur l'unité extérieure en hiver : elle se dégivre seule par cycles ; un bloc de glace permanent demande un dépannage."
+    ]
+  },
+  {
+    id: "entretien-portail-motorise",
+    title: "Portail ou porte de garage motorisé : entretien et cellules",
+    category: "maison",
+    devices: ["motorisation"],
+    difficulty: "Facile",
+    duration: "30 min",
+    minutes: 30,
+    savings: "≈ 150 €",
+    keywords: ["portail motorisé", "portail électrique", "porte de garage", "volet roulant", "cellules photoélectriques", "rail", "gonds", "somfy", "ne s'ouvre plus", "télécommande"],
+    summary: "Des cellules sales ou mal alignées bloquent le portail, des rails encrassés font forcer le moteur. Deux entretiens par an évitent la plupart des pannes.",
+    safety: "Coupez l'alimentation du moteur avant de travailler sur les parties mobiles. Ne mettez jamais les mains près d'un portail en mouvement.",
+    tools: ["Chiffon microfibre", "Brosse", "Lubrifiant sec (sans graisse épaisse)", "Sécateur"],
+    parts: ["Pile de télécommande"],
+    sources: [
+      { label: "Somfy — guide d'entretien d'un portail électrique", url: "https://www.somfy.fr/idees-et-projets/articles/guide-d-entretien-d-un-portail-electrique" },
+      { label: "SCS Sentinel — entretenir sa motorisation de portail", url: "https://blog.scs-sentinel.com/comment-entretenir-sa-motorisation-de-portail/" }
+    ],
+    steps: [
+      { title: "Nettoyer les cellules", text: "Essuyez les deux cellules photoélectriques au chiffon microfibre et vérifiez qu'elles sont bien face à face, sans végétation devant." },
+      { title: "Tester la sécurité", text: "Portail en fermeture, passez un objet entre les cellules : il doit s'arrêter ou repartir en arrière." },
+      { title: "Nettoyer rails et crémaillère", text: "Portail coulissant : balayez le rail et retirez gravillons et feuilles. Porte de garage : dépoussiérez les rails." },
+      { title: "Lubrifier les articulations", text: "Portail battant : lubrifiez gonds, charnières et bras. Évitez les graisses épaisses sur les rails, elles retiennent la poussière." },
+      { title: "Tailler et vérifier", text: "Coupez la végétation qui gêne le mouvement, vérifiez le boîtier de commande (propre, sans insectes) et la pile de la télécommande.", tip: "Idéalement après l'été et avant l'hiver." }
+    ],
+    troubleshoot: [
+      "Le portail s'ouvre mais ne se ferme plus : cellules sales, masquées ou désalignées.",
+      "Il ne réagit plus à une télécommande mais bien à l'autre : pile usée.",
+      "Bruit anormal, à-coups ou ralentissements : faites contrôler le moteur."
+    ]
+  },
+  {
+    id: "visiophone-ne-sonne-plus",
+    title: "Interphone ou visiophone qui ne sonne plus",
+    category: "maison",
+    devices: ["interphone"],
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    savings: "≈ 100 €",
+    keywords: ["interphone", "visiophone", "ne sonne plus", "pas d'image", "écran noir", "gâche", "transformateur", "piles", "sonnette"],
+    summary: "Avant de changer le visiophone, vérifiez l'alimentation, les piles et faites une réinitialisation : c'est souvent suffisant.",
+    safety: "Coupez le disjoncteur avant d'ouvrir un boîtier ou de toucher un fil. Au-delà des vérifications simples, faites appel à un électricien.",
+    tools: ["Tournevis", "Piles neuves (modèles sans fil)", "Chiffon doux"],
+    parts: [],
+    sources: [
+      { label: "IZI by EDF — visiophone : les pannes fréquentes", url: "https://izi-by-edf.fr/blog/depannage-electrique-visiophone" },
+      { label: "Bob Dépannage — réparer ou remplacer un interphone ou visiophone", url: "https://www.bobdepannage.fr/service/electricite/reparer-remplacer-un-interphone-visiophone" }
+    ],
+    steps: [
+      { title: "Vérifier l'alimentation", text: "Regardez au tableau électrique que le disjoncteur du visiophone (ou son transformateur) n'a pas sauté." },
+      { title: "Changer les piles", text: "Sur un modèle sans fil, remplacez les piles ou rechargez la batterie de la platine de rue et du moniteur." },
+      { title: "Réinitialiser", text: "Coupez l'alimentation deux minutes, puis rétablissez-la." },
+      { title: "Nettoyer la caméra", text: "Si l'image est floue, essuyez l'objectif de la platine de rue au chiffon doux." },
+      { title: "Isoler la panne", text: "Sonnerie muette mais image présente, son absent, ou gâche qui n'ouvre plus : notez ce qui fonctionne encore, cela orientera le dépanneur." }
+    ],
+    troubleshoot: [
+      "En immeuble, demandez aux voisins : si personne n'a de sonnerie, la panne est sur l'installation commune.",
+      "Écran totalement noir après un orage : transformateur souvent grillé, à faire vérifier."
+    ]
+  },
+  {
+    id: "entretien-souffleur-feuilles",
+    title: "Souffleur de feuilles : entretien et hivernage",
+    category: "jardin",
+    devices: ["souffleur"],
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    savings: "≈ 50 €",
+    keywords: ["souffleur", "aspiro-souffleur", "souffleur de feuilles", "thermique", "2 temps", "filtre à air", "bougie", "mélange", "hivernage", "batterie"],
+    summary: "Filtre à air bouché et vieux mélange de carburant sont les deux grandes causes de démarrage difficile. Entretien régulier, puis hivernage soigné.",
+    safety: "Moteur arrêté et froid, capuchon de bougie retiré (thermique), prise débranchée ou batterie retirée (électrique). Portez gants et lunettes.",
+    tools: ["Clé à bougie", "Eau savonneuse chaude", "Bidon homologué pour carburant"],
+    parts: ["Filtre à air et bougie de rechange"],
+    sources: [
+      { label: "AgriEuro — guide d'entretien des souffleurs-aspirateurs", url: "https://blog.agrieuro.fr/lentretien-des-souffleurs-aspirateurs/" },
+      { label: "Gamm vert — entretien du souffleur thermique", url: "https://www.gammvert.fr/conseils/conseils-de-jardinage/entretien-du-souffleur-thermique" }
+    ],
+    steps: [
+      { title: "Contrôler avant usage", text: "Vérifiez que le tube de soufflage n'est ni fêlé ni bouché et que les grilles d'entrée d'air sont dégagées. Sur un modèle électrique, contrôlez le câble." },
+      { title: "Nettoyer le filtre à air", text: "Toutes les 10 à 15 heures d'utilisation (thermique), démontez le filtre et nettoyez-le, ou remplacez-le s'il est abîmé." },
+      { title: "Surveiller la bougie", text: "Contrôlez-la et changez-la si elle est usée, selon l'intervalle de la notice." },
+      { title: "Utiliser un mélange frais", text: "Moteur 2 temps : préparez le mélange essence-huile au dosage de la notice, en petites quantités ; un mélange de plus d'un mois se dégrade." },
+      { title: "Hiverner", text: "Videz le réservoir dans un bidon homologué, faites tourner le moteur jusqu'à l'arrêt, puis rangez au sec. Modèle à batterie : stockez la batterie à part, au frais et au sec." }
+    ],
+    troubleshoot: [
+      "Il démarre mal au printemps : carburant resté dans le réservoir tout l'hiver, videz-le et remettez du mélange frais.",
+      "Il perd de la puissance : filtre à air encrassé."
+    ]
+  },
+  {
+    id: "entretien-motobineuse",
+    title: "Motobineuse : huile, filtre à air et hivernage",
+    category: "jardin",
+    devices: ["motobineuse"],
+    difficulty: "Moyen",
+    duration: "45 min",
+    minutes: 45,
+    savings: "≈ 80 €",
+    keywords: ["motobineuse", "motoculteur", "vidange", "huile moteur", "filtre à air", "fraises", "hivernage", "pubert", "4 temps"],
+    summary: "Un moteur qui tourne avec une huile usée ou un filtre bouché s'use vite. Contrôle d'huile à chaque usage, vidange aux bons intervalles, fraises propres en fin de saison.",
+    safety: "Moteur arrêté et froid, capuchon de bougie retiré. Portez des gants pour manipuler les fraises, qui coupent.",
+    tools: ["Bac de vidange", "Entonnoir", "Clés adaptées", "Brosse", "Chiffon"],
+    parts: ["Huile moteur 4 temps (SAE 10W30 chez Pubert, voir la notice)", "Élément de filtre à air"],
+    sources: [
+      { label: "Pubert — entretien du filtre et de l'huile moteur de votre motobineuse", url: "https://pubert.com/conseil/entretien-filtre-huile-moteur-motobineuse-motoculteur/" },
+      { label: "AgriEuro — guide d'entretien des motobineuses et motoculteurs", url: "https://blog.agrieuro.fr/lentretien-des-motobineuses-et-des-motoculteurs/" }
+    ],
+    steps: [
+      { title: "Contrôler l'huile avant chaque usage", text: "Machine à plat, vérifiez que le niveau se situe entre le minimum et le maximum de la jauge ; complétez si besoin avec l'huile de la notice." },
+      { title: "Faire la vidange", text: "Première vidange après 10 heures ou un an, puis toutes les 50 heures ou tous les trois ans, au premier terme atteint (intervalles Pubert : vérifiez ceux de votre moteur). Vidangez moteur tiède, dans un bac, puis remplissez d'huile neuve." },
+      { title: "Entretenir le filtre à air", text: "Regardez-le à chaque usage et nettoyez-le au moins toutes les 25 heures ; changez l'élément toutes les 200 heures ou s'il est abîmé." },
+      { title: "Nettoyer les fraises", text: "Retirez terre et racines après chaque usage et vérifiez leur tranchant, surtout en sol caillouteux." },
+      { title: "Hiverner", text: "Videz le carburant ou ajoutez un stabilisant, nettoyez et graissez légèrement les fraises, puis rangez au sec." }
+    ],
+    troubleshoot: [
+      "Fumée bleue : trop d'huile ou machine trop inclinée pendant le travail.",
+      "Démarrage difficile : carburant vieux, bougie encrassée ou filtre à air bouché."
+    ]
+  },
+  {
+    id: "amorcer-pompe-surface",
+    title: "Amorcer une pompe de surface ou d'arrosage",
+    category: "jardin",
+    devices: ["pompe"],
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    savings: "≈ 100 €",
+    keywords: ["pompe de surface", "pompe d'arrosage", "surpresseur", "amorcer", "désamorcée", "ne pompe plus", "clapet anti-retour", "crépine", "gel", "hivernage"],
+    summary: "Une pompe de surface doit être pleine d'eau pour aspirer. Si elle tourne sans rien débiter, elle est désamorcée : on la remplit par son bouchon d'amorçage.",
+    safety: "Ne faites jamais tourner la pompe à sec : elle chauffe et s'abîme en quelques minutes. Débranchez-la avant d'ouvrir le bouchon.",
+    tools: ["Bouteille ou seau d'eau", "Entonnoir"],
+    parts: ["Clapet anti-retour avec crépine, si le tuyau d'aspiration n'en a pas"],
+    sources: [
+      { label: "Castorama — démarrer et amorcer une pompe de surface", url: "https://www.castorama.fr/idees-et-conseils/comment-demarrer-et-amorcer-une-pompe-de-surface/CF_CPRD_npcart_100529.art" },
+      { label: "Pompe&Moteur — pourquoi ma pompe de surface ne s'amorce pas", url: "https://www.pompe-moteur.fr/blog/pourquoi-ma-pompe-de-surface-ne-samorce-pas--n38" }
+    ],
+    steps: [
+      { title: "Vérifier l'aspiration", text: "Plongez le tuyau d'aspiration dans l'eau. Il doit être rigide et étanche, avec un clapet anti-retour et une crépine au bout." },
+      { title: "Débrancher et ouvrir", text: "Débranchez la pompe, détachez le tuyau de sortie et dévissez le bouchon d'amorçage sur le corps de pompe." },
+      { title: "Remplir", text: "Versez lentement de l'eau jusqu'à ce qu'elle déborde par l'orifice." },
+      { title: "Refermer", text: "Revissez bien le bouchon et rebranchez le tuyau de sortie." },
+      { title: "Démarrer", text: "Branchez et lancez la pompe : l'eau doit arriver en quelques secondes. Sinon, arrêtez et recommencez deux ou trois fois." }
+    ],
+    troubleshoot: [
+      "Elle se désamorce à chaque arrêt : clapet anti-retour défectueux ou prise d'air sur un raccord.",
+      "Avant l'hiver : videz le corps de pompe et rangez-la hors gel."
+    ]
+  },
+  {
+    id: "barbecue-gaz-fuite-nettoyage",
+    title: "Barbecue ou plancha gaz : tester les fuites et nettoyer",
+    category: "jardin",
+    devices: ["barbecue"],
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    savings: "≈ 50 €",
+    keywords: ["barbecue", "plancha", "gaz", "fuite", "flexible", "détendeur", "eau savonneuse", "date de péremption", "grille", "bac à graisse"],
+    summary: "Un flexible périmé ou un raccord mal serré peut laisser fuir le gaz. Le test à l'eau savonneuse prend deux minutes et se fait à chaque changement de bouteille.",
+    safety: "Faites le test dehors, loin de toute flamme ou cigarette ; ne cherchez jamais une fuite avec une flamme. Odeur de gaz ou bulles : fermez immédiatement la bouteille.",
+    tools: ["Eau et liquide vaisselle", "Pinceau ou vaporisateur", "Brosse à grille en laiton"],
+    parts: ["Flexible gaz aux normes, si sa date est dépassée"],
+    sources: [
+      { label: "Char-Broil — sécurité du barbecue à gaz : vérifier les fuites", url: "https://www.charbroil.fr/conseils/securite-du-barbecue-a-gaz-pour-verifier-les-fuites" },
+      { label: "Esprit Barbecue — détecter une fuite de gaz sur un barbecue", url: "https://www.esprit-barbecue.fr/content/119-comment-detecter-fuite-gaz-sur-barbecue" }
+    ],
+    steps: [
+      { title: "Vérifier la date du flexible", text: "La date limite est gravée sur le tuyau. Dépassée, ou tuyau craquelé : remplacez-le, même s'il ne fuit pas." },
+      { title: "Mettre sous pression", text: "Fermez tous les boutons des brûleurs, puis ouvrez le robinet de la bouteille." },
+      { title: "Badigeonner d'eau savonneuse", text: "Appliquez le mélange eau et liquide vaisselle sur le robinet de la bouteille, le détendeur, les raccords et tout le flexible." },
+      { title: "Observer", text: "Des bulles qui grossissent signalent une fuite : fermez la bouteille, resserrez ou changez la pièce, puis refaites le test." },
+      { title: "Nettoyer grille et bac", text: "Brossez la grille encore chaude avec une brosse en laiton, videz et lavez le bac de récupération des graisses à l'eau chaude savonneuse." }
+    ],
+    troubleshoot: [
+      "Flamme jaune et faible : brûleur encrassé ou araignée dans le tube d'arrivée d'air, nettoyez-le.",
+      "Refaites le test en début de saison et à chaque changement de bouteille."
+    ]
+  },
+  {
+    id: "entretien-eau-piscine",
+    title: "Piscine : pH, chlore et filtration au quotidien",
+    category: "jardin",
+    devices: ["piscine"],
+    difficulty: "Facile",
+    duration: "20 min",
+    minutes: 20,
+    savings: "≈ 200 €",
+    keywords: ["piscine", "ph", "chlore", "filtration", "skimmer", "eau verte", "eau trouble", "algues", "analyse", "filtre à sable", "contre-lavage"],
+    summary: "Une eau claire tient à trois réglages : un pH entre 7,2 et 7,6, un taux de chlore suffisant et une filtration adaptée à la température.",
+    safety: "Ne mélangez jamais deux produits de traitement entre eux, et versez toujours le produit dans l'eau, jamais l'inverse. Rangez-les hors de portée des enfants.",
+    tools: ["Trousse d'analyse pH et chlore (bandelettes ou pastilles)", "Épuisette", "Brosse de ligne d'eau"],
+    parts: ["Produits pH plus / pH moins et désinfectant"],
+    sources: [
+      { label: "Génération Piscine — entretenir sa piscine au chlore", url: "https://www.generationpiscine.com/comment-bien-entretenir-sa-piscine-au-chlore/" },
+      { label: "Piscines France — guide d'utilisation et d'entretien d'une piscine", url: "https://www.piscines-france.fr/pdf/Guide_utilisation_et_entretien_piscine.pdf" }
+    ],
+    steps: [
+      { title: "Analyser l'eau", text: "Mesurez le pH et le chlore libre une fois par semaine si la piscine sert peu, deux à trois fois par semaine en pleine saison." },
+      { title: "Régler le pH d'abord", text: "Visez un pH entre 7,2 et 7,6 : en dehors, le chlore agit mal et l'eau irrite les yeux." },
+      { title: "Ajuster le chlore", text: "Maintenez le chlore libre au taux conseillé par le fabricant de vos produits, souvent autour de 1 mg/l (environ 0,5 à 1,5 mg/l)." },
+      { title: "Adapter la filtration", text: "Plus l'eau est chaude, plus il faut filtrer longtemps. Règle courante : autant d'heures par jour que la moitié de la température de l'eau (28 °C → 14 h)." },
+      { title: "Vider skimmers et préfiltre", text: "Videz les paniers des skimmers et le préfiltre de la pompe au moins deux fois par semaine en saison, et nettoyez le filtre (contre-lavage pour un filtre à sable) toutes les 2 à 4 semaines." }
+    ],
+    troubleshoot: [
+      "Eau verte : pH trop haut ou manque de chlore, souvent après un orage ou une forte chaleur. Corrigez le pH, faites un traitement choc et filtrez en continu.",
+      "Pression du filtre qui monte : il est encrassé, faites un contre-lavage."
+    ]
+  },
+  {
+    id: "volant-jeu-calibrage",
+    title: "Volant de jeu décentré ou qui ne se calibre plus",
+    category: "loisirs",
+    devices: ["volant"],
+    difficulty: "Facile",
+    duration: "15 min",
+    minutes: 15,
+    savings: "≈ 100 €",
+    keywords: ["volant", "logitech", "g29", "g920", "g923", "thrustmaster", "calibrage", "décentré", "pédalier", "retour de force", "g hub"],
+    summary: "Au démarrage, un volant à retour de force tourne à fond d'un côté puis de l'autre : c'est son calibrage. S'il est raté ou si le volant tire d'un côté, une remise sous tension propre suffit souvent.",
+    safety: "Gardez les mains hors du volant pendant qu'il se calibre : il tourne seul avec force.",
+    tools: ["Ordinateur ou console", "Logiciel du fabricant (G HUB pour Logitech)"],
+    parts: [],
+    sources: [
+      { label: "SimRacingCockpit — dépannage des volants Logitech G29, G920 et G923", url: "https://simracingcockpit.gg/logitech-wheel-troubleshooting/" },
+      { label: "Joycheck — logiciel des volants Logitech : G HUB ou Logitech Gaming Software", url: "https://joycheck.io/blog/logitech-wheel-setup/" }
+    ],
+    steps: [
+      { title: "Débrancher entièrement", text: "Débranchez le câble USB, puis l'alimentation du volant." },
+      { title: "Attendre", text: "Patientez une quinzaine de secondes.", timer: 15 },
+      { title: "Rebrancher dans l'ordre", text: "Rebranchez d'abord l'alimentation, puis l'USB. Branchez de préférence directement sur l'ordinateur ou la console, pas sur un hub." },
+      { title: "Laisser calibrer sans toucher", text: "Le volant tourne à fond à gauche, à fond à droite puis revient au centre. Ne le touchez pas avant la fin." },
+      { title: "Mettre à jour", text: "Sur PC, installez le logiciel du fabricant (G HUB pour Logitech), mettez à jour le micrologiciel et réglez l'angle de rotation et les pédales." }
+    ],
+    troubleshoot: [
+      "Le volant bouge à peine et un voyant clignote : il ne reçoit pas assez de courant, vérifiez le bloc d'alimentation et sa prise.",
+      "Une pédale agit sans qu'on la touche : ajoutez une petite zone morte dans le logiciel.",
+      "Cliquetis pendant le retour de force : bruit normal des engrenages, réduisez les effets dans le jeu."
+    ]
   }
 ];
