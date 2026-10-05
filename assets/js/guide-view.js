@@ -14,6 +14,18 @@ function accentTitle(t) {
   return m ? `${escapeHtml(m[1])}<span class="accent">${escapeHtml(m[2])}</span>` : escapeHtml(t);
 }
 
+// « Pas envie de le faire vous-même ? » : bonus réparation si un appareil de la fiche y donne droit
+function bonusBox(g) {
+  const b = typeof bonusFor === "function" ? bonusFor(g.devices) : null;
+  if (!b) return "";
+  return `<div class="bonus-box">
+          <strong>${icon("wrench")} Pas envie de le faire vous-même ?</strong>
+          <p>Chez un réparateur labellisé <strong>QualiRépar</strong>, le <strong>bonus réparation</strong> déduit ${b.min === b.max ? "" : "de "}${bonusText(b)} de la facture pour cet appareil, s'il n'est plus sous garantie.</p>
+          <p><a class="link-arrow" href="${BONUS_REPARATION.find}" rel="noopener" target="_blank">Trouver un réparateur labellisé ${icon("arrow")}</a>
+          <small>Barème : <a href="${BONUS_REPARATION.source.url}" rel="noopener" target="_blank">ecosystem</a>.</small></p>
+        </div>`;
+}
+
 function guidePageHTML(g, st = {}) {
   const c = categoryById(g.category);
   const parent = c.parent ? categoryById(c.parent) : null;
@@ -119,6 +131,7 @@ function guidePageHTML(g, st = {}) {
         ${g.troubleshoot && g.troubleshoot.length ? `
           <h3 style="margin:1.2rem 0 .6rem">Ça ne marche toujours pas ?</h3>
           <ul class="tips-list" id="troubleshoot">${g.troubleshoot.map(t => `<li>${icon("alert")}<span>${escapeHtml(t)}</span></li>`).join("")}</ul>` : ""}
+        ${bonusBox(g)}
         <div class="sources-box" style="margin-top:1.2rem">
           <strong>${icon("shield")} Vérification de la fiche</strong>
           ${g.user
@@ -133,6 +146,7 @@ function guidePageHTML(g, st = {}) {
             <span class="tag tag-orange">${icon("wrench")} Relecture par un réparateur : à venir</span>
           </div>
           <p style="margin-top:.8rem"><a class="link-arrow" href="${ROOT}communaute.html?ask=1&amp;type=erreur&amp;guide=${encodeURIComponent(g.id)}">Signaler une erreur ou proposer une amélioration ${icon("arrow")}</a></p>
+          ${g.user ? "" : `<p class="muted licence-note">Texte original des Pages Bleues, rédigé avec nos mots d'après les sources citées, sous licence <a href="${ROOT}conditions-utilisation.html#licence">CC BY-SA 4.0</a>.</p>`}
         </div>
       </section>
 

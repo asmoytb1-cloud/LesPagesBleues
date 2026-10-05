@@ -179,7 +179,7 @@ function panelPublication() {
       <div class="field"><label for="f-src">Sources consultées <small>— une adresse web par ligne (facultatif)</small></label>
         <textarea class="input" id="f-src" name="sources" placeholder="https://…">${escapeHtml(draft.sources)}</textarea></div>
       <label class="check"><input type="checkbox" id="ok-safety"><span>J'ai indiqué les précautions de sécurité nécessaires (courant, gaz, freins, produits…).</span></label>
-      <label class="check"><input type="checkbox" id="ok-own"><span>J'ai écrit ce guide moi-même, ou je cite mes sources, et mes photos m'appartiennent.</span></label>
+      <label class="check"><input type="checkbox" id="ok-own"><span>J'ai rédigé ce guide avec mes propres mots et mes propres photos, sans copier d'autre site (sites de réparation, fabricants, notices, forums), je cite mes sources, et j'accepte sa diffusion sous licence <a href="conditions-utilisation.html#licence" target="_blank">CC BY-SA 4.0</a> quand le partage ouvrira.</span></label>
       <p class="field-err" id="err-checks" hidden>Cochez les deux cases pour publier.</p>
       <div class="notice">${icon("shield")}<p>Votre fiche sera marquée « non relue » jusqu'à la relecture par un modérateur. Pour l'instant, elle est enregistrée uniquement dans ce navigateur.</p></div>
     </fieldset>`;

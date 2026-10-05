@@ -33,7 +33,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
   };
 
   const PAGES = ["index.html", "guides.html", "guides.html?q=frein", "categories.html", "fiches/courroie-lave-linge.html", "fiches/remplacer-prise-electrique.html",
-    "categories/electromenager.html", "categories/autres.html", "ajouter.html", "communaute.html", "profil.html", "materiel.html", "diagnostic.html", "a-propos.html", "mentions-legales.html", "confidentialite.html", "LesPagesBleues/page-inconnue"];
+    "categories/electromenager.html", "categories/autres.html", "ajouter.html", "communaute.html", "profil.html", "materiel.html", "diagnostic.html", "a-propos.html", "mentions-legales.html", "conditions-utilisation.html", "confidentialite.html", "beta.html", "LesPagesBleues/page-inconnue"];
 
   /* ---------- 1. Toutes les pages : sans erreur, sans débordement, dans les deux thèmes ---------- */
   for (const [w, h, label] of [[1366, 900, "ordinateur"], [390, 844, "mobile"]]) {
@@ -360,6 +360,31 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     const counts = await p.$$eval(".mat-count", e => e.map(x => parseInt(x.textContent, 10)));
     const expected = await p.evaluate(() => [GUIDES.filter(g => g.category === "moto").length, GUIDES.filter(g => (g.devices || []).includes("console")).length]);
     expect(counts.join() === expected.join(), `fiches : ${counts} au lieu de ${expected}`);
+    expect(!errs.length, errs.join(" | "));
+    await ctx.close();
+  });
+
+  await test("Bêta : avis enregistré, bonus réparation sur une fiche, fin de vie sur un domaine", async () => {
+    const ctx = await newCtx(); const p = await ctx.newPage();
+    const errs = []; watch(p, errs);
+    await p.goto(B + "beta.html");
+    await p.click("#beta-form [type=submit]");
+    expect(!(await p.isHidden("#beta-err")), "un avis vide doit être refusé");
+    await p.check('#beta-form input[name="note"][value="4"]');
+    await p.fill('#beta-form textarea[name="moins"]', "Il manque une fiche pour mon grille-pain");
+    await p.click("#beta-form [type=submit]");
+    const saved = await p.evaluate(() => JSON.parse(localStorage.getItem("lpb-beta-avis")));
+    expect(saved.length === 1 && saved[0].note === "4" && /grille-pain/.test(saved[0].moins), "l'avis doit être gardé sur l'appareil");
+    expect((await p.textContent("#beta-sent")).includes("grille-pain"), "l'avis enregistré doit s'afficher");
+    expect(await p.isVisible(".beta-pill"), "le badge Bêta doit être visible dans l'en-tête");
+    await p.goto(B + "fiches/courroie-lave-linge.html");
+    const bonus = await p.textContent(".bonus-box");
+    expect(/50 €/.test(bonus) && /QualiRépar/.test(bonus), "la fiche lave-linge doit annoncer le bonus réparation de 50 € : " + bonus);
+    expect((await p.textContent(".licence-note")).includes("CC BY-SA 4.0"), "la fiche doit indiquer sa licence");
+    await p.goto(B + "categories/electromenager.html");
+    expect((await p.textContent(".eol-card")).includes("un pour un"), "le domaine doit expliquer quoi faire d'un appareil irréparable");
+    await p.goto(B + "categories/automobile.html");
+    expect(!(await p.$(".eol-card")), "pas de bloc appareils électriques pour l'automobile");
     expect(!errs.length, errs.join(" | "));
     await ctx.close();
   });

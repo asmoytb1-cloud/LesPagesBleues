@@ -372,22 +372,68 @@ PAGES["a-propos.html"] = dict(
 
 PAGES["mentions-legales.html"] = dict(
   title="Mentions légales — Les Pages Bleues",
-  desc="Mentions légales du site Les Pages Bleues.",
+  desc="Mentions légales du site Les Pages Bleues : éditeur, hébergement, propriété intellectuelle, contact.",
   scripts=[], active="",
   body="""    <section class="page-hero">
       <div class="container"><h1>Mentions <span class="accent">légales</span></h1></div>
     </section>
     <section class="section">
       <div class="narrow prose">
-        <div class="notice notice-warn"><span data-icon="alert"></span><p>Page à compléter avant la mise en ligne publique : les informations marquées « à compléter » dépendent de l'éditeur du site.</p></div>
+        <div class="notice notice-warn" id="todo-legal"><span data-icon="alert"></span><p>Version bêta : les informations marquées « à compléter » seront renseignées avant l'ouverture publique du site.</p></div>
         <h2>Éditeur du site</h2>
-        <p>Nom ou raison sociale : <span class="todo">à compléter</span><br>Adresse : <span class="todo">à compléter</span><br>Adresse e-mail de contact : <span class="todo">à compléter</span><br>Directeur de la publication : <span class="todo">à compléter</span></p>
+        <p>Les Pages Bleues est édité par : <span class="todo">à compléter (nom, ou mention d'un éditeur non professionnel ayant choisi l'anonymat au titre de l'article 1-1 II de la loi n° 2004-575 du 21 juin 2004, ses coordonnées étant alors communiquées à l'hébergeur)</span>.<br>
+        Directeur de la publication : <span class="todo">à compléter</span>.<br>
+        Contact : <span class="todo">adresse e-mail à compléter</span> — ou le lien « Signaler » présent sur chaque fiche.</p>
         <h2>Hébergement</h2>
-        <p>Le site est prévu pour être hébergé par GitHub Pages, service de GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. <span class="todo">à confirmer selon l'hébergeur retenu</span></p>
+        <p><span class="todo">À compléter selon l'hébergeur retenu (nom, adresse et téléphone).</span></p>
         <h2>Contenus et responsabilité</h2>
-        <p>Les fiches sont fournies à titre informatif. Chaque fiche indique les sources consultées pour sa vérification. Toute réparation se fait sous la responsabilité de la personne qui l'entreprend : en cas de doute, notamment pour l'électricité, le gaz, les freins ou les appareils sous garantie, faites appel à un professionnel.</p>
+        <p>Les fiches sont fournies à titre informatif. Chaque fiche indique les sources consultées pour sa vérification. Toute réparation se fait sous la responsabilité de la personne qui l'entreprend : en cas de doute, notamment pour l'électricité, le gaz, les freins ou les appareils sous garantie, faites appel à un professionnel. Voir aussi les <a href="conditions-utilisation.html">conditions d'utilisation</a>.</p>
         <h2>Propriété intellectuelle</h2>
-        <p>Les photos proviennent de banques d'images sous licences libres (domaine public, CC0 ou Creative Commons Attribution) ; leurs auteurs et licences sont listés dans la page <a href="a-propos.html#credits">À propos</a>.</p>
+        <p>Les textes des fiches sont rédigés par Les Pages Bleues et diffusés sous licence <a href="conditions-utilisation.html#licence">Creative Commons BY-SA 4.0</a>. Les photos proviennent de banques d'images sous licences libres ; leurs auteurs et licences sont listés dans la page <a href="a-propos.html#credits">À propos</a>.</p>
+        <p>Les noms de marques et de modèles cités (fabricants, enseignes, sites consultés comme sources) appartiennent à leurs titulaires. Ils sont mentionnés uniquement pour identifier un appareil ou une source ; Les Pages Bleues n'est affilié à aucun d'eux.</p>
+        <h2>Signaler un contenu</h2>
+        <p>Pour signaler une erreur ou un contenu qui vous paraît illicite (atteinte à vos droits, contenu dangereux…), utilisez le lien « Signaler une erreur » de la fiche ou écrivez-nous. La procédure est décrite dans les <a href="conditions-utilisation.html#signaler">conditions d'utilisation</a>.</p>
+      </div>
+    </section>""")
+
+PAGES["conditions-utilisation.html"] = dict(
+  title="Conditions d'utilisation — Les Pages Bleues",
+  desc="Conditions d'utilisation des Pages Bleues : service gratuit en bêta, responsabilité, contributions, licence des contenus, signalement.",
+  scripts=[], active="",
+  body="""    <section class="page-hero">
+      <div class="container"><h1>Conditions <span class="accent">d'utilisation</span></h1><p>Les règles du jeu, en clair. Version du 5 octobre 2026.</p></div>
+    </section>
+    <section class="section">
+      <div class="narrow prose">
+        <h2>1. Le service</h2>
+        <p>Les Pages Bleues est une encyclopédie gratuite de l'entretien et de la réparation, accessible sans inscription. Le site est en <strong>version bêta</strong> : il évolue souvent, certaines fonctions peuvent changer ou être interrompues, et nous comptons sur vos retours pour l'améliorer (<a href="beta.html">donner mon avis</a>). Utiliser le site vaut acceptation des présentes conditions.</p>
+
+        <h2>2. Fiches et sécurité</h2>
+        <p>Les fiches donnent des repères généraux vérifiés à partir des sources qu'elles citent. Elles ne remplacent ni la notice de votre appareil, ni l'avis d'un professionnel. Avant toute intervention, lisez les précautions de la fiche ; en cas de doute (électricité, gaz, freins, batteries, appareil sous garantie), faites appel à un professionnel. Ouvrir un appareil peut faire perdre sa garantie.</p>
+        <p>Vous réalisez les réparations sous votre propre responsabilité. Les Pages Bleues met tout en œuvre pour que les fiches soient exactes, mais ne peut garantir qu'elles conviennent à chaque appareil.</p>
+
+        <h2>3. Vos contributions</h2>
+        <p>Pendant la bêta, les fiches, questions, retours et photos que vous rédigez restent <strong>enregistrés sur votre appareil</strong> : ils ne sont pas publiés ni transmis. Quand le partage entre utilisateurs ouvrira, ces règles s'appliqueront à tout ce que vous publierez :</p>
+        <ul>
+          <li><strong>Rédigez avec vos mots et vos photos.</strong> Ne copiez pas les textes, photos, schémas ou vidéos d'autres sites (sites de réparation, fabricants, notices, forums, vidéos…), même en partie, même en les traduisant. Vous pouvez vous en inspirer pour vérifier une information : citez-les alors comme source, avec un lien.</li>
+          <li><strong>Vous garantissez</strong> être l'auteur de votre contribution et disposer des droits sur vos photos, et que celles-ci ne montrent pas de personnes reconnaissables sans leur accord.</li>
+          <li><strong>Licence.</strong> En publiant, vous acceptez que votre contribution soit diffusée sous licence <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr" rel="noopener" target="_blank">CC BY-SA 4.0</a>, comme le reste de l'encyclopédie : chacun pourra la lire, la corriger et la partager en citant son origine.</li>
+          <li><strong>Restez prudent et respectueux.</strong> Pas de contenu dangereux, trompeur, injurieux, publicitaire ou contraire à la loi.</li>
+        </ul>
+        <p>Les contributions publiées pourront être relues, corrigées ou retirées par la modération si elles ne respectent pas ces règles ; leur auteur en sera informé avec la raison de la décision.</p>
+
+        <h2 id="licence">4. Licence des contenus</h2>
+        <p>Sauf mention contraire, les textes des Pages Bleues sont diffusés sous licence <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.fr" rel="noopener" target="_blank">Creative Commons Attribution – Partage dans les mêmes conditions 4.0 International (CC BY-SA 4.0)</a>. Vous pouvez les réutiliser à condition de citer « Les Pages Bleues » avec un lien vers la fiche, d'indiquer vos modifications et de partager vos versions sous la même licence.</p>
+        <p>Ne sont pas couverts par cette licence : les photos (chacune a sa propre licence, voir les <a href="a-propos.html#credits">crédits</a>), les logos et le nom « Les Pages Bleues », ni les noms de marques cités, qui appartiennent à leurs titulaires et ne sont mentionnés que pour identifier un appareil ou une source.</p>
+
+        <h2 id="signaler">5. Signaler une erreur ou un contenu illicite</h2>
+        <p>Chaque fiche comporte un lien « Signaler une erreur ou proposer une amélioration ». Pour un contenu qui vous paraît illicite (par exemple une copie de votre travail), indiquez l'adresse de la page, ce qui pose problème et pourquoi, et vos coordonnées. Nous examinons chaque signalement rapidement, retirons ou corrigeons le contenu si nécessaire et vous tenons informé de la décision.</p>
+
+        <h2>6. Données personnelles</h2>
+        <p>Voir la page <a href="confidentialite.html">Confidentialité</a>. En bref : pendant la bêta, vos données restent sur votre appareil.</p>
+
+        <h2>7. Droit applicable</h2>
+        <p>Les présentes conditions sont régies par le droit français. Elles peuvent évoluer, notamment à l'ouverture des comptes ; la date de version figure en haut de la page.</p>
       </div>
     </section>""")
 
@@ -401,19 +447,31 @@ PAGES["confidentialite.html"] = dict(
     <section class="section">
       <div class="narrow prose">
         <h2>Ce que le site enregistre</h2>
-        <p>Pour l'instant, Les Pages Bleues n'a ni compte utilisateur ni serveur de données. Tout ce que vous faites sur le site est enregistré <strong>uniquement dans votre navigateur</strong> (stockage local) :</p>
+        <p>Pendant la bêta, Les Pages Bleues n'a ni compte utilisateur ni serveur de données. Tout ce que vous faites sur le site est enregistré <strong>uniquement dans votre navigateur</strong> (stockage local) :</p>
         <ul>
           <li>vos favoris et la progression de vos réparations ;</li>
-          <li>les fiches, questions et retours d'expérience que vous rédigez, ainsi que leurs photos ;</li>
-          <li>votre pseudo, vos préférences (thème, lecture à voix haute) et vos avis sur les fiches.</li>
+          <li>votre matériel et ses carnets d'entretien (dates, kilométrages, factures en photo) ;</li>
+          <li>les fiches, questions, retours d'expérience et avis sur la bêta que vous rédigez, ainsi que leurs photos ;</li>
+          <li>votre pseudo et vos préférences (thème, lecture à voix haute).</li>
         </ul>
-        <p>Ces informations ne sont envoyées à personne. Vous pouvez les exporter ou les effacer à tout moment depuis <a href="profil.html">votre profil</a>, ou en effaçant les données du site dans votre navigateur.</p>
+        <p>Ces informations ne sont envoyées à personne. Vous pouvez les exporter ou les effacer à tout moment depuis <a href="profil.html">votre profil</a>, ou en effaçant les données du site dans votre navigateur. Si vous choisissez d'envoyer votre avis sur la bêta par e-mail, seul ce que vous écrivez dans le message nous parvient.</p>
         <h2>Cookies et mesure d'audience</h2>
-        <p>Le site n'utilise ni cookie publicitaire ni outil de mesure d'audience.</p>
+        <p>Le site n'utilise ni cookie, ni outil de mesure d'audience, ni publicité.</p>
         <h2>Services tiers</h2>
-        <p>Les polices de caractères sont hébergées sur le site lui-même : aucune requête n'est envoyée à Google Fonts ni à un autre service tiers pendant la navigation. Les commandes vocales du mode accompagnement utilisent la reconnaissance vocale de votre navigateur, qui peut s'appuyer sur un service en ligne de son éditeur.</p>
-        <p class="muted">Cette page évoluera à l'ouverture des comptes utilisateurs.</p>
+        <p>Les polices de caractères sont hébergées sur le site lui-même : aucune requête n'est envoyée à Google Fonts ni à un autre service tiers pendant la navigation. Les liens vers d'autres sites (sources, réparateurs) ne s'ouvrent que si vous cliquez dessus. Les commandes vocales du mode accompagnement utilisent la reconnaissance vocale de votre navigateur, qui peut s'appuyer sur un service en ligne de son éditeur.</p>
+        <p class="muted">Cette page sera complétée avant l'ouverture des comptes et du partage entre utilisateurs (données collectées, durée de conservation, vos droits et la façon de les exercer).</p>
       </div>
+    </section>""")
+
+PAGES["beta.html"] = dict(
+  title="Bêta ouverte — Les Pages Bleues",
+  desc="Les Pages Bleues est en bêta ouverte et gratuite : ce qui marche déjà, ce qui arrive, et comment nous aider en donnant votre avis.",
+  scripts=["beta.js"], active="",
+  body="""    <section class="page-hero">
+      <div class="container"><h1>Bêta <span class="accent">ouverte</span></h1><p>Gratuite, sans inscription. Testez, cassez, dites-nous tout.</p></div>
+    </section>
+    <section class="section">
+      <div class="narrow prose" id="beta-root"></div>
     </section>""")
 
 PAGES["404.html"] = dict(

@@ -19,8 +19,8 @@ for (const f of ["data.js", "common.js", "guide-view.js", "diagnostics-data.js",
   vm.runInContext(fs.readFileSync(path.join(ROOT_DIR, "assets/js", f), "utf8") + "\n;globalThis.__ok = true;", sandbox, { filename: f });
 }
 const { GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon,
-  DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, CAR_MAKES, MOTO_MAKES, guidesForType, imgSrc, photoUrl } = vm.runInContext(
-  "({ GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon, DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, CAR_MAKES, MOTO_MAKES, guidesForType, imgSrc, photoUrl })", sandbox);
+  DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, CAR_MAKES, MOTO_MAKES, guidesForType, imgSrc, photoUrl, bonusFor, bonusText, BONUS_REPARATION } = vm.runInContext(
+  "({ GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon, DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, CAR_MAKES, MOTO_MAKES, guidesForType, imgSrc, photoUrl, bonusFor, bonusText, BONUS_REPARATION })", sandbox);
 
 const esc = s => escapeHtml(s);
 const iso = m => m ? `PT${Math.floor(m / 60) ? Math.floor(m / 60) + "H" : ""}${m % 60 ? m % 60 + "M" : ""}` : undefined;
@@ -94,6 +94,34 @@ function typesOf(c) {
   if (c.id === "automobile") return [car(), moto()];
   if (c.id === "moto") return [moto()];
   return APPLIANCE_TYPES.filter(t => t.category === c.id);
+}
+
+/* « Plus réparable ? » : réparer chez un pro avec le bonus, donner, rapporter en magasin.
+   Sources : barème du bonus réparation (ecosystem), obligations de reprise (CLCV, art. L541-10-8 du code de l'environnement),
+   outil « Que faire de mes objets et déchets » de l'ADEME. */
+const ELECTRIC = new Set(["electromenager", "telephonie", "loisirs", "maison", "jardin", "velo"]);
+function endOfLife(types) {
+  const bonus = types.map(t => ({ t, b: bonusFor([t.id]) })).filter(x => x.b).sort((a, b) => b.b.max - a.b.max);
+  const examples = bonus.slice(0, 4).map(x => `${esc(x.t.name.toLowerCase())} : ${bonusText(x.b)}`).join(" · ");
+  return `
+    <section class="section section-tight">
+      <div class="container">
+        <div class="card eol-card">
+          <h2>${icon("leaf")} Réparation impossible ou trop risquée ?</h2>
+          <div class="eol-grid">
+            <div><h3>Faire réparer moins cher</h3>
+              <p>Chez un réparateur labellisé QualiRépar, le <strong>bonus réparation</strong> est déduit de la facture pour un appareil hors garantie${examples ? ` (${examples}…)` : ""}.</p>
+              <p><a class="link-arrow" href="${BONUS_REPARATION.find}" target="_blank" rel="noopener">Trouver un réparateur labellisé ${icon("arrow")}</a></p></div>
+            <div><h3>Donner une seconde vie</h3>
+              <p>Ressourceries, associations de réemploi, ateliers de réparation : l'outil de l'ADEME indique les adresses près de chez vous pour réparer, donner ou revendre.</p>
+              <p><a class="link-arrow" href="https://quefairedemesdechets.ademe.fr/" target="_blank" rel="noopener">Que faire de mes objets ? ${icon("arrow")}</a></p></div>
+            <div><h3>Le rapporter gratuitement</h3>
+              <p>Un vendeur doit reprendre gratuitement votre ancien appareil électrique quand vous en achetez un équivalent (« un pour un »). Les magasins disposant d'au moins 400 m² de surface de vente d'équipements électriques reprennent aussi, sans achat, les petits appareils (moins de 25 cm) du type qu'ils vendent (« un pour zéro »). Sinon : la déchetterie.</p>
+              <p><a class="link-arrow" href="https://www.clcv.org/articles/quelles-solutions-de-recyclage-en-magasin-pour-vos-vieux-appareils-electriques" target="_blank" rel="noopener">En savoir plus (CLCV) ${icon("arrow")}</a></p></div>
+          </div>
+        </div>
+      </div>
+    </section>`;
 }
 
 // Page d'introduction d'un domaine : présentation, équipements, pannes fréquentes, précautions
@@ -191,6 +219,7 @@ function categoryPage(c) {
         </div>
       </div>
     </section>
+${ELECTRIC.has(c.parent || c.id) ? endOfLife(types) : ""}
 
     <section class="section section-tight">
       <div class="container">
@@ -274,7 +303,7 @@ fs.mkdirSync(CAT_OUT, { recursive: true });
 for (const f of fs.readdirSync(CAT_OUT)) if (f.endsWith(".html")) fs.unlinkSync(path.join(CAT_OUT, f));
 for (const c of CATEGORIES) fs.writeFileSync(path.join(CAT_OUT, `${c.id}.html`), categoryPage(c));
 
-const pages = ["", "categories.html", "guides.html", "diagnostic.html", "materiel.html", "communaute.html", "a-propos.html", "ajouter.html", "mentions-legales.html", "confidentialite.html"];
+const pages = ["", "categories.html", "guides.html", "diagnostic.html", "materiel.html", "communaute.html", "a-propos.html", "ajouter.html", "mentions-legales.html", "conditions-utilisation.html", "confidentialite.html", "beta.html"];
 const urls = [
   ...pages.map(p => `  <url><loc>${SITE}${p}</loc><lastmod>${REVIEWED_ON}</lastmod></url>`),
   ...CATEGORIES.map(c => `  <url><loc>${SITE}categories/${c.id}.html</loc><lastmod>${REVIEWED_ON}</lastmod></url>`),

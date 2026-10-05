@@ -31,6 +31,15 @@ document.getElementById("about").innerHTML = `
     <li><strong>Vous repérez une erreur ?</strong> Chaque fiche propose un lien « Signaler une erreur ».</li>
   </ul>
 
+  <h2 id="methode">Notre méthode : des fiches originales, des données libres</h2>
+  <ul>
+    <li><strong>Chaque fiche est écrite avec nos mots.</strong> Nous lisons les notices et les conseils des fabricants, des organismes publics et des professionnels, puis nous rédigeons notre propre texte et citons ces pages comme sources. Nous ne recopions ni texte, ni photo, ni schéma d'un autre site.</li>
+    <li><strong>Des images libres de droits</strong>, dont les auteurs et licences sont crédités plus bas.</li>
+    <li><strong>Un catalogue de matériel rédigé par l'équipe</strong> : marques et modèles courants (des noms publics), sans reprendre la base de données d'un site marchand. Votre modèle n'y est pas ? Vous le tapez librement.</li>
+    <li><strong>Des contenus partageables</strong> : nos textes sont sous licence <a href="conditions-utilisation.html#licence">CC BY-SA 4.0</a>.</li>
+    <li><strong>Les noms de marques</strong> servent seulement à identifier un appareil ; nous ne sommes affiliés à aucun fabricant ni à aucune enseigne.</li>
+  </ul>
+
   <h2 id="reparateur">Trouver un réparateur près de chez vous</h2>
   <p>Certaines réparations demandent un professionnel. Ces services officiels vous aident à en trouver un :</p>
   <ul>

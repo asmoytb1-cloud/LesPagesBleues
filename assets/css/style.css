@@ -1189,3 +1189,26 @@ body.coach-open { overflow: hidden; }
   a { text-decoration: none; }
   .sources-box a::after { content: " (" attr(href) ")"; font-size: .75em; color: #444; }
 }
+
+/* ---------- Bêta ouverte, bonus réparation, fin de vie ---------- */
+.beta-pill { flex: none; align-self: center; margin-left: -.2rem; padding: .15rem .55rem; border-radius: 999px; border: 1px solid var(--orange);
+  background: var(--orange-soft); color: var(--orange-text); font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.beta-pill:hover { background: var(--orange); color: var(--bg); }
+.bonus-box { margin-top: 1.2rem; padding: 16px 18px; border-radius: var(--radius); background: var(--green-soft); border: 1px solid var(--green); font-size: .92rem; display: grid; gap: .45rem; }
+.bonus-box > strong { display: flex; align-items: center; gap: .45rem; }
+.bonus-box a { color: var(--blue-text); text-decoration: underline; text-underline-offset: 2px; }
+.bonus-box small { display: block; margin-top: .3rem; color: var(--text-2); }
+.licence-note { margin-top: .6rem; font-size: .82rem; }
+.licence-note a, .footer-bottom span a { text-decoration: underline; text-underline-offset: 2px; }
+.eol-card h2 { display: flex; align-items: center; gap: .5rem; margin-bottom: 1rem; }
+.eol-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+.eol-grid h3 { font-size: 1rem; margin-bottom: .4rem; }
+.eol-grid p { color: var(--text-2); font-size: .92rem; margin-bottom: .5rem; }
+.beta-form { display: grid; gap: 1rem; margin-top: 1rem; }
+.beta-form .field { display: grid; gap: .35rem; }
+.beta-form .field span { font-weight: 600; color: var(--text); }
+.beta-rating { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: .5rem; }
+.beta-rating legend { font-weight: 600; color: var(--text); margin-bottom: .5rem; width: 100%; }
+.beta-rating .chip { cursor: pointer; display: inline-flex; align-items: center; gap: .35rem; }
+.beta-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+@media (max-width: 520px) { .beta-pill { margin-left: -.4rem; padding: .1rem .4rem; font-size: .65rem; } }

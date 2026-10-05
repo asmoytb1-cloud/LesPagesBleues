@@ -436,6 +436,40 @@ function attachSuggest(input, box) {
 }
 
 /* ---------- En-tête, barre mobile, pied de page ---------- */
+// Adresse de contact de l'équipe (avis sur la bêta, signalements). Vide tant qu'elle n'est pas choisie.
+const SITE_CONTACT = "";
+
+/* Bonus réparation (QualiRépar) : montant déduit de la facture chez un réparateur labellisé, appareil hors garantie.
+   Barème officiel publié par ecosystem (« Appareils éligibles et montants applicables au 1er janvier 2025 »),
+   toujours en vigueur selon sa page consultée le 5 octobre 2026. Clé = type de matériel des Pages Bleues. */
+const BONUS_REPARATION = {
+  source: { label: "ecosystem — montant du bonus réparation par appareil", url: "https://www.ecosystem.eco/comprendre/bonus-reparation" },
+  find: "https://www.e-reparation.eco/",
+  amounts: {
+    "aspirateur": 40, "aspirateur-robot": 40, "climatiseur": 25, "fer-a-repasser": 15, "nettoyeur-vapeur": 20, "purificateur": 15,
+    "ventilateur": 15, "bouilloire": 15, "extracteur-de-jus": 15, "grille-pain": 15, "cave-a-vin": 25, "congelateur": 25, "four": 25,
+    "hotte": 25, "lave-linge": 50, "lave-vaisselle": 50, "seche-linge": 50, "refrigerateur": 25, "plaque-de-cuisson": 25,
+    "micro-ondes": 20, "friteuse": 15, "robot-de-cuisine": 15, "seche-cheveux": 15, "rasoir": 15, "television": 60,
+    "videoprojecteur": 30, "lecteur-video": 20, "hifi": 20, "appareil-photo": 20, "console": 20, "imprimante": 35, "ecran-pc": 30,
+    "ordinateur-bureau": 50, "ordinateur-portable": 50, "tablette": 25, "smartphone": 25, "gyropode": 15,
+    "trottinette-electrique": 15, "velo-electrique": 30, "tondeuse": 15, "robot-tondeuse": 15, "taille-haie": 15,
+    "perceuse": 20, "scie-ponceuse": 20
+  },
+  // Montant variable selon le modèle (cafetière : 15 à 25 €)
+  ranges: { "cafetiere": [15, 25] }
+};
+// Meilleur bonus parmi des types de matériel : { type, min, max } ou null
+function bonusFor(types) {
+  let best = null;
+  for (const t of types || []) {
+    const r = BONUS_REPARATION.ranges[t], a = BONUS_REPARATION.amounts[t];
+    const b = r ? { type: t, min: r[0], max: r[1] } : a ? { type: t, min: a, max: a } : null;
+    if (b && (!best || b.max > best.max)) best = b;
+  }
+  return best;
+}
+const bonusText = b => b.min === b.max ? `${b.min} €` : `${b.min} à ${b.max} €`;
+
 function renderHeader(active) {
   const links = [
     ["categories", "Catégories", "categories.html"],
@@ -458,6 +492,7 @@ function renderHeader(active) {
         ${icon("book", "brand-ico")}
         <span><strong>Les Pages <em>Bleues</em></strong><small>Réparer. Comprendre. Transmettre.</small></span>
       </a>
+      <a class="beta-pill" href="${ROOT}beta.html" title="Version bêta ouverte et gratuite : donnez votre avis">Bêta</a>
       <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
         ${links.map(([k, t, h]) => `<a href="${ROOT}${h}" ${k === active ? 'class="active" aria-current="page"' : ""}>${t}</a>`).join("")}
         <a class="nav-extra" href="${ROOT}a-propos.html">À propos</a>
@@ -539,13 +574,15 @@ function renderFooter() {
           <a href="${ROOT}profil.html">Mon profil</a></div>
         <div><h2>Le projet</h2>
           <a href="${ROOT}a-propos.html">À propos</a><a href="${ROOT}a-propos.html#verification">Comment on vérifie</a>
-          <a href="${ROOT}a-propos.html#reparateur">Trouver un réparateur</a></div>
+          <a href="${ROOT}a-propos.html#reparateur">Trouver un réparateur</a>
+          <a href="${ROOT}beta.html">Bêta : donner mon avis</a></div>
       </div>
     </div>
     <div class="container footer-bottom muted">
-      <span>© ${new Date().getFullYear()} Les Pages Bleues — La connaissance est notre meilleur outil.</span>
+      <span>© ${new Date().getFullYear()} Les Pages Bleues — textes sous licence <a href="${ROOT}conditions-utilisation.html#licence">CC BY-SA 4.0</a>, sauf mention contraire.</span>
       <nav aria-label="Informations légales">
         <a href="${ROOT}mentions-legales.html">Mentions légales</a>
+        <a href="${ROOT}conditions-utilisation.html">Conditions d'utilisation</a>
         <a href="${ROOT}confidentialite.html">Confidentialité</a>
         <a href="${ROOT}a-propos.html#credits">Crédits photos</a>
       </nav>
