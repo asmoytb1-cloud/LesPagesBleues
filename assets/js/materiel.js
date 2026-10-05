@@ -9,8 +9,8 @@ const params = new URLSearchParams(location.search);
 const THIS_YEAR = new Date().getFullYear();
 const OTHER = "__autre";
 const VEHICLES = {
-  voiture: { label: "Voiture", icon: "car", makes: CAR_MAKES, source: "catcar", yearPh: "2012", production: true },
-  moto: { label: "Moto", icon: "moto", makes: MOTO_MAKES, source: "motobook", yearPh: "2021", production: false }
+  voiture: { label: "Voiture", icon: "car", makes: CAR_MAKES, source: "lpb", yearPh: "2012", production: true },
+  moto: { label: "Moto", icon: "moto", makes: MOTO_MAKES, source: "lpb", yearPh: "2021", production: false }
 };
 
 const typeById = id => APPLIANCE_TYPES.find(t => t.id === id);
@@ -18,28 +18,17 @@ const domains = () => CATEGORIES.filter(c => APPLIANCE_TYPES.some(t => t.categor
 const years = m => m.from ? (m.to && m.to !== m.from ? `${m.from}–${m.to}` : m.to ? `${m.from}` : `à partir de ${m.from}`) : "";
 const newId = () => "m" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
-// Références et modèles d'un type : fichiers assets/data/modeles/*.json, chargés seulement quand on en a besoin
-const modelFiles = new Map();
-function loadModels(t) {
-  if (!t?.refFile) return Promise.resolve(null);
-  if (!modelFiles.has(t.refFile)) modelFiles.set(t.refFile, fetch(`${ROOT}assets/data/modeles/${t.refFile}.json`)
-    .then(r => r.ok ? r.json() : null).catch(() => null));
-  return modelFiles.get(t.refFile).then(d => d && d[t.id]);
-}
 // Index de recherche d'un type : [texte affiché, forme simplifiée, marque] pour toutes les marques
 const modelIndex = new Map();
 async function typeIndex(t) {
   if (!modelIndex.has(t.id)) {
-    const refs = await loadModels(t) || {};
     const rows = [];
     for (const [b, ms] of Object.entries(t.models || {})) for (const m of ms) rows.push([m, squash(m), b]);
-    for (const [b, list] of Object.entries(refs)) for (const r of list.split("\n")) { const shown = showRef(r); rows.push([shown, squash(shown), b]); }
     modelIndex.set(t.id, rows);
   }
   return modelIndex.get(t.id);
 }
-// Les références Spareka sont stockées en minuscules avec des tirets : « f4wv309s0 » → « F4WV309S0 »
-const showRef = r => /^[a-z0-9-]+$/.test(r) ? r.replace(/-/g, " ").toUpperCase() : r;
+// Forme simplifiée pour la recherche : « F4WV-309 S0 » → « f4wv309s0 »
 const squash = s => normalize(s).replace(/[^a-z0-9]/g, "");
 
 // Point de départ : ?type=lave-linge, ?type=voiture, ?kind=moto, ?cat=jardin
@@ -109,7 +98,7 @@ function formHtml() {
     </form>`;
 }
 
-// Résumé du carnet d'entretien, comme la vue d'ensemble de MotoBook
+// Résumé du carnet d'entretien
 function carnetLine(m) {
   const s = carnetSummary(m);
   const parts = [
@@ -150,10 +139,10 @@ function cardHtml(m) {
     </article>`;
 }
 
+// Wikidata n'est cité que s'il a réellement complété le catalogue
 function sourcesNote() {
-  const used = [...new Set([...APPLIANCE_TYPES.flatMap(t => t.sources).filter(Boolean), "catcar", "motobook"])];
-  return used.map(k => MATERIEL_SOURCES[k]).filter(Boolean)
-    .map(s => `<a href="${s.url}" target="_blank" rel="noopener">${escapeHtml(s.name)}</a>`).join(", ");
+  const wd = APPLIANCE_TYPES.some(t => t.sources.includes("wikidata"));
+  return wd ? ` Certains modèles viennent de <a href="${MATERIEL_SOURCES.wikidata.url}" target="_blank" rel="noopener">Wikidata</a> (domaine public).` : "";
 }
 
 function render() {
@@ -164,7 +153,7 @@ function render() {
         <p class="mat-import"><label class="btn btn-ghost btn-sm" for="carnet-file">${icon("upload")} Importer un carnet d'entretien</label>
           <input type="file" id="carnet-file" accept="application/json" hidden>
           <small class="muted">Vous achetez un objet d'occasion ? Importez le carnet que le vendeur a exporté.</small></p>
-        <p class="muted mat-note">${icon("shield")}<span>Enregistré dans ce navigateur uniquement. Types, marques et modèles proposés d'après les catalogues de ${sourcesNote()}. Votre modèle n'y est pas ? Tapez-le simplement.</span></p>
+        <p class="muted mat-note">${icon("shield")}<span>Enregistré dans ce navigateur uniquement. Les marques et modèles proposés sont une liste de départ rédigée par Les Pages Bleues.${sourcesNote()} Votre modèle n'y est pas ? Tapez-le simplement.</span></p>
       </div>
       <section aria-labelledby="mat-list-title">
         <h2 id="mat-list-title">Mon matériel <span class="chip-n">${list.length}</span></h2>
@@ -210,7 +199,6 @@ function wireForm() {
       const t = typeById($("m-type").value), brand = brandOf();
       const hint = $("model-hint"), ticket = ++request;
       if (!t) { rows = []; suggest(); return; }
-      if (t.refFile && !modelIndex.has(t.id)) hint.textContent = "Chargement des modèles connus…";
       const all = await typeIndex(t);
       if (ticket !== request) return;
       rows = all;

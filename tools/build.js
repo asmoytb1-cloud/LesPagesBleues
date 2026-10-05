@@ -90,7 +90,7 @@ function head({ title, desc, canonical, image, type = "website", extra = "" }) {
 // Types d'équipement présentés sur la page d'un domaine (Auto / Moto : voiture et moto)
 function typesOf(c) {
   const vehicle = (id, name, icon, source, makes) => ({ id, name, icon, group: "Véhicules", source, brands: makes.map(m => m.name), refCount: makes.reduce((n, m) => n + m.models.length, 0) });
-  const car = () => vehicle("voiture", "Voiture", "car", "catcar", CAR_MAKES), moto = () => vehicle("moto", "Moto", "moto", "motobook", MOTO_MAKES);
+  const car = () => vehicle("voiture", "Voiture", "car", "lpb", CAR_MAKES), moto = () => vehicle("moto", "Moto", "moto", "lpb", MOTO_MAKES);
   if (c.id === "automobile") return [car(), moto()];
   if (c.id === "moto") return [moto()];
   return APPLIANCE_TYPES.filter(t => t.category === c.id);
@@ -106,7 +106,7 @@ function categoryPage(c) {
   const subs = subCategories(c.id).filter(sc => !types.some(t => t.id === sc.id));   // Moto est déjà une tuile d'Auto / Moto
   const groups = [...new Set(types.map(t => t.group))];
   const diags = DIAGNOSTICS.filter(d => inCategory({ category: d.category }, c.id));
-  const sources = [...new Set(types.flatMap(t => t.sources || [t.source]).filter(Boolean))].map(k => MATERIEL_SOURCES[k]).filter(Boolean);
+  const sources = [...new Set(types.flatMap(t => t.sources || [t.source]).filter(k => k && k !== "lpb"))].map(k => MATERIEL_SOURCES[k]).filter(Boolean);
   const plural = (k, w) => `${k} ${w}${k > 1 ? "s" : ""}`;
   const typeTile = t => `
           <a class="type-tile" href="${t.n ? `../guides.html?type=${t.id}` : `../materiel.html?type=${t.id}`}">
@@ -164,7 +164,7 @@ function categoryPage(c) {
         ${groups.map(gr => `${groups.length > 1 ? `<h3 class="type-group">${esc(gr)}</h3>` : ""}
         <div class="type-grid">${types.filter(t => t.group === gr).map(typeTile).join("")}
         </div>`).join("")}
-        ${sources.length ? `<p class="muted cat-sources">Types, marques et modèles d'après ${sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(", ")}.</p>` : ""}
+        ${sources.length ? `<p class="muted cat-sources">Modèles complétés d'après ${sources.map(s => `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.name)}</a>`).join(", ")}.</p>` : ""}
       </div>
     </section>` : ""}
 

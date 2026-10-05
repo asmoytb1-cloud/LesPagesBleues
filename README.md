@@ -11,8 +11,8 @@ Trouvez en quelques clics comment réparer vos objets, au lieu de les jeter.
 | **124 guides vérifiés** | Automobile, électroménager, téléphonie, maison, vélo, jardin, loisirs, mode, instruments. Chaque fiche cite ses sources et sa date de vérification. |
 | **Mode accompagnement** | Une étape à la fois en plein écran : minuteurs, lecture à voix haute, commandes vocales (« suivant », « répète »…), écran maintenu allumé, reprise là où on s'est arrêté. |
 | **Diagnostic guidé** | 26 pannes courantes : on décrit le problème (texte ou voix), quelques questions, les causes sont classées avec un niveau de confiance, puis on va vers la bonne fiche… ou vers un réparateur labellisé. |
-| **Mon matériel** | On enregistre ses appareils, sa voiture ou sa moto et on ne voit que les fiches qui les concernent (au moins une fiche pour chaque type d'équipement). Catalogue : 85 types d'équipement, 4 600 marques et près de 1,3 million de modèles et références (Spareka, Leroy Merlin, Boulanger, Micromania), 34 marques et 677 modèles de voitures (catcar.info), 7 marques et 235 modèles de motos (MotoBook). |
-| **Carnet d'entretien** | Pour chaque matériel, inspiré de MotoBook : entretiens et contrôles à venir (séparés), intervalles tirés des fiches et réglables, prévision de la date selon le kilométrage moyen, plan adapté (énergie, transmission), contrôles « défaillant » reliés à la bonne fiche, historique avec factures, statistiques de coûts, impression PDF, export pour la revente, rappels agenda (.ics). |
+| **Mon matériel** | On enregistre ses appareils, sa voiture ou sa moto et on ne voit que les fiches qui les concernent (au moins une fiche pour chaque type d'équipement). Catalogue : 85 types d'équipement avec leurs marques courantes, des modèles courants (smartphones, consoles, voitures, motos…) et saisie libre pour tout le reste. |
+| **Carnet d'entretien** | Pour chaque matériel : entretiens et contrôles à venir (séparés), intervalles tirés des fiches et réglables, prévision de la date selon le kilométrage moyen, plan adapté (énergie, transmission), contrôles « défaillant » reliés à la bonne fiche, historique avec factures, statistiques de coûts, impression PDF, export pour la revente, rappels agenda (.ics). |
 | **Recherche** | Synonymes, accents et pluriels ignorés, suggestions instantanées ; onglets Guides / Diagnostics / Discussions, filtres domaine, difficulté, durée, favoris et tri. |
 | **Communauté** | Questions, astuces et retours de réparateurs structurés (symptôme, cause trouvée, réparation, temps, difficulté). |
 | **Profil** | Fiches publiées, réparations, favoris, 10 badges, export / import / effacement des données. |
@@ -48,10 +48,14 @@ Les pages principales (accueil, recherche, catégories…) sont générées par 
 
 ## Mettre à jour le catalogue du matériel
 
-Le catalogue est généré par `tools/materiel.js` (lancé par `node tools/build.js`) à partir de `tools/data/`.
-Les références Spareka et les produits Leroy Merlin viennent des plans de site publics de ces sites :
-`python3 tools/fetch-catalogues.py` les relit (compter une trentaine de minutes pour Leroy Merlin), puis relancez `node tools/build.js`.
-Les modèles sont écrits dans `assets/data/modeles/*.json` et chargés seulement quand on remplit « Mon matériel ».
+Le catalogue est généré par `tools/materiel.js` (lancé par `node tools/build.js`) à partir de `tools/data/` :
+`types.json` (types d'équipement), `marques.json` (marques courantes par famille), `modeles.json` (modèles courants
+d'appareils) et `vehicules.txt` (voitures et motos). Ces listes sont **rédigées par l'équipe** : on n'y recopie jamais
+le catalogue ou la base de données d'un autre site (droit du producteur de bases de données, art. L342-1 du code de la
+propriété intellectuelle). Le formulaire accepte n'importe quelle autre marque ou modèle.
+
+Pour compléter avec des données ouvertes, `python3 tools/fetch-wikidata.py` télécharge des modèles depuis Wikidata
+(CC0, domaine public) dans `tools/data/wikidata-modeles.json`, que le générateur fusionne automatiquement.
 
 ## Tests
 

@@ -142,14 +142,9 @@ for (const t of APPLIANCE_TYPES) {
   if (vm.runInContext(`icon(${JSON.stringify(t.icon)})`, ctx) === icon0) fail(`matériel ${t.id} : icône inconnue ${t.icon}`);
 }
 for (const t of APPLIANCE_TYPES) {
-  if (!t.refFile) { if (t.refCount) fail(`matériel ${t.id} : ${t.refCount} modèles mais pas de fichier`); continue; }
-  const f = path.join(ROOT, "assets/data/modeles", t.refFile + ".json");
-  if (!fs.existsSync(f)) { fail(`matériel ${t.id} : fichier de modèles manquant ${t.refFile}.json`); continue; }
-  const refs = JSON.parse(fs.readFileSync(f, "utf8"))[t.id];
-  if (!refs) { fail(`matériel ${t.id} : absent de ${t.refFile}.json`); continue; }
-  const n = Object.values(refs).reduce((k, v) => k + v.split("\n").length, 0);
-  if (n !== t.refCount) fail(`matériel ${t.id} : ${n} modèles dans le fichier au lieu de ${t.refCount}`);
-  for (const b of Object.keys(refs)) if (b && !t.brands.includes(b)) fail(`matériel ${t.id} : marque ${b} absente de la liste`);
+  const n = Object.values(t.models || {}).reduce((k, l) => k + l.length, 0);
+  if (n !== t.refCount) fail(`matériel ${t.id} : ${n} modèles au lieu de ${t.refCount}`);
+  if (t.refFile) fail(`matériel ${t.id} : fichier de références tiers (${t.refFile}) — le catalogue ne doit reprendre aucune base de données d'un tiers`);
 }
 if (new Set(APPLIANCE_TYPES.map(t => t.id)).size !== APPLIANCE_TYPES.length) fail("matériel : identifiant de type en double");
 for (const g of GUIDES) for (const d of g.devices || []) if (!typeIds.has(d) && d !== "voiture" && d !== "moto") fail(`fiche ${g.id} : type d'appareil inconnu ${d} (voir tools/materiel.js)`);
@@ -167,7 +162,7 @@ const regenerated = (() => {
 for (const [f, d] of Object.entries(regenerated)) {
   if (!fs.existsSync(path.join(ROOT, f)) || fs.readFileSync(path.join(ROOT, f), "utf8") !== d) fail(`${f} n'est pas à jour : lancez node tools/build.js`);
 }
-const extra = fs.readdirSync(path.join(ROOT, "assets/data/modeles")).filter(f => !regenerated[path.join("assets/data/modeles", f)]);
+const extra = fs.existsSync(path.join(ROOT, "assets/data/modeles")) ? fs.readdirSync(path.join(ROOT, "assets/data/modeles")) : [];
 if (extra.length) fail(`fichiers de modèles orphelins : ${extra.join(", ")} (lancez node tools/build.js)`);
 
 const credits = JSON.parse(fs.readFileSync(path.join(ROOT, "assets/img/photos/credits.json"), "utf8"));

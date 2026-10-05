@@ -1,0 +1,26 @@
+{
+ "_note": "Marques courantes par famille d'équipement, rédigées par Les Pages Bleues à partir de la connaissance générale du marché français (noms de marques seuls, aucune base tierce reprise). Le formulaire accepte toute autre marque.",
+ "groups": {
+  "Linge": ["AEG", "Beko", "Bosch", "Brandt", "Candy", "Electrolux", "Haier", "Hisense", "Hoover", "Hotpoint", "Indesit", "LG", "Miele", "Samsung", "Sauter", "Siemens", "Vedette", "Whirlpool"],
+  "Cuisine": ["AEG", "Beko", "Bosch", "Brandt", "Candy", "De Dietrich", "Electrolux", "Haier", "Hotpoint", "Indesit", "LG", "Miele", "Neff", "Samsung", "Siemens", "Smeg", "Whirlpool"],
+  "Froid": ["AEG", "Beko", "Bosch", "Haier", "Hisense", "Hotpoint", "Indesit", "La Sommelière", "Liebherr", "LG", "Miele", "Samsung", "Sharp", "Siemens", "Smeg", "Whirlpool"],
+  "Cuisson": ["AEG", "Bosch", "Brandt", "De Dietrich", "Electrolux", "Faure", "Hotpoint", "Indesit", "LG", "Miele", "Neff", "Panasonic", "Samsung", "Sauter", "Sharp", "Siemens", "Smeg", "Whirlpool"],
+  "Petit électroménager": ["Bosch", "Braun", "Calor", "De'Longhi", "Kenwood", "KitchenAid", "Krups", "Magimix", "Moulinex", "Nespresso", "Philips", "Riviera & Bar", "Russell Hobbs", "SEB", "Senseo", "Siemens", "Smeg", "Tefal"],
+  "Entretien de la maison": ["Bissell", "Black+Decker", "Bosch", "Dyson", "Ecovacs", "Hoover", "iRobot", "Kärcher", "Miele", "Philips", "Roborock", "Rowenta", "Samsung", "Shark", "Xiaomi"],
+  "Confort": ["Atlantic", "Daikin", "De'Longhi", "Dyson", "Honeywell", "Philips", "Rowenta", "Thermor", "Ariston", "Trotec", "Xiaomi", "InSinkErator"],
+  "Soin": ["Babymoov", "Braun", "Calor", "Dyson", "Oral-B", "Philips", "Philips Avent", "Remington", "Rowenta", "Panasonic"],
+  "Téléphonie": ["Apple", "Samsung", "Xiaomi", "Google", "Honor", "Huawei", "Motorola", "OnePlus", "Oppo", "Nokia", "Fairphone", "Crosscall", "Doro", "Sony", "Garmin", "TomTom", "Fitbit", "Amazfit", "Lenovo"],
+  "Informatique": ["Acer", "Apple", "Asus", "Dell", "HP", "Lenovo", "MSI", "Microsoft", "Samsung", "Huawei", "Canon", "Epson", "Brother", "AOC", "BenQ", "Iiyama", "LG", "Philips"],
+  "Image et son": ["LG", "Samsung", "Sony", "Philips", "Panasonic", "TCL", "Hisense", "Thomson", "Epson", "BenQ", "Optoma", "JBL", "Bose", "Sonos", "Yamaha", "Denon", "Marshall", "Canon", "Nikon", "Fujifilm", "GoPro", "Apple"],
+  "Vélo": ["Btwin", "Decathlon", "Giant", "Trek", "Specialized", "Cannondale", "Scott", "Lapierre", "Peugeot", "Gitane", "Moustache", "Riese & Müller", "Cube", "Rockrider"],
+  "Mobilité électrique": ["Segway-Ninebot", "Xiaomi", "Dualtron", "Kaabo", "Wispeed", "Pure Electric", "Inmotion", "Gyroor", "Razor", "Mobilis"],
+  "Outillage": ["Bosch", "Makita", "DeWalt", "Ryobi", "Metabo", "Milwaukee", "Black+Decker", "Einhell", "Festool", "Hitachi", "HiKOKI", "Kärcher", "Stanley", "Worx"],
+  "Plomberie": ["Grohe", "Hansgrohe", "Jacob Delafon", "Roca", "Ideal Standard", "Siamp", "Wirquin", "Geberit", "Villeroy & Boch"],
+  "Chauffage": ["Atlantic", "Thermor", "Noirot", "Acova", "Airelec", "Daikin", "Mitsubishi Electric", "Panasonic", "Viessmann", "Saunier Duval", "De Dietrich", "MCZ", "Edilkamin", "Invicta", "Unelvent", "Aldes"],
+  "Ouvertures": ["Somfy", "Nice", "Came", "BFT", "Avidsen", "SCS Sentinel", "Bticino", "Legrand", "Extel", "Hörmann"],
+  "Tonte": ["Honda", "Husqvarna", "Stihl", "Gardena", "Bosch", "Worx", "Ryobi", "Makita", "Einhell", "Toro", "McCulloch", "Wolf-Garten", "Greenworks", "Segway-Navimow", "Mammotion"],
+  "Taille et débroussaillage": ["Stihl", "Husqvarna", "Echo", "Bosch", "Ryobi", "Makita", "Einhell", "Black+Decker", "Worx", "Pubert", "Greenworks", "McCulloch"],
+  "Extérieur": ["Kärcher", "Nilfisk", "Bosch", "Lavor", "Gardena", "Einhell", "Weber", "Campingaz", "Char-Broil", "Barbecook", "Intex", "Bestway", "Zodiac", "Dolphin"],
+  "Jeux vidéo": ["Sony", "Microsoft", "Nintendo", "Valve", "Logitech", "Thrustmaster", "Fanatec", "Razer", "SteelSeries", "HyperX", "Corsair", "Turtle Beach", "8BitDo", "PowerA"]
+ }
+}

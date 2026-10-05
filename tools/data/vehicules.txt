@@ -1,0 +1,390 @@
+# Marques et modèles de voitures et de motos courants en France, rédigés par Les Pages Bleues à partir de la
+# connaissance générale du marché (noms commerciaux seuls, aucune base tierce reprise). Le formulaire accepte tout
+# autre modèle. Format : « [voiture] » ou « [moto] », puis « = Marque », puis un modèle par ligne.
+[voiture]
+= Alfa Romeo
+Giulietta
+Giulia
+MiTo
+Stelvio
+Tonale
+Junior
+= Audi
+A1
+A3
+A4
+A5
+A6
+Q2
+Q3
+Q5
+Q7
+Q4 e-tron
+TT
+e-tron GT
+= BMW
+Série 1
+Série 2
+Série 3
+Série 4
+Série 5
+X1
+X2
+X3
+X5
+i3
+i4
+iX
+= BYD
+Atto 3
+Dolphin
+Seal
+= Citroën
+C1
+C3
+C3 Aircross
+C4
+C4 Picasso / SpaceTourer
+C5
+C5 Aircross
+C5 X
+Berlingo
+Jumpy
+Jumper
+Saxo
+Xsara
+Xsara Picasso
+ë-C4
+Ami
+= Cupra
+Born
+Formentor
+Leon
+= Dacia
+Sandero
+Logan
+Duster
+Spring
+Jogger
+Lodgy
+Dokker
+Bigster
+= DS Automobiles
+DS 3
+DS 4
+DS 7
+DS 9
+= Fiat
+500
+500X
+Panda
+Tipo
+Punto
+Doblo
+Ducato
+= Ford
+Fiesta
+Focus
+Kuga
+Puma
+Mondeo
+C-Max
+EcoSport
+Ka
+Mustang Mach-E
+Transit
+Transit Connect
+Ranger
+= Honda
+Civic
+Jazz
+CR-V
+HR-V
+e:Ny1
+= Hyundai
+i10
+i20
+i30
+Kona
+Tucson
+Santa Fe
+Ioniq
+Ioniq 5
+= Jeep
+Renegade
+Compass
+Avenger
+Wrangler
+= Kia
+Picanto
+Rio
+Ceed
+Stonic
+Niro
+Sportage
+Sorento
+EV6
+= Land Rover
+Range Rover Evoque
+Range Rover Sport
+Discovery Sport
+Defender
+= Lexus
+CT
+NX
+UX
+RX
+= Mazda
+Mazda2
+Mazda3
+Mazda6
+CX-3
+CX-30
+CX-5
+MX-5
+= Mercedes-Benz
+Classe A
+Classe B
+Classe C
+Classe E
+CLA
+GLA
+GLB
+GLC
+EQA
+Vito
+Sprinter
+= MG
+MG4
+ZS
+HS
+= Mini
+Mini 3 portes
+Mini 5 portes
+Clubman
+Countryman
+= Mitsubishi
+Space Star
+ASX
+Eclipse Cross
+Outlander
+= Nissan
+Micra
+Juke
+Qashqai
+X-Trail
+Leaf
+Note
+Navara
+= Opel
+Corsa
+Astra
+Mokka
+Crossland
+Grandland
+Zafira
+Meriva
+Combo
+Vivaro
+= Peugeot
+107
+108
+206
+207
+208
+2008
+306
+307
+308
+3008
+407
+508
+5008
+Partner
+Rifter
+Expert
+Boxer
+e-208
+= Porsche
+911
+Cayenne
+Macan
+Taycan
+Panamera
+= Renault
+Twingo
+Clio
+Captur
+Mégane
+Scénic
+Kadjar
+Austral
+Arkana
+Laguna
+Talisman
+Espace
+Koleos
+Zoé
+Kangoo
+Trafic
+Master
+Modus
+R5 E-Tech
+= Seat
+Ibiza
+Leon
+Arona
+Ateca
+Tarraco
+Mii
+Alhambra
+= Škoda
+Fabia
+Octavia
+Superb
+Kamiq
+Karoq
+Kodiaq
+Scala
+Enyaq
+= Smart
+Fortwo
+Forfour
+#1
+= Suzuki
+Swift
+Ignis
+Vitara
+S-Cross
+Jimny
+= Tesla
+Model 3
+Model Y
+Model S
+Model X
+= Toyota
+Aygo
+Yaris
+Yaris Cross
+Corolla
+C-HR
+RAV4
+Prius
+Auris
+Land Cruiser
+Hilux
+Proace
+= Volkswagen
+Up!
+Polo
+Golf
+T-Cross
+T-Roc
+Tiguan
+Touran
+Passat
+Sharan
+ID.3
+ID.4
+Caddy
+Transporter
+= Volvo
+V40
+V60
+XC40
+XC60
+XC90
+EX30
+[moto]
+= BMW
+R 1250 GS
+R 1300 GS
+F 900 R
+F 750 GS / F 850 GS
+S 1000 RR
+G 310 R
+C 400 X
+= Ducati
+Monster
+Scrambler
+Multistrada
+Panigale
+= Harley-Davidson
+Sportster
+Street Bob
+Fat Boy
+Road King
+= Honda
+CB500F / CB500X
+CB650R
+CBR650R
+NC750X
+Africa Twin
+Transalp
+Rebel 500
+PCX 125
+Forza 125 / 350
+SH 125
+= Kawasaki
+Z650
+Z900
+Ninja 650
+Versys 650
+Vulcan S
+Z125
+= KTM
+125 Duke
+390 Duke
+790 Duke / 890 Duke
+1290 Super Duke
+390 Adventure
+890 Adventure
+= Kymco
+Agility
+People
+X-Town
+AK 550
+= Peugeot
+Kisbee
+Django
+Tweet
+Metropolis
+= Piaggio
+Liberty
+Medley
+Beverly
+MP3
+= Royal Enfield
+Classic 350
+Meteor 350
+Himalayan
+Interceptor 650
+= Suzuki
+SV650
+GSX-S750 / GSX-S1000
+V-Strom 650
+V-Strom 1050
+Burgman 125 / 400
+= Triumph
+Street Triple
+Speed Triple
+Trident 660
+Tiger 900
+Bonneville
+Speed 400
+= Vespa
+Primavera
+Sprint
+GTS
+= Yamaha
+MT-07
+MT-09
+MT-125
+Tracer 7
+Tracer 9
+Ténéré 700
+XSR700
+R7
+NMAX 125
+XMAX 125 / 300
+TMAX

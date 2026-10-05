@@ -1,0 +1,49 @@
+{
+ "_note": "Modèles courants rédigés par Les Pages Bleues à partir de la connaissance générale (noms commerciaux seuls, aucune base tierce reprise). Le formulaire accepte tout autre modèle.",
+ "smartphone": {
+  "Apple": ["iPhone 8", "iPhone SE", "iPhone X", "iPhone XR", "iPhone 11", "iPhone 12", "iPhone 13", "iPhone 14", "iPhone 15", "iPhone 16", "iPhone 16e", "iPhone 17"],
+  "Samsung": ["Galaxy A14", "Galaxy A15", "Galaxy A25", "Galaxy A35", "Galaxy A54", "Galaxy A55", "Galaxy S21", "Galaxy S22", "Galaxy S23", "Galaxy S24", "Galaxy S25", "Galaxy Z Flip", "Galaxy Z Fold"],
+  "Xiaomi": ["Redmi Note 12", "Redmi Note 13", "Redmi 13C", "Xiaomi 13", "Xiaomi 14"],
+  "Google": ["Pixel 6", "Pixel 7", "Pixel 8", "Pixel 9"],
+  "Fairphone": ["Fairphone 3", "Fairphone 4", "Fairphone 5"],
+  "Crosscall": ["Core-X4", "Core-X5", "Stellar-X5"]
+ },
+ "tablette": {
+  "Apple": ["iPad", "iPad Air", "iPad mini", "iPad Pro"],
+  "Samsung": ["Galaxy Tab A", "Galaxy Tab A9", "Galaxy Tab S6 Lite", "Galaxy Tab S9"],
+  "Lenovo": ["Tab M10", "Tab P11"]
+ },
+ "ordinateur-portable": {
+  "Apple": ["MacBook Air", "MacBook Pro 13 pouces", "MacBook Pro 14 pouces", "MacBook Pro 16 pouces"],
+  "Lenovo": ["IdeaPad", "ThinkPad", "Yoga", "Legion"],
+  "HP": ["Pavilion", "EliteBook", "ProBook", "Envy", "Victus", "Omen"],
+  "Dell": ["Inspiron", "Latitude", "XPS", "Vostro"],
+  "Asus": ["VivoBook", "ZenBook", "TUF Gaming", "ROG"],
+  "Acer": ["Aspire", "Swift", "Nitro", "Predator"]
+ },
+ "console": {
+  "Sony": ["PlayStation 4", "PlayStation 4 Pro", "PlayStation 5", "PlayStation 5 Slim", "PlayStation 5 Pro", "PlayStation Portal"],
+  "Microsoft": ["Xbox One", "Xbox One S", "Xbox Series S", "Xbox Series X"],
+  "Nintendo": ["Switch", "Switch Lite", "Switch OLED", "Switch 2"],
+  "Valve": ["Steam Deck", "Steam Deck OLED"]
+ },
+ "manette": {
+  "Sony": ["DualShock 4", "DualSense", "DualSense Edge"],
+  "Microsoft": ["Manette Xbox One", "Manette Xbox Series", "Manette Xbox Elite"],
+  "Nintendo": ["Joy-Con", "Manette Pro Switch"]
+ },
+ "montre-connectee": {
+  "Apple": ["Apple Watch SE", "Apple Watch Series", "Apple Watch Ultra"],
+  "Samsung": ["Galaxy Watch"],
+  "Garmin": ["Forerunner", "Fenix", "Venu", "Vivoactive"]
+ },
+ "casque-ecouteurs": {
+  "Apple": ["AirPods", "AirPods Pro", "AirPods Max"],
+  "Sony": ["WH-1000XM4", "WH-1000XM5", "WF-1000XM5"],
+  "Bose": ["QuietComfort", "QuietComfort Ultra"]
+ },
+ "volant": {
+  "Logitech": ["G29", "G920", "G923", "G Pro"],
+  "Thrustmaster": ["T150", "T248", "T300", "T-GT"]
+ }
+}

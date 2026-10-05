@@ -1,5 +1,5 @@
 /* Les Pages Bleues — carnet d'entretien d'un matériel (carnet.html?id=…).
-   Sur le modèle de MotoBook : entretiens et contrôles à venir, intervalles réglables, prévision selon le
+   Entretiens et contrôles à venir, intervalles réglables, prévision selon le
    kilométrage moyen, fil d'historique avec factures, vue d'ensemble de l'état, statistiques, export. */
 
 renderHeader("materiel");

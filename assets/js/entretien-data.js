@@ -1,5 +1,5 @@
 /* Les Pages Bleues — plans d'entretien proposés dans le carnet d'entretien, par type de matériel.
-   Inspiré du suivi de MotoBook (entretiens périodiques d'un côté, points de contrôle de l'autre, intervalles
+   Principe (entretiens périodiques d'un côté, points de contrôle de l'autre, intervalles
    réglables, anticipation selon le kilométrage moyen). Chaque intervalle vient d'une fiche vérifiée (champ guide) ;
    sans intervalle dans la fiche, la tâche est proposée « selon la notice » et l'utilisateur règle lui-même l'intervalle.
    kind : "entretien" (on le fait) ou "controle" (on vérifie un état : bon, à surveiller, défaillant).
@@ -202,7 +202,7 @@ const MAINTENANCE = {
   volant: [{ id: "calibrage", label: "Calibrage et micrologiciel", kind: "controle", guide: "volant-jeu-calibrage" }]
 };
 
-// Options qui adaptent le plan (comme la transmission d'une moto chez MotoBook)
+// Options qui adaptent le plan (énergie, transmission)
 const VEHICLE_OPTIONS = {
   voiture: { energie: [["thermique", "Thermique"], ["hybride", "Hybride"], ["electrique", "Électrique"]] },
   moto: { energie: [["thermique", "Thermique"], ["electrique", "Électrique"]], transmission: [["chaine", "Chaîne"], ["courroie", "Courroie"], ["cardan", "Cardan"]] }
