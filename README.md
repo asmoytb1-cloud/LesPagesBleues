@@ -46,6 +46,25 @@ Pensez à changer `REVIEWED_ON` dans `data.js` quand vous revérifiez les fiches
 
 Les pages principales (accueil, recherche, catégories…) sont générées par `python3 tools/pages.py` à partir de gabarits : modifiez le gabarit dans ce fichier plutôt que le HTML directement.
 
+## Application iPhone (Xcode)
+
+Le dossier `ios/` contient une application iOS qui embarque tout le site : il fonctionne hors ligne et
+les données restent sur l'iPhone (stockage local de l'app).
+
+1. Sur le Mac, récupérez le dépôt (branche `claude/mes-pages-bleues-wpp3wx`) et ouvrez `ios/LesPagesBleues.xcodeproj` (Xcode 16 ou plus récent).
+2. Cible **LesPagesBleues** › **Signing & Capabilities** : choisissez votre **Team** (un identifiant Apple suffit, « Personal Team »).
+   Si Xcode refuse l'identifiant `fr.lespagesbleues.beta`, remplacez-le par un identifiant à vous (ex. `fr.votrenom.pagesbleues`).
+3. Branchez l'iPhone, choisissez-le en haut de la fenêtre, puis **Run** (⌘R).
+4. Première fois sur l'iPhone : *Réglages › Confidentialité et sécurité › Mode développeur* (activer, redémarrer), puis
+   *Réglages › Général › VPN et gestion de l'appareil* › faire confiance à votre profil de développeur.
+
+À chaque compilation, l'étape « Copier le site » recopie la racine du dépôt dans l'app : relancez `node tools/build.js`
+après une modification des fiches, puis Run. Avec un compte Apple gratuit, l'app installée expire au bout de 7 jours :
+il suffit de relancer Run. Pour inspecter l'app : Safari sur le Mac › menu Développement › votre iPhone.
+
+Dans l'app, les liens externes et les e-mails s'ouvrent dans Safari et Mail, l'impression passe par iOS, et les fichiers
+exportés (carnet, données, rappels d'agenda) sont proposés dans la feuille de partage.
+
 ## Mettre à jour le catalogue du matériel
 
 Le catalogue est généré par `tools/materiel.js` (lancé par `node tools/build.js`) à partir de `tools/data/` :

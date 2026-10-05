@@ -437,7 +437,7 @@ function attachSuggest(input, box) {
 
 /* ---------- En-tête, barre mobile, pied de page ---------- */
 // Adresse de contact de l'équipe (avis sur la bêta, signalements). Vide tant qu'elle n'est pas choisie.
-const SITE_CONTACT = "";
+const SITE_CONTACT = "matthis.hache@hotmail.fr";
 
 /* Bonus réparation (QualiRépar) : montant déduit de la facture chez un réparateur labellisé, appareil hors garantie.
    Barème officiel publié par ecosystem (« Appareils éligibles et montants applicables au 1er janvier 2025 »),

@@ -379,13 +379,13 @@ PAGES["mentions-legales.html"] = dict(
     </section>
     <section class="section">
       <div class="narrow prose">
-        <div class="notice notice-warn" id="todo-legal"><span data-icon="alert"></span><p>Version bêta : les informations marquées « à compléter » seront renseignées avant l'ouverture publique du site.</p></div>
-        <h2>Éditeur du site</h2>
-        <p>Les Pages Bleues est édité par : <span class="todo">à compléter (nom, ou mention d'un éditeur non professionnel ayant choisi l'anonymat au titre de l'article 1-1 II de la loi n° 2004-575 du 21 juin 2004, ses coordonnées étant alors communiquées à l'hébergeur)</span>.<br>
-        Directeur de la publication : <span class="todo">à compléter</span>.<br>
-        Contact : <span class="todo">adresse e-mail à compléter</span> — ou le lien « Signaler » présent sur chaque fiche.</p>
+        <h2>Éditeur</h2>
+        <p>Les Pages Bleues est édité à titre non commercial par <strong>Matthis Hache</strong>, particulier.<br>
+        Directeur de la publication : Matthis Hache.<br>
+        Contact : <a href="mailto:matthis.hache@hotmail.fr">matthis.hache@hotmail.fr</a> — ou le lien « Signaler » présent sur chaque fiche.</p>
         <h2>Hébergement</h2>
-        <p><span class="todo">À compléter selon l'hébergeur retenu (nom, adresse et téléphone).</span></p>
+        <p>Pendant la bêta privée, Les Pages Bleues est une application installée par son éditeur sur ses propres appareils : le site n'est pas encore hébergé en ligne.</p>
+        <div class="notice"><span data-icon="alert"></span><p>Avant toute mise en ligne publique, cette page indiquera l'hébergeur (nom, adresse, téléphone) et les coordonnées complètes de l'éditeur exigées par l'article 1-1 de la loi n° 2004-575 du 21 juin 2004.</p></div>
         <h2>Contenus et responsabilité</h2>
         <p>Les fiches sont fournies à titre informatif. Chaque fiche indique les sources consultées pour sa vérification. Toute réparation se fait sous la responsabilité de la personne qui l'entreprend : en cas de doute, notamment pour l'électricité, le gaz, les freins ou les appareils sous garantie, faites appel à un professionnel. Voir aussi les <a href="conditions-utilisation.html">conditions d'utilisation</a>.</p>
         <h2>Propriété intellectuelle</h2>
