@@ -66,12 +66,12 @@ qui produit le favicon, les icônes de l'application web, l'image de partage et 
 sombre et teintée) : `node tools/icons.js` après une modification du logo.
 
 **Schémas techniques.** Un pack d'illustrations (`manifest.json` et `svg/<id>.svg`, une par fiche) s'intègre avec
-`node tools/illustrations.js <dossier du pack>`. Seuls les schémas marqués `"valide"` dans
-`tools/data/illustrations-review.json` sont publiés : la règle est qu'une image fausse est pire qu'une image simple mais
-juste, et les autres fiches gardent leur photo. La commande répare et nettoie les fichiers, redessine les repères,
+`node tools/illustrations.js` (pack source : `tools/schemas/`). Les 124 fiches ont leur schéma : 12 viennent du pack
+d'illustrations relu, 112 ont été redessinés dans `tools/dessins/` (`node tools/dessins/build.js`) parce que ceux du pack
+étaient faux. Seuls les schémas marqués `"valide"` dans `tools/data/illustrations-review.json` sont publiés : une image
+fausse est pire qu'une image simple mais juste, et une fiche sans schéma valide garde sa photo. La commande répare et nettoie les fichiers, redessine les repères,
 recadre, et produit `assets/img/technical/<id>.svg`, l'image de partage `<id>.png`, le registre
-`assets/js/illustrations-data.js` et le bilan `docs/visuels/AUDIT.md` (raison et consigne de dessin pour chaque schéma
-à refaire). Une variante propre à une marque ou un modèle ne s'affiche que si elle a été vérifiée (date et sources).
+`assets/js/illustrations-data.js` et le bilan `docs/visuels/AUDIT.md` (relecture fiche par fiche). Une variante propre à une marque ou un modèle ne s'affiche que si elle a été vérifiée (date et sources).
 Règles de dessin : `docs/visuels/VISUELS_TECHNIQUES.md`.
 
 ## Application iPhone (Xcode)
@@ -140,7 +140,8 @@ assets/js/illustrations-data.js                registre des schémas (généré 
 assets/fonts/                                  police Inter (licence OFL)
 tools/build.js, tools/pages.py, tools/serve.js génération et serveur local
 tools/icons.js                                 logo, favicon, icônes (web et iPhone), image de partage
-tools/illustrations.js                         intégration d'un pack de schémas techniques (relecture : tools/data/illustrations-review.json)
+tools/illustrations.js                         intégration des schémas techniques (relecture : tools/data/illustrations-review.json)
+tools/dessins/, tools/schemas/                 schémas redessinés (sources) et pack source des 124 schémas
 docs/visuels/                                  règles de dessin des schémas et bilan de relecture (AUDIT.md)
 tests/validate.js, tests/e2e.js                tests
 sw.js, manifest.webmanifest                    hors ligne et installation

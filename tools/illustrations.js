@@ -1,5 +1,7 @@
 /* Les Pages Bleues — intégration des schémas techniques d'un pack d'illustrations.
-   Usage : node tools/illustrations.js <dossier du pack>     (le dossier contient manifest.json et svg/<id>.svg)
+   Usage : node tools/illustrations.js [dossier du pack]   (par défaut tools/schemas : manifest.json et svg/<id>.svg)
+   Le pack tools/schemas contient les 12 schémas validés du pack d'origine et les 112 schémas redessinés,
+   écrits par node tools/dessins/build.js à partir des dessins de tools/dessins/.
    Nécessite Playwright, comme les tests : Chromium mesure les dessins et produit les images de partage.
 
    La relecture tools/data/illustrations-review.json décide : seuls les schémas « valide » sont intégrés,
@@ -26,8 +28,7 @@ const GROUP = /<g transform="translate\(105,95\) scale\(\.72\)">([\s\S]*?)<\/g>/
 const FONT = "Inter, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
 const fail = msg => { console.error("✗ " + msg); process.exit(1); };
-const packDir = process.argv[2];
-if (!packDir) fail("indiquez le dossier du pack : node tools/illustrations.js <dossier>");
+const packDir = process.argv[2] || path.join(ROOT, "tools/schemas");
 const manifest = JSON.parse(fs.readFileSync(path.join(packDir, "manifest.json"), "utf8"));
 const review = JSON.parse(fs.readFileSync(REVIEW_FILE, "utf8"));
 
@@ -170,57 +171,64 @@ function writeAudit(done) {
   const date = new Date(review.relu_le + "T12:00:00").toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
   const domain = g => { const c = CATEGORIES.find(x => x.id === g.category); const p = c && c.parent && CATEGORIES.find(x => x.id === c.parent); return (p && p.id !== "autres" ? p : c || { name: "Autre" }).name; };  // « Autres » : sa sous-catégorie (mode, instruments)
   const valid = ids.filter(id => review.fiches[id].statut === "valide");
+  const fromPack = valid.filter(id => review.fiches[id].source !== "redessin");
+  const redrawn = valid.filter(id => review.fiches[id].source === "redessin");
   const todo = ids.filter(id => review.fiches[id].statut === "a-refaire");
-  const repairedCount = Object.values(done).filter(d => d.repaired).length;
-  const broken = manifest.filter(m => /\/>(circle|path|rect|line|ellipse|polygon|polyline|text) /.test(fs.readFileSync(path.join(packDir, "svg", m.id + ".svg"), "utf8"))).length;
-  const byDomain = {};
-  todo.forEach(id => (byDomain[domain(guide(id))] ||= []).push(id));
-  const md = `# Schémas techniques : relecture du pack « ${review.pack} »
+  const legend = id => done[id].labels.map((l, i) => `${i + 1}. ${l}`).join(" ; ");
+  const byDomain = list => { const m = {}; list.forEach(id => (m[domain(guide(id))] ||= []).push(id)); return Object.entries(m); };
+  const md = `# Schémas techniques des fiches : relecture et redessin
 
-Relu le ${date}, fiche par fiche, en comparant chaque schéma au texte de sa fiche.
-Ce fichier est produit par \`node tools/illustrations.js <dossier du pack>\` à partir de
-\`tools/data/illustrations-review.json\` : pour changer une décision, modifier ce fichier de relecture puis relancer la commande.
+Ce fichier est produit par \`node tools/illustrations.js\` à partir de \`tools/data/illustrations-review.json\`.
+Pour changer une décision, modifier ce fichier de relecture puis relancer la commande.
 
-**Règle appliquée**, celle de la bible des visuels : « Une belle image fausse est pire qu'une image simple mais juste. »
-Un schéma n'est affiché que s'il montre le bon objet et que chaque repère désigne la bonne pièce.
-Sinon la fiche garde sa photo, comme le prévoit l'ordre « schéma technique > photo propre à la fiche > photo du domaine ».
+**Règle appliquée**, celle de la bible des visuels (\`docs/visuels/VISUELS_TECHNIQUES.md\`) : « Une belle image fausse est pire
+qu'une image simple mais juste. » Un schéma n'est affiché que s'il montre le bon objet et que chaque repère désigne la
+bonne pièce, d'après le texte de sa fiche. Tous restent des **schémas de principe** : la mention « la conception peut
+varier selon le modèle » accompagne chacun d'eux.
 
-## Résultat
+## Résultat (${date})
 
-- **${valid.length} schémas intégrés**, dont ${valid.filter(id => review.fiches[id].reperes).length} avec des repères corrigés (détail ci-dessous) ;
-- **${todo.length} schémas à refaire** : dessin d'un autre objet, dessin passe-partout repris d'une fiche à l'autre, ou repères qui désignent la mauvaise pièce.
+- **${valid.length} fiches sur ${ids.length} ont leur schéma technique**${todo.length ? ` ; ${todo.length} gardent leur photo en attendant un schéma juste` : ""}.
+- ${fromPack.length} schémas viennent du pack « Illustrations v1 », relus un par un (${fromPack.filter(id => review.fiches[id].reperes).length} avec des repères corrigés).
+- ${redrawn.length} schémas du pack étaient faux ou passe-partout : ils ont été **redessinés** par Les Pages Bleues
+  (\`tools/dessins/\`), d'après la consigne écrite pour chacun, puis relus de la même façon.
 
-## Défauts communs aux fichiers du pack, corrigés pour les schémas intégrés
+## Traitement commun
 
-- **Balises cassées** dans ${broken} fichiers (\`/>circle\` au lieu de \`/><circle\`) : un élément du dessin ne s'affichait pas
-  (stick gauche de la manette, ligne de collage de la semelle, plateau du vélo, tige du mécanisme de chasse…). La balise est réparée${repairedCount ? ` (${repairedCount} des schémas intégrés étaient concernés)` : ""}.
-- **Texte provisoire** « Famille d'équipement » dans le panneau de droite et **faux bouton** « SCHÉMA DE PRINCIPE » : seule la zone de dessin est gardée.
-- **Repères** : traits de rappel qui barrent les libellés, couleur différente selon le domaine (orange et vert trop pâles sur fond blanc).
-  Les repères sont redessinés en bleu Pages Bleues et numérotés ; la légende est écrite en texte dans la fiche,
-  lisible sur téléphone et par les lecteurs d'écran.
-- **Planche entière** (1200 × 780, avec titres, outils et étapes déjà présents dans la fiche) illisible sur téléphone : le schéma est recadré sur le dessin.
+- Les fichiers du pack avaient des **balises cassées** (\`/>circle\` au lieu de \`/><circle\`) : un élément du dessin ne
+  s'affichait pas. Elles sont réparées.
+- Seule la **zone de dessin** est gardée : ni titre, ni texte provisoire (« Famille d'équipement »), ni faux bouton.
+- Les **repères** sont redessinés en bleu Pages Bleues, numérotés, sans traits qui se croisent ; la légende est écrite
+  en texte dans la fiche, lisible sur téléphone et par les lecteurs d'écran.
+- Aucun contenu actif ou externe n'est accepté (script, lien, image, style) : seulement des formes simples.
 
-## Schémas intégrés (${valid.length})
+## Schémas du pack, relus (${fromPack.length})
 
-| Fiche | Repères affichés | Correction |
+| Fiche | Repères | Correction |
 | --- | --- | --- |
-${valid.map(id => `| ${guide(id).title} (\`${id}\`) | ${done[id].labels.map((l, i) => `${i + 1}. ${l}`).join(" ; ")} | ${(review.fiches[id].corrections || []).join(" ") || "—"} |`).join("\n")}
+${fromPack.map(id => `| ${guide(id).title} (\`${id}\`) | ${legend(id)} | ${(review.fiches[id].corrections || []).join(" ") || "—"} |`).join("\n")}
 
+## Schémas redessinés (${redrawn.length})
+
+Pour chaque fiche : le défaut du schéma d'origine, puis ce que montre le nouveau schéma.
+
+${byDomain(redrawn).map(([name, list]) => `### ${name} (${list.length})
+
+${list.map(id => `- **${guide(id).title}** (\`${id}\`) — *Pack :* ${review.fiches[id].defaut_du_pack}
+  *Nouveau schéma :* ${legend(id)}.`).join("\n")}`).join("\n\n")}
+${todo.length ? `
 ## Schémas à refaire (${todo.length})
 
-Classés par domaine. Pour chaque fiche : ce qui ne va pas, puis ce que le schéma doit montrer.
+${todo.map(id => `- **${guide(id).title}** (\`${id}\`) — ${review.fiches[id].raison}
+  *À dessiner :* ${review.fiches[id].a_dessiner}`).join("\n")}
+` : ""}
+## Modifier ou ajouter un schéma
 
-${Object.entries(byDomain).map(([name, list]) => `### ${name} (${list.length})
-
-${list.map(id => `- **${guide(id).title}** (\`${id}\`) — ${review.fiches[id].raison}
-  *À dessiner :* ${review.fiches[id].a_dessiner}`).join("\n")}`).join("\n\n")}
-
-## Intégrer un schéma refait
-
-1. Déposer le nouveau pack (même structure : \`manifest.json\`, \`svg/<id>.svg\` au gabarit 1200 × 780).
-2. Relire le schéma face au texte de la fiche ; dans \`tools/data/illustrations-review.json\`, passer la fiche à
-   \`"statut": "valide"\` (et, si un repère est mal placé, donner la liste \`reperes\` corrigée).
-3. Lancer \`node tools/illustrations.js <dossier du pack>\`, puis \`node tools/build.js\`, \`node tests/validate.js\` et \`node tests/e2e.js\`.
+1. Dessin redessiné : modifier sa description dans \`tools/dessins/\` (formes simples, repères \`[libellé, x, y]\` posés
+   sur la bonne pièce), puis \`node tools/dessins/build.js\`.
+   Schéma venu d'un pack : le déposer dans \`tools/schemas/svg/<id>.svg\` (gabarit 1200 × 780).
+2. Le relire face au texte de la fiche ; dans \`tools/data/illustrations-review.json\`, statut \`"valide"\`.
+3. \`node tools/illustrations.js\`, puis \`node tools/build.js\`, \`node tests/validate.js\` et \`node tests/e2e.js\`.
 `;
   fs.mkdirSync(path.join(ROOT, "docs/visuels"), { recursive: true });
   fs.writeFileSync(path.join(ROOT, "docs/visuels/AUDIT.md"), md);

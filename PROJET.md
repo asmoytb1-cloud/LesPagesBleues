@@ -26,7 +26,7 @@ octobre 2026 pour être un compagnon simple et calme (voir § 2 bis).
 | Fonction | Détail |
 |---|---|
 | **124 fiches vérifiées** | 11 domaines (Automobile, Moto, Électroménager, Téléphonie & informatique, Maison & bricolage, Vélo & mobilité, Jardin, Jeux & loisirs, Mode, Instruments, Autres). Chaque fiche : difficulté, durée, économie estimée, précautions de sécurité, outils, pièces, étapes (avec astuces et minuteurs), dépannage, **sources citées** (245 au total) et date de vérification. Au moins une fiche pour chacun des 85 types d'équipement. |
-| **Schémas techniques** | Sur la fiche, juste après difficulté et durée : schéma de principe à repères numérotés, légende en texte, « Agrandir » (zoom ×2), papier clair aussi en thème sombre, imprimé avec la fiche, image de partage dédiée. 12 schémas validés sur les 124 du pack d'octobre 2026 ; les 112 autres sont à refaire (consignes dans `docs/visuels/AUDIT.md`) et ces fiches gardent leur photo. |
+| **Schémas techniques** | Sur la fiche, juste après difficulté et durée : schéma de principe à repères numérotés, légende en texte, « Agrandir » (zoom ×2), papier clair aussi en thème sombre, imprimé avec la fiche, image de partage dédiée. Les 124 fiches ont le leur : 12 viennent du pack d'octobre 2026, relus ; 112, faux dans le pack, ont été redessinés (`tools/dessins/`). Bilan fiche par fiche : `docs/visuels/AUDIT.md`. |
 | **Mode accompagnement** | Une étape à la fois, en grand, lecture à voix haute, minuteurs, commandes vocales. |
 | **Diagnostic** | 26 pannes courantes : description libre (ou choix de l'équipement) → questions une par une → « Voici ce que nous avons trouvé » (causes avec probabilité estimée, « Notre conseil ») → guide recommandé. Sans IA (règles pondérées). Photo jointe possible pour une question à la communauté (non analysée). |
 | **Entretien** | Page qui rassemble les entretiens de tout le matériel : À faire, Bientôt, À venir (objet, entretien, échéance). |
@@ -95,7 +95,9 @@ tools/
   data/                ← types.json, marques.json, modeles.json, vehicules.txt (listes rédigées par l'équipe)
   fetch-wikidata.py    ← (facultatif) complète les modèles depuis Wikidata (CC0)
   icons.js             ← logo, favicon, icônes web et iPhone, image de partage (Playwright)
-  illustrations.js     ← intègre un pack de schémas : node tools/illustrations.js <dossier du pack> (Playwright)
+  illustrations.js     ← intègre les schémas : node tools/illustrations.js (pack source tools/schemas, Playwright)
+  dessins/             ← les 112 schémas redessinés (formes + repères) ; node tools/dessins/build.js → tools/schemas/svg
+  schemas/             ← pack source des 124 schémas (gabarit 1200 × 780) et son manifest.json
   data/illustrations-review.json ← relecture des schémas : « valide » ou « a-refaire » (raison, consigne de dessin)
 tests/
   validate.js          ← contrôles de cohérence (fiches, sources, liens, catalogue, plans d'entretien…)
@@ -131,7 +133,7 @@ guide: "<id de fiche>", note }`. **Un intervalle doit toujours venir d'une fiche
 ```
 npm install                                   # une fois (Playwright pour les tests)
 python3 tools/pages.py                        # régénère les pages principales
-node tools/illustrations.js <dossier du pack> # (si nouveaux schémas) relecture → assets/img/technical, registre, AUDIT.md
+node tools/dessins/build.js && node tools/illustrations.js   # (si schémas modifiés) → assets/img/technical, registre, AUDIT.md
 node tools/build.js                           # régénère fiches/, categories/, catalogue, sitemap
 node tests/validate.js                        # contrôles de cohérence
 python3 -m http.server 8765 &                 # serveur local
@@ -182,8 +184,8 @@ Après chaque modification : `pages.py` → `build.js` → `validate.js` → `e2
    entretien), synchronisation iCloud (CloudKit) du matériel et des carnets, raccourcis Siri.
 4. Comptes et partage des fiches entre utilisateurs (backend, modération, conformité DSA/RGPD).
 5. Relecture des fiches par des réparateurs ; nouvelles fiches selon les demandes des testeurs.
-6. **Refaire les 112 schémas techniques** jugés faux ou passe-partout, d'après les consignes de `docs/visuels/AUDIT.md`,
-   puis les intégrer avec `tools/illustrations.js`.
+6. **Schémas techniques** : les faire relire par des réparateurs, et ajouter des variantes par marque ou modèle
+   seulement une fois vérifiées (date et sources).
 7. Mise en ligne publique du site (il faudra alors compléter les mentions légales : adresse, téléphone, hébergeur).
 
 ## 7. Points juridiques à garder en tête

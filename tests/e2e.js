@@ -202,9 +202,12 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     expect(await p.$eval(".fig-zoom", e => getComputedStyle(e).display) === "none", "pas de bouton « Agrandir » à l'impression");
     expect(await p.$eval(".guide-figure img", e => e.getBoundingClientRect().height > 100), "le schéma doit être imprimé");
     await p.emulateMedia({ media: "screen" });
-    // Sans schéma validé : la photo reste
-    await p.goto(B + "fiches/pression-pneus-voiture.html", { waitUntil: "load" });
-    expect(!(await p.$(".guide-figure")) && await p.$eval(".guide-photo img", i => i.naturalWidth > 0), "sans schéma validé, la fiche garde sa photo");
+    // Sans schéma validé (registre vide), la fiche retombe sur sa photo (service worker bloqué : il servirait le vrai registre)
+    const ctx2 = await newCtx({ serviceWorkers: "block" }); const p2 = await ctx2.newPage();
+    await p2.route("**/illustrations-data.js", r => r.fulfill({ contentType: "text/javascript", body: "const ILLUSTRATIONS = {};" }));
+    await p2.goto(B + "fiches/pression-pneus-voiture.html", { waitUntil: "load" });
+    expect(!(await p2.$(".guide-figure")) && await p2.$eval(".guide-photo img", i => i.naturalWidth > 0), "sans schéma validé, la fiche garde sa photo");
+    await ctx2.close();
     // Matériel enregistré : la mention renvoie à la notice de son appareil (aucune variante vérifiée)
     await p.evaluate(() => localStorage.setItem("lpb-materiel", JSON.stringify([{ id: "m1", kind: "appareil", type: "lave-linge", typeName: "Lave-linge", brand: "Bosch", category: "electromenager" }])));
     await p.goto(B + "fiches/lave-linge-ne-demarre-plus.html", { waitUntil: "load" });

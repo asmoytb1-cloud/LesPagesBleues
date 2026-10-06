@@ -1,128 +1,154 @@
 {
- "pack": "LesPagesBleues_Illustrations_v1",
+ "pack": "tools/schemas (pack LesPagesBleues_Illustrations_v1 relu, 112 schémas redessinés)",
  "relu_le": "2026-10-06",
  "fiches": {
   "pression-pneus-voiture": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : disque et étrier de frein au lieu d'un pneu.",
-   "a_dessiner": "Roue vue de côté : pneu, jante, valve sur la jante, manomètre sur la valve ; encart : étiquette des pressions (montant de portière ou trappe à carburant)."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : disque et étrier de frein au lieu d'un pneu.",
+   "consigne": "Roue vue de côté : pneu, jante, valve sur la jante, manomètre sur la valve ; encart : étiquette des pressions (montant de portière ou trappe à carburant)."
   },
   "pile-cle-voiture": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : batterie de voiture au lieu d'une télécommande de clé.",
-   "a_dessiner": "Télécommande ouverte en deux coques : pile bouton (souvent CR2032 ou CR2025), logement, fente d'ouverture ; repère + de la pile."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : batterie de voiture au lieu d'une télécommande de clé.",
+   "consigne": "Télécommande ouverte en deux coques : pile bouton (souvent CR2032 ou CR2025), logement, fente d'ouverture ; repère + de la pile."
   },
   "vidange-huile-moteur": {
-   "statut": "a-refaire",
-   "raison": "Zone d'intervention absente : ni bouchon de vidange ni filtre à huile.",
-   "a_dessiner": "Moteur et carter d'huile : bouchon de remplissage (haut), jauge, bouchon de vidange (sous le carter), filtre à huile, bac de récupération."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Zone d'intervention absente : ni bouchon de vidange ni filtre à huile.",
+   "consigne": "Moteur et carter d'huile : bouchon de remplissage (haut), jauge, bouchon de vidange (sous le carter), filtre à huile, bac de récupération."
   },
   "plaquettes-frein": {
-   "statut": "valide"
+   "statut": "valide",
+   "source": "pack"
   },
   "voiture-ne-demarre-plus": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Compartiment moteur simplifié : batterie et cosses, masse, démarreur ; multimètre sur la batterie."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Compartiment moteur simplifié : batterie et cosses, masse, démarreur ; multimètre sur la batterie."
   },
   "ampoule-phare": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : ampoule domestique au lieu d'une ampoule de phare à culot.",
-   "a_dessiner": "Arrière du bloc optique : cache, connecteur, ampoule de phare (ne pas toucher le verre), maintien (ressort ou bague)."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : ampoule domestique au lieu d'une ampoule de phare à culot.",
+   "consigne": "Arrière du bloc optique : cache, connecteur, ampoule de phare (ne pas toucher le verre), maintien (ressort ou bague)."
   },
   "balais-essuie-glace": {
-   "statut": "a-refaire",
-   "raison": "Un seul trait : « Balai » et « Bras » désignent le même objet ; l'agrafe de fixation, où l'on intervient, n'apparaît pas.",
-   "a_dessiner": "Bras relevé au-dessus d'une serviette : bras, crochet en U au bout du bras, balai, languette de verrouillage au milieu du balai ; sens de glissement fléché."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Un seul trait : « Balai » et « Bras » désignent le même objet ; l'agrafe de fixation, où l'on intervient, n'apparaît pas.",
+   "consigne": "Bras relevé au-dessus d'une serviette : bras, crochet en U au bout du bras, balai, languette de verrouillage au milieu du balai ; sens de glissement fléché."
   },
   "changer-roue": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : disque de frein au lieu de la roue et du cric.",
-   "a_dessiner": "Voiture de profil : point de levage sous le bas de caisse, cric, roue, écrous ; ordre de serrage en étoile."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : disque de frein au lieu de la roue et du cric.",
+   "consigne": "Voiture de profil : point de levage sous le bas de caisse, cric, roue, écrous ; ordre de serrage en étoile."
   },
   "changer-batterie-voiture": {
-   "statut": "valide"
+   "statut": "valide",
+   "source": "pack"
   },
   "changer-fusible-voiture": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Boîte à fusibles ouverte : fusibles enfichables, pince d'extraction, plan au dos du couvercle ; fusible bon et fusible fondu (filament coupé)."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Boîte à fusibles ouverte : fusibles enfichables, pince d'extraction, plan au dos du couvercle ; fusible bon et fusible fondu (filament coupé)."
   },
   "niveau-huile-moteur": {
-   "statut": "valide"
+   "statut": "valide",
+   "source": "pack"
   },
   "liquide-refroidissement": {
-   "statut": "a-refaire",
-   "raison": "Repère faux : le liquide de refroidissement ne se lit pas à la jauge mais sur le vase d'expansion.",
-   "a_dessiner": "Vase d'expansion translucide avec repères MIN et MAX, bouchon (à n'ouvrir qu'à froid) ; niveau correct entre les repères."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Repère faux : le liquide de refroidissement ne se lit pas à la jauge mais sur le vase d'expansion.",
+   "consigne": "Vase d'expansion translucide avec repères MIN et MAX, bouchon (à n'ouvrir qu'à froid) ; niveau correct entre les repères."
   },
   "filtre-habitacle": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Boîte à gants démontée ou bas de pare-brise : trappe du filtre, filtre à pollen, flèche du sens de l'air."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Boîte à gants démontée ou bas de pare-brise : trappe du filtre, filtre à pollen, flèche du sens de l'air."
   },
   "entretien-chaine-moto": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Roue arrière de moto sur béquille : chaîne, couronne, pignon ; mesure de la tension au milieu du brin inférieur."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Roue arrière de moto sur béquille : chaîne, couronne, pignon ; mesure de la tension au milieu du brin inférieur."
   },
   "pression-pneus-moto": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : disque et étrier de frein au lieu d'un pneu de moto.",
-   "a_dessiner": "Roue de moto : pneu, valve, manomètre ; encart des pressions avant et arrière (notice)."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : disque et étrier de frein au lieu d'un pneu de moto.",
+   "consigne": "Roue de moto : pneu, valve, manomètre ; encart des pressions avant et arrière (notice)."
   },
   "hivernage-moto": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Moto de profil : batterie (mainteneur de charge), réservoir, pneus, béquille ; housse respirante."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Moto de profil : batterie (mainteneur de charge), réservoir, pneus, béquille ; housse respirante."
   },
   "filtre-seche-linge": {
-   "statut": "a-refaire",
-   "raison": "Zone d'intervention absente : ni filtre de porte ni condenseur.",
-   "a_dessiner": "Sèche-linge porte ouverte : filtre dans l'encadrement de porte, réservoir d'eau, condenseur ou filtre de plinthe en bas (selon modèle)."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Zone d'intervention absente : ni filtre de porte ni condenseur.",
+   "consigne": "Sèche-linge porte ouverte : filtre dans l'encadrement de porte, réservoir d'eau, condenseur ou filtre de plinthe en bas (selon modèle)."
   },
   "detartrer-bouilloire": {
-   "statut": "valide"
+   "statut": "valide",
+   "source": "pack"
   },
   "degivrer-congelateur": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : lave-linge avec « tambour » au lieu d'un congélateur.",
-   "a_dessiner": "Congélateur ouvert : givre sur les parois, bac pour l'eau de fonte, serviettes ; aucun objet pointu."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : lave-linge avec « tambour » au lieu d'un congélateur.",
+   "consigne": "Congélateur ouvert : givre sur les parois, bac pour l'eau de fonte, serviettes ; aucun objet pointu."
   },
   "nettoyer-filtre-hotte": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Hotte vue de dessous : filtre à graisse métallique et son loquet ; filtre à charbon derrière (hotte en recyclage)."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Hotte vue de dessous : filtre à graisse métallique et son loquet ; filtre à charbon derrière (hotte en recyclage)."
   },
   "courroie-lave-linge": {
-   "statut": "a-refaire",
-   "raison": "Zone d'intervention absente : la courroie, à l'arrière, n'apparaît pas.",
-   "a_dessiner": "Lave-linge vu de dos, panneau retiré : grande poulie du tambour, courroie, petite poulie du moteur."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Zone d'intervention absente : la courroie, à l'arrière, n'apparaît pas.",
+   "consigne": "Lave-linge vu de dos, panneau retiré : grande poulie du tambour, courroie, petite poulie du moteur."
   },
   "lave-linge-ne-vidange-pas": {
-   "statut": "a-refaire",
-   "raison": "Zone d'intervention absente : le filtre de vidange n'apparaît pas.",
-   "a_dessiner": "Bas de la façade : trappe ouverte, filtre de vidange, petit tuyau de purge, bac pour l'eau."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Zone d'intervention absente : le filtre de vidange n'apparaît pas.",
+   "consigne": "Bas de la façade : trappe ouverte, filtre de vidange, petit tuyau de purge, bac pour l'eau."
   },
   "lave-vaisselle-lave-mal": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Cuve vue de dessus : bras de lavage et leurs trous, filtre cylindrique et filtre plat au fond."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Cuve vue de dessus : bras de lavage et leurs trous, filtre cylindrique et filtre plat au fond."
   },
   "joint-refrigerateur": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : lave-linge au lieu d'un réfrigérateur.",
-   "a_dessiner": "Porte de réfrigérateur entrouverte : joint magnétique sur le pourtour ; test de la feuille de papier coincée dans la porte."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : lave-linge au lieu d'un réfrigérateur.",
+   "consigne": "Porte de réfrigérateur entrouverte : joint magnétique sur le pourtour ; test de la feuille de papier coincée dans la porte."
   },
   "aspirateur-aspire-mal": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Aspirateur traîneau : bac ou sac, filtres (moteur et sortie), tuyau, brosse ; trajet de l'air fléché."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Aspirateur traîneau : bac ou sac, filtres (moteur et sortie), tuyau, brosse ; trajet de l'air fléché."
   },
   "detartrer-cafetiere": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Cafetière filtre en coupe : réservoir d'eau, tube d'eau chaude et plaque chauffante, porte-filtre, verseuse."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Cafetière filtre en coupe : réservoir d'eau, tube d'eau chaude et plaque chauffante, porte-filtre, verseuse."
   },
   "lave-linge-ne-demarre-plus": {
    "statut": "valide",
@@ -151,47 +177,56 @@
       445
      ]
     }
-   ]
+   ],
+   "source": "pack"
   },
   "securite-porte-lave-linge": {
-   "statut": "a-refaire",
-   "raison": "La sécurité de porte, objet de la fiche, n'est pas dessinée ; « Joint » pointe la carrosserie.",
-   "a_dessiner": "Lave-linge porte ouverte : joint de hublot et son collier, crochet de la porte, sécurité de porte à droite de l'ouverture (deux vis) et son connecteur."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "La sécurité de porte, objet de la fiche, n'est pas dessinée ; « Joint » pointe la carrosserie.",
+   "consigne": "Lave-linge porte ouverte : joint de hublot et son collier, crochet de la porte, sécurité de porte à droite de l'ouverture (deux vis) et son connecteur."
   },
   "frigo-eau-au-fond": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : lave-linge au lieu d'un réfrigérateur.",
-   "a_dessiner": "Paroi du fond du réfrigérateur : rigole, trou d'évacuation, tuyau vers le bac d'évaporation près du compresseur."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : lave-linge au lieu d'un réfrigérateur.",
+   "consigne": "Paroi du fond du réfrigérateur : rigole, trou d'évacuation, tuyau vers le bac d'évaporation près du compresseur."
   },
   "nettoyer-condenseur-frigo": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : lave-linge au lieu d'un réfrigérateur.",
-   "a_dessiner": "Arrière du réfrigérateur : condenseur (serpentin) au dos ou en bas derrière la plinthe, brosse longue ; appareil débranché."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : lave-linge au lieu d'un réfrigérateur.",
+   "consigne": "Arrière du réfrigérateur : condenseur (serpentin) au dos ou en bas derrière la plinthe, brosse longue ; appareil débranché."
   },
   "detartrer-centrale-vapeur": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Centrale vapeur : fer, base avec réservoir, collecteur de tartre (si présent), bouchon de vidange de la chaudière."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Centrale vapeur : fer, base avec réservoir, collecteur de tartre (si présent), bouchon de vidange de la chaudière."
   },
   "entretien-aspirateur-robot": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Robot vu de dessous : brosse rouleau, brosses latérales, roues, capteurs de vide ; bac et filtre."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Robot vu de dessous : brosse rouleau, brosses latérales, roues, capteurs de vide ; bac et filtre."
   },
   "climatiseur-mobile-refroidit-mal": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Climatiseur mobile vu de dos : grilles et filtres à air, gaine d'évacuation, bouchon de vidange des condensats."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Climatiseur mobile vu de dos : grilles et filtres à air, gaine d'évacuation, bouchon de vidange des condensats."
   },
   "tetes-impression-imprimante": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Imprimante capot ouvert : chariot, cartouches ou réservoirs, tête d'impression ; page de test des buses."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Imprimante capot ouvert : chariot, cartouches ou réservoirs, tête d'impression ; page de test des buses."
   },
   "touche-clavier-bloquee": {
-   "statut": "a-refaire",
-   "raison": "Zone d'intervention absente : le clavier n'est pas désigné.",
-   "a_dessiner": "Clavier incliné : touche, mécanisme sous la touche, miettes ; bombe d'air sec."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Zone d'intervention absente : le clavier n'est pas désigné.",
+   "consigne": "Clavier incliné : touche, mécanisme sous la touche, miettes ; bombe d'air sec."
   },
   "ordinateur-portable-chauffe": {
    "statut": "valide",
@@ -213,133 +248,160 @@
       512
      ]
     }
-   ]
+   ],
+   "source": "pack"
   },
   "ecran-telephone": {
-   "statut": "valide"
+   "statut": "valide",
+   "source": "pack"
   },
   "telephone-ne-charge-plus": {
-   "statut": "a-refaire",
-   "raison": "Le port de charge est placé sur le côté au lieu du bas, et les peluches au fond du port, cause habituelle, n'apparaissent pas.",
-   "a_dessiner": "Bas du téléphone : port de charge, peluches au fond du port, cure-dent en bois, câble."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Le port de charge est placé sur le côté au lieu du bas, et les peluches au fond du port, cause habituelle, n'apparaissent pas.",
+   "consigne": "Bas du téléphone : port de charge, peluches au fond du port, cure-dent en bois, câble."
   },
   "pc-lent": {
-   "statut": "a-refaire",
-   "raison": "Repères sans rapport : le problème est surtout logiciel.",
-   "a_dessiner": "Écran de l'ordinateur : applications au démarrage, espace disque libre ; encart : aérations à dépoussiérer."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Repères sans rapport : le problème est surtout logiciel.",
+   "consigne": "Écran de l'ordinateur : applications au démarrage, espace disque libre ; encart : aérations à dépoussiérer."
   },
   "detartrer-pommeau-douche": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : robinet et cartouche au lieu du pommeau.",
-   "a_dessiner": "Pommeau de douche : buses entartrées, sachet de vinaigre tenu par un élastique, raccord dévissable."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : robinet et cartouche au lieu du pommeau.",
+   "consigne": "Pommeau de douche : buses entartrées, sachet de vinaigre tenu par un élastique, raccord dévissable."
   },
   "regler-porte-placard": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Charnière invisible (à cuvette) de face : vis de réglage latéral, de profondeur et de hauteur, avec flèches."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Charnière invisible (à cuvette) de face : vis de réglage latéral, de profondeur et de hauteur, avec flèches."
   },
   "deboucher-toilettes": {
-   "statut": "a-refaire",
-   "raison": "Même dessin que la chasse d'eau (« Réservoir », « Mécanisme ») : ni la cuvette, ni le siphon, ni l'évacuation.",
-   "a_dessiner": "Cuvette en coupe : siphon, bouchon, ventouse à collerette, niveau d'eau."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Même dessin que la chasse d'eau (« Réservoir », « Mécanisme ») : ni la cuvette, ni le siphon, ni l'évacuation.",
+   "consigne": "Cuvette en coupe : siphon, bouchon, ventouse à collerette, niveau d'eau."
   },
   "robinet-qui-fuit": {
-   "statut": "a-refaire",
-   "raison": "Dessin abstrait (un tuyau coudé) : on ne reconnaît ni le bec, ni la poignée, ni l'emplacement de la cartouche.",
-   "a_dessiner": "Robinet en coupe : cache et vis de poignée, écrou, tête à clapet ou cartouche de mitigeur, joint ; robinets d'arrêt sous l'évier."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin abstrait (un tuyau coudé) : on ne reconnaît ni le bec, ni la poignée, ni l'emplacement de la cartouche.",
+   "consigne": "Robinet en coupe : cache et vis de poignée, écrou, tête à clapet ou cartouche de mitigeur, joint ; robinets d'arrêt sous l'évier."
   },
   "chasse-eau-coule": {
-   "statut": "a-refaire",
-   "raison": "Dessin incohérent : « Réservoir » désigne le petit rectangle du haut alors que le mécanisme est dessiné dans la grande forme arrondie, qui évoque la cuvette.",
-   "a_dessiner": "Réservoir ouvert : robinet flotteur et arrivée d'eau, mécanisme de chasse avec trop-plein (tube central) et joint plat du clapet, niveau d'eau 2 cm sous le haut du trop-plein."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin incohérent : « Réservoir » désigne le petit rectangle du haut alors que le mécanisme est dessiné dans la grande forme arrondie, qui évoque la cuvette.",
+   "consigne": "Réservoir ouvert : robinet flotteur et arrivée d'eau, mécanisme de chasse avec trop-plein (tube central) et joint plat du clapet, niveau d'eau 2 cm sous le haut du trop-plein."
   },
   "evier-bouche": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Sous l'évier : bonde, siphon démontable (écrous), bassine dessous ; ventouse au-dessus."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Sous l'évier : bonde, siphon démontable (écrous), bassine dessous ; ventouse au-dessus."
   },
   "trou-placo": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Plaque de plâtre en coupe : trou, renfort ou bande, couches d'enduit, ponçage."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Plaque de plâtre en coupe : trou, renfort ou bande, couches d'enduit, ponçage."
   },
   "remplacer-prise-electrique": {
-   "statut": "a-refaire",
-   "raison": "Repère faux : « bornes » désigne les trous de la façade ; les bornes sont à l'arrière.",
-   "a_dessiner": "Prise démontée : bornes à l'arrière (phase, neutre, terre vert-jaune), mécanisme, plaque, fixations ; disjoncteur coupé."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Repère faux : « bornes » désigne les trous de la façade ; les bornes sont à l'arrière.",
+   "consigne": "Prise démontée : bornes à l'arrière (phase, neutre, terre vert-jaune), mécanisme, plaque, fixations ; disjoncteur coupé."
   },
   "refaire-joint-silicone": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Angle baignoire-carrelage en coupe : ancien joint retiré, ruban de masquage, cordon de silicone, lissage."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Angle baignoire-carrelage en coupe : ancien joint retiré, ruban de masquage, cordon de silicone, lissage."
   },
   "changer-flexible-douche": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : robinet et cartouche au lieu du flexible.",
-   "a_dessiner": "Mitigeur, flexible et pommeau : écrous de raccord aux deux bouts, joints plats à remplacer."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : robinet et cartouche au lieu du flexible.",
+   "consigne": "Mitigeur, flexible et pommeau : écrous de raccord aux deux bouts, joints plats à remplacer."
   },
   "gonfler-pneu-velo": {
-   "statut": "a-refaire",
-   "raison": "Repères faux : « Pneu » et « Valve » pointent une barre entre les deux roues, pas la roue.",
-   "a_dessiner": "Roue de vélo : pneu (pression lue sur le flanc), jante, valve Presta ou Schrader, embout de pompe."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Repères faux : « Pneu » et « Valve » pointent une barre entre les deux roues, pas la roue.",
+   "consigne": "Roue de vélo : pneu (pression lue sur le flanc), jante, valve Presta ou Schrader, embout de pompe."
   },
   "crevaison-velo": {
-   "statut": "a-refaire",
-   "raison": "Repères faux : « Pneu » et « Valve » pointent une barre entre les deux roues, pas la roue.",
-   "a_dessiner": "Roue démontée : pneu, chambre à air, valve, démonte-pneus, rustine sur le trou."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Repères faux : « Pneu » et « Valve » pointent une barre entre les deux roues, pas la roue.",
+   "consigne": "Roue démontée : pneu, chambre à air, valve, démonte-pneus, rustine sur le trou."
   },
   "regler-freins-velo": {
-   "statut": "a-refaire",
-   "raison": "Dessin confus : cadre en zigzag et « Câble / patin » placé sous la roue, loin du frein.",
-   "a_dessiner": "Frein à patins vu de face : bras, patins à plat sur la jante, câble et sa vis de serrage, vis de rappel ; molette de réglage au levier."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin confus : cadre en zigzag et « Câble / patin » placé sous la roue, loin du frein.",
+   "consigne": "Frein à patins vu de face : bras, patins à plat sur la jante, câble et sa vis de serrage, vis de rappel ; molette de réglage au levier."
   },
   "entretien-chaine-velo": {
-   "statut": "a-refaire",
-   "raison": "« Transmission » pointe le haut du cadre ; ni la chaîne, ni le plateau, ni les pignons ne sont dessinés.",
-   "a_dessiner": "Vélo de profil côté transmission : plateau, chaîne, cassette, dérailleur ; burette au-dessus des rouleaux de la chaîne, chiffon, pédalier tourné à l'envers."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "« Transmission » pointe le haut du cadre ; ni la chaîne, ni le plateau, ni les pignons ne sont dessinés.",
+   "consigne": "Vélo de profil côté transmission : plateau, chaîne, cassette, dérailleur ; burette au-dessus des rouleaux de la chaîne, chiffon, pédalier tourné à l'envers."
   },
   "regler-derailleur-arriere": {
-   "statut": "a-refaire",
-   "raison": "« Chaîne » pointe le hauban du cadre : la chaîne n'est pas dessinée.",
-   "a_dessiner": "Dérailleur arrière en gros plan : patte, vis de butée H et L, vis B, galets, cassette, chaîne, molette de tension du câble."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "« Chaîne » pointe le hauban du cadre : la chaîne n'est pas dessinée.",
+   "consigne": "Dérailleur arrière en gros plan : patte, vis de butée H et L, vis B, galets, cassette, chaîne, molette de tension du câble."
   },
   "fil-coupe-bordure": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Tête du coupe-bordure ouverte : bobine, sens d'enroulement fléché, fil, œillets de sortie."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Tête du coupe-bordure ouverte : bobine, sens d'enroulement fléché, fil, œillets de sortie."
   },
   "tondeuse-ne-demarre-pas": {
-   "statut": "valide"
+   "statut": "valide",
+   "source": "pack"
   },
   "affuter-secateur": {
-   "statut": "a-refaire",
-   "raison": "Dessin méconnaissable (deux barres croisées) : ni la lame coupante ni son biseau, seul côté à affûter, ne sont visibles.",
-   "a_dessiner": "Sécateur ouvert : lame coupante avec son biseau, contre-lame plate, axe et ressort ; pierre posée à plat sur le biseau, poussée de la base vers la pointe."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin méconnaissable (deux barres croisées) : ni la lame coupante ni son biseau, seul côté à affûter, ne sont visibles.",
+   "consigne": "Sécateur ouvert : lame coupante avec son biseau, contre-lame plate, axe et ressort ; pierre posée à plat sur le biseau, poussée de la base vers la pointe."
   },
   "tuyau-arrosage-perce": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Tuyau coupé de part et d'autre de la fuite, raccord réparateur entre les deux bouts."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Tuyau coupé de part et d'autre de la fuite, raccord réparateur entre les deux bouts."
   },
   "affuter-lame-tondeuse": {
-   "statut": "a-refaire",
-   "raison": "Zone d'intervention absente : la lame, sous le carter, n'apparaît pas.",
-   "a_dessiner": "Tondeuse basculée, filtre à air vers le haut : lame, écrou central, cale en bois ; bougie débranchée."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Zone d'intervention absente : la lame, sous le carter, n'apparaît pas.",
+   "consigne": "Tondeuse basculée, filtre à air vers le haut : lame, écrou central, cale en bois ; bougie débranchée."
   },
   "matelas-gonflable-perce": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Matelas : eau savonneuse sur la zone suspecte (bulles), trou marqué, rustine et colle, valve."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Matelas : eau savonneuse sur la zone suspecte (bulles), trou marqué, rustine et colle, valve."
   },
   "reinitialiser-manette-ps5": {
-   "statut": "a-refaire",
-   "raison": "Zone d'intervention absente : le petit bouton de réinitialisation, au dos, n'apparaît pas.",
-   "a_dessiner": "Dos de la manette : petit trou de réinitialisation, trombone déplié, câble USB."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Zone d'intervention absente : le petit bouton de réinitialisation, au dos, n'apparaît pas.",
+   "consigne": "Dos de la manette : petit trou de réinitialisation, trombone déplié, câble USB."
   },
   "depoussierer-ps5": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : manette au lieu de la console.",
-   "a_dessiner": "Console couchée, façade retirée : ventilateur, pièges à poussière, aspirateur à faible puissance."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : manette au lieu de la console.",
+   "consigne": "Console couchée, façade retirée : ventilateur, pièges à poussière, aspirateur à faible puissance."
   },
   "joystick-drift": {
    "statut": "valide",
@@ -361,7 +423,8 @@
       410
      ]
     }
-   ]
+   ],
+   "source": "pack"
   },
   "recoller-semelle": {
    "statut": "valide",
@@ -383,303 +446,364 @@
       525
      ]
     }
-   ]
+   ],
+   "source": "pack"
   },
   "patch-jean": {
-   "statut": "a-refaire",
-   "raison": "Dessin sans détail utile (un trapèze et une couture) : ni le trou ni la pièce ne sont dessinés.",
-   "a_dessiner": "Jambe de jean retournée : trou, pièce thermocollante, fer à repasser et torchon."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin sans détail utile (un trapèze et une couture) : ni le trou ni la pièce ne sont dessinés.",
+   "consigne": "Jambe de jean retournée : trou, pièce thermocollante, fer à repasser et torchon."
   },
   "recoudre-bouton": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : fermeture éclair au lieu d'un bouton.",
-   "a_dessiner": "Bouton à quatre trous sur le tissu : fil en croix ou en parallèle, tige de fil sous le bouton, nœud au dos."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : fermeture éclair au lieu d'un bouton.",
+   "consigne": "Bouton à quatre trous sur le tissu : fil en croix ou en parallèle, tige de fil sous le bouton, nœud au dos."
   },
   "fermeture-eclair": {
-   "statut": "a-refaire",
-   "raison": "Le curseur, où l'on intervient, n'est pas dessiné ; « Couture » pointe la fermeture elle-même.",
-   "a_dessiner": "Fermeture vue de face : curseur, deux rangées de dents, arrêt du bas, ruban cousu ; pince plate serrant l'arrière du curseur, un côté puis l'autre."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Le curseur, où l'on intervient, n'est pas dessiné ; « Couture » pointe la fermeture elle-même.",
+   "consigne": "Fermeture vue de face : curseur, deux rangées de dents, arrêt du bas, ruban cousu ; pince plate serrant l'arrière du curseur, un côté puis l'autre."
   },
   "cordes-guitare-classique": {
-   "statut": "a-refaire",
-   "raison": "Dessin méconnaissable (deux cercles et des cordes) : ce n'est pas une guitare.",
-   "a_dessiner": "Guitare classique : chevalet et nœud de la corde, tête ajourée avec mécaniques, sillet."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin méconnaissable (deux cercles et des cordes) : ce n'est pas une guitare.",
+   "consigne": "Guitare classique : chevalet et nœud de la corde, tête ajourée avec mécaniques, sillet."
   },
   "cordes-guitare-folk": {
-   "statut": "a-refaire",
-   "raison": "Dessin méconnaissable (deux cercles et des cordes) : ce n'est pas une guitare.",
-   "a_dessiner": "Guitare folk : chevalet et chevilles, tête pleine avec mécaniques, sens d'enroulement."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin méconnaissable (deux cercles et des cordes) : ce n'est pas une guitare.",
+   "consigne": "Guitare folk : chevalet et chevilles, tête pleine avec mécaniques, sens d'enroulement."
   },
   "groupe-securite-chauffe-eau": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Groupe de sécurité sous le chauffe-eau : arrivée d'eau froide, robinet, soupape à manœuvrer, siphon d'évacuation."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Groupe de sécurité sous le chauffe-eau : arrivée d'eau froide, robinet, soupape à manœuvrer, siphon d'évacuation."
   },
   "nettoyer-bouches-vmc": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Bouche d'extraction au plafond : grille démontable, réglage d'ouverture ; entrée d'air au-dessus de la fenêtre."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Bouche d'extraction au plafond : grille démontable, réglage d'ouverture ; entrée d'air au-dessus de la fenêtre."
   },
   "entretien-poele-granules": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Poêle porte ouverte : creuset et ses trous d'air, cendrier, vitre ; trémie à granulés."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Poêle porte ouverte : creuset et ses trous d'air, cendrier, vitre ; trémie à granulés."
   },
   "entretien-trottinette-electrique": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : vélo à chaîne au lieu d'une trottinette.",
-   "a_dessiner": "Trottinette de profil : pneus, freins, système de pliage, visserie de la potence ; batterie dans le plateau."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : vélo à chaîne au lieu d'une trottinette.",
+   "consigne": "Trottinette de profil : pneus, freins, système de pliage, visserie de la potence ; batterie dans le plateau."
   },
   "entretien-robot-tondeuse": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : tondeuse thermique au lieu d'un robot.",
-   "a_dessiner": "Robot vu de dessous : disque porte-lames, petites lames pivotantes, roues ; station de charge."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : tondeuse thermique au lieu d'un robot.",
+   "consigne": "Robot vu de dessous : disque porte-lames, petites lames pivotantes, roues ; station de charge."
   },
   "hivernage-nettoyeur-haute-pression": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Nettoyeur haute pression : arrivée d'eau et son filtre, pompe, flexible, pistolet ; vidange avant le gel."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Nettoyeur haute pression : arrivée d'eau et son filtre, pompe, flexible, pistolet ; vidange avant le gel."
   },
   "entretien-taille-haie": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : tondeuse au lieu d'un taille-haie.",
-   "a_dessiner": "Lamier du taille-haie : deux lames dentées, fourreau ; zones à brosser et à huiler."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : tondeuse au lieu d'un taille-haie.",
+   "consigne": "Lamier du taille-haie : deux lames dentées, fourreau ; zones à brosser et à huiler."
   },
   "entretien-deshumidificateur": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Déshumidificateur : préfiltre, réservoir d'eau et son flotteur, sortie de vidange continue."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Déshumidificateur : préfiltre, réservoir d'eau et son flotteur, sortie de vidange continue."
   },
   "nettoyer-four": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Four porte ouverte : joint de porte, parois, grilles et lèchefrite."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Four porte ouverte : joint de porte, parois, grilles et lèchefrite."
   },
   "nettoyer-micro-ondes": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Micro-ondes ouvert : bol d'eau vinaigrée sur le plateau, parois, plateau tournant."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Micro-ondes ouvert : bol d'eau vinaigrée sur le plateau, parois, plateau tournant."
   },
   "nettoyer-plaque-vitroceramique": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Plaque vue de dessus : foyers, grattoir à lame tenu incliné, nettoyant adapté ; plaque froide."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Plaque vue de dessus : foyers, grattoir à lame tenu incliné, nettoyant adapté ; plaque froide."
   },
   "nettoyer-grille-pain": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Grille-pain : fentes, tiroir à miettes sous l'appareil ; appareil débranché."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Grille-pain : fentes, tiroir à miettes sous l'appareil ; appareil débranché."
   },
   "joint-cocotte-minute": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Couvercle vu de dessous : joint, soupape de fonctionnement, soupape de sécurité."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Couvercle vu de dessous : joint, soupape de fonctionnement, soupape de sécurité."
   },
   "entretien-friteuse": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Friteuse en coupe : cuve, huile, panier, filtre du couvercle, repères MIN et MAX."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Friteuse en coupe : cuve, huile, panier, filtre du couvercle, repères MIN et MAX."
   },
   "nettoyer-robot-mixeur": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Bol de blender démonté : couteaux, joint, base moteur ; mains éloignées des lames."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Bol de blender démonté : couteaux, joint, base moteur ; mains éloignées des lames."
   },
   "entretien-machine-a-pain": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Cuve de machine à pain : pétrin sur son axe, revêtement antiadhésif, joint de l'axe."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Cuve de machine à pain : pétrin sur son axe, revêtement antiadhésif, joint de l'axe."
   },
   "nettoyer-extracteur-de-jus": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Extracteur démonté : vis sans fin, tamis, brosse, bol."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Extracteur démonté : vis sans fin, tamis, brosse, bol."
   },
   "nettoyer-appareil-raclette": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Appareil à raclette : plaque gril, poêlons, résistance ; appareil refroidi."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Appareil à raclette : plaque gril, poêlons, résistance ; appareil refroidi."
   },
   "entretien-yaourtiere": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Yaourtière : base chauffante, pots, couvercle."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Yaourtière : base chauffante, pots, couvercle."
   },
   "nettoyer-trancheuse": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Trancheuse : lame circulaire, protège-lame, chariot, molette d'épaisseur à zéro ; appareil débranché."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Trancheuse : lame circulaire, protège-lame, chariot, molette d'épaisseur à zéro ; appareil débranché."
   },
   "nettoyer-machine-a-glacons": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Machine à glaçons : réservoir d'eau, panier et pelle, bouchon de vidange."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Machine à glaçons : réservoir d'eau, panier et pelle, bouchon de vidange."
   },
   "nettoyer-tireuse-a-biere": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Tireuse : fût, tube de tirage, robinet, bac d'égouttage."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Tireuse : fût, tube de tirage, robinet, bac d'égouttage."
   },
   "cartouche-carafe-filtrante": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Carafe : couvercle, entonnoir, cartouche et son encoche d'orientation, indicateur de changement."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Carafe : couvercle, entonnoir, cartouche et son encoche d'orientation, indicateur de changement."
   },
   "debloquer-broyeur-evier": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Broyeur sous l'évier : clé à six pans dans l'axe sous l'appareil, bouton de réarmement ; jamais la main dans l'entrée."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Broyeur sous l'évier : clé à six pans dans l'axe sous l'appareil, bouton de réarmement ; jamais la main dans l'entrée."
   },
   "nettoyer-filtre-seche-cheveux": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Sèche-cheveux : grille d'entrée d'air à l'arrière (filtre amovible), sortie d'air."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Sèche-cheveux : grille d'entrée d'air à l'arrière (filtre amovible), sortie d'air."
   },
   "entretien-rasoir-electrique": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Rasoir : têtes de coupe et grilles, porte-têtes ouvert, brosse."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Rasoir : têtes de coupe et grilles, porte-têtes ouvert, brosse."
   },
   "entretien-brosse-a-dents-electrique": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Brosse à dents : manche, axe métallique, brossette ; dépôts sous la brossette."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Brosse à dents : manche, axe métallique, brossette ; dépôts sous la brossette."
   },
   "detartrer-sterilisateur-biberons": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Stérilisateur électrique : plaque chauffante entartrée, cuve, paniers."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Stérilisateur électrique : plaque chauffante entartrée, cuve, paniers."
   },
   "nettoyer-ventilateur": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Ventilateur : grille avant à clips, pales, écrou de l'hélice, grille arrière."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Ventilateur : grille avant à clips, pales, écrou de l'hélice, grille arrière."
   },
   "filtres-purificateur-air": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Purificateur ouvert : préfiltre, filtre HEPA, filtre à charbon, sens de l'air."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Purificateur ouvert : préfiltre, filtre HEPA, filtre à charbon, sens de l'air."
   },
   "detartrer-nettoyeur-vapeur": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Nettoyeur vapeur : réservoir, bouchon de sécurité, chaudière."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Nettoyeur vapeur : réservoir, bouchon de sécurité, chaudière."
   },
   "housse-table-a-repasser": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Plateau de table à repasser : housse, mousse, cordon de serrage sous le plateau."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Plateau de table à repasser : housse, mousse, cordon de serrage sous le plateau."
   },
   "entretien-cireuse": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Cireuse vue de dessous : brosses ou disques, feutres de lustrage."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Cireuse vue de dessous : brosses ou disques, feutres de lustrage."
   },
   "nettoyer-montre-connectee": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Montre : boîtier, capteurs au dos, bracelet démonté (barrettes)."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Montre : boîtier, capteurs au dos, bracelet démonté (barrettes)."
   },
   "mettre-a-jour-gps": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "GPS relié à l'ordinateur par câble USB, logiciel du fabricant, espace mémoire."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "GPS relié à l'ordinateur par câble USB, logiciel du fabricant, espace mémoire."
   },
   "nettoyer-ecran-tv": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : téléphone au lieu d'un écran de télévision.",
-   "a_dessiner": "Écran éteint : chiffon microfibre sec, puis légèrement humide, sans pulvériser sur l'écran."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : téléphone au lieu d'un écran de télévision.",
+   "consigne": "Écran éteint : chiffon microfibre sec, puis légèrement humide, sans pulvériser sur l'écran."
   },
   "filtre-videoprojecteur": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Vidéoprojecteur : capot du filtre à air, filtre, aérations, objectif."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Vidéoprojecteur : capot du filtre à air, filtre, aérations, objectif."
   },
   "lecteur-dvd-ne-lit-plus": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Lecteur : tiroir, disque (face lisible), lentille laser (ne pas toucher)."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Lecteur : tiroir, disque (face lisible), lentille laser (ne pas toucher)."
   },
   "barre-de-son-pas-de-son": {
-   "statut": "a-refaire",
-   "raison": "Repères sans rapport : le problème vient des branchements et réglages.",
-   "a_dessiner": "Télé et barre de son : câble HDMI sur les ports ARC/eARC, câble optique, réglage de la sortie audio."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Repères sans rapport : le problème vient des branchements et réglages.",
+   "consigne": "Télé et barre de son : câble HDMI sur les ports ARC/eARC, câble optique, réglage de la sortie audio."
   },
   "nettoyer-ecouteurs-casque": {
-   "statut": "a-refaire",
-   "raison": "Dessin méconnaissable : ni des écouteurs ni un casque.",
-   "a_dessiner": "Écouteurs intra et casque : grilles des haut-parleurs, embouts silicone retirés, brosse souple."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin méconnaissable : ni des écouteurs ni un casque.",
+   "consigne": "Écouteurs intra et casque : grilles des haut-parleurs, embouts silicone retirés, brosse souple."
   },
   "nettoyer-objectif-appareil-photo": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Objectif : lentille frontale, soufflette, pinceau, chiffon microfibre."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Objectif : lentille frontale, soufflette, pinceau, chiffon microfibre."
   },
   "calibrer-hoverboard": {
-   "statut": "a-refaire",
-   "raison": "Autre objet : vélo à chaîne au lieu d'un hoverboard.",
-   "a_dessiner": "Hoverboard posé à plat : deux plateaux, roues, bouton marche, voyants ; plateaux horizontaux pendant le calibrage."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Autre objet : vélo à chaîne au lieu d'un hoverboard.",
+   "consigne": "Hoverboard posé à plat : deux plateaux, roues, bouton marche, voyants ; plateaux horizontaux pendant le calibrage."
   },
   "entretien-perceuse-visseuse": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Perceuse-visseuse : batterie retirée, mandrin, aérations du moteur, chargeur."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Perceuse-visseuse : batterie retirée, mandrin, aérations du moteur, chargeur."
   },
   "entretien-ponceuse": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Ponceuse vue de dessous : plateau à scratch, abrasif, trous d'aspiration alignés, sac à poussière."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Ponceuse vue de dessous : plateau à scratch, abrasif, trous d'aspiration alignés, sac à poussière."
   },
   "filtre-aspirateur-eau-poussiere": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Aspirateur de chantier : cuve, filtre cartouche plissé, flotteur, tuyau."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Aspirateur de chantier : cuve, filtre cartouche plissé, flotteur, tuyau."
   },
   "entretien-radiateur-electrique": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Radiateur : grilles d'entrée d'air en bas et de sortie en haut, façade, thermostat."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Radiateur : grilles d'entrée d'air en bas et de sortie en haut, façade, thermostat."
   },
   "entretien-pompe-a-chaleur": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Unité extérieure : grille du ventilateur, ailettes de l'échangeur, évacuation des condensats ; espace libre autour."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Unité extérieure : grille du ventilateur, ailettes de l'échangeur, évacuation des condensats ; espace libre autour."
   },
   "entretien-portail-motorise": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Portail : cellules photoélectriques (émetteur et récepteur), moteur, rail ou crémaillère, feu clignotant."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Portail : cellules photoélectriques (émetteur et récepteur), moteur, rail ou crémaillère, feu clignotant."
   },
   "visiophone-ne-sonne-plus": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Platine de rue et poste intérieur : alimentation, piles (modèles sans fil), volume de la sonnerie."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Platine de rue et poste intérieur : alimentation, piles (modèles sans fil), volume de la sonnerie."
   },
   "entretien-souffleur-feuilles": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Souffleur thermique : filtre à air sous son capot, bougie, réservoir, tube de soufflage."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Souffleur thermique : filtre à air sous son capot, bougie, réservoir, tube de soufflage."
   },
   "entretien-motobineuse": {
-   "statut": "a-refaire",
-   "raison": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
-   "a_dessiner": "Motobineuse : moteur avec jauge et bouchon de vidange, filtre à air, fraises."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.",
+   "consigne": "Motobineuse : moteur avec jauge et bouchon de vidange, filtre à air, fraises."
   },
   "amorcer-pompe-surface": {
-   "statut": "a-refaire",
-   "raison": "Zone d'intervention absente : le bouchon d'amorçage n'apparaît pas.",
-   "a_dessiner": "Pompe de surface : bouchon de remplissage sur le dessus, tuyau d'aspiration avec clapet, refoulement."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "Zone d'intervention absente : le bouchon d'amorçage n'apparaît pas.",
+   "consigne": "Pompe de surface : bouchon de remplissage sur le dessus, tuyau d'aspiration avec clapet, refoulement."
   },
   "barbecue-gaz-fuite-nettoyage": {
-   "statut": "valide"
+   "statut": "valide",
+   "source": "pack"
   },
   "entretien-eau-piscine": {
-   "statut": "a-refaire",
-   "raison": "« Filtration » pointe un arc dans le bassin : ni skimmer, ni pompe, ni filtre.",
-   "a_dessiner": "Piscine en coupe : skimmers et leurs paniers, pompe et préfiltre, filtre, refoulement ; trousse d'analyse pH (7,2 à 7,6) et chlore."
+   "statut": "valide",
+   "source": "redessin",
+   "defaut_du_pack": "« Filtration » pointe un arc dans le bassin : ni skimmer, ni pompe, ni filtre.",
+   "consigne": "Piscine en coupe : skimmers et leurs paniers, pompe et préfiltre, filtre, refoulement ; trousse d'analyse pH (7,2 à 7,6) et chlore."
   },
   "volant-jeu-calibrage": {
-   "statut": "valide"
+   "statut": "valide",
+   "source": "pack"
   }
  }
 }

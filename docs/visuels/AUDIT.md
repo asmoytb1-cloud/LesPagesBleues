@@ -1,31 +1,32 @@
-# Schémas techniques : relecture du pack « LesPagesBleues_Illustrations_v1 »
+# Schémas techniques des fiches : relecture et redessin
 
-Relu le 6 octobre 2026, fiche par fiche, en comparant chaque schéma au texte de sa fiche.
-Ce fichier est produit par `node tools/illustrations.js <dossier du pack>` à partir de
-`tools/data/illustrations-review.json` : pour changer une décision, modifier ce fichier de relecture puis relancer la commande.
+Ce fichier est produit par `node tools/illustrations.js` à partir de `tools/data/illustrations-review.json`.
+Pour changer une décision, modifier ce fichier de relecture puis relancer la commande.
 
-**Règle appliquée**, celle de la bible des visuels : « Une belle image fausse est pire qu'une image simple mais juste. »
-Un schéma n'est affiché que s'il montre le bon objet et que chaque repère désigne la bonne pièce.
-Sinon la fiche garde sa photo, comme le prévoit l'ordre « schéma technique > photo propre à la fiche > photo du domaine ».
+**Règle appliquée**, celle de la bible des visuels (`docs/visuels/VISUELS_TECHNIQUES.md`) : « Une belle image fausse est pire
+qu'une image simple mais juste. » Un schéma n'est affiché que s'il montre le bon objet et que chaque repère désigne la
+bonne pièce, d'après le texte de sa fiche. Tous restent des **schémas de principe** : la mention « la conception peut
+varier selon le modèle » accompagne chacun d'eux.
 
-## Résultat
+## Résultat (6 octobre 2026)
 
-- **12 schémas intégrés**, dont 4 avec des repères corrigés (détail ci-dessous) ;
-- **112 schémas à refaire** : dessin d'un autre objet, dessin passe-partout repris d'une fiche à l'autre, ou repères qui désignent la mauvaise pièce.
+- **124 fiches sur 124 ont leur schéma technique**.
+- 12 schémas viennent du pack « Illustrations v1 », relus un par un (4 avec des repères corrigés).
+- 112 schémas du pack étaient faux ou passe-partout : ils ont été **redessinés** par Les Pages Bleues
+  (`tools/dessins/`), d'après la consigne écrite pour chacun, puis relus de la même façon.
 
-## Défauts communs aux fichiers du pack, corrigés pour les schémas intégrés
+## Traitement commun
 
-- **Balises cassées** dans 15 fichiers (`/>circle` au lieu de `/><circle`) : un élément du dessin ne s'affichait pas
-  (stick gauche de la manette, ligne de collage de la semelle, plateau du vélo, tige du mécanisme de chasse…). La balise est réparée (2 des schémas intégrés étaient concernés).
-- **Texte provisoire** « Famille d'équipement » dans le panneau de droite et **faux bouton** « SCHÉMA DE PRINCIPE » : seule la zone de dessin est gardée.
-- **Repères** : traits de rappel qui barrent les libellés, couleur différente selon le domaine (orange et vert trop pâles sur fond blanc).
-  Les repères sont redessinés en bleu Pages Bleues et numérotés ; la légende est écrite en texte dans la fiche,
-  lisible sur téléphone et par les lecteurs d'écran.
-- **Planche entière** (1200 × 780, avec titres, outils et étapes déjà présents dans la fiche) illisible sur téléphone : le schéma est recadré sur le dessin.
+- Les fichiers du pack avaient des **balises cassées** (`/>circle` au lieu de `/><circle`) : un élément du dessin ne
+  s'affichait pas. Elles sont réparées.
+- Seule la **zone de dessin** est gardée : ni titre, ni texte provisoire (« Famille d'équipement »), ni faux bouton.
+- Les **repères** sont redessinés en bleu Pages Bleues, numérotés, sans traits qui se croisent ; la légende est écrite
+  en texte dans la fiche, lisible sur téléphone et par les lecteurs d'écran.
+- Aucun contenu actif ou externe n'est accepté (script, lien, image, style) : seulement des formes simples.
 
-## Schémas intégrés (12)
+## Schémas du pack, relus (12)
 
-| Fiche | Repères affichés | Correction |
+| Fiche | Repères | Correction |
 | --- | --- | --- |
 | Changer les plaquettes de frein (`plaquettes-frein`) | 1. Disque ; 2. Étrier ; 3. Plaquette ; 4. Moyeu | — |
 | Changer la batterie d'une voiture (`changer-batterie-voiture`) | 1. Borne + ; 2. Borne – ; 3. Batterie | — |
@@ -40,264 +41,265 @@ Sinon la fiche garde sa photo, comme le prévoit l'ordre « schéma technique > 
 | Barbecue ou plancha gaz : tester les fuites et nettoyer (`barbecue-gaz-fuite-nettoyage`) | 1. Grille ; 2. Arrivée gaz | — |
 | Volant de jeu décentré ou qui ne se calibre plus (`volant-jeu-calibrage`) | 1. Volant ; 2. Base | — |
 
-## Schémas à refaire (112)
+## Schémas redessinés (112)
 
-Classés par domaine. Pour chaque fiche : ce qui ne va pas, puis ce que le schéma doit montrer.
+Pour chaque fiche : le défaut du schéma d'origine, puis ce que montre le nouveau schéma.
 
 ### Auto / Moto (13)
 
-- **Vérifier et régler la pression des pneus** (`pression-pneus-voiture`) — Autre objet : disque et étrier de frein au lieu d'un pneu.
-  *À dessiner :* Roue vue de côté : pneu, jante, valve sur la jante, manomètre sur la valve ; encart : étiquette des pressions (montant de portière ou trappe à carburant).
-- **Changer la pile d'une clé de voiture** (`pile-cle-voiture`) — Autre objet : batterie de voiture au lieu d'une télécommande de clé.
-  *À dessiner :* Télécommande ouverte en deux coques : pile bouton (souvent CR2032 ou CR2025), logement, fente d'ouverture ; repère + de la pile.
-- **Changer l'huile moteur** (`vidange-huile-moteur`) — Zone d'intervention absente : ni bouchon de vidange ni filtre à huile.
-  *À dessiner :* Moteur et carter d'huile : bouchon de remplissage (haut), jauge, bouchon de vidange (sous le carter), filtre à huile, bac de récupération.
-- **Voiture qui ne démarre plus : diagnostic** (`voiture-ne-demarre-plus`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Compartiment moteur simplifié : batterie et cosses, masse, démarreur ; multimètre sur la batterie.
-- **Changer une ampoule de phare** (`ampoule-phare`) — Autre objet : ampoule domestique au lieu d'une ampoule de phare à culot.
-  *À dessiner :* Arrière du bloc optique : cache, connecteur, ampoule de phare (ne pas toucher le verre), maintien (ressort ou bague).
-- **Remplacer les balais d'essuie-glace** (`balais-essuie-glace`) — Un seul trait : « Balai » et « Bras » désignent le même objet ; l'agrafe de fixation, où l'on intervient, n'apparaît pas.
-  *À dessiner :* Bras relevé au-dessus d'une serviette : bras, crochet en U au bout du bras, balai, languette de verrouillage au milieu du balai ; sens de glissement fléché.
-- **Changer une roue crevée** (`changer-roue`) — Autre objet : disque de frein au lieu de la roue et du cric.
-  *À dessiner :* Voiture de profil : point de levage sous le bas de caisse, cric, roue, écrous ; ordre de serrage en étoile.
-- **Remplacer un fusible de voiture** (`changer-fusible-voiture`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Boîte à fusibles ouverte : fusibles enfichables, pince d'extraction, plan au dos du couvercle ; fusible bon et fusible fondu (filament coupé).
-- **Contrôler le liquide de refroidissement** (`liquide-refroidissement`) — Repère faux : le liquide de refroidissement ne se lit pas à la jauge mais sur le vase d'expansion.
-  *À dessiner :* Vase d'expansion translucide avec repères MIN et MAX, bouchon (à n'ouvrir qu'à froid) ; niveau correct entre les repères.
-- **Changer le filtre d'habitacle (filtre à pollen)** (`filtre-habitacle`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Boîte à gants démontée ou bas de pare-brise : trappe du filtre, filtre à pollen, flèche du sens de l'air.
-- **Nettoyer, graisser et contrôler la chaîne de sa moto** (`entretien-chaine-moto`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Roue arrière de moto sur béquille : chaîne, couronne, pignon ; mesure de la tension au milieu du brin inférieur.
-- **Vérifier la pression des pneus de sa moto** (`pression-pneus-moto`) — Autre objet : disque et étrier de frein au lieu d'un pneu de moto.
-  *À dessiner :* Roue de moto : pneu, valve, manomètre ; encart des pressions avant et arrière (notice).
-- **Préparer sa moto pour l'hiver (hivernage)** (`hivernage-moto`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Moto de profil : batterie (mainteneur de charge), réservoir, pneus, béquille ; housse respirante.
+- **Vérifier et régler la pression des pneus** (`pression-pneus-voiture`) — *Pack :* Autre objet : disque et étrier de frein au lieu d'un pneu.
+  *Nouveau schéma :* 1. Étiquette des pressions (portière ou trappe à carburant) ; 2. Jante ; 3. Pneu ; 4. Manomètre du gonfleur ; 5. Valve.
+- **Changer la pile d'une clé de voiture** (`pile-cle-voiture`) — *Pack :* Autre objet : batterie de voiture au lieu d'une télécommande de clé.
+  *Nouveau schéma :* 1. Coque avec les boutons ; 2. Pile bouton (face + vers le haut) ; 3. Logement de la pile ; 4. Fente d'ouverture.
+- **Changer l'huile moteur** (`vidange-huile-moteur`) — *Pack :* Zone d'intervention absente : ni bouchon de vidange ni filtre à huile.
+  *Nouveau schéma :* 1. Bouchon de remplissage ; 2. Jauge ; 3. Filtre à huile ; 4. Carter d'huile ; 5. Bouchon de vidange ; 6. Bac de récupération.
+- **Voiture qui ne démarre plus : diagnostic** (`voiture-ne-demarre-plus`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Masse sur la carrosserie ; 2. Cosse + (rouge) ; 3. Cosse − (vers la masse) ; 4. Démarreur ; 5. Multimètre.
+- **Changer une ampoule de phare** (`ampoule-phare`) — *Pack :* Autre objet : ampoule domestique au lieu d'une ampoule de phare à culot.
+  *Nouveau schéma :* 1. Cache de protection (retiré) ; 2. Ressort de maintien ; 3. Culot de l'ampoule ; 4. Connecteur ; 5. Verre : ne pas le toucher.
+- **Remplacer les balais d'essuie-glace** (`balais-essuie-glace`) — *Pack :* Un seul trait : « Balai » et « Bras » désignent le même objet ; l'agrafe de fixation, où l'on intervient, n'apparaît pas.
+  *Nouveau schéma :* 1. Crochet en U ; 2. Languette de verrouillage ; 3. Balai ; 4. Bras d'essuie-glace ; 5. Serviette sur le pare-brise.
+- **Changer une roue crevée** (`changer-roue`) — *Pack :* Autre objet : disque de frein au lieu de la roue et du cric.
+  *Nouveau schéma :* 1. Écrous : serrage en étoile ; 2. Roue ; 3. Point de levage ; 4. Cric.
+- **Remplacer un fusible de voiture** (`changer-fusible-voiture`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Fusibles enfichables ; 2. Plan au dos du couvercle ; 3. Pince d'extraction ; 4. Fusible bon : filament entier ; 5. Fusible fondu : filament coupé.
+- **Contrôler le liquide de refroidissement** (`liquide-refroidissement`) — *Pack :* Repère faux : le liquide de refroidissement ne se lit pas à la jauge mais sur le vase d'expansion.
+  *Nouveau schéma :* 1. Bouchon : l'ouvrir seulement moteur froid ; 2. Vase d'expansion ; 3. Repère MAX ; 4. Repère MIN ; 5. Bon niveau : entre MIN et MAX.
+- **Changer le filtre d'habitacle (filtre à pollen)** (`filtre-habitacle`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Trappe ; 2. Logement du filtre ; 3. Flèche : sens de l'air ; 4. Filtre à pollen ; 5. Boîte à gants déposée.
+- **Nettoyer, graisser et contrôler la chaîne de sa moto** (`entretien-chaine-moto`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Couronne ; 2. Pignon ; 3. Tension : jeu mesuré au milieu ; 4. Chaîne (brin inférieur) ; 5. Béquille.
+- **Vérifier la pression des pneus de sa moto** (`pression-pneus-moto`) — *Pack :* Autre objet : disque et étrier de frein au lieu d'un pneu de moto.
+  *Nouveau schéma :* 1. Pressions avant / arrière (notice) ; 2. Jante ; 3. Pneu ; 4. Manomètre ; 5. Valve.
+- **Préparer sa moto pour l'hiver (hivernage)** (`hivernage-moto`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Réservoir (plein) ; 2. Pneus ; 3. Batterie ; 4. Housse respirante ; 5. Béquille centrale ; 6. Mainteneur de charge.
 
 ### Électroménager (41)
 
-- **Sèche-linge qui sèche mal : nettoyer filtres et condenseur** (`filtre-seche-linge`) — Zone d'intervention absente : ni filtre de porte ni condenseur.
-  *À dessiner :* Sèche-linge porte ouverte : filtre dans l'encadrement de porte, réservoir d'eau, condenseur ou filtre de plinthe en bas (selon modèle).
-- **Dégivrer un congélateur** (`degivrer-congelateur`) — Autre objet : lave-linge avec « tambour » au lieu d'un congélateur.
-  *À dessiner :* Congélateur ouvert : givre sur les parois, bac pour l'eau de fonte, serviettes ; aucun objet pointu.
-- **Nettoyer les filtres d'une hotte qui aspire mal** (`nettoyer-filtre-hotte`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Hotte vue de dessous : filtre à graisse métallique et son loquet ; filtre à charbon derrière (hotte en recyclage).
-- **Remplacer la courroie d'un lave-linge** (`courroie-lave-linge`) — Zone d'intervention absente : la courroie, à l'arrière, n'apparaît pas.
-  *À dessiner :* Lave-linge vu de dos, panneau retiré : grande poulie du tambour, courroie, petite poulie du moteur.
-- **Lave-linge qui ne vidange plus** (`lave-linge-ne-vidange-pas`) — Zone d'intervention absente : le filtre de vidange n'apparaît pas.
-  *À dessiner :* Bas de la façade : trappe ouverte, filtre de vidange, petit tuyau de purge, bac pour l'eau.
-- **Lave-vaisselle qui lave mal** (`lave-vaisselle-lave-mal`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Cuve vue de dessus : bras de lavage et leurs trous, filtre cylindrique et filtre plat au fond.
-- **Réfrigérateur qui givre : vérifier le joint** (`joint-refrigerateur`) — Autre objet : lave-linge au lieu d'un réfrigérateur.
-  *À dessiner :* Porte de réfrigérateur entrouverte : joint magnétique sur le pourtour ; test de la feuille de papier coincée dans la porte.
-- **Aspirateur qui n'aspire plus** (`aspirateur-aspire-mal`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Aspirateur traîneau : bac ou sac, filtres (moteur et sortie), tuyau, brosse ; trajet de l'air fléché.
-- **Détartrer une cafetière filtre** (`detartrer-cafetiere`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Cafetière filtre en coupe : réservoir d'eau, tube d'eau chaude et plaque chauffante, porte-filtre, verseuse.
-- **Remplacer la sécurité de porte d'un lave-linge** (`securite-porte-lave-linge`) — La sécurité de porte, objet de la fiche, n'est pas dessinée ; « Joint » pointe la carrosserie.
-  *À dessiner :* Lave-linge porte ouverte : joint de hublot et son collier, crochet de la porte, sécurité de porte à droite de l'ouverture (deux vis) et son connecteur.
-- **Eau au fond du réfrigérateur : déboucher le trou d'évacuation** (`frigo-eau-au-fond`) — Autre objet : lave-linge au lieu d'un réfrigérateur.
-  *À dessiner :* Paroi du fond du réfrigérateur : rigole, trou d'évacuation, tuyau vers le bac d'évaporation près du compresseur.
-- **Nettoyer le condenseur du réfrigérateur** (`nettoyer-condenseur-frigo`) — Autre objet : lave-linge au lieu d'un réfrigérateur.
-  *À dessiner :* Arrière du réfrigérateur : condenseur (serpentin) au dos ou en bas derrière la plinthe, brosse longue ; appareil débranché.
-- **Détartrer une centrale vapeur** (`detartrer-centrale-vapeur`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Centrale vapeur : fer, base avec réservoir, collecteur de tartre (si présent), bouchon de vidange de la chaudière.
-- **Aspirateur robot qui nettoie mal : l'entretien complet** (`entretien-aspirateur-robot`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Robot vu de dessous : brosse rouleau, brosses latérales, roues, capteurs de vide ; bac et filtre.
-- **Climatiseur mobile qui refroidit mal : filtres et vidange** (`climatiseur-mobile-refroidit-mal`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Climatiseur mobile vu de dos : grilles et filtres à air, gaine d'évacuation, bouchon de vidange des condensats.
-- **Déshumidificateur : nettoyer le filtre et le réservoir** (`entretien-deshumidificateur`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Déshumidificateur : préfiltre, réservoir d'eau et son flotteur, sortie de vidange continue.
-- **Nettoyer son four : pyrolyse ou nettoyage à la main** (`nettoyer-four`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Four porte ouverte : joint de porte, parois, grilles et lèchefrite.
-- **Nettoyer un micro-ondes avec un bol d'eau et de vinaigre** (`nettoyer-micro-ondes`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Micro-ondes ouvert : bol d'eau vinaigrée sur le plateau, parois, plateau tournant.
-- **Nettoyer une plaque vitrocéramique ou à induction** (`nettoyer-plaque-vitroceramique`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Plaque vue de dessus : foyers, grattoir à lame tenu incliné, nettoyant adapté ; plaque froide.
-- **Grille-pain : retirer les miettes en toute sécurité** (`nettoyer-grille-pain`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Grille-pain : fentes, tiroir à miettes sous l'appareil ; appareil débranché.
-- **Cocotte-minute : entretenir le joint et les soupapes** (`joint-cocotte-minute`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Couvercle vu de dessous : joint, soupape de fonctionnement, soupape de sécurité.
-- **Friteuse : changer l'huile et entretenir les filtres** (`entretien-friteuse`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Friteuse en coupe : cuve, huile, panier, filtre du couvercle, repères MIN et MAX.
-- **Nettoyer un robot de cuisine ou un blender sans se couper** (`nettoyer-robot-mixeur`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Bol de blender démonté : couteaux, joint, base moteur ; mains éloignées des lames.
-- **Machine à pain : entretenir la cuve et le pétrin** (`entretien-machine-a-pain`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Cuve de machine à pain : pétrin sur son axe, revêtement antiadhésif, joint de l'axe.
-- **Nettoyer un extracteur de jus et son tamis** (`nettoyer-extracteur-de-jus`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Extracteur démonté : vis sans fin, tamis, brosse, bol.
-- **Nettoyer un appareil à raclette ou un grill** (`nettoyer-appareil-raclette`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Appareil à raclette : plaque gril, poêlons, résistance ; appareil refroidi.
-- **Yaourtière : nettoyage et yaourts trop liquides** (`entretien-yaourtiere`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Yaourtière : base chauffante, pots, couvercle.
-- **Nettoyer une trancheuse électrique sans se couper** (`nettoyer-trancheuse`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Trancheuse : lame circulaire, protège-lame, chariot, molette d'épaisseur à zéro ; appareil débranché.
-- **Nettoyer et détartrer une machine à glaçons** (`nettoyer-machine-a-glacons`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Machine à glaçons : réservoir d'eau, panier et pelle, bouchon de vidange.
-- **Nettoyer une tireuse à bière à chaque changement de fût** (`nettoyer-tireuse-a-biere`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Tireuse : fût, tube de tirage, robinet, bac d'égouttage.
-- **Carafe filtrante : changer et préparer la cartouche** (`cartouche-carafe-filtrante`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Carafe : couvercle, entonnoir, cartouche et son encoche d'orientation, indicateur de changement.
-- **Broyeur sous évier bloqué : le débloquer et l'entretenir** (`debloquer-broyeur-evier`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Broyeur sous l'évier : clé à six pans dans l'axe sous l'appareil, bouton de réarmement ; jamais la main dans l'entrée.
-- **Sèche-cheveux qui chauffe trop ou se coupe : nettoyer le filtre** (`nettoyer-filtre-seche-cheveux`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Sèche-cheveux : grille d'entrée d'air à l'arrière (filtre amovible), sortie d'air.
-- **Rasoir électrique : nettoyer, lubrifier et changer les têtes** (`entretien-rasoir-electrique`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Rasoir : têtes de coupe et grilles, porte-têtes ouvert, brosse.
-- **Brosse à dents électrique : entretien et brossette** (`entretien-brosse-a-dents-electrique`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Brosse à dents : manche, axe métallique, brossette ; dépôts sous la brossette.
-- **Détartrer un stérilisateur de biberons** (`detartrer-sterilisateur-biberons`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Stérilisateur électrique : plaque chauffante entartrée, cuve, paniers.
-- **Nettoyer les pales et la grille d'un ventilateur** (`nettoyer-ventilateur`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Ventilateur : grille avant à clips, pales, écrou de l'hélice, grille arrière.
-- **Purificateur d'air : entretenir et changer les filtres** (`filtres-purificateur-air`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Purificateur ouvert : préfiltre, filtre HEPA, filtre à charbon, sens de l'air.
-- **Nettoyeur vapeur : bonne eau et détartrage** (`detartrer-nettoyeur-vapeur`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Nettoyeur vapeur : réservoir, bouchon de sécurité, chaudière.
-- **Table à repasser : changer la housse** (`housse-table-a-repasser`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Plateau de table à repasser : housse, mousse, cordon de serrage sous le plateau.
-- **Cireuse à parquet : cirer, lustrer et entretenir** (`entretien-cireuse`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Cireuse vue de dessous : brosses ou disques, feutres de lustrage.
+- **Sèche-linge qui sèche mal : nettoyer filtres et condenseur** (`filtre-seche-linge`) — *Pack :* Zone d'intervention absente : ni filtre de porte ni condenseur.
+  *Nouveau schéma :* 1. Réservoir d'eau ; 2. Porte ouverte ; 3. Filtre de porte ; 4. Condenseur, derrière la plinthe (selon modèle).
+- **Dégivrer un congélateur** (`degivrer-congelateur`) — *Pack :* Autre objet : lave-linge avec « tambour » au lieu d'un congélateur.
+  *Nouveau schéma :* 1. Givre sur les parois ; 2. Spatule en plastique ; 3. Casserole d'eau chaude ; 4. Jamais d'objet pointu ; 5. Serviettes et bac pour l'eau de fonte.
+- **Nettoyer les filtres d'une hotte qui aspire mal** (`nettoyer-filtre-hotte`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Filtre à graisse métallique ; 2. Loquet du filtre ; 3. Filtre à charbon (hotte en recyclage).
+- **Remplacer la courroie d'un lave-linge** (`courroie-lave-linge`) — *Pack :* Zone d'intervention absente : la courroie, à l'arrière, n'apparaît pas.
+  *Nouveau schéma :* 1. Grande poulie du tambour ; 2. Courroie ; 3. Petite poulie du moteur ; 4. Moteur.
+- **Lave-linge qui ne vidange plus** (`lave-linge-ne-vidange-pas`) — *Pack :* Zone d'intervention absente : le filtre de vidange n'apparaît pas.
+  *Nouveau schéma :* 1. Filtre de vidange (à dévisser) ; 2. Tuyau de purge ; 3. Trappe ouverte ; 4. Bac plat pour l'eau.
+- **Lave-vaisselle qui lave mal** (`lave-vaisselle-lave-mal`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Trous à déboucher ; 2. Bras de lavage ; 3. Filtre cylindrique ; 4. Filtre plat.
+- **Réfrigérateur qui givre : vérifier le joint** (`joint-refrigerateur`) — *Pack :* Autre objet : lave-linge au lieu d'un réfrigérateur.
+  *Nouveau schéma :* 1. Feuille de papier coincée : elle doit résister ; 2. Porte ; 3. Joint magnétique (tout le tour de la porte).
+- **Aspirateur qui n'aspire plus** (`aspirateur-aspire-mal`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Flexible et tube ; 2. Filtre de sortie ; 3. Sac ou bac ; 4. Filtre moteur ; 5. Brosse.
+- **Détartrer une cafetière filtre** (`detartrer-cafetiere`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Porte-filtre ; 2. Tube d'eau chaude ; 3. Verseuse ; 4. Réservoir d'eau ; 5. Plaque chauffante.
+- **Remplacer la sécurité de porte d'un lave-linge** (`securite-porte-lave-linge`) — *Pack :* La sécurité de porte, objet de la fiche, n'est pas dessinée ; « Joint » pointe la carrosserie.
+  *Nouveau schéma :* 1. Collier du joint ; 2. Sécurité de porte (deux vis) ; 3. Crochet de la porte ; 4. Joint de hublot ; 5. Connecteur.
+- **Eau au fond du réfrigérateur : déboucher le trou d'évacuation** (`frigo-eau-au-fond`) — *Pack :* Autre objet : lave-linge au lieu d'un réfrigérateur.
+  *Nouveau schéma :* 1. Compresseur ; 2. Trou d'évacuation ; 3. Rigole ; 4. Tuyau d'évacuation ; 5. Bac d'évaporation.
+- **Nettoyer le condenseur du réfrigérateur** (`nettoyer-condenseur-frigo`) — *Pack :* Autre objet : lave-linge au lieu d'un réfrigérateur.
+  *Nouveau schéma :* 1. Brosse souple ; 2. Condenseur (au dos, ou en bas selon le modèle) ; 3. Compresseur ; 4. Prise débranchée.
+- **Détartrer une centrale vapeur** (`detartrer-centrale-vapeur`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Fer ; 2. Semelle ; 3. Réservoir d'eau ; 4. Cuve (chaudière) ; 5. Collecteur de tartre (si présent).
+- **Aspirateur robot qui nettoie mal : l'entretien complet** (`entretien-aspirateur-robot`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Capteur de vide ; 2. Brosse latérale ; 3. Roue ; 4. Brosse rouleau ; 5. Bac et filtre.
+- **Climatiseur mobile qui refroidit mal : filtres et vidange** (`climatiseur-mobile-refroidit-mal`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Gaine d'évacuation ; 2. Filtre à air (haut) ; 3. Filtre à air (bas) ; 4. Bouchon de vidange.
+- **Déshumidificateur : nettoyer le filtre et le réservoir** (`entretien-deshumidificateur`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Préfiltre ; 2. Sortie de vidange continue ; 3. Flotteur ; 4. Réservoir d'eau.
+- **Nettoyer son four : pyrolyse ou nettoyage à la main** (`nettoyer-four`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Parois ; 2. Joint de porte ; 3. Grille ; 4. Lèchefrite ; 5. Porte (vitre).
+- **Nettoyer un micro-ondes avec un bol d'eau et de vinaigre** (`nettoyer-micro-ondes`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Parois ; 2. Plaque de mica (ne pas frotter) ; 3. Porte ; 4. Bol d'eau vinaigrée ; 5. Plateau tournant.
+- **Nettoyer une plaque vitrocéramique ou à induction** (`nettoyer-plaque-vitroceramique`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Foyer ; 2. Résidus cuits ; 3. Grattoir à lame, tenu incliné.
+- **Grille-pain : retirer les miettes en toute sécurité** (`nettoyer-grille-pain`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Fentes ; 2. Manette ; 3. Tiroir à miettes ; 4. Prise débranchée.
+- **Cocotte-minute : entretenir le joint et les soupapes** (`joint-cocotte-minute`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Joint ; 2. Soupape de sécurité ; 3. Soupape de fonctionnement ; 4. Couvercle.
+- **Friteuse : changer l'huile et entretenir les filtres** (`entretien-friteuse`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Filtre du couvercle ; 2. Panier ; 3. Repère MAX ; 4. Repère MIN ; 5. Huile ; 6. Cuve.
+- **Nettoyer un robot de cuisine ou un blender sans se couper** (`nettoyer-robot-mixeur`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Bol ; 2. Couteaux (mains à distance) ; 3. Joint ; 4. Bloc moteur : essuyer, jamais dans l'eau.
+- **Machine à pain : entretenir la cuve et le pétrin** (`entretien-machine-a-pain`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Cuve (revêtement antiadhésif) ; 2. Pétrin ; 3. Joint de l'axe ; 4. Axe du pétrin.
+- **Nettoyer un extracteur de jus et son tamis** (`nettoyer-extracteur-de-jus`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Vis sans fin ; 2. Brosse ; 3. Tamis ; 4. Bol.
+- **Nettoyer un appareil à raclette ou un grill** (`nettoyer-appareil-raclette`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Plaque gril ; 2. Résistance (ne jamais mouiller) ; 3. Poêlons ; 4. Base.
+- **Yaourtière : nettoyage et yaourts trop liquides** (`entretien-yaourtiere`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Couvercle ; 2. Pots ; 3. Base chauffante (essuyer seulement).
+- **Nettoyer une trancheuse électrique sans se couper** (`nettoyer-trancheuse`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Protège-lame ; 2. Lame circulaire ; 3. Chariot ; 4. Molette d'épaisseur sur zéro ; 5. Prise débranchée.
+- **Nettoyer et détartrer une machine à glaçons** (`nettoyer-machine-a-glacons`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Panier à glaçons ; 2. Pelle ; 3. Réservoir d'eau ; 4. Bouchon de vidange.
+- **Nettoyer une tireuse à bière à chaque changement de fût** (`nettoyer-tireuse-a-biere`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Tube de tirage (à changer) ; 2. Robinet ; 3. Fût ; 4. Bac d'égouttage.
+- **Carafe filtrante : changer et préparer la cartouche** (`cartouche-carafe-filtrante`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Couvercle ; 2. Indicateur de changement ; 3. Entonnoir ; 4. Encoche d'orientation ; 5. Cartouche.
+- **Broyeur sous évier bloqué : le débloquer et l'entretenir** (`debloquer-broyeur-evier`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Entrée : jamais la main dedans ; 2. Broyeur ; 3. Bouton de réarmement ; 4. Empreinte six pans (dessous, au centre) ; 5. Clé six pans.
+- **Sèche-cheveux qui chauffe trop ou se coupe : nettoyer le filtre** (`nettoyer-filtre-seche-cheveux`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Filtre arrière (entrée d'air) ; 2. Corps ; 3. Sortie d'air.
+- **Rasoir électrique : nettoyer, lubrifier et changer les têtes** (`entretien-rasoir-electrique`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Têtes de coupe et grilles ; 2. Porte-têtes ouvert ; 3. Logement des poils ; 4. Brosse.
+- **Brosse à dents électrique : entretien et brossette** (`entretien-brosse-a-dents-electrique`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Axe métallique ; 2. Brossette (retirée) ; 3. Dépôts sous la brossette ; 4. Manche.
+- **Détartrer un stérilisateur de biberons** (`detartrer-sterilisateur-biberons`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Panier ; 2. Cuve ; 3. Plaque chauffante (tartre) ; 4. Base.
+- **Nettoyer les pales et la grille d'un ventilateur** (`nettoyer-ventilateur`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Grille avant ; 2. Écrou de l'hélice ; 3. Pale ; 4. Clip de la grille.
+- **Purificateur d'air : entretenir et changer les filtres** (`filtres-purificateur-air`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Sortie d'air ; 2. Préfiltre ; 3. Filtre HEPA ; 4. Filtre à charbon ; 5. Entrée d'air.
+- **Nettoyeur vapeur : bonne eau et détartrage** (`detartrer-nettoyeur-vapeur`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Bouchon de sécurité (à froid) ; 2. Flexible ; 3. Niveau d'eau ; 4. Chaudière.
+- **Table à repasser : changer la housse** (`housse-table-a-repasser`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Housse ; 2. Mousse ; 3. Plateau ; 4. Cordon de serrage (sous le plateau).
+- **Cireuse à parquet : cirer, lustrer et entretenir** (`entretien-cireuse`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Brosse (ou disque) ; 2. Fixation centrale ; 3. Feutre de lustrage.
 
 ### Téléphonie & Informatique (12)
 
-- **Imprimante qui laisse des traits : nettoyer les têtes** (`tetes-impression-imprimante`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Imprimante capot ouvert : chariot, cartouches ou réservoirs, tête d'impression ; page de test des buses.
-- **Nettoyer un clavier et débloquer une touche** (`touche-clavier-bloquee`) — Zone d'intervention absente : le clavier n'est pas désigné.
-  *À dessiner :* Clavier incliné : touche, mécanisme sous la touche, miettes ; bombe d'air sec.
-- **Téléphone qui ne charge plus bien** (`telephone-ne-charge-plus`) — Le port de charge est placé sur le côté au lieu du bas, et les peluches au fond du port, cause habituelle, n'apparaissent pas.
-  *À dessiner :* Bas du téléphone : port de charge, peluches au fond du port, cure-dent en bois, câble.
-- **Redonner de la vitesse à un vieil ordinateur** (`pc-lent`) — Repères sans rapport : le problème est surtout logiciel.
-  *À dessiner :* Écran de l'ordinateur : applications au démarrage, espace disque libre ; encart : aérations à dépoussiérer.
-- **Nettoyer une montre connectée et son bracelet** (`nettoyer-montre-connectee`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Montre : boîtier, capteurs au dos, bracelet démonté (barrettes).
-- **Mettre à jour les cartes d'un GPS voiture** (`mettre-a-jour-gps`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* GPS relié à l'ordinateur par câble USB, logiciel du fabricant, espace mémoire.
-- **Nettoyer un écran de télé ou d'ordinateur sans l'abîmer** (`nettoyer-ecran-tv`) — Autre objet : téléphone au lieu d'un écran de télévision.
-  *À dessiner :* Écran éteint : chiffon microfibre sec, puis légèrement humide, sans pulvériser sur l'écran.
-- **Vidéoprojecteur : nettoyer le filtre à air** (`filtre-videoprojecteur`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Vidéoprojecteur : capot du filtre à air, filtre, aérations, objectif.
-- **Lecteur DVD ou Blu-ray qui ne lit plus les disques** (`lecteur-dvd-ne-lit-plus`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Lecteur : tiroir, disque (face lisible), lentille laser (ne pas toucher).
-- **Barre de son ou home cinéma sans son avec la télé** (`barre-de-son-pas-de-son`) — Repères sans rapport : le problème vient des branchements et réglages.
-  *À dessiner :* Télé et barre de son : câble HDMI sur les ports ARC/eARC, câble optique, réglage de la sortie audio.
-- **Nettoyer des écouteurs ou un casque** (`nettoyer-ecouteurs-casque`) — Dessin méconnaissable : ni des écouteurs ni un casque.
-  *À dessiner :* Écouteurs intra et casque : grilles des haut-parleurs, embouts silicone retirés, brosse souple.
-- **Nettoyer l'objectif d'un appareil photo** (`nettoyer-objectif-appareil-photo`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Objectif : lentille frontale, soufflette, pinceau, chiffon microfibre.
+- **Imprimante qui laisse des traits : nettoyer les têtes** (`tetes-impression-imprimante`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Capot ouvert ; 2. Chariot ; 3. Cartouches ou réservoirs ; 4. Tête d'impression (dessous) ; 5. Page de test des buses.
+- **Nettoyer un clavier et débloquer une touche** (`touche-clavier-bloquee`) — *Pack :* Zone d'intervention absente : le clavier n'est pas désigné.
+  *Nouveau schéma :* 1. Touche bloquée ; 2. Bombe d'air sec (tige) ; 3. Mécanisme sous la touche ; 4. Miettes.
+- **Téléphone qui ne charge plus bien** (`telephone-ne-charge-plus`) — *Pack :* Le port de charge est placé sur le côté au lieu du bas, et les peluches au fond du port, cause habituelle, n'apparaissent pas.
+  *Nouveau schéma :* 1. Peluches au fond du port ; 2. Port de charge ; 3. Cure-dent en bois (pas de métal) ; 4. Câble (essayer un autre).
+- **Redonner de la vitesse à un vieil ordinateur** (`pc-lent`) — *Pack :* Repères sans rapport : le problème est surtout logiciel.
+  *Nouveau schéma :* 1. Applications au démarrage ; 2. Espace disque libre ; 3. Aérations à dépoussiérer.
+- **Nettoyer une montre connectée et son bracelet** (`nettoyer-montre-connectee`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Bracelet (détaché) ; 2. Barrette à ressort ; 3. Capteurs au dos ; 4. Boîtier ; 5. Chiffon doux.
+- **Mettre à jour les cartes d'un GPS voiture** (`mettre-a-jour-gps`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Logiciel du fabricant : mise à jour ; 2. Espace mémoire ; 3. GPS ; 4. Câble USB.
+- **Nettoyer un écran de télé ou d'ordinateur sans l'abîmer** (`nettoyer-ecran-tv`) — *Pack :* Autre objet : téléphone au lieu d'un écran de télévision.
+  *Nouveau schéma :* 1. Écran éteint et débranché ; 2. Chiffon microfibre sec, puis à peine humide ; 3. Ne pulvérisez jamais sur l'écran.
+- **Vidéoprojecteur : nettoyer le filtre à air** (`filtre-videoprojecteur`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Objectif ; 2. Aérations ; 3. Capot du filtre ; 4. Filtre à air.
+- **Lecteur DVD ou Blu-ray qui ne lit plus les disques** (`lecteur-dvd-ne-lit-plus`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Lecteur ; 2. Disque : face lisible en dessous ; 3. Lentille laser : ne pas toucher ; 4. Tiroir.
+- **Barre de son ou home cinéma sans son avec la télé** (`barre-de-son-pas-de-son`) — *Pack :* Repères sans rapport : le problème vient des branchements et réglages.
+  *Nouveau schéma :* 1. Prise optique ; 2. Prise HDMI ARC / eARC du téléviseur ; 3. Câble HDMI ; 4. Barre de son (entrée HDMI ARC).
+- **Nettoyer des écouteurs ou un casque** (`nettoyer-ecouteurs-casque`) — *Pack :* Dessin méconnaissable : ni des écouteurs ni un casque.
+  *Nouveau schéma :* 1. Embout silicone (retiré) ; 2. Grille du haut-parleur ; 3. Coussinet ; 4. Brosse souple.
+- **Nettoyer l'objectif d'un appareil photo** (`nettoyer-objectif-appareil-photo`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Soufflette ; 2. Lentille frontale ; 3. Pinceau ; 4. Chiffon microfibre.
 
 ### Maison & Bricolage (20)
 
-- **Détartrer un pommeau de douche** (`detartrer-pommeau-douche`) — Autre objet : robinet et cartouche au lieu du pommeau.
-  *À dessiner :* Pommeau de douche : buses entartrées, sachet de vinaigre tenu par un élastique, raccord dévissable.
-- **Régler une porte de placard qui frotte ou penche** (`regler-porte-placard`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Charnière invisible (à cuvette) de face : vis de réglage latéral, de profondeur et de hauteur, avec flèches.
-- **Déboucher des toilettes** (`deboucher-toilettes`) — Même dessin que la chasse d'eau (« Réservoir », « Mécanisme ») : ni la cuvette, ni le siphon, ni l'évacuation.
-  *À dessiner :* Cuvette en coupe : siphon, bouchon, ventouse à collerette, niveau d'eau.
-- **Réparer un robinet qui fuit** (`robinet-qui-fuit`) — Dessin abstrait (un tuyau coudé) : on ne reconnaît ni le bec, ni la poignée, ni l'emplacement de la cartouche.
-  *À dessiner :* Robinet en coupe : cache et vis de poignée, écrou, tête à clapet ou cartouche de mitigeur, joint ; robinets d'arrêt sous l'évier.
-- **Chasse d'eau qui coule en permanence** (`chasse-eau-coule`) — Dessin incohérent : « Réservoir » désigne le petit rectangle du haut alors que le mécanisme est dessiné dans la grande forme arrondie, qui évoque la cuvette.
-  *À dessiner :* Réservoir ouvert : robinet flotteur et arrivée d'eau, mécanisme de chasse avec trop-plein (tube central) et joint plat du clapet, niveau d'eau 2 cm sous le haut du trop-plein.
-- **Déboucher un évier** (`evier-bouche`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Sous l'évier : bonde, siphon démontable (écrous), bassine dessous ; ventouse au-dessus.
-- **Reboucher un trou dans un mur en placo** (`trou-placo`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Plaque de plâtre en coupe : trou, renfort ou bande, couches d'enduit, ponçage.
-- **Remplacer une prise électrique** (`remplacer-prise-electrique`) — Repère faux : « bornes » désigne les trous de la façade ; les bornes sont à l'arrière.
-  *À dessiner :* Prise démontée : bornes à l'arrière (phase, neutre, terre vert-jaune), mécanisme, plaque, fixations ; disjoncteur coupé.
-- **Refaire un joint silicone de salle de bain** (`refaire-joint-silicone`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Angle baignoire-carrelage en coupe : ancien joint retiré, ruban de masquage, cordon de silicone, lissage.
-- **Changer un flexible de douche** (`changer-flexible-douche`) — Autre objet : robinet et cartouche au lieu du flexible.
-  *À dessiner :* Mitigeur, flexible et pommeau : écrous de raccord aux deux bouts, joints plats à remplacer.
-- **Chauffe-eau : entretenir le groupe de sécurité** (`groupe-securite-chauffe-eau`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Groupe de sécurité sous le chauffe-eau : arrivée d'eau froide, robinet, soupape à manœuvrer, siphon d'évacuation.
-- **Nettoyer les bouches et entrées d'air de la VMC** (`nettoyer-bouches-vmc`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Bouche d'extraction au plafond : grille démontable, réglage d'ouverture ; entrée d'air au-dessus de la fenêtre.
-- **Poêle à granulés : l'entretien courant** (`entretien-poele-granules`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Poêle porte ouverte : creuset et ses trous d'air, cendrier, vitre ; trémie à granulés.
-- **Perceuse-visseuse sans fil : batterie, mandrin et aérations** (`entretien-perceuse-visseuse`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Perceuse-visseuse : batterie retirée, mandrin, aérations du moteur, chargeur.
-- **Ponceuse : changer l'abrasif et nettoyer le plateau** (`entretien-ponceuse`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Ponceuse vue de dessous : plateau à scratch, abrasif, trous d'aspiration alignés, sac à poussière.
-- **Aspirateur eau et poussières : nettoyer le filtre** (`filtre-aspirateur-eau-poussiere`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Aspirateur de chantier : cuve, filtre cartouche plissé, flotteur, tuyau.
-- **Radiateur électrique : le dépoussiérer avant l'hiver** (`entretien-radiateur-electrique`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Radiateur : grilles d'entrée d'air en bas et de sortie en haut, façade, thermostat.
-- **Pompe à chaleur : entretien obligatoire et gestes simples** (`entretien-pompe-a-chaleur`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Unité extérieure : grille du ventilateur, ailettes de l'échangeur, évacuation des condensats ; espace libre autour.
-- **Portail ou porte de garage motorisé : entretien et cellules** (`entretien-portail-motorise`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Portail : cellules photoélectriques (émetteur et récepteur), moteur, rail ou crémaillère, feu clignotant.
-- **Interphone ou visiophone qui ne sonne plus** (`visiophone-ne-sonne-plus`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Platine de rue et poste intérieur : alimentation, piles (modèles sans fil), volume de la sonnerie.
+- **Détartrer un pommeau de douche** (`detartrer-pommeau-douche`) — *Pack :* Autre objet : robinet et cartouche au lieu du pommeau.
+  *Nouveau schéma :* 1. Élastique ; 2. Raccord à dévisser ; 3. Buses entartrées ; 4. Sachet de vinaigre blanc.
+- **Régler une porte de placard qui frotte ou penche** (`regler-porte-placard`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Vis de réglage de profondeur ; 2. Cuvette (dans la porte) ; 3. Vis de réglage latéral ; 4. Vis de hauteur (embase).
+- **Déboucher des toilettes** (`deboucher-toilettes`) — *Pack :* Même dessin que la chasse d'eau (« Réservoir », « Mécanisme ») : ni la cuvette, ni le siphon, ni l'évacuation.
+  *Nouveau schéma :* 1. Cuvette ; 2. Niveau d'eau ; 3. Ventouse à collerette ; 4. Bouchon ; 5. Siphon.
+- **Réparer un robinet qui fuit** (`robinet-qui-fuit`) — *Pack :* Dessin abstrait (un tuyau coudé) : on ne reconnaît ni le bec, ni la poignée, ni l'emplacement de la cartouche.
+  *Nouveau schéma :* 1. Cache et vis de poignée ; 2. Poignée ; 3. Écrou ; 4. Cartouche (ou tête à clapet) ; 5. Joint ; 6. Robinet d'arrêt (fermé).
+- **Chasse d'eau qui coule en permanence** (`chasse-eau-coule`) — *Pack :* Dessin incohérent : « Réservoir » désigne le petit rectangle du haut alors que le mécanisme est dessiné dans la grande forme arrondie, qui évoque la cuvette.
+  *Nouveau schéma :* 1. Robinet flotteur ; 2. Haut du trop-plein (tube central) ; 3. Flotteur ; 4. Niveau d'eau : 2 cm sous le trop-plein ; 5. Joint plat du clapet ; 6. Arrivée d'eau.
+- **Déboucher un évier** (`evier-bouche`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Ventouse ; 2. Bonde ; 3. Écrous du siphon ; 4. Siphon démontable ; 5. Seau.
+- **Reboucher un trou dans un mur en placo** (`trou-placo`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Cale à poncer ; 2. Bande ; 3. Plaque de plâtre ; 4. Enduit (en plusieurs couches) ; 5. Renfort derrière le trou.
+- **Remplacer une prise électrique** (`remplacer-prise-electrique`) — *Pack :* Repère faux : « bornes » désigne les trous de la façade ; les bornes sont à l'arrière.
+  *Nouveau schéma :* 1. Disjoncteur coupé ; 2. Borne de terre (fil vert-jaune) ; 3. Vis de fixation ; 4. Borne de phase (fil rouge ou marron) ; 5. Borne de neutre (fil bleu).
+- **Refaire un joint silicone de salle de bain** (`refaire-joint-silicone`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Carrelage ; 2. Lisseur (ou le doigt) ; 3. Ruban de masquage ; 4. Cordon de silicone ; 5. Rebord de la baignoire.
+- **Changer un flexible de douche** (`changer-flexible-douche`) — *Pack :* Autre objet : robinet et cartouche au lieu du flexible.
+  *Nouveau schéma :* 1. Écrou côté pommeau ; 2. Écrou côté mitigeur ; 3. Joint plat ; 4. Joint plat (côté pommeau) ; 5. Flexible.
+- **Chauffe-eau : entretenir le groupe de sécurité** (`groupe-securite-chauffe-eau`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Chauffe-eau ; 2. Robinet du groupe ; 3. Soupape (à manœuvrer) ; 4. Siphon d'évacuation ; 5. Arrivée d'eau froide.
+- **Nettoyer les bouches et entrées d'air de la VMC** (`nettoyer-bouches-vmc`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Bouche d'extraction (plafond) ; 2. Entrée d'air (au-dessus de la fenêtre) ; 3. Réglage d'ouverture ; 4. Grille démontée ; 5. Fenêtre.
+- **Poêle à granulés : l'entretien courant** (`entretien-poele-granules`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Trémie à granulés (couvercle) ; 2. Vitre de la porte ; 3. Creuset (trous d'air) ; 4. Cendrier.
+- **Perceuse-visseuse sans fil : batterie, mandrin et aérations** (`entretien-perceuse-visseuse`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Aérations du moteur ; 2. Mandrin ; 3. Chargeur ; 4. Batterie (retirée).
+- **Ponceuse : changer l'abrasif et nettoyer le plateau** (`entretien-ponceuse`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Abrasif ; 2. Plateau à scratch ; 3. Trous d'aspiration (alignés) ; 4. Sac à poussière.
+- **Aspirateur eau et poussières : nettoyer le filtre** (`filtre-aspirateur-eau-poussiere`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Tête moteur ; 2. Tuyau ; 3. Filtre cartouche plissé ; 4. Flotteur ; 5. Cuve.
+- **Radiateur électrique : le dépoussiérer avant l'hiver** (`entretien-radiateur-electrique`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Grille de sortie d'air (haut) ; 2. Thermostat ; 3. Façade ; 4. Grille d'entrée d'air (bas).
+- **Pompe à chaleur : entretien obligatoire et gestes simples** (`entretien-pompe-a-chaleur`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Grille du ventilateur ; 2. Ailettes de l'échangeur (ne pas tordre) ; 3. Espace libre autour ; 4. Évacuation des condensats.
+- **Portail ou porte de garage motorisé : entretien et cellules** (`entretien-portail-motorise`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Feu clignotant ; 2. Cellule (récepteur) ; 3. Cellule (émetteur) ; 4. Crémaillère ; 5. Moteur ; 6. Rail.
+- **Interphone ou visiophone qui ne sonne plus** (`visiophone-ne-sonne-plus`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Platine de rue ; 2. Poste intérieur ; 3. Réglage du volume de la sonnerie ; 4. Bouton d'appel ; 5. Piles (modèles sans fil) ; 6. Alimentation (tableau électrique).
 
 ### Vélo & Mobilité (7)
 
-- **Gonfler un pneu de vélo à la bonne pression** (`gonfler-pneu-velo`) — Repères faux : « Pneu » et « Valve » pointent une barre entre les deux roues, pas la roue.
-  *À dessiner :* Roue de vélo : pneu (pression lue sur le flanc), jante, valve Presta ou Schrader, embout de pompe.
-- **Réparer une crevaison de vélo** (`crevaison-velo`) — Repères faux : « Pneu » et « Valve » pointent une barre entre les deux roues, pas la roue.
-  *À dessiner :* Roue démontée : pneu, chambre à air, valve, démonte-pneus, rustine sur le trou.
-- **Régler les freins d'un vélo** (`regler-freins-velo`) — Dessin confus : cadre en zigzag et « Câble / patin » placé sous la roue, loin du frein.
-  *À dessiner :* Frein à patins vu de face : bras, patins à plat sur la jante, câble et sa vis de serrage, vis de rappel ; molette de réglage au levier.
-- **Nettoyer et graisser une chaîne de vélo** (`entretien-chaine-velo`) — « Transmission » pointe le haut du cadre ; ni la chaîne, ni le plateau, ni les pignons ne sont dessinés.
-  *À dessiner :* Vélo de profil côté transmission : plateau, chaîne, cassette, dérailleur ; burette au-dessus des rouleaux de la chaîne, chiffon, pédalier tourné à l'envers.
-- **Régler le dérailleur arrière d'un vélo** (`regler-derailleur-arriere`) — « Chaîne » pointe le hauban du cadre : la chaîne n'est pas dessinée.
-  *À dessiner :* Dérailleur arrière en gros plan : patte, vis de butée H et L, vis B, galets, cassette, chaîne, molette de tension du câble.
-- **Trottinette électrique : l'entretien régulier** (`entretien-trottinette-electrique`) — Autre objet : vélo à chaîne au lieu d'une trottinette.
-  *À dessiner :* Trottinette de profil : pneus, freins, système de pliage, visserie de la potence ; batterie dans le plateau.
-- **Hoverboard qui tire d'un côté : le recalibrer** (`calibrer-hoverboard`) — Autre objet : vélo à chaîne au lieu d'un hoverboard.
-  *À dessiner :* Hoverboard posé à plat : deux plateaux, roues, bouton marche, voyants ; plateaux horizontaux pendant le calibrage.
+- **Gonfler un pneu de vélo à la bonne pression** (`gonfler-pneu-velo`) — *Pack :* Repères faux : « Pneu » et « Valve » pointent une barre entre les deux roues, pas la roue.
+  *Nouveau schéma :* 1. Pression indiquée sur le flanc ; 2. Pneu ; 3. Jante ; 4. Embout de la pompe ; 5. Valve (Presta ou Schrader).
+- **Réparer une crevaison de vélo** (`crevaison-velo`) — *Pack :* Repères faux : « Pneu » et « Valve » pointent une barre entre les deux roues, pas la roue.
+  *Nouveau schéma :* 1. Démonte-pneus ; 2. Chambre à air ; 3. Rustine sur le trou ; 4. Pneu ; 5. Valve.
+- **Régler les freins d'un vélo** (`regler-freins-velo`) — *Pack :* Dessin confus : cadre en zigzag et « Câble / patin » placé sous la roue, loin du frein.
+  *Nouveau schéma :* 1. Molette de réglage (levier) ; 2. Vis de serrage du câble ; 3. Pneu ; 4. Bras du frein ; 5. Patin, à plat sur la jante ; 6. Jante ; 7. Vis de rappel.
+- **Nettoyer et graisser une chaîne de vélo** (`entretien-chaine-velo`) — *Pack :* « Transmission » pointe le haut du cadre ; ni la chaîne, ni le plateau, ni les pignons ne sont dessinés.
+  *Nouveau schéma :* 1. Plateau ; 2. Chaîne ; 3. Cassette ; 4. Burette : une goutte par rouleau ; 5. Dérailleur ; 6. Chiffon.
+- **Régler le dérailleur arrière d'un vélo** (`regler-derailleur-arriere`) — *Pack :* « Chaîne » pointe le hauban du cadre : la chaîne n'est pas dessinée.
+  *Nouveau schéma :* 1. Cassette ; 2. Vis B ; 3. Patte de dérailleur ; 4. Molette de tension du câble ; 5. Vis de butée H ; 6. Vis de butée L ; 7. Galet du haut.
+- **Trottinette électrique : l'entretien régulier** (`entretien-trottinette-electrique`) — *Pack :* Autre objet : vélo à chaîne au lieu d'une trottinette.
+  *Nouveau schéma :* 1. Visserie de la potence et du guidon ; 2. Système de pliage ; 3. Pneu ; 4. Frein arrière ; 5. Batterie (dans le plateau).
+- **Hoverboard qui tire d'un côté : le recalibrer** (`calibrer-hoverboard`) — *Pack :* Autre objet : vélo à chaîne au lieu d'un hoverboard.
+  *Nouveau schéma :* 1. Voyants ; 2. Plateau gauche ; 3. Plateau droit ; 4. Roue ; 5. Bouton marche (maintenu) ; 6. Bien à plat sur un sol horizontal.
 
 ### Jardin & Extérieur (11)
 
-- **Recharger le fil d'un coupe-bordure** (`fil-coupe-bordure`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Tête du coupe-bordure ouverte : bobine, sens d'enroulement fléché, fil, œillets de sortie.
-- **Nettoyer et affûter un sécateur** (`affuter-secateur`) — Dessin méconnaissable (deux barres croisées) : ni la lame coupante ni son biseau, seul côté à affûter, ne sont visibles.
-  *À dessiner :* Sécateur ouvert : lame coupante avec son biseau, contre-lame plate, axe et ressort ; pierre posée à plat sur le biseau, poussée de la base vers la pointe.
-- **Réparer un tuyau d'arrosage percé** (`tuyau-arrosage-perce`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Tuyau coupé de part et d'autre de la fuite, raccord réparateur entre les deux bouts.
-- **Affûter la lame d'une tondeuse** (`affuter-lame-tondeuse`) — Zone d'intervention absente : la lame, sous le carter, n'apparaît pas.
-  *À dessiner :* Tondeuse basculée, filtre à air vers le haut : lame, écrou central, cale en bois ; bougie débranchée.
-- **Robot tondeuse : nettoyage, lames et hivernage** (`entretien-robot-tondeuse`) — Autre objet : tondeuse thermique au lieu d'un robot.
-  *À dessiner :* Robot vu de dessous : disque porte-lames, petites lames pivotantes, roues ; station de charge.
-- **Nettoyeur haute pression : vidanger et hiverner** (`hivernage-nettoyeur-haute-pression`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Nettoyeur haute pression : arrivée d'eau et son filtre, pompe, flexible, pistolet ; vidange avant le gel.
-- **Taille-haie : nettoyer et huiler les lames** (`entretien-taille-haie`) — Autre objet : tondeuse au lieu d'un taille-haie.
-  *À dessiner :* Lamier du taille-haie : deux lames dentées, fourreau ; zones à brosser et à huiler.
-- **Souffleur de feuilles : entretien et hivernage** (`entretien-souffleur-feuilles`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Souffleur thermique : filtre à air sous son capot, bougie, réservoir, tube de soufflage.
-- **Motobineuse : huile, filtre à air et hivernage** (`entretien-motobineuse`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Motobineuse : moteur avec jauge et bouchon de vidange, filtre à air, fraises.
-- **Amorcer une pompe de surface ou d'arrosage** (`amorcer-pompe-surface`) — Zone d'intervention absente : le bouchon d'amorçage n'apparaît pas.
-  *À dessiner :* Pompe de surface : bouchon de remplissage sur le dessus, tuyau d'aspiration avec clapet, refoulement.
-- **Piscine : pH, chlore et filtration au quotidien** (`entretien-eau-piscine`) — « Filtration » pointe un arc dans le bassin : ni skimmer, ni pompe, ni filtre.
-  *À dessiner :* Piscine en coupe : skimmers et leurs paniers, pompe et préfiltre, filtre, refoulement ; trousse d'analyse pH (7,2 à 7,6) et chlore.
+- **Recharger le fil d'un coupe-bordure** (`fil-coupe-bordure`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Couvercle (retiré) ; 2. Flèche : sens d'enroulement ; 3. Fil ; 4. Bobine ; 5. Œillet de sortie.
+- **Nettoyer et affûter un sécateur** (`affuter-secateur`) — *Pack :* Dessin méconnaissable (deux barres croisées) : ni la lame coupante ni son biseau, seul côté à affûter, ne sont visibles.
+  *Nouveau schéma :* 1. Pierre à affûter ; 2. Biseau : seul côté à affûter ; 3. Lame coupante ; 4. Axe ; 5. Contre-lame (ne pas affûter) ; 6. Ressort.
+- **Réparer un tuyau d'arrosage percé** (`tuyau-arrosage-perce`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Tuyau ; 2. Écrou de serrage ; 3. Raccord réparateur ; 4. Partie percée, coupée.
+- **Affûter la lame d'une tondeuse** (`affuter-lame-tondeuse`) — *Pack :* Zone d'intervention absente : la lame, sous le carter, n'apparaît pas.
+  *Nouveau schéma :* 1. Capuchon de bougie débranché ; 2. Lame ; 3. Écrou central ; 4. Cale en bois ; 5. Carter.
+- **Robot tondeuse : nettoyage, lames et hivernage** (`entretien-robot-tondeuse`) — *Pack :* Autre objet : tondeuse thermique au lieu d'un robot.
+  *Nouveau schéma :* 1. Roulette avant ; 2. Disque porte-lames ; 3. Roue motrice ; 4. Petite lame pivotante ; 5. Contacts de charge.
+- **Nettoyeur haute pression : vidanger et hiverner** (`hivernage-nettoyeur-haute-pression`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Pistolet ; 2. Flexible haute pression ; 3. Arrivée d'eau et son filtre : vider avant le gel ; 4. Pompe.
+- **Taille-haie : nettoyer et huiler les lames** (`entretien-taille-haie`) — *Pack :* Autre objet : tondeuse au lieu d'un taille-haie.
+  *Nouveau schéma :* 1. Lames dentées ; 2. Zone à huiler (entre les lames) ; 3. Brosse ; 4. Fourreau (protège-lame).
+- **Souffleur de feuilles : entretien et hivernage** (`entretien-souffleur-feuilles`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Bougie ; 2. Capot du filtre ; 3. Filtre à air ; 4. Tube de soufflage ; 5. Réservoir (mélange frais).
+- **Motobineuse : huile, filtre à air et hivernage** (`entretien-motobineuse`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Bouchon de remplissage et jauge ; 2. Filtre à air ; 3. Bouchon de vidange ; 4. Fraises.
+- **Amorcer une pompe de surface ou d'arrosage** (`amorcer-pompe-surface`) — *Pack :* Zone d'intervention absente : le bouchon d'amorçage n'apparaît pas.
+  *Nouveau schéma :* 1. Refoulement ; 2. Bouchon de remplissage ; 3. Corps de pompe ; 4. Moteur ; 5. Tuyau d'aspiration ; 6. Clapet et crépine.
+- **Piscine : pH, chlore et filtration au quotidien** (`entretien-eau-piscine`) — *Pack :* « Filtration » pointe un arc dans le bassin : ni skimmer, ni pompe, ni filtre.
+  *Nouveau schéma :* 1. Trousse d'analyse (pH 7,2 à 7,6 ; chlore) ; 2. Skimmer et son panier ; 3. Refoulement ; 4. Pompe et préfiltre ; 5. Filtre.
 
 ### Jeux & Loisirs (3)
 
-- **Réparer un matelas gonflable percé** (`matelas-gonflable-perce`) — Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
-  *À dessiner :* Matelas : eau savonneuse sur la zone suspecte (bulles), trou marqué, rustine et colle, valve.
-- **Réinitialiser une manette PS5 qui ne répond plus** (`reinitialiser-manette-ps5`) — Zone d'intervention absente : le petit bouton de réinitialisation, au dos, n'apparaît pas.
-  *À dessiner :* Dos de la manette : petit trou de réinitialisation, trombone déplié, câble USB.
-- **Dépoussiérer une PS5 qui chauffe ou souffle fort** (`depoussierer-ps5`) — Autre objet : manette au lieu de la console.
-  *À dessiner :* Console couchée, façade retirée : ventilateur, pièges à poussière, aspirateur à faible puissance.
+- **Réparer un matelas gonflable percé** (`matelas-gonflable-perce`) — *Pack :* Dessin générique, identique à celui d'autres fiches : il ne montre ni l'objet ni la zone d'intervention.
+  *Nouveau schéma :* 1. Valve ; 2. Eau savonneuse : les bulles montrent la fuite ; 3. Trou marqué ; 4. Rustine ; 5. Colle.
+- **Réinitialiser une manette PS5 qui ne répond plus** (`reinitialiser-manette-ps5`) — *Pack :* Zone d'intervention absente : le petit bouton de réinitialisation, au dos, n'apparaît pas.
+  *Nouveau schéma :* 1. Câble USB ; 2. Prise USB-C ; 3. Emplacement du logo ; 4. Petit trou de réinitialisation ; 5. Trombone déplié.
+- **Dépoussiérer une PS5 qui chauffe ou souffle fort** (`depoussierer-ps5`) — *Pack :* Autre objet : manette au lieu de la console.
+  *Nouveau schéma :* 1. Façade retirée ; 2. Attrape-poussière (deux orifices) ; 3. Grilles d'aération ; 4. Embout fin, faible puissance.
 
 ### Mode & Accessoires (3)
 
-- **Réparer un trou dans un jean sans couture** (`patch-jean`) — Dessin sans détail utile (un trapèze et une couture) : ni le trou ni la pièce ne sont dessinés.
-  *À dessiner :* Jambe de jean retournée : trou, pièce thermocollante, fer à repasser et torchon.
-- **Recoudre un bouton** (`recoudre-bouton`) — Autre objet : fermeture éclair au lieu d'un bouton.
-  *À dessiner :* Bouton à quatre trous sur le tissu : fil en croix ou en parallèle, tige de fil sous le bouton, nœud au dos.
-- **Réparer une fermeture éclair qui s'ouvre** (`fermeture-eclair`) — Le curseur, où l'on intervient, n'est pas dessiné ; « Couture » pointe la fermeture elle-même.
-  *À dessiner :* Fermeture vue de face : curseur, deux rangées de dents, arrêt du bas, ruban cousu ; pince plate serrant l'arrière du curseur, un côté puis l'autre.
+- **Réparer un trou dans un jean sans couture** (`patch-jean`) — *Pack :* Dessin sans détail utile (un trapèze et une couture) : ni le trou ni la pièce ne sont dessinés.
+  *Nouveau schéma :* 1. Fer à repasser ; 2. Torchon (entre le fer et la pièce) ; 3. Pièce thermocollante ; 4. Jambe retournée (envers).
+- **Recoudre un bouton** (`recoudre-bouton`) — *Pack :* Autre objet : fermeture éclair au lieu d'un bouton.
+  *Nouveau schéma :* 1. Bouton à quatre trous ; 2. Fil en croix (ou en parallèle) ; 3. Nœud au dos ; 4. Tige de fil sous le bouton ; 5. Tissu.
+- **Réparer une fermeture éclair qui s'ouvre** (`fermeture-eclair`) — *Pack :* Le curseur, où l'on intervient, n'est pas dessiné ; « Couture » pointe la fermeture elle-même.
+  *Nouveau schéma :* 1. Dents ; 2. Curseur ; 3. Pince plate : serrer l'arrière du curseur ; 4. Ruban cousu ; 5. Arrêt du bas.
 
 ### Instruments de musique (2)
 
-- **Changer les cordes d'une guitare classique** (`cordes-guitare-classique`) — Dessin méconnaissable (deux cercles et des cordes) : ce n'est pas une guitare.
-  *À dessiner :* Guitare classique : chevalet et nœud de la corde, tête ajourée avec mécaniques, sillet.
-- **Changer les cordes d'une guitare folk** (`cordes-guitare-folk`) — Dessin méconnaissable (deux cercles et des cordes) : ce n'est pas une guitare.
-  *À dessiner :* Guitare folk : chevalet et chevilles, tête pleine avec mécaniques, sens d'enroulement.
+- **Changer les cordes d'une guitare classique** (`cordes-guitare-classique`) — *Pack :* Dessin méconnaissable (deux cercles et des cordes) : ce n'est pas une guitare.
+  *Nouveau schéma :* 1. Mécanique (clé) ; 2. Chevalet : nœud de la corde ; 3. Rosace ; 4. Sillet ; 5. Tête ajourée.
+- **Changer les cordes d'une guitare folk** (`cordes-guitare-folk`) — *Pack :* Dessin méconnaissable (deux cercles et des cordes) : ce n'est pas une guitare.
+  *Nouveau schéma :* 1. Mécanique : la corde s'enroule vers le bas ; 2. Chevilles ; 3. Chevalet ; 4. Sillet ; 5. Tête.
 
-## Intégrer un schéma refait
+## Modifier ou ajouter un schéma
 
-1. Déposer le nouveau pack (même structure : `manifest.json`, `svg/<id>.svg` au gabarit 1200 × 780).
-2. Relire le schéma face au texte de la fiche ; dans `tools/data/illustrations-review.json`, passer la fiche à
-   `"statut": "valide"` (et, si un repère est mal placé, donner la liste `reperes` corrigée).
-3. Lancer `node tools/illustrations.js <dossier du pack>`, puis `node tools/build.js`, `node tests/validate.js` et `node tests/e2e.js`.
+1. Dessin redessiné : modifier sa description dans `tools/dessins/` (formes simples, repères `[libellé, x, y]` posés
+   sur la bonne pièce), puis `node tools/dessins/build.js`.
+   Schéma venu d'un pack : le déposer dans `tools/schemas/svg/<id>.svg` (gabarit 1200 × 780).
+2. Le relire face au texte de la fiche ; dans `tools/data/illustrations-review.json`, statut `"valide"`.
+3. `node tools/illustrations.js`, puis `node tools/build.js`, `node tests/validate.js` et `node tests/e2e.js`.

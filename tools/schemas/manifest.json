@@ -1,0 +1,1072 @@
+[
+ {
+  "id": "pression-pneus-voiture",
+  "title": "Vérifier et régler la pression des pneus",
+  "category": "automobile",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "pile-cle-voiture",
+  "title": "Changer la pile d'une clé de voiture",
+  "category": "automobile",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "vidange-huile-moteur",
+  "title": "Changer l'huile moteur",
+  "category": "automobile",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "plaquettes-frein",
+  "title": "Changer les plaquettes de frein",
+  "category": "automobile",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "voiture-ne-demarre-plus",
+  "title": "Voiture qui ne démarre plus : diagnostic",
+  "category": "automobile",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "ampoule-phare",
+  "title": "Changer une ampoule de phare",
+  "category": "automobile",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "balais-essuie-glace",
+  "title": "Remplacer les balais d'essuie-glace",
+  "category": "automobile",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "changer-roue",
+  "title": "Changer une roue crevée",
+  "category": "automobile",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "changer-batterie-voiture",
+  "title": "Changer la batterie d'une voiture",
+  "category": "automobile",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "changer-fusible-voiture",
+  "title": "Remplacer un fusible de voiture",
+  "category": "automobile",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "niveau-huile-moteur",
+  "title": "Vérifier le niveau d'huile moteur et faire l'appoint",
+  "category": "automobile",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "liquide-refroidissement",
+  "title": "Contrôler le liquide de refroidissement",
+  "category": "automobile",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "filtre-habitacle",
+  "title": "Changer le filtre d'habitacle (filtre à pollen)",
+  "category": "automobile",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "entretien-chaine-moto",
+  "title": "Nettoyer, graisser et contrôler la chaîne de sa moto",
+  "category": "moto",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "pression-pneus-moto",
+  "title": "Vérifier la pression des pneus de sa moto",
+  "category": "moto",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "hivernage-moto",
+  "title": "Préparer sa moto pour l'hiver (hivernage)",
+  "category": "moto",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "filtre-seche-linge",
+  "title": "Sèche-linge qui sèche mal : nettoyer filtres et condenseur",
+  "category": "electromenager",
+  "devices": [
+   "seche-linge"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "detartrer-bouilloire",
+  "title": "Détartrer une bouilloire",
+  "category": "electromenager",
+  "devices": [
+   "bouilloire"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "degivrer-congelateur",
+  "title": "Dégivrer un congélateur",
+  "category": "electromenager",
+  "devices": [
+   "congelateur",
+   "refrigerateur"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-filtre-hotte",
+  "title": "Nettoyer les filtres d'une hotte qui aspire mal",
+  "category": "electromenager",
+  "devices": [
+   "hotte"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "courroie-lave-linge",
+  "title": "Remplacer la courroie d'un lave-linge",
+  "category": "electromenager",
+  "devices": [
+   "lave-linge"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "lave-linge-ne-vidange-pas",
+  "title": "Lave-linge qui ne vidange plus",
+  "category": "electromenager",
+  "devices": [
+   "lave-linge"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "lave-vaisselle-lave-mal",
+  "title": "Lave-vaisselle qui lave mal",
+  "category": "electromenager",
+  "devices": [
+   "lave-vaisselle"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "joint-refrigerateur",
+  "title": "Réfrigérateur qui givre : vérifier le joint",
+  "category": "electromenager",
+  "devices": [
+   "refrigerateur",
+   "congelateur",
+   "cave-a-vin"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "aspirateur-aspire-mal",
+  "title": "Aspirateur qui n'aspire plus",
+  "category": "electromenager",
+  "devices": [
+   "aspirateur"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "detartrer-cafetiere",
+  "title": "Détartrer une cafetière filtre",
+  "category": "electromenager",
+  "devices": [
+   "cafetiere"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "lave-linge-ne-demarre-plus",
+  "title": "Lave-linge qui ne démarre plus",
+  "category": "electromenager",
+  "devices": [
+   "lave-linge"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "securite-porte-lave-linge",
+  "title": "Remplacer la sécurité de porte d'un lave-linge",
+  "category": "electromenager",
+  "devices": [
+   "lave-linge"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "frigo-eau-au-fond",
+  "title": "Eau au fond du réfrigérateur : déboucher le trou d'évacuation",
+  "category": "electromenager",
+  "devices": [
+   "refrigerateur"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-condenseur-frigo",
+  "title": "Nettoyer le condenseur du réfrigérateur",
+  "category": "electromenager",
+  "devices": [
+   "refrigerateur",
+   "congelateur"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "detartrer-centrale-vapeur",
+  "title": "Détartrer une centrale vapeur",
+  "category": "electromenager",
+  "devices": [
+   "fer-a-repasser"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-aspirateur-robot",
+  "title": "Aspirateur robot qui nettoie mal : l'entretien complet",
+  "category": "electromenager",
+  "devices": [
+   "aspirateur-robot"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "climatiseur-mobile-refroidit-mal",
+  "title": "Climatiseur mobile qui refroidit mal : filtres et vidange",
+  "category": "electromenager",
+  "devices": [
+   "climatiseur"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "tetes-impression-imprimante",
+  "title": "Imprimante qui laisse des traits : nettoyer les têtes",
+  "category": "telephonie",
+  "devices": [
+   "imprimante"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "touche-clavier-bloquee",
+  "title": "Nettoyer un clavier et débloquer une touche",
+  "category": "telephonie",
+  "devices": [
+   "ordinateur-portable",
+   "ordinateur-bureau"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "ordinateur-portable-chauffe",
+  "title": "Ordinateur portable qui chauffe : nettoyer les aérations",
+  "category": "telephonie",
+  "devices": [
+   "ordinateur-portable"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "ecran-telephone",
+  "title": "Remplacer un écran de téléphone",
+  "category": "telephonie",
+  "devices": [
+   "smartphone"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "telephone-ne-charge-plus",
+  "title": "Téléphone qui ne charge plus bien",
+  "category": "telephonie",
+  "devices": [
+   "smartphone",
+   "tablette"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "pc-lent",
+  "title": "Redonner de la vitesse à un vieil ordinateur",
+  "category": "telephonie",
+  "devices": [
+   "ordinateur-portable",
+   "ordinateur-bureau"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "detartrer-pommeau-douche",
+  "title": "Détartrer un pommeau de douche",
+  "category": "maison",
+  "devices": [
+   "robinet"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "regler-porte-placard",
+  "title": "Régler une porte de placard qui frotte ou penche",
+  "category": "maison",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "deboucher-toilettes",
+  "title": "Déboucher des toilettes",
+  "category": "maison",
+  "devices": [
+   "chasse-eau"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "robinet-qui-fuit",
+  "title": "Réparer un robinet qui fuit",
+  "category": "maison",
+  "devices": [
+   "robinet"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "chasse-eau-coule",
+  "title": "Chasse d'eau qui coule en permanence",
+  "category": "maison",
+  "devices": [
+   "chasse-eau"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "evier-bouche",
+  "title": "Déboucher un évier",
+  "category": "maison",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "trou-placo",
+  "title": "Reboucher un trou dans un mur en placo",
+  "category": "maison",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "remplacer-prise-electrique",
+  "title": "Remplacer une prise électrique",
+  "category": "maison",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "refaire-joint-silicone",
+  "title": "Refaire un joint silicone de salle de bain",
+  "category": "maison",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "changer-flexible-douche",
+  "title": "Changer un flexible de douche",
+  "category": "maison",
+  "devices": [
+   "robinet"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "gonfler-pneu-velo",
+  "title": "Gonfler un pneu de vélo à la bonne pression",
+  "category": "velo",
+  "devices": [
+   "velo",
+   "velo-electrique"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "crevaison-velo",
+  "title": "Réparer une crevaison de vélo",
+  "category": "velo",
+  "devices": [
+   "velo",
+   "velo-electrique"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "regler-freins-velo",
+  "title": "Régler les freins d'un vélo",
+  "category": "velo",
+  "devices": [
+   "velo",
+   "velo-electrique"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-chaine-velo",
+  "title": "Nettoyer et graisser une chaîne de vélo",
+  "category": "velo",
+  "devices": [
+   "velo",
+   "velo-electrique"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "regler-derailleur-arriere",
+  "title": "Régler le dérailleur arrière d'un vélo",
+  "category": "velo",
+  "devices": [
+   "velo",
+   "velo-electrique"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "fil-coupe-bordure",
+  "title": "Recharger le fil d'un coupe-bordure",
+  "category": "jardin",
+  "devices": [
+   "debroussailleuse"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "tondeuse-ne-demarre-pas",
+  "title": "Tondeuse thermique qui ne démarre pas",
+  "category": "jardin",
+  "devices": [
+   "tondeuse"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "affuter-secateur",
+  "title": "Nettoyer et affûter un sécateur",
+  "category": "jardin",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "tuyau-arrosage-perce",
+  "title": "Réparer un tuyau d'arrosage percé",
+  "category": "jardin",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "affuter-lame-tondeuse",
+  "title": "Affûter la lame d'une tondeuse",
+  "category": "jardin",
+  "devices": [
+   "tondeuse"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "matelas-gonflable-perce",
+  "title": "Réparer un matelas gonflable percé",
+  "category": "loisirs",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "reinitialiser-manette-ps5",
+  "title": "Réinitialiser une manette PS5 qui ne répond plus",
+  "category": "loisirs",
+  "devices": [
+   "manette"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "depoussierer-ps5",
+  "title": "Dépoussiérer une PS5 qui chauffe ou souffle fort",
+  "category": "loisirs",
+  "devices": [
+   "console"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "joystick-drift",
+  "title": "Corriger le drift d'une manette",
+  "category": "loisirs",
+  "devices": [
+   "manette"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "recoller-semelle",
+  "title": "Recoller la semelle d'une chaussure de sport",
+  "category": "mode",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "patch-jean",
+  "title": "Réparer un trou dans un jean sans couture",
+  "category": "mode",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "recoudre-bouton",
+  "title": "Recoudre un bouton",
+  "category": "mode",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "fermeture-eclair",
+  "title": "Réparer une fermeture éclair qui s'ouvre",
+  "category": "mode",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "cordes-guitare-classique",
+  "title": "Changer les cordes d'une guitare classique",
+  "category": "instruments",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "cordes-guitare-folk",
+  "title": "Changer les cordes d'une guitare folk",
+  "category": "instruments",
+  "devices": [],
+  "model_specific": false
+ },
+ {
+  "id": "groupe-securite-chauffe-eau",
+  "title": "Chauffe-eau : entretenir le groupe de sécurité",
+  "category": "maison",
+  "devices": [
+   "chauffe-eau"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-bouches-vmc",
+  "title": "Nettoyer les bouches et entrées d'air de la VMC",
+  "category": "maison",
+  "devices": [
+   "vmc"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-poele-granules",
+  "title": "Poêle à granulés : l'entretien courant",
+  "category": "maison",
+  "devices": [
+   "poele-granules"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-trottinette-electrique",
+  "title": "Trottinette électrique : l'entretien régulier",
+  "category": "velo",
+  "devices": [
+   "trottinette-electrique"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-robot-tondeuse",
+  "title": "Robot tondeuse : nettoyage, lames et hivernage",
+  "category": "jardin",
+  "devices": [
+   "robot-tondeuse"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "hivernage-nettoyeur-haute-pression",
+  "title": "Nettoyeur haute pression : vidanger et hiverner",
+  "category": "jardin",
+  "devices": [
+   "nettoyeur-haute-pression"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-taille-haie",
+  "title": "Taille-haie : nettoyer et huiler les lames",
+  "category": "jardin",
+  "devices": [
+   "taille-haie"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-deshumidificateur",
+  "title": "Déshumidificateur : nettoyer le filtre et le réservoir",
+  "category": "electromenager",
+  "devices": [
+   "deshumidificateur"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-four",
+  "title": "Nettoyer son four : pyrolyse ou nettoyage à la main",
+  "category": "electromenager",
+  "devices": [
+   "four"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-micro-ondes",
+  "title": "Nettoyer un micro-ondes avec un bol d'eau et de vinaigre",
+  "category": "electromenager",
+  "devices": [
+   "micro-ondes"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-plaque-vitroceramique",
+  "title": "Nettoyer une plaque vitrocéramique ou à induction",
+  "category": "electromenager",
+  "devices": [
+   "plaque-de-cuisson"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-grille-pain",
+  "title": "Grille-pain : retirer les miettes en toute sécurité",
+  "category": "electromenager",
+  "devices": [
+   "grille-pain"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "joint-cocotte-minute",
+  "title": "Cocotte-minute : entretenir le joint et les soupapes",
+  "category": "electromenager",
+  "devices": [
+   "cocotte"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-friteuse",
+  "title": "Friteuse : changer l'huile et entretenir les filtres",
+  "category": "electromenager",
+  "devices": [
+   "friteuse"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-robot-mixeur",
+  "title": "Nettoyer un robot de cuisine ou un blender sans se couper",
+  "category": "electromenager",
+  "devices": [
+   "robot-de-cuisine"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-machine-a-pain",
+  "title": "Machine à pain : entretenir la cuve et le pétrin",
+  "category": "electromenager",
+  "devices": [
+   "machine-a-pain"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-extracteur-de-jus",
+  "title": "Nettoyer un extracteur de jus et son tamis",
+  "category": "electromenager",
+  "devices": [
+   "extracteur-de-jus"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-appareil-raclette",
+  "title": "Nettoyer un appareil à raclette ou un grill",
+  "category": "electromenager",
+  "devices": [
+   "raclette-grill"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-yaourtiere",
+  "title": "Yaourtière : nettoyage et yaourts trop liquides",
+  "category": "electromenager",
+  "devices": [
+   "yaourtiere"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-trancheuse",
+  "title": "Nettoyer une trancheuse électrique sans se couper",
+  "category": "electromenager",
+  "devices": [
+   "trancheuse"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-machine-a-glacons",
+  "title": "Nettoyer et détartrer une machine à glaçons",
+  "category": "electromenager",
+  "devices": [
+   "machine-a-glacons"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-tireuse-a-biere",
+  "title": "Nettoyer une tireuse à bière à chaque changement de fût",
+  "category": "electromenager",
+  "devices": [
+   "tireuse-a-biere"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "cartouche-carafe-filtrante",
+  "title": "Carafe filtrante : changer et préparer la cartouche",
+  "category": "electromenager",
+  "devices": [
+   "carafe-filtrante"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "debloquer-broyeur-evier",
+  "title": "Broyeur sous évier bloqué : le débloquer et l'entretenir",
+  "category": "electromenager",
+  "devices": [
+   "broyeur"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-filtre-seche-cheveux",
+  "title": "Sèche-cheveux qui chauffe trop ou se coupe : nettoyer le filtre",
+  "category": "electromenager",
+  "devices": [
+   "seche-cheveux"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-rasoir-electrique",
+  "title": "Rasoir électrique : nettoyer, lubrifier et changer les têtes",
+  "category": "electromenager",
+  "devices": [
+   "rasoir"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-brosse-a-dents-electrique",
+  "title": "Brosse à dents électrique : entretien et brossette",
+  "category": "electromenager",
+  "devices": [
+   "brosse-a-dents"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "detartrer-sterilisateur-biberons",
+  "title": "Détartrer un stérilisateur de biberons",
+  "category": "electromenager",
+  "devices": [
+   "puericulture"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-ventilateur",
+  "title": "Nettoyer les pales et la grille d'un ventilateur",
+  "category": "electromenager",
+  "devices": [
+   "ventilateur"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "filtres-purificateur-air",
+  "title": "Purificateur d'air : entretenir et changer les filtres",
+  "category": "electromenager",
+  "devices": [
+   "purificateur"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "detartrer-nettoyeur-vapeur",
+  "title": "Nettoyeur vapeur : bonne eau et détartrage",
+  "category": "electromenager",
+  "devices": [
+   "nettoyeur-vapeur"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "housse-table-a-repasser",
+  "title": "Table à repasser : changer la housse",
+  "category": "electromenager",
+  "devices": [
+   "table-a-repasser"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-cireuse",
+  "title": "Cireuse à parquet : cirer, lustrer et entretenir",
+  "category": "electromenager",
+  "devices": [
+   "cireuse"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-montre-connectee",
+  "title": "Nettoyer une montre connectée et son bracelet",
+  "category": "telephonie",
+  "devices": [
+   "montre-connectee"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "mettre-a-jour-gps",
+  "title": "Mettre à jour les cartes d'un GPS voiture",
+  "category": "telephonie",
+  "devices": [
+   "gps"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-ecran-tv",
+  "title": "Nettoyer un écran de télé ou d'ordinateur sans l'abîmer",
+  "category": "telephonie",
+  "devices": [
+   "television",
+   "ecran-pc"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "filtre-videoprojecteur",
+  "title": "Vidéoprojecteur : nettoyer le filtre à air",
+  "category": "telephonie",
+  "devices": [
+   "videoprojecteur"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "lecteur-dvd-ne-lit-plus",
+  "title": "Lecteur DVD ou Blu-ray qui ne lit plus les disques",
+  "category": "telephonie",
+  "devices": [
+   "lecteur-video"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "barre-de-son-pas-de-son",
+  "title": "Barre de son ou home cinéma sans son avec la télé",
+  "category": "telephonie",
+  "devices": [
+   "hifi"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-ecouteurs-casque",
+  "title": "Nettoyer des écouteurs ou un casque",
+  "category": "telephonie",
+  "devices": [
+   "casque-ecouteurs",
+   "casque-gaming"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "nettoyer-objectif-appareil-photo",
+  "title": "Nettoyer l'objectif d'un appareil photo",
+  "category": "telephonie",
+  "devices": [
+   "appareil-photo"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "calibrer-hoverboard",
+  "title": "Hoverboard qui tire d'un côté : le recalibrer",
+  "category": "velo",
+  "devices": [
+   "gyropode"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-perceuse-visseuse",
+  "title": "Perceuse-visseuse sans fil : batterie, mandrin et aérations",
+  "category": "maison",
+  "devices": [
+   "perceuse"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-ponceuse",
+  "title": "Ponceuse : changer l'abrasif et nettoyer le plateau",
+  "category": "maison",
+  "devices": [
+   "scie-ponceuse"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "filtre-aspirateur-eau-poussiere",
+  "title": "Aspirateur eau et poussières : nettoyer le filtre",
+  "category": "maison",
+  "devices": [
+   "aspirateur-chantier"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-radiateur-electrique",
+  "title": "Radiateur électrique : le dépoussiérer avant l'hiver",
+  "category": "maison",
+  "devices": [
+   "radiateur-electrique"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-pompe-a-chaleur",
+  "title": "Pompe à chaleur : entretien obligatoire et gestes simples",
+  "category": "maison",
+  "devices": [
+   "pompe-a-chaleur"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-portail-motorise",
+  "title": "Portail ou porte de garage motorisé : entretien et cellules",
+  "category": "maison",
+  "devices": [
+   "motorisation"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "visiophone-ne-sonne-plus",
+  "title": "Interphone ou visiophone qui ne sonne plus",
+  "category": "maison",
+  "devices": [
+   "interphone"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-souffleur-feuilles",
+  "title": "Souffleur de feuilles : entretien et hivernage",
+  "category": "jardin",
+  "devices": [
+   "souffleur"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-motobineuse",
+  "title": "Motobineuse : huile, filtre à air et hivernage",
+  "category": "jardin",
+  "devices": [
+   "motobineuse"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "amorcer-pompe-surface",
+  "title": "Amorcer une pompe de surface ou d'arrosage",
+  "category": "jardin",
+  "devices": [
+   "pompe"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "barbecue-gaz-fuite-nettoyage",
+  "title": "Barbecue ou plancha gaz : tester les fuites et nettoyer",
+  "category": "jardin",
+  "devices": [
+   "barbecue"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "entretien-eau-piscine",
+  "title": "Piscine : pH, chlore et filtration au quotidien",
+  "category": "jardin",
+  "devices": [
+   "piscine"
+  ],
+  "model_specific": true
+ },
+ {
+  "id": "volant-jeu-calibrage",
+  "title": "Volant de jeu décentré ou qui ne se calibre plus",
+  "category": "loisirs",
+  "devices": [
+   "volant"
+  ],
+  "model_specific": true
+ }
+]
