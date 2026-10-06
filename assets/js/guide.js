@@ -141,6 +141,12 @@ function renderGuide() {
   setupTabs();
 
   document.getElementById("print").addEventListener("click", () => window.print());
+  // Schéma technique : « Agrandir », ou toucher le dessin, l'ouvre en grand (sans JavaScript : le fichier SVG)
+  root.querySelector(".guide-figure")?.addEventListener("click", e => {
+    if (!e.target.closest("[data-zoom], .fig-paper img")) return;
+    e.preventDefault();
+    openSchema();
+  });
   document.getElementById("share").addEventListener("click", async () => {
     const url = location.href.split("?")[0].split("#")[0] + (guide.user ? `?id=${encodeURIComponent(guide.id)}` : "");
     try {
@@ -163,6 +169,31 @@ function renderGuide() {
       // Après l'accompagnement, la fiche reflète le résultat (badge « Réparé », pistes de dépannage…)
       renderGuide();
       document.getElementById("coach-start").focus();
+    });
+  });
+}
+
+/* Schéma en grand : le dessin, un zoom ×2 qu'on fait défiler, la légende et la mention de principe */
+function openSchema() {
+  const mine = loadMateriel().filter(m => guideFitsMateriel(guide, m));
+  const ill = guideIllustration(guide, mine);
+  if (!ill) return;
+  openModal(`Schéma : ${guide.title}`, `
+    <div class="zoom-stage" tabindex="0" role="region" aria-label="Schéma agrandi, à faire défiler">
+      <img src="${ill.src}" width="${ill.w}" height="${ill.h}" alt="${escapeHtml(ill.alt)}">
+    </div>
+    <div class="zoom-bar">
+      <button class="chip" type="button" data-zoom-toggle aria-pressed="false">${icon("zoom")} Zoom ×2</button>
+      <p class="fig-note">${icon("info")}<span>${figNote(ill, mine)}</span></p>
+    </div>
+    ${figLegend(ill.reperes)}`, wrap => {
+    wrap.querySelector(".modal-box").classList.add("modal-wide");
+    const stage = wrap.querySelector(".zoom-stage"), btn = wrap.querySelector("[data-zoom-toggle]");
+    btn.addEventListener("click", () => {
+      const on = stage.classList.toggle("zoomed");
+      btn.setAttribute("aria-pressed", on);
+      // Zoom centré sur le dessin
+      if (on) stage.scrollTo((stage.scrollWidth - stage.clientWidth) / 2, (stage.scrollHeight - stage.clientHeight) / 2);
     });
   });
 }

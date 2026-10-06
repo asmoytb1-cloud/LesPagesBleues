@@ -22,7 +22,7 @@ bleu nuit le soir) et peut être imposé dans **Plus › Apparence**.
 | | |
 | --- | --- |
 | **124 guides vérifiés** | Automobile, électroménager, téléphonie, maison, vélo, jardin, loisirs, mode, instruments. Chaque fiche cite ses sources et sa date de vérification. |
-| **Fiche guide** | Titre, photo, difficulté, durée, économie, puis quatre onglets : Étapes, Outils, Pièces, Sécurité. Bouton « Commencer le guide » vers le mode accompagnement. |
+| **Fiche guide** | Titre, difficulté, durée, économie, puis le visuel : le schéma technique de la fiche (repères numérotés, légende, « Agrandir » avec zoom) quand il a été relu et validé, sinon la photo. Ensuite quatre onglets : Étapes, Outils, Pièces, Sécurité. Bouton « Commencer le guide » vers le mode accompagnement. |
 | **Mode accompagnement** | Une étape à la fois en plein écran (« Étape suivante → ») : minuteurs, lecture à voix haute, commandes vocales (« suivant », « répète »…), écran maintenu allumé, reprise là où on s'est arrêté. |
 | **Diagnostic** | 26 pannes courantes, sans intelligence artificielle : on décrit ce qui se passe (texte ou voix) ou on choisit l'équipement, on répond à quelques questions une par une, puis « Voici ce que nous avons trouvé » : causes classées avec une probabilité estimée, « Notre conseil » et le guide recommandé. Une photo peut être jointe à la question posée à la communauté (elle n'est pas analysée). |
 | **Mon matériel** | On enregistre ses appareils, sa voiture ou sa moto et on ne voit que les fiches qui les concernent (au moins une fiche pour chaque type d'équipement). Catalogue : 85 types d'équipement avec leurs marques courantes, des modèles courants (smartphones, consoles, voitures, motos…) et saisie libre pour tout le reste. |
@@ -65,6 +65,15 @@ Le logo (une page au coin replié bleu, d'où l'on a découpé une clé) est des
 qui produit le favicon, les icônes de l'application web, l'image de partage et les icônes de l'app iPhone (claire,
 sombre et teintée) : `node tools/icons.js` après une modification du logo.
 
+**Schémas techniques.** Un pack d'illustrations (`manifest.json` et `svg/<id>.svg`, une par fiche) s'intègre avec
+`node tools/illustrations.js <dossier du pack>`. Seuls les schémas marqués `"valide"` dans
+`tools/data/illustrations-review.json` sont publiés : la règle est qu'une image fausse est pire qu'une image simple mais
+juste, et les autres fiches gardent leur photo. La commande répare et nettoie les fichiers, redessine les repères,
+recadre, et produit `assets/img/technical/<id>.svg`, l'image de partage `<id>.png`, le registre
+`assets/js/illustrations-data.js` et le bilan `docs/visuels/AUDIT.md` (raison et consigne de dessin pour chaque schéma
+à refaire). Une variante propre à une marque ou un modèle ne s'affiche que si elle a été vérifiée (date et sources).
+Règles de dessin : `docs/visuels/VISUELS_TECHNIQUES.md`.
+
 ## Application iPhone (Xcode)
 
 Le dossier `ios/` contient une application iOS qui embarque tout le site : il fonctionne hors ligne et
@@ -101,10 +110,10 @@ Pour compléter avec des données ouvertes, `python3 tools/fetch-wikidata.py` t�
 ```sh
 npm install                      # une seule fois
 npx playwright install chromium  # une seule fois
-npm test                         # génération + validation + 26 tests dans un vrai navigateur
+npm test                         # génération + validation + 27 tests dans un vrai navigateur
 ```
 
-Les tests couvrent toutes les pages (ordinateur et mobile, thèmes clair et sombre), l'accueil et la navigation, la recherche, les fiches et leurs onglets, le mode accompagnement, le diagnostic, Mon matériel, l'entretien, le choix du thème, la contribution avec photo, la communauté, le profil, le mode hors ligne, l'accessibilité (axe-core, ordre des titres) et la stabilité de la mise en page au chargement.
+Les tests couvrent toutes les pages (ordinateur et mobile, thèmes clair et sombre), l'accueil et la navigation, la recherche, les fiches et leurs onglets, les schémas techniques (légende, agrandir, thème sombre, impression, hors ligne), le mode accompagnement, le diagnostic, Mon matériel, l'entretien, le choix du thème, la contribution avec photo, la communauté, le profil, le mode hors ligne, l'accessibilité (axe-core, ordre des titres) et la stabilité de la mise en page au chargement.
 
 ## Mettre en ligne (GitHub Pages)
 
@@ -126,9 +135,13 @@ assets/js/common.js                            fonctions partagées (recherche, 
 assets/js/guide-view.js                        rendu d'une fiche (utilisé par le site et par la génération)
 assets/js/*.js                                 un script par page
 assets/img/photos/                             photos sous licence libre + credits.json
+assets/img/technical/                          schémas techniques validés (SVG) et images de partage (PNG), générés
+assets/js/illustrations-data.js                registre des schémas (généré par tools/illustrations.js)
 assets/fonts/                                  police Inter (licence OFL)
 tools/build.js, tools/pages.py, tools/serve.js génération et serveur local
 tools/icons.js                                 logo, favicon, icônes (web et iPhone), image de partage
+tools/illustrations.js                         intégration d'un pack de schémas techniques (relecture : tools/data/illustrations-review.json)
+docs/visuels/                                  règles de dessin des schémas et bilan de relecture (AUDIT.md)
 tests/validate.js, tests/e2e.js                tests
 sw.js, manifest.webmanifest                    hors ligne et installation
 ```

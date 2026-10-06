@@ -13,7 +13,7 @@ const fail = m => errors.push(m);
 // Charge les données comme le navigateur
 const ctx = { window: { LPB_ROOT: "" }, navigator: {}, console, URLSearchParams };
 vm.createContext(ctx);
-for (const f of ["data.js", "common.js", "diagnostics-data.js", "guide-view.js"]) {
+for (const f of ["data.js", "common.js", "diagnostics-data.js", "illustrations-data.js", "guide-view.js"]) {
   vm.runInContext(fs.readFileSync(path.join(ROOT, "assets/js", f), "utf8"), ctx, { filename: f });
 }
 const { GUIDES, CATEGORIES, DIFFICULTIES, DIAGNOSTICS, REVIEWED_ON } = vm.runInContext("({ GUIDES, CATEGORIES, DIFFICULTIES, DIAGNOSTICS, REVIEWED_ON })", ctx);
@@ -97,6 +97,62 @@ for (const f of htmlFiles) {
   }
 }
 for (const g of GUIDES) if (!fs.existsSync(path.join(ROOT, "fiches", g.id + ".html"))) fail(`page statique manquante : fiches/${g.id}.html (lancez node tools/build.js)`);
+
+/* ---------- Schémas techniques (tools/illustrations.js) ---------- */
+{
+  const ILL = vm.runInContext("ILLUSTRATIONS", ctx);
+  const review = JSON.parse(fs.readFileSync(path.join(ROOT, "tools/data/illustrations-review.json"), "utf8")).fiches;
+  const TECH = path.join(ROOT, "assets/img/technical");
+  // Chaque fiche a une relecture ; le registre contient exactement les schémas validés
+  for (const g of GUIDES) if (!review[g.id]) fail(`schémas : fiche ${g.id} absente de tools/data/illustrations-review.json`);
+  for (const [id, r] of Object.entries(review)) {
+    if (!ids.has(id)) fail(`schémas : relecture d'une fiche inconnue ${id}`);
+    if ((r.statut === "valide") !== !!ILL[id]) fail(`schémas : ${id} est « ${r.statut} » dans la relecture mais ${ILL[id] ? "présent" : "absent"} du registre (lancez node tools/illustrations.js <pack>)`);
+    if (r.statut === "a-refaire" && (!r.raison || !r.a_dessiner)) fail(`schémas : ${id} à refaire sans raison ni consigne de dessin`);
+  }
+  const pngSize = f => { const b = fs.readFileSync(f); return b.toString("ascii", 1, 4) === "PNG" ? [b.readUInt32BE(16), b.readUInt32BE(20)] : null; };
+  for (const [id, it] of Object.entries(ILL)) {
+    const svgFile = path.join(TECH, id + ".svg"), pngFile = path.join(TECH, id + ".png");
+    if (!fs.existsSync(svgFile)) { fail(`schéma ${id} : fichier SVG manquant`); continue; }
+    const svg = fs.readFileSync(svgFile, "utf8");
+    if (/<script|<foreignObject|<image|<use\b|<style|\bon\w+\s*=|href\s*=|url\s*\(/i.test(svg)) fail(`schéma ${id} : contenu actif ou externe interdit`);
+    if (/Famille d.équipement|lorem ipsum/i.test(svg) || svg.includes("SCHÉMA DE PRINCIPE")) fail(`schéma ${id} : texte provisoire du pack`);
+    const vb = (svg.match(/viewBox="([^"]+)"/) || [])[1]?.split(" ").map(Number);
+    if (!vb || vb[2] !== it.w || vb[3] !== it.h) fail(`schéma ${id} : taille ${vb && vb.slice(2).join("×")} différente du registre ${it.w}×${it.h}`);
+    if (!Array.isArray(it.reperes) || !it.reperes.length || it.reperes.some(r => !r || r.length > 60)) fail(`schéma ${id} : légende invalide`);
+    const nums = [...svg.matchAll(/>(\d+)<\/text>/g)].map(m => +m[1]);
+    if (nums.join() !== it.reperes.map((_, i) => i + 1).join()) fail(`schéma ${id} : numéros du dessin (${nums}) différents de la légende (${it.reperes.length} repères)`);
+    if (!Array.isArray(it.variants)) fail(`schéma ${id} : « variants » doit être une liste`);
+    for (const v of it.variants || []) if (!v.verifiedOn || !(v.sources || []).length || !fs.existsSync(path.join(TECH, v.file || "?"))) fail(`schéma ${id} : variante non vérifiée ou fichier manquant`);
+    const size = fs.existsSync(pngFile) && pngSize(pngFile);
+    if (!size || size[0] !== 1200 || size[1] !== 630) fail(`schéma ${id} : image de partage PNG 1200×630 manquante`);
+    const page = fs.readFileSync(path.join(ROOT, "fiches", id + ".html"), "utf8");
+    if (!page.includes(`<img src="../assets/img/technical/${id}.svg"`)) fail(`fiches/${id}.html : schéma absent de la page`);
+    if (!page.includes(`og:image" content="https://asmoytb1-cloud.github.io/LesPagesBleues/assets/img/technical/${id}.png"`)) fail(`fiches/${id}.html : image de partage (og:image) qui n'est pas le schéma`);
+  }
+  for (const f of fs.readdirSync(TECH)) if (!ILL[f.replace(/\.(svg|png)$/, "")]) fail(`schémas : fichier orphelin assets/img/technical/${f}`);
+  for (const g of GUIDES.filter(g => !ILL[g.id])) {
+    const page = fs.readFileSync(path.join(ROOT, "fiches", g.id + ".html"), "utf8");
+    if (!page.includes('class="guide-photo"') || page.includes("guide-figure")) fail(`fiches/${g.id}.html : sans schéma validé, la fiche doit garder sa photo`);
+  }
+  // Choix d'une variante : seulement vérifiée (date + sources), modèle exact d'abord, puis marque ; jamais une variante non vérifiée
+  const pick = (variants, mats) => vm.runInContext(`(() => { const saved = ILLUSTRATIONS["plaquettes-frein"];
+    ILLUSTRATIONS["plaquettes-frein"] = { ...saved, variants: ${JSON.stringify(variants)} };
+    try { const r = guideIllustration(GUIDES.find(g => g.id === "plaquettes-frein"), ${JSON.stringify(mats)}); return r && (r.variant ? r.variant.file : "base"); }
+    finally { ILLUSTRATIONS["plaquettes-frein"] = saved; } })()`, ctx);
+  const car = { kind: "voiture", type: "voiture", brand: "Renault", model: "Clio" };
+  const exact = { file: "v-clio.svg", type: "voiture", brand: "Renault", model: "Clio", verifiedOn: "2026-10-06", sources: ["https://exemple.fr"], w: 1, h: 1, reperes: ["a"] };
+  const brand = { ...exact, file: "v-renault.svg", model: undefined };
+  const unverified = { ...exact, file: "v-faux.svg", verifiedOn: undefined };
+  if (ILL["plaquettes-frein"]) {
+    if (pick([], [car]) !== "base") fail("guideIllustration : sans variante, le schéma de base est attendu");
+    if (pick([unverified], [car]) !== "base") fail("guideIllustration : une variante non vérifiée ne doit jamais être choisie");
+    if (pick([brand, exact], [car]) !== "v-clio.svg") fail("guideIllustration : le modèle exact passe avant la marque");
+    if (pick([brand], [car]) !== "v-renault.svg") fail("guideIllustration : à défaut du modèle, la variante de la marque");
+    if (pick([exact], [{ ...car, model: "Megane" }]) !== "base") fail("guideIllustration : une variante d'un autre modèle ne doit pas être choisie");
+  }
+  if (vm.runInContext('guideIllustration({ id: "plaquettes-frein", user: true, title: "x" })', ctx) !== null) fail("guideIllustration : une fiche perso n'a pas de schéma du site");
+}
 
 /* ---------- Plan du site et service worker ---------- */
 const sitemap = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");

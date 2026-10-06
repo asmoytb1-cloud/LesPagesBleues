@@ -1,11 +1,11 @@
 /* Les Pages Bleues — service worker : le site reste utilisable sans réseau (garage, cave, jardin…) */
-const CACHE = "lpb-v15";
+const CACHE = "lpb-v16";
 const CORE = [
   "./", "index.html", "guides.html", "guide.html", "categories.html", "diagnostic.html", "communaute.html",
   "profil.html", "ajouter.html", "materiel.html", "carnet.html", "entretien.html", "plus.html", "a-propos.html", "beta.html", "404.html",
   "assets/css/style.css", "assets/fonts/inter-latin.woff2",
   "assets/js/data.js", "assets/js/common.js", "assets/js/home.js", "assets/js/guides.js", "assets/js/categories.js",
-  "assets/js/guide-view.js", "assets/js/guide.js", "assets/js/ajouter.js", "assets/js/communaute.js",
+  "assets/js/illustrations-data.js", "assets/js/guide-view.js", "assets/js/guide.js", "assets/js/ajouter.js", "assets/js/communaute.js",
   "assets/js/profil.js", "assets/js/diagnostics-data.js", "assets/js/diagnostic.js", "assets/js/apropos.js",
   "assets/js/materiel-data.js", "assets/js/materiel.js", "assets/js/entretien-data.js", "assets/js/carnet-core.js", "assets/js/carnet.js",
   "assets/js/entretien.js", "assets/js/plus.js", "assets/js/beta.js",

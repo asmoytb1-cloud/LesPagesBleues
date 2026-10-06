@@ -23,6 +23,49 @@ function bonusBox(g) {
 
 const GUIDE_TABS = [["etapes", "Étapes"], ["outils", "Outils"], ["pieces", "Pièces"], ["securite", "Sécurité"]];
 
+/* Schéma technique d'une fiche (registre assets/js/illustrations-data.js), ou null : la fiche garde sa photo.
+   Une variante marque / modèle n'est retenue que si elle a été vérifiée (date et sources) et qu'elle correspond
+   au matériel enregistré : d'abord le modèle exact, puis la marque. Jamais une variante « qui ressemble ». */
+const sameName = (a, b) => !!a && !!b && a.trim().toLowerCase() === b.trim().toLowerCase();
+function guideIllustration(g, mats = []) {
+  const ill = !g.user && typeof ILLUSTRATIONS !== "undefined" ? ILLUSTRATIONS[g.id] : null;
+  if (!ill) return null;
+  const verified = (ill.variants || []).filter(v => v.verifiedOn && v.sources && v.sources.length && v.file);
+  const fits = (v, exact) => mats.find(m => (!v.type || v.type === m.type || v.type === m.kind) && sameName(v.brand, m.brand) &&
+    (exact ? sameName(v.model, m.model) : !v.model));
+  let variant = null, owner = null;
+  for (const exact of [true, false]) {
+    for (const v of verified) { const m = fits(v, exact); if (m) { variant = v; owner = m; break; } }
+    if (variant) break;
+  }
+  const base = variant || ill;
+  return {
+    src: `${ROOT}assets/img/technical/${variant ? variant.file : g.id + ".svg"}`, w: base.w, h: base.h, reperes: base.reperes,
+    variant, owner, modelSpecific: !!ill.modelSpecific,
+    alt: `Schéma de principe : ${g.title}. Les repères numérotés sont détaillés dans la légende.`
+  };
+}
+const figLegend = reperes => `<ol class="fig-legend">${reperes.map((r, i) => `<li${r.length > 24 ? ' class="wide"' : ""}><span class="fig-num" aria-hidden="true">${i + 1}</span><span><span class="sr-only">Repère ${i + 1} : </span>${escapeHtml(r)}</span></li>`).join("")}</ol>`;
+// Mention sous le schéma : exact pour une variante vérifiée, « de principe » sinon (avec le matériel de la personne s'il en a un)
+function figNote(ill, mine = []) {
+  if (ill.variant) return `Schéma vérifié pour votre ${escapeHtml(materielName(ill.owner, true))}.`;
+  const m = ill.modelSpecific && mine[0];
+  return `Schéma de principe — la conception peut varier selon le modèle.${m ? ` Pour votre ${escapeHtml(materielName(m, true))}, sa notice indique l'emplacement exact.` : ""}`;
+}
+function guideFigureHTML(g, ill, mine) {
+  return `<figure class="guide-figure" id="schema">
+        <div class="fig-paper">
+          <img src="${ill.src}" width="${ill.w}" height="${ill.h}" alt="${escapeHtml(ill.alt)}" decoding="async">
+          <a class="fig-zoom no-print" href="${ill.src}" data-zoom>${icon("zoom")} Agrandir<span class="sr-only"> le schéma</span></a>
+        </div>
+        <figcaption>
+          <span class="fig-kicker">${icon("square")} Schéma technique</span>
+          ${figLegend(ill.reperes)}
+          <p class="fig-note">${icon("info")}<span>${figNote(ill, mine)}</span></p>
+        </figcaption>
+      </figure>`;
+}
+
 function guidePageHTML(g, st = {}) {
   const c = categoryById(g.category);
   const parent = c.parent ? categoryById(c.parent) : null;
@@ -32,6 +75,8 @@ function guidePageHTML(g, st = {}) {
   const related = (st.related || []).slice(0, 3);
   const photo = guidePhoto(g);
   const mine = loadMateriel().filter(m => guideFitsMateriel(g, m)).slice(0, 2);
+  // Visuel principal : le schéma technique s'il a été validé, sinon la photo de la fiche ou de son domaine
+  const ill = guideIllustration(g, mine);
   const stepSafety = g.steps.map((s, i) => s.safety ? { n: i + 1, text: s.safety } : null).filter(Boolean);
   const list = (items, ic) => items && items.length
     ? `<ul class="kit-list">${items.map(i => `<li>${icon(ic)}<span>${escapeHtml(i)}</span></li>`).join("")}</ul>`
@@ -41,7 +86,7 @@ function guidePageHTML(g, st = {}) {
 
   return `
   <div class="guide-head">
-    <div class="container guide-wrap guide-head-inner">
+    <div class="container guide-wrap guide-head-inner${ill ? " has-figure" : ""}">
       <nav class="breadcrumb" aria-label="Fil d'Ariane">
         <a href="${ROOT}index.html">${icon("home")} Accueil</a>${icon("chevron")}
         ${parent ? `<a href="${categoryUrl(parent)}">${escapeHtml(parent.name)}</a>${icon("chevron")}` : ""}
@@ -54,14 +99,14 @@ function guidePageHTML(g, st = {}) {
         ${mine.map(m => `<a class="tag tag-orange" href="${ROOT}materiel.html?id=${m.id}">${icon("box")} Pour votre ${escapeHtml(materielName(m, true))}</a>`).join("")}
       </div>
       <h1>${escapeHtml(g.title)}</h1>
-      <figure class="guide-photo">
-        ${photo ? `<img ${imgSrc(photo, "(max-width: 900px) 100vw, 400px")} alt="" width="1000" height="667">` : `<div class="gcard-icon">${icon(c.icon)}</div>`}
-      </figure>
       <div class="guide-facts">
         <div class="fact"><small>${icon("gauge")} Difficulté</small><strong>${dots(g)} ${escapeHtml(g.difficulty)}</strong></div>
         <div class="fact"><small>${icon("clock")} Durée</small><strong>${escapeHtml(g.duration || "—")}</strong></div>
         <div class="fact"><small>${icon("coins")} Économie</small><strong>${g.savings ? escapeHtml(g.savings.replace("≈", "≈ ").replace(/\s+/g, " ")) : "—"}</strong></div>
       </div>
+      ${ill ? guideFigureHTML(g, ill, mine) : `<figure class="guide-photo">
+        ${photo ? `<img ${imgSrc(photo, "(max-width: 900px) 100vw, 400px")} alt="" width="1000" height="667">` : `<div class="gcard-icon">${icon(c.icon)}</div>`}
+      </figure>`}
       <p class="lead">${escapeHtml(g.summary || "")}</p>
       <div class="guide-actions">
         <a class="btn btn-primary btn-lg btn-coach" id="coach-start" href="${guideUrl(g, "coach=1")}">${icon("play")} <span id="coach-label">Commencer le guide</span></a>

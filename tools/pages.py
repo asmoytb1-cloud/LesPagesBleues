@@ -155,7 +155,7 @@ PAGES["categories.html"] = dict(
 PAGES["guide.html"] = dict(
   title="Guide de réparation — Les Pages Bleues",
   desc="Guide de réparation pas à pas, avec mode accompagnement.",
-  scripts=["guide-view.js", "guide.js"], active="guides",
+  scripts=["illustrations-data.js", "guide-view.js", "guide.js"], active="guides",
   body="""    <div id="guide"></div>""")
 
 PAGES["ajouter.html"] = dict(

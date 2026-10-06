@@ -26,6 +26,7 @@ octobre 2026 pour être un compagnon simple et calme (voir § 2 bis).
 | Fonction | Détail |
 |---|---|
 | **124 fiches vérifiées** | 11 domaines (Automobile, Moto, Électroménager, Téléphonie & informatique, Maison & bricolage, Vélo & mobilité, Jardin, Jeux & loisirs, Mode, Instruments, Autres). Chaque fiche : difficulté, durée, économie estimée, précautions de sécurité, outils, pièces, étapes (avec astuces et minuteurs), dépannage, **sources citées** (245 au total) et date de vérification. Au moins une fiche pour chacun des 85 types d'équipement. |
+| **Schémas techniques** | Sur la fiche, juste après difficulté et durée : schéma de principe à repères numérotés, légende en texte, « Agrandir » (zoom ×2), papier clair aussi en thème sombre, imprimé avec la fiche, image de partage dédiée. 12 schémas validés sur les 124 du pack d'octobre 2026 ; les 112 autres sont à refaire (consignes dans `docs/visuels/AUDIT.md`) et ces fiches gardent leur photo. |
 | **Mode accompagnement** | Une étape à la fois, en grand, lecture à voix haute, minuteurs, commandes vocales. |
 | **Diagnostic** | 26 pannes courantes : description libre (ou choix de l'équipement) → questions une par une → « Voici ce que nous avons trouvé » (causes avec probabilité estimée, « Notre conseil ») → guide recommandé. Sans IA (règles pondérées). Photo jointe possible pour une question à la communauté (non analysée). |
 | **Entretien** | Page qui rassemble les entretiens de tout le matériel : À faire, Bientôt, À venir (objet, entretien, échéance). |
@@ -76,13 +77,17 @@ assets/js/
   data.js              ← CATEGORIES et GUIDES (les 124 fiches) — LA source du contenu
   common.js            ← utilitaires partagés : store (localStorage), icônes, en-tête/pied de page, matériel,
                          BONUS_REPARATION, SITE_CONTACT…
-  guide-view.js        ← rendu HTML d'une fiche (utilisé dans le navigateur ET par la génération statique)
+  guide-view.js        ← rendu HTML d'une fiche (utilisé dans le navigateur ET par la génération statique),
+                         dont guideIllustration() : schéma validé, variante de modèle seulement si vérifiée
+  illustrations-data.js← registre des schémas techniques (GÉNÉRÉ par tools/illustrations.js)
   diagnostics-data.js  ← les 26 diagnostics guidés
   materiel-data.js     ← catalogue du matériel (GÉNÉRÉ par tools/materiel.js, ne pas modifier à la main)
   entretien-data.js    ← MAINTENANCE : plans d'entretien par type de matériel
   carnet-core.js       ← calcul des échéances du carnet
   *.js                 ← un script par page (home.js, guides.js, guide.js, materiel.js, carnet.js…)
 assets/img/photos/     ← photos libres de droits + credits.json (auteur, licence)
+assets/img/technical/  ← schémas techniques validés (SVG recadrés) + images de partage 1200×630 (PNG), générés
+docs/visuels/          ← VISUELS_TECHNIQUES.md (règles de dessin) et AUDIT.md (bilan de relecture des schémas)
 tools/
   pages.py             ← gabarit commun + contenu des pages principales
   build.js             ← génère fiches/, categories/, sitemap.xml, robots.txt (+ lance materiel.js)
@@ -90,9 +95,11 @@ tools/
   data/                ← types.json, marques.json, modeles.json, vehicules.txt (listes rédigées par l'équipe)
   fetch-wikidata.py    ← (facultatif) complète les modèles depuis Wikidata (CC0)
   icons.js             ← logo, favicon, icônes web et iPhone, image de partage (Playwright)
+  illustrations.js     ← intègre un pack de schémas : node tools/illustrations.js <dossier du pack> (Playwright)
+  data/illustrations-review.json ← relecture des schémas : « valide » ou « a-refaire » (raison, consigne de dessin)
 tests/
   validate.js          ← contrôles de cohérence (fiches, sources, liens, catalogue, plans d'entretien…)
-  e2e.js               ← 26 tests de bout en bout Playwright (toutes les pages, mobile, thèmes, accessibilité…)
+  e2e.js               ← 27 tests de bout en bout Playwright (toutes les pages, mobile, thèmes, accessibilité…)
 ios/                   ← application iPhone (voir § 5)
 ```
 
@@ -124,6 +131,7 @@ guide: "<id de fiche>", note }`. **Un intervalle doit toujours venir d'une fiche
 ```
 npm install                                   # une fois (Playwright pour les tests)
 python3 tools/pages.py                        # régénère les pages principales
+node tools/illustrations.js <dossier du pack> # (si nouveaux schémas) relecture → assets/img/technical, registre, AUDIT.md
 node tools/build.js                           # régénère fiches/, categories/, catalogue, sitemap
 node tests/validate.js                        # contrôles de cohérence
 python3 -m http.server 8765 &                 # serveur local
@@ -148,6 +156,10 @@ Après chaque modification : `pages.py` → `build.js` → `validate.js` → `e2
 6. **Sécurité d'abord** : chaque fiche commence par les précautions et dit quand appeler un professionnel.
 7. **Confidentialité** : aucun cookie, aucune mesure d'audience, aucune donnée envoyée. Polices hébergées localement.
 8. **Français clair**, pour des gens qui n'ont jamais tenu un tournevis.
+9. **Schémas : une image fausse est pire qu'une image simple mais juste.** Un schéma n'est publié qu'après relecture
+   face au texte de sa fiche (bon objet, chaque repère sur la bonne pièce) ; sinon la fiche garde sa photo. Une
+   variante « marque + modèle » n'est affichée que si elle est vérifiée (date et sources), jamais parce qu'un modèle
+   « ressemble ».
 
 ## 5. L'application iPhone (`ios/`)
 
@@ -170,7 +182,9 @@ Après chaque modification : `pages.py` → `build.js` → `validate.js` → `e2
    entretien), synchronisation iCloud (CloudKit) du matériel et des carnets, raccourcis Siri.
 4. Comptes et partage des fiches entre utilisateurs (backend, modération, conformité DSA/RGPD).
 5. Relecture des fiches par des réparateurs ; nouvelles fiches selon les demandes des testeurs.
-6. Mise en ligne publique du site (il faudra alors compléter les mentions légales : adresse, téléphone, hébergeur).
+6. **Refaire les 112 schémas techniques** jugés faux ou passe-partout, d'après les consignes de `docs/visuels/AUDIT.md`,
+   puis les intégrer avec `tools/illustrations.js`.
+7. Mise en ligne publique du site (il faudra alors compléter les mentions légales : adresse, téléphone, hébergeur).
 
 ## 7. Points juridiques à garder en tête
 

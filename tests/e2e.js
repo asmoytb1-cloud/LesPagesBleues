@@ -33,6 +33,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
   };
 
   const PAGES = ["index.html", "guides.html", "guides.html?q=frein", "categories.html", "fiches/courroie-lave-linge.html", "fiches/remplacer-prise-electrique.html",
+    "fiches/plaquettes-frein.html", "fiches/lave-linge-ne-demarre-plus.html",
     "categories/electromenager.html", "categories/autres.html", "ajouter.html", "communaute.html", "profil.html", "materiel.html", "entretien.html", "plus.html", "diagnostic.html", "diagnostic.html?s=lave-linge-bruit-essorage", "a-propos.html", "mentions-legales.html", "conditions-utilisation.html", "confidentialite.html", "beta.html", "LesPagesBleues/page-inconnue"];
 
   /* ---------- 1. Toutes les pages : sans erreur, sans débordement, dans les deux thèmes ---------- */
@@ -145,6 +146,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     expect((await p.textContent(".sources-box")).includes("ATE"), "les sources doivent être dans le HTML");
     const ld = await p.$$eval('script[type="application/ld+json"]', s => s.map(x => JSON.parse(x.textContent)["@type"]));
     expect(ld.includes("HowTo") && ld.includes("BreadcrumbList"), "données structurées HowTo et BreadcrumbList attendues");
+    expect(await p.$eval(".guide-figure img", i => i.naturalWidth > 0 && i.alt.includes("plaquettes de frein")), "le schéma technique doit être dans le HTML");
     await ctx.close();
   });
   await test("Version imprimable (PDF)", async () => {
@@ -154,6 +156,61 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     expect(await p.$eval(".site-header", e => getComputedStyle(e).display) === "none", "l'en-tête doit être masqué à l'impression");
     expect(await p.$eval(".sources-box", e => getComputedStyle(e).display) !== "none", "les sources doivent rester à l'impression");
     await ctx.close();
+  });
+
+  await test("Schéma technique : visuel principal, légende, agrandir, thème sombre, impression, photo de repli", async () => {
+    const ctx = await newCtx({ viewport: { width: 390, height: 844 } });
+    await ctx.addInitScript(() => localStorage.setItem("lpb-theme", JSON.stringify("dark")));
+    const p = await ctx.newPage(); const errs = []; watch(p, errs);
+    await p.goto(B + "fiches/plaquettes-frein.html", { waitUntil: "load" });
+    // Ordre : titre → difficulté/durée → schéma → résumé … → sécurité → étapes
+    const order = await p.evaluate(() => ["h1", ".guide-facts", ".guide-figure", ".guide-head .lead", "#etapes .safety-box", ".step-list"]
+      .map(sel => document.querySelector(sel)).every((el, i, a) => el && (i === 0 || a[i - 1].compareDocumentPosition(el) & Node.DOCUMENT_POSITION_FOLLOWING)));
+    expect(order, "ordre attendu : titre, difficulté/durée, schéma, résumé, sécurité, étapes");
+    const fig = await p.evaluate(async () => {
+      const img = document.querySelector(".guide-figure img");
+      const svg = await (await fetch(img.src)).text();
+      const legend = [...document.querySelectorAll(".guide-figure .fig-legend li")].map(li => li.textContent.replace(/^\d+\s*Repère \d+ : /, "").trim());
+      const lum = c => { const [r, g, b] = c.match(/\d+/g).map(Number); return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255; };
+      return { loaded: img.complete && img.naturalWidth > 0, alt: img.alt, legend, nums: (svg.match(/>\d+<\/text>/g) || []).length,
+        paper: lum(getComputedStyle(document.querySelector(".fig-paper")).backgroundColor), page: lum(getComputedStyle(document.body).backgroundColor),
+        note: document.querySelector(".fig-note").textContent, kicker: document.querySelector(".fig-kicker").textContent.trim(),
+        w: document.querySelector(".fig-paper").getBoundingClientRect().width, iw: img.getBoundingClientRect().width };
+    });
+    expect(fig.loaded, "le schéma doit se charger");
+    expect(/^Schéma de principe : Changer les plaquettes de frein/.test(fig.alt), "texte alternatif descriptif attendu : " + fig.alt);
+    expect(fig.legend.join() === "Disque,Étrier,Plaquette,Moyeu" && fig.nums === 4, `légende et numéros du dessin doivent correspondre (${fig.legend} / ${fig.nums})`);
+    expect(fig.kicker === "Schéma technique" && fig.note.includes("Schéma de principe") && fig.note.includes("peut varier selon le modèle"), "mentions « Schéma technique » et « Schéma de principe » attendues");
+    expect(fig.paper > 0.85 && fig.page < 0.2, "en thème sombre, le schéma reste sur papier clair (pas de dessin inversé)");
+    expect(fig.w >= 356 && fig.iw >= 320, `sur téléphone, le schéma occupe toute la largeur (${fig.w} / ${fig.iw} px)`);
+    // Agrandir : fenêtre, zoom ×2 qu'on fait défiler, Échap pour fermer, retour au bouton
+    await p.click(".fig-zoom");
+    await p.waitForSelector(".modal-box.modal-wide .zoom-stage img");
+    expect(await p.$eval(".zoom-stage img", i => i.naturalWidth > 0), "le schéma agrandi doit se charger");
+    expect((await p.$$(".modal-box .fig-legend li")).length === 4, "la légende doit suivre dans la fenêtre agrandie");
+    await p.click("[data-zoom-toggle]");
+    expect(await p.$eval("[data-zoom-toggle]", b => b.getAttribute("aria-pressed")) === "true", "le zoom ×2 doit être signalé (aria-pressed)");
+    expect(await p.$eval(".zoom-stage", s => s.scrollWidth > s.clientWidth + 100), "zoomé, le schéma doit déborder pour être parcouru");
+    await p.keyboard.press("Escape");
+    expect(!(await p.$(".modal")), "Échap doit fermer la fenêtre");
+    expect(await p.evaluate(() => document.activeElement.classList.contains("fig-zoom")), "le focus doit revenir sur « Agrandir »");
+    await p.click(".fig-paper img");   // toucher le dessin l'agrandit aussi
+    await p.waitForSelector(".modal .zoom-stage");
+    await p.keyboard.press("Escape");
+    // Impression : schéma et légende gardés, sans le bouton
+    await p.emulateMedia({ media: "print" });
+    expect(await p.$eval(".fig-zoom", e => getComputedStyle(e).display) === "none", "pas de bouton « Agrandir » à l'impression");
+    expect(await p.$eval(".guide-figure img", e => e.getBoundingClientRect().height > 100), "le schéma doit être imprimé");
+    await p.emulateMedia({ media: "screen" });
+    // Sans schéma validé : la photo reste
+    await p.goto(B + "fiches/pression-pneus-voiture.html", { waitUntil: "load" });
+    expect(!(await p.$(".guide-figure")) && await p.$eval(".guide-photo img", i => i.naturalWidth > 0), "sans schéma validé, la fiche garde sa photo");
+    // Matériel enregistré : la mention renvoie à la notice de son appareil (aucune variante vérifiée)
+    await p.evaluate(() => localStorage.setItem("lpb-materiel", JSON.stringify([{ id: "m1", kind: "appareil", type: "lave-linge", typeName: "Lave-linge", brand: "Bosch", category: "electromenager" }])));
+    await p.goto(B + "fiches/lave-linge-ne-demarre-plus.html", { waitUntil: "load" });
+    expect((await p.textContent(".fig-note")).includes("Pour votre lave-linge Bosch"), "la mention doit citer le matériel enregistré");
+    await ctx.close();
+    expect(!errs.length, errs.join(" | "));
   });
 
   /* ---------- 4. Mode accompagnement ---------- */
@@ -509,6 +566,12 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     await p.reload();
     expect(/robinet/i.test(await p.textContent("h1")), "la fiche visitée doit s'afficher hors ligne");
     await ctx.setOffline(false);
+    await p.goto(B + "fiches/plaquettes-frein.html", { waitUntil: "load" });
+    await p.waitForTimeout(300);
+    await ctx.setOffline(true);
+    await p.reload({ waitUntil: "load" });
+    expect(await p.$eval(".guide-figure img", i => i.naturalWidth > 0), "le schéma d'une fiche visitée doit s'afficher hors ligne");
+    await ctx.setOffline(false);
     await ctx.close();
   });
 
@@ -519,7 +582,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     for (const theme of ["dark", "light"]) {
       const ctx = await newCtx();
       await ctx.addInitScript(t => localStorage.setItem("lpb-theme", JSON.stringify(t)), theme);
-      for (const u of ["index.html", "guides.html?q=frein", "fiches/courroie-lave-linge.html", "diagnostic.html", "ajouter.html", "communaute.html", "profil.html", "materiel.html", "materiel.html?ajouter=1", "entretien.html", "plus.html", "carnet.html", "categories.html", "categories/jardin.html", "a-propos.html"]) {
+      for (const u of ["index.html", "guides.html?q=frein", "fiches/courroie-lave-linge.html", "diagnostic.html", "ajouter.html", "communaute.html", "profil.html", "materiel.html", "materiel.html?ajouter=1", "entretien.html", "plus.html", "carnet.html", "categories.html", "categories/jardin.html", "a-propos.html", "fiches/plaquettes-frein.html"]) {
         const p = await ctx.newPage();
         await p.goto(B + u, { waitUntil: "load" });
         await p.addScriptTag({ content: axe });
@@ -541,7 +604,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
         window.__cls = 0;
         new PerformanceObserver(l => { for (const e of l.getEntries()) if (!e.hadRecentInput) window.__cls += e.value; }).observe({ type: "layout-shift", buffered: true });
       });
-      for (const u of ["index.html", "guides.html", "guides.html?q=frein", "categories.html", "diagnostic.html", "materiel.html", "plus.html", "profil.html", "communaute.html", "fiches/deboucher-toilettes.html"]) {
+      for (const u of ["index.html", "guides.html", "guides.html?q=frein", "categories.html", "diagnostic.html", "materiel.html", "plus.html", "profil.html", "communaute.html", "fiches/deboucher-toilettes.html", "fiches/plaquettes-frein.html"]) {
         const p = await ctx.newPage();
         await p.goto(B + u, { waitUntil: "load" });
         await p.waitForTimeout(600);

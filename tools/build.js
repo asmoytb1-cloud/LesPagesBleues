@@ -15,12 +15,12 @@ const CAT_OUT = path.join(ROOT_DIR, "categories");
 // Charge les scripts du site dans un bac à sable, comme le ferait le navigateur (sans DOM)
 const sandbox = { window: { LPB_ROOT: "../" }, navigator: {}, console, URLSearchParams };
 vm.createContext(sandbox);
-for (const f of ["data.js", "common.js", "guide-view.js", "diagnostics-data.js", "materiel-data.js"]) {
+for (const f of ["data.js", "common.js", "illustrations-data.js", "guide-view.js", "diagnostics-data.js", "materiel-data.js"]) {
   vm.runInContext(fs.readFileSync(path.join(ROOT_DIR, "assets/js", f), "utf8") + "\n;globalThis.__ok = true;", sandbox, { filename: f });
 }
 const { GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon,
-  DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, CAR_MAKES, MOTO_MAKES, guidesForType, imgSrc, photoUrl, bonusFor, bonusText, BONUS_REPARATION } = vm.runInContext(
-  "({ GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon, DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, CAR_MAKES, MOTO_MAKES, guidesForType, imgSrc, photoUrl, bonusFor, bonusText, BONUS_REPARATION })", sandbox);
+  DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, CAR_MAKES, MOTO_MAKES, guidesForType, imgSrc, photoUrl, bonusFor, bonusText, BONUS_REPARATION, ILLUSTRATIONS } = vm.runInContext(
+  "({ GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon, DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, CAR_MAKES, MOTO_MAKES, guidesForType, imgSrc, photoUrl, bonusFor, bonusText, BONUS_REPARATION, ILLUSTRATIONS })", sandbox);
 
 const esc = s => escapeHtml(s);
 // Thème automatique (réglage du téléphone) sauf choix explicite, appliqué avant l'affichage — comme tools/pages.py
@@ -30,10 +30,17 @@ const THEME_HEAD = `<meta name="color-scheme" content="light dark">
   <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var c=t==="dark"?"#0a1426":"#f4f7fb";document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",c)})}}catch(e){}})()</script>`;
 const iso = m => m ? `PT${Math.floor(m / 60) ? Math.floor(m / 60) + "H" : ""}${m % 60 ? m % 60 + "M" : ""}` : undefined;
 
+// Image d'une fiche pour le partage et les moteurs de recherche : son schéma technique validé, sinon sa photo
+function guideImage(g) {
+  const c = categoryById(g.category);
+  return ILLUSTRATIONS[g.id] ? `${SITE}assets/img/technical/${g.id}.png`
+    : `${SITE}assets/img/photos/${g.photo || c.photo || (c.parent && categoryById(c.parent).photo)}.webp`;
+}
+
 function jsonLd(g) {
   const c = categoryById(g.category);
   const url = `${SITE}fiches/${g.id}.html`;
-  const img = `${SITE}assets/img/photos/${g.photo || c.photo || (c.parent && categoryById(c.parent).photo)}.webp`;
+  const img = guideImage(g);
   const howto = {
     "@context": "https://schema.org",
     "@type": "HowTo",
@@ -250,8 +257,6 @@ ${ELECTRIC.has(c.parent || c.id) ? endOfLife(types) : ""}
 }
 
 function page(g) {
-  const c = categoryById(g.category);
-  const photo = g.photo || c.photo || (c.parent && categoryById(c.parent).photo);
   const title = `${g.title} : guide pas à pas — Les Pages Bleues`;
   const desc = `${g.summary} Difficulté : ${g.difficulty.toLowerCase()}, durée : ${g.duration}.`;
   const body = guidePageHTML(g, { related: relatedGuides(g, GUIDES) });
@@ -271,7 +276,10 @@ ${THEME_HEAD}
   <meta property="og:site_name" content="Les Pages Bleues">
   <meta property="og:title" content="${esc(g.title)}">
   <meta property="og:description" content="${esc(g.summary)}">
-  <meta property="og:image" content="${SITE}assets/img/photos/${photo}.webp">
+  <meta property="og:image" content="${guideImage(g)}">${ILLUSTRATIONS[g.id] ? `
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="${esc(`Schéma de principe : ${g.title}`)}">` : ""}
   <meta property="og:locale" content="fr_FR">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="../assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -288,6 +296,7 @@ ${THEME_HEAD}
   <script>window.LPB_ROOT = "../"; window.LPB_GUIDE_ID = ${JSON.stringify(g.id)};</script>
   <script src="../assets/js/data.js"></script>
   <script src="../assets/js/common.js"></script>
+  <script src="../assets/js/illustrations-data.js"></script>
   <script src="../assets/js/guide-view.js"></script>
   <script src="../assets/js/guide.js"></script>
 </body>
