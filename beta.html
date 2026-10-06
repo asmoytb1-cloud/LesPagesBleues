@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Bêta ouverte — Les Pages Bleues</title>
   <meta name="description" content="Les Pages Bleues est en bêta ouverte et gratuite : ce qui marche déjà, ce qui arrive, et comment nous aider en donnant votre avis.">
-  <meta name="theme-color" content="#050b18">
-  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1426" media="(prefers-color-scheme: dark)">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var c=t==="dark"?"#0a1426":"#f4f7fb";document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",c)})}}catch(e){}})()</script>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="assets/img/icon-180.png">
@@ -25,7 +27,7 @@
   <header id="site-header"></header>
   <main id="main" tabindex="-1">
     <section class="page-hero">
-      <div class="container"><h1>Bêta <span class="accent">ouverte</span></h1><p>Gratuite, sans inscription. Testez, cassez, dites-nous tout.</p></div>
+      <div class="container"><h1>Bêta ouverte</h1><p>Gratuite, sans inscription. Testez, cassez, dites-nous tout.</p></div>
     </section>
     <section class="section">
       <div class="narrow prose" id="beta-root"></div>

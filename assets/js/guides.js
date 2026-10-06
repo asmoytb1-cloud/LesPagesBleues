@@ -25,6 +25,8 @@ fCat.innerHTML = `<option value="">Tous les domaines</option>` + CATEGORIES.map(
   `<option value="${c.id}">${c.parent ? "— " : ""}${escapeHtml(c.name)}</option>`).join("");
 qInput.value = state.q; fCat.value = state.cat; fDiff.value = state.diff; fTime.value = state.time; sortSel.value = state.sort;
 if (params.get("focus")) qInput.focus();
+// Filtres repliés, sauf s'ils sont déjà utilisés (adresse partagée, retour en arrière)
+$("filters").open = !!(state.cat || state.diff || state.time || state.fav || state.sort !== "pertinence");
 
 const euros = g => parseInt((g.savings || "0").replace(/\D/g, ""), 10) || 0;
 const SORTS = {
@@ -83,19 +85,29 @@ function postCard(p) {
 function render() {
   const words = queryWords(state.q);
   const guides = guideResults(), diags = diagResults(), posts = postResults();
-  $("page-title").innerHTML = state.q
-    ? `Résultats pour <span class="accent">« ${escapeHtml(state.q)} »</span>`
-    : state.materiel ? `Pour votre <span class="accent">${escapeHtml(materielName(state.materiel, true))}</span>`
-    : state.type ? `Fiches : <span class="accent">${escapeHtml(typeLabel(state.type))}</span>`
-    : state.fav ? `Mes <span class="accent">favoris</span>`
-    : state.cat ? `${escapeHtml(categoryById(state.cat).name)}`
-    : `Tous les <span class="accent">guides</span>`;
+  $("page-title").textContent = state.q ? `Résultats pour « ${state.q} »`
+    : state.materiel ? `Pour votre ${materielName(state.materiel, true)}`
+    : state.type ? `Fiches : ${typeLabel(state.type)}`
+    : state.fav ? "Mes favoris"
+    : state.cat ? categoryById(state.cat).name
+    : "Guides";
+  // Sans recherche ni filtre : les domaines d'abord, puis toutes les fiches
+  const browsing = !state.q && !state.materiel && !state.type && !state.fav && !state.cat && !state.diff && !state.time;
+  $("domains").hidden = !browsing;
+  $("domains").innerHTML = browsing ? `
+    <h2 class="h2" style="margin-bottom:12px">Domaines</h2>
+    <div class="domain-grid">${topCategories().map(c => `
+      <a class="domain-tile" href="${categoryUrl(c)}"><span class="tile-ico">${icon(c.icon)}</span>
+        <span><strong>${escapeHtml(c.name)}</strong><small>${allGuides().filter(g => inCategory(g, c.id)).length} fiches</small></span>${icon("chevron")}</a>`).join("")}</div>
+    <h2 class="h2" style="margin-top:28px">Toutes les fiches</h2>` : "";
+  if (!state.q && (state.tab === "diag" || state.tab === "posts")) state.tab = "all";
+  $("tabs").hidden = !state.q;
   document.title = (state.q ? `« ${state.q} » — ` : "") + "Rechercher un guide — Les Pages Bleues";
 
-  const tabs = [["all", "Tous", guides.length + diags.length + (state.q ? posts.length : 0)], ["guides", "Guides", guides.length], ["diag", "Diagnostics", diags.length], ["posts", "Discussions", posts.length]];
+  const tabs = [["all", "Tout", guides.length + diags.length + (state.q ? posts.length : 0)], ["guides", "Fiches", guides.length], ["diag", "Diagnostic", diags.length], ["posts", "Discussions", posts.length]];
   $("tabs").innerHTML = tabs.map(([k, t, n]) =>
     `<button class="tab" role="tab" type="button" data-tab="${k}" aria-selected="${state.tab === k}">${t}<span class="chip-n">${n}</span></button>`).join("");
-  $("filterbar").hidden = state.tab === "diag" || state.tab === "posts";
+  $("filters").hidden = state.tab === "diag" || state.tab === "posts";
   favBtn.classList.toggle("active", state.fav);
   favBtn.setAttribute("aria-pressed", state.fav);
 
@@ -109,8 +121,8 @@ function render() {
     <button class="btn btn-ghost btn-sm" type="button" data-unmat>Voir toutes les fiches</button></div>`);
   let count = "";
   if (state.tab === "all" || state.tab === "guides") {
-    count = `<strong>${guides.length}</strong> guide${guides.length > 1 ? "s" : ""}${state.q ? ` pour « ${escapeHtml(state.q)} »` : ""}`;
-    if (state.tab === "all" && diags.length) out.push(`<h2 class="section-head" style="font-size:1.1rem;margin:0 0 10px">Diagnostics guidés</h2><div class="rows">${diags.slice(0, 2).map(diagCard).join("")}</div><h2 class="section-head" style="font-size:1.1rem;margin:22px 0 10px">Guides</h2>`);
+    count = `<strong>${guides.length}</strong> fiche${guides.length > 1 ? "s" : ""}${state.q ? ` pour « ${escapeHtml(state.q)} »` : ""}`;
+    if (state.tab === "all" && diags.length) out.push(`<h2 class="h2" style="margin:0 0 10px">Diagnostic</h2><div class="rows">${diags.slice(0, 2).map(diagCard).join("")}</div><h2 class="h2" style="margin:22px 0 10px">Fiches</h2>`);
     if (guides.length) {
       out.push(`<div class="rows" id="guide-rows">${guides.slice(0, state.shown).map(g => guideRow(g, words)).join("")}</div>`);
       if (guides.length > state.shown) out.push(`<div class="more-row"><button class="btn btn-ghost" type="button" data-more>Voir plus de résultats (${guides.length - state.shown})</button></div>`);
@@ -122,7 +134,7 @@ function render() {
         <div class="empty-actions"><button class="btn btn-ghost" type="button" data-reset>Effacer les filtres</button>
         <a class="btn btn-primary" href="diagnostic.html${state.q ? "?q=" + encodeURIComponent(state.q) : ""}">${icon("stethoscope")}Diagnostic guidé</a></div></div>`);
     }
-    if (state.tab === "all" && state.q && posts.length) out.push(`<h2 class="section-head" style="font-size:1.1rem;margin:22px 0 10px">Discussions</h2><div class="rows">${posts.slice(0, 3).map(postCard).join("")}</div>`);
+    if (state.tab === "all" && state.q && posts.length) out.push(`<h2 class="h2" style="margin:22px 0 10px">Discussions</h2><div class="rows">${posts.slice(0, 3).map(postCard).join("")}</div>`);
   } else if (state.tab === "diag") {
     count = `<strong>${diags.length}</strong> diagnostic${diags.length > 1 ? "s" : ""} guidé${diags.length > 1 ? "s" : ""}`;
     out.push(diags.length ? `<div class="rows">${diags.map(diagCard).join("")}</div>`

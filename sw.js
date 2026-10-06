@@ -1,14 +1,15 @@
 /* Les Pages Bleues — service worker : le site reste utilisable sans réseau (garage, cave, jardin…) */
-const CACHE = "lpb-v14";
+const CACHE = "lpb-v15";
 const CORE = [
   "./", "index.html", "guides.html", "guide.html", "categories.html", "diagnostic.html", "communaute.html",
-  "profil.html", "ajouter.html", "materiel.html", "carnet.html", "a-propos.html", "beta.html", "404.html",
-  "assets/css/style.css", "assets/fonts/inter-latin.woff2", "assets/fonts/caveat-600-latin.woff2",
+  "profil.html", "ajouter.html", "materiel.html", "carnet.html", "entretien.html", "plus.html", "a-propos.html", "beta.html", "404.html",
+  "assets/css/style.css", "assets/fonts/inter-latin.woff2",
   "assets/js/data.js", "assets/js/common.js", "assets/js/home.js", "assets/js/guides.js", "assets/js/categories.js",
   "assets/js/guide-view.js", "assets/js/guide.js", "assets/js/ajouter.js", "assets/js/communaute.js",
   "assets/js/profil.js", "assets/js/diagnostics-data.js", "assets/js/diagnostic.js", "assets/js/apropos.js",
-  "assets/js/materiel-data.js", "assets/js/materiel.js", "assets/js/entretien-data.js", "assets/js/carnet-core.js", "assets/js/carnet.js", "assets/js/beta.js",
-  "assets/img/favicon.svg", "assets/img/icon-192.png", "assets/img/photos/hero.webp", "assets/img/photos/hero-480.webp", "assets/img/photos/hero-800.webp", "manifest.webmanifest"
+  "assets/js/materiel-data.js", "assets/js/materiel.js", "assets/js/entretien-data.js", "assets/js/carnet-core.js", "assets/js/carnet.js",
+  "assets/js/entretien.js", "assets/js/plus.js", "assets/js/beta.js",
+  "assets/img/favicon.svg", "assets/img/logo.svg", "assets/img/icon-192.png", "manifest.webmanifest"
 ];
 
 self.addEventListener("install", e => {

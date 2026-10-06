@@ -10,7 +10,6 @@ const params = new URLSearchParams(location.search);
 const item = materielById(params.get("id") || "");
 let c = item ? loadCarnet(item.id) : null;
 const ORDER = { defaillant: 0, retard: 1, bientot: 2, inconnu: 3, ok: 4, libre: 5 };
-const STATE_LABEL = { defaillant: "Défaillant", retard: "En retard", bientot: "Bientôt", inconnu: "À renseigner", ok: "À jour", libre: "Selon la notice" };
 const today = () => new Date().toISOString().slice(0, 10);
 const newId = () => "e" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 const fmtKm = n => `${Math.round(n).toLocaleString("fr-FR")} km`;
@@ -60,16 +59,16 @@ function statusText(t, st) {
 function taskRow(t) {
   const st = taskStatus(item, c, t);
   const g = t.guide && guideById(t.guide);
+  const detail = STATE_INFO[st.state].detail;
   return `
     <li class="task task-${st.state}">
-      <span class="task-dot" aria-hidden="true"></span>
       <div class="task-body">
-        <strong>${escapeHtml(t.label)}</strong> <span class="task-state">${STATE_LABEL[st.state]}</span>
+        <div class="task-top"><strong>${escapeHtml(t.label)}</strong>${statusPill(st.state)}${detail ? `<span class="muted" style="font-size:.86rem">${detail}</span>` : ""}</div>
         <small>${escapeHtml(statusText(t, st))}</small>
         <small class="muted">${escapeHtml(intervalText(t))}${t.note ? ` — ${escapeHtml(t.note)}` : ""}</small>
       </div>
       <div class="task-actions no-print">
-        <button class="btn btn-primary btn-sm" type="button" data-log-task="${t.id}">${icon("check")} ${t.kind === "controle" ? "Contrôlé" : "Fait"}</button>
+        <button class="btn btn-primary btn-sm" type="button" data-log-task="${t.id}">${icon("check")} ${t.kind === "controle" ? "Contrôlé" : "C'est fait"}</button>
         ${g ? `<a class="btn btn-ghost btn-sm" href="${guideUrl(g)}">${icon("doc")} Fiche</a>` : ""}
         <button class="icon-btn" type="button" data-edit-task="${t.id}" aria-label="Régler « ${escapeHtml(t.label)} »">${icon("gauge")}</button>
       </div>
@@ -137,9 +136,9 @@ function settingsHtml() {
 
 function render() {
   if (!item) {
-    root.innerHTML = `<div class="empty">${icon("box")}<h2>Matériel introuvable</h2>
+    root.innerHTML = `<section class="section"><div class="narrow"><div class="empty">${icon("box")}<h1 class="h2">Matériel introuvable</h1>
       <p>Ce carnet n'existe pas dans ce navigateur. Les carnets sont enregistrés sur l'appareil où ils ont été créés ; importez-le si vous l'avez exporté.</p>
-      <div class="empty-actions"><a class="btn btn-primary" href="materiel.html">Mon matériel</a></div></div>`;
+      <div class="empty-actions"><a class="btn btn-primary" href="materiel.html">Mon matériel</a></div></div></div></section>`;
     return;
   }
   document.title = `Carnet d'entretien : ${materielName(item)} — Les Pages Bleues`;
@@ -154,15 +153,14 @@ function render() {
   const details = [item.model && !isVehicle(item) ? item.model : "", item.engine, item.year].filter(Boolean).join(" · ");
 
   root.innerHTML = `
-    <section class="page-hero carnet-hero">
+    <section class="carnet-hero">
       <div class="container">
         <nav class="breadcrumb no-print" aria-label="Fil d'Ariane">
-          <a href="index.html">${icon("home")} Accueil</a>${icon("chevron")}
-          <a href="materiel.html">Mon matériel</a>${icon("chevron")}
-          <span aria-current="page">Carnet d'entretien</span>
+          <a href="materiel.html">${icon("back")} Mon matériel</a>${icon("chevron")}
+          <a href="materiel.html?id=${item.id}">${escapeHtml(materielName(item))}</a>
         </nav>
         <div class="carnet-head">
-          <span class="mat-ico">${icon(item.icon || "box")}</span>
+          <span class="mat-thumb">${item.photo ? `<img src="${item.photo}" alt="">` : icon(item.icon || "box")}</span>
           <div>
             <p class="eyebrow">Carnet d'entretien</p>
             <h1>${escapeHtml(materielName(item))}</h1>
@@ -194,7 +192,7 @@ function render() {
 
     <section class="section section-tight">
       <div class="container">
-        <div class="section-head"><h2>À <span class="accent">venir</span></h2>
+        <div class="section-head"><h2>Entretiens et contrôles</h2>
           <div class="carnet-tools no-print">
             <button class="btn btn-primary btn-sm" type="button" data-log-free>${icon("plus")} Noter une intervention</button>
             <button class="btn btn-ghost btn-sm" type="button" data-add-task>${icon("plus")} Suivre autre chose</button>
@@ -407,6 +405,13 @@ root.addEventListener("change", async e => {
 });
 
 render();
+
+// Depuis la page Entretien ou l'accueil : carnet.html?id=…&task=<id> ouvre directement la saisie
+const fromTask = item && params.get("task") && carnetPlan(item, c).find(t => t.id === params.get("task") && !t.off);
+if (fromTask) {
+  entryForm({ title: fromTask.label, kind: fromTask.kind, task: fromTask.id, label: fromTask.label, guide: fromTask.guide });
+  history.replaceState(null, "", `carnet.html?id=${item.id}`);
+}
 
 // Depuis une fiche terminée : carnet.html?id=…&fiche=<id> ouvre directement la saisie de l'intervention
 const fromGuide = item && params.get("fiche") && guideById(params.get("fiche"));

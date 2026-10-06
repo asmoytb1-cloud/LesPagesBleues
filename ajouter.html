@@ -3,17 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Partager un guide — Les Pages Bleues</title>
+  <title>Ajouter une fiche — Les Pages Bleues</title>
   <meta name="description" content="Transmettez votre savoir-faire : rédigez une fiche de réparation en quatre étapes.">
-  <meta name="theme-color" content="#050b18">
-  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1426" media="(prefers-color-scheme: dark)">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var c=t==="dark"?"#0a1426":"#f4f7fb";document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",c)})}}catch(e){}})()</script>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="assets/img/icon-180.png">
   <link rel="canonical" href="https://asmoytb1-cloud.github.io/LesPagesBleues/ajouter.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Les Pages Bleues">
-  <meta property="og:title" content="Partager un guide — Les Pages Bleues">
+  <meta property="og:title" content="Ajouter une fiche — Les Pages Bleues">
   <meta property="og:description" content="Transmettez votre savoir-faire : rédigez une fiche de réparation en quatre étapes.">
   <meta property="og:image" content="https://asmoytb1-cloud.github.io/LesPagesBleues/assets/img/og-image.png">
   <meta property="og:locale" content="fr_FR">
@@ -26,8 +28,8 @@
   <main id="main" tabindex="-1">
     <section class="page-hero">
       <div class="container">
-        <h1>Partager un <span class="accent">guide</span></h1>
-        <p>Transmettez votre savoir-faire à la communauté, en quatre étapes.</p>
+        <h1>Ajouter une fiche</h1>
+        <p>Transmettez une réparation que vous savez faire, en quatre étapes.</p>
       </div>
     </section>
     <section class="section">

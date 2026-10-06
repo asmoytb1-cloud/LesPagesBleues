@@ -2,22 +2,37 @@
 
 L'encyclopédie collaborative de l'entretien et de la réparation, en français — **Réparer. Comprendre. Transmettre.**
 
-Trouvez en quelques clics comment réparer vos objets, au lieu de les jeter.
+« Je rencontre un problème → Les Pages Bleues m'aident à trouver une solution. » Réparer, entretenir et faire durer
+ses objets, au lieu de les jeter.
+
+## Le parcours
+
+L'accueil pose une seule question — *Que voulez-vous faire aujourd'hui ?* — avec une grande recherche
+(« Décrivez votre problème… ») et quatre choix : **Réparer** (j'ai un problème), **Entretenir** (éviter les pannes),
+**Mon matériel** (mes appareils et véhicules) et **Explorer** (tous les guides). Partout, la même barre de navigation :
+**Accueil · Diagnostic · Guides · Matériel · Plus**.
+
+L'interface est pensée pour être calme et accessible à tous, y compris aux personnes autistes ou fatiguées : mots
+simples, une action par élément, de grandes zones à toucher, aucune animation décorative, et jamais une couleur seule
+pour porter une information (toujours un mot et une icône). Le thème suit le réglage de l'appareil (clair par défaut,
+bleu nuit le soir) et peut être imposé dans **Plus › Apparence**.
 
 ## Ce que fait le site
 
 | | |
 | --- | --- |
 | **124 guides vérifiés** | Automobile, électroménager, téléphonie, maison, vélo, jardin, loisirs, mode, instruments. Chaque fiche cite ses sources et sa date de vérification. |
-| **Mode accompagnement** | Une étape à la fois en plein écran : minuteurs, lecture à voix haute, commandes vocales (« suivant », « répète »…), écran maintenu allumé, reprise là où on s'est arrêté. |
-| **Diagnostic guidé** | 26 pannes courantes : on décrit le problème (texte ou voix), quelques questions, les causes sont classées avec un niveau de confiance, puis on va vers la bonne fiche… ou vers un réparateur labellisé. |
+| **Fiche guide** | Titre, photo, difficulté, durée, économie, puis quatre onglets : Étapes, Outils, Pièces, Sécurité. Bouton « Commencer le guide » vers le mode accompagnement. |
+| **Mode accompagnement** | Une étape à la fois en plein écran (« Étape suivante → ») : minuteurs, lecture à voix haute, commandes vocales (« suivant », « répète »…), écran maintenu allumé, reprise là où on s'est arrêté. |
+| **Diagnostic** | 26 pannes courantes, sans intelligence artificielle : on décrit ce qui se passe (texte ou voix) ou on choisit l'équipement, on répond à quelques questions une par une, puis « Voici ce que nous avons trouvé » : causes classées avec une probabilité estimée, « Notre conseil » et le guide recommandé. Une photo peut être jointe à la question posée à la communauté (elle n'est pas analysée). |
 | **Mon matériel** | On enregistre ses appareils, sa voiture ou sa moto et on ne voit que les fiches qui les concernent (au moins une fiche pour chaque type d'équipement). Catalogue : 85 types d'équipement avec leurs marques courantes, des modèles courants (smartphones, consoles, voitures, motos…) et saisie libre pour tout le reste. |
+| **Entretien** | Tous les entretiens de tout le matériel sur une page : À faire, Bientôt, À venir, avec l'objet, l'entretien et l'échéance. |
 | **Carnet d'entretien** | Pour chaque matériel : entretiens et contrôles à venir (séparés), intervalles tirés des fiches et réglables, prévision de la date selon le kilométrage moyen, plan adapté (énergie, transmission), contrôles « défaillant » reliés à la bonne fiche, historique avec factures, statistiques de coûts, impression PDF, export pour la revente, rappels agenda (.ics). |
 | **Recherche** | Synonymes, accents et pluriels ignorés, suggestions instantanées ; onglets Guides / Diagnostics / Discussions, filtres domaine, difficulté, durée, favoris et tri. |
 | **Communauté** | Questions, astuces et retours de réparateurs structurés (symptôme, cause trouvée, réparation, temps, difficulté). |
 | **Profil** | Fiches publiées, réparations, favoris, 10 badges, export / import / effacement des données. |
 | **Contribution** | Formulaire en 4 étapes (informations, contenu, images, publication), brouillon automatique, photos compressées, fiches modifiables. |
-| **Qualité** | Thème clair et sombre, version mobile avec barre d'onglets, hors ligne (installable sur téléphone), impression / PDF, accessibilité vérifiée (WCAG AA), une page statique par fiche pour le référencement. |
+| **Qualité** | Thème automatique, clair ou sombre, version mobile avec barre d'onglets, hors ligne (installable sur téléphone), impression / PDF, accessibilité vérifiée (WCAG AA), une page statique par fiche pour le référencement. |
 
 > **Important** : il n'y a pas encore de serveur. Fiches perso, messages, favoris et profil sont enregistrés **dans le navigateur de chaque visiteur**. Les comptes et le partage réel viendront avec un back-end.
 
@@ -46,6 +61,10 @@ Pensez à changer `REVIEWED_ON` dans `data.js` quand vous revérifiez les fiches
 
 Les pages principales (accueil, recherche, catégories…) sont générées par `python3 tools/pages.py` à partir de gabarits : modifiez le gabarit dans ce fichier plutôt que le HTML directement.
 
+Le logo (une page au coin replié bleu, d'où l'on a découpé une clé) est dessiné une seule fois dans `tools/icons.js`,
+qui produit le favicon, les icônes de l'application web, l'image de partage et les icônes de l'app iPhone (claire,
+sombre et teintée) : `node tools/icons.js` après une modification du logo.
+
 ## Application iPhone (Xcode)
 
 Le dossier `ios/` contient une application iOS qui embarque tout le site : il fonctionne hors ligne et
@@ -62,8 +81,9 @@ les données restent sur l'iPhone (stockage local de l'app).
 après une modification des fiches, puis Run. Avec un compte Apple gratuit, l'app installée expire au bout de 7 jours :
 il suffit de relancer Run. Pour inspecter l'app : Safari sur le Mac › menu Développement › votre iPhone.
 
-Dans l'app, les liens externes et les e-mails s'ouvrent dans Safari et Mail, l'impression passe par iOS, et les fichiers
-exportés (carnet, données, rappels d'agenda) sont proposés dans la feuille de partage.
+Dans l'app, les liens externes et les e-mails s'ouvrent dans Safari et Mail, l'impression passe par iOS, les fichiers
+exportés (carnet, données, rappels d'agenda) sont proposés dans la feuille de partage, et la barre d'état suit le thème
+choisi sur le site (automatique, clair ou sombre).
 
 ## Mettre à jour le catalogue du matériel
 
@@ -81,10 +101,10 @@ Pour compléter avec des données ouvertes, `python3 tools/fetch-wikidata.py` t�
 ```sh
 npm install                      # une seule fois
 npx playwright install chromium  # une seule fois
-npm test                         # génération + validation + 23 tests dans un vrai navigateur
+npm test                         # génération + validation + 26 tests dans un vrai navigateur
 ```
 
-Les tests couvrent toutes les pages (ordinateur et mobile, thèmes clair et sombre), la recherche, les fiches, le mode accompagnement, le diagnostic, la contribution avec photo, la communauté, le profil, le mode hors ligne, l'accessibilité (axe-core, ordre des titres) et la stabilité de la mise en page au chargement.
+Les tests couvrent toutes les pages (ordinateur et mobile, thèmes clair et sombre), l'accueil et la navigation, la recherche, les fiches et leurs onglets, le mode accompagnement, le diagnostic, Mon matériel, l'entretien, le choix du thème, la contribution avec photo, la communauté, le profil, le mode hors ligne, l'accessibilité (axe-core, ordre des titres) et la stabilité de la mise en page au chargement.
 
 ## Mettre en ligne (GitHub Pages)
 
@@ -99,15 +119,16 @@ Si vous utilisez un nom de domaine, remplacez l'adresse `SITE` dans `tools/build
 ```
 index.html, guides.html, categories.html, …   pages du site
 fiches/                                        une page statique par guide (générée)
-assets/css/style.css                           styles (couleurs en variables, thèmes, mobile, impression)
+assets/css/style.css                           système de design : couleurs en variables (clair, sombre), composants, mobile, impression
 assets/js/data.js                              catégories et guides
 assets/js/diagnostics-data.js                  base de connaissances du diagnostic
 assets/js/common.js                            fonctions partagées (recherche, cartes, en-tête, stockage…)
 assets/js/guide-view.js                        rendu d'une fiche (utilisé par le site et par la génération)
 assets/js/*.js                                 un script par page
 assets/img/photos/                             photos sous licence libre + credits.json
-assets/fonts/                                  polices Inter et Caveat (licence OFL)
+assets/fonts/                                  police Inter (licence OFL)
 tools/build.js, tools/pages.py, tools/serve.js génération et serveur local
+tools/icons.js                                 logo, favicon, icônes (web et iPhone), image de partage
 tests/validate.js, tests/e2e.js                tests
 sw.js, manifest.webmanifest                    hors ligne et installation
 ```
@@ -116,4 +137,4 @@ sw.js, manifest.webmanifest                    hors ligne et installation
 
 Les photos proviennent de banques d'images sous licences libres (CC0, domaine public, CC BY) ; auteurs et licences sont listés dans `assets/img/photos/credits.json` et sur la page À propos.
 
-Les polices Inter et Caveat (SIL Open Font License) sont hébergées dans `assets/fonts/` : le site ne contacte aucun service tiers pendant la navigation.
+La police Inter (SIL Open Font License) est hébergée dans `assets/fonts/` : le site ne contacte aucun service tiers pendant la navigation.

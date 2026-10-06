@@ -33,7 +33,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
   };
 
   const PAGES = ["index.html", "guides.html", "guides.html?q=frein", "categories.html", "fiches/courroie-lave-linge.html", "fiches/remplacer-prise-electrique.html",
-    "categories/electromenager.html", "categories/autres.html", "ajouter.html", "communaute.html", "profil.html", "materiel.html", "diagnostic.html", "a-propos.html", "mentions-legales.html", "conditions-utilisation.html", "confidentialite.html", "beta.html", "LesPagesBleues/page-inconnue"];
+    "categories/electromenager.html", "categories/autres.html", "ajouter.html", "communaute.html", "profil.html", "materiel.html", "entretien.html", "plus.html", "diagnostic.html", "diagnostic.html?s=lave-linge-bruit-essorage", "a-propos.html", "mentions-legales.html", "conditions-utilisation.html", "confidentialite.html", "beta.html", "LesPagesBleues/page-inconnue"];
 
   /* ---------- 1. Toutes les pages : sans erreur, sans débordement, dans les deux thèmes ---------- */
   for (const [w, h, label] of [[1366, 900, "ordinateur"], [390, 844, "mobile"]]) {
@@ -93,6 +93,8 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     expect(total === 10, "10 résultats avant « voir plus », obtenu " + total);
     await p.click("[data-more]");
     expect((await p.$$("#guide-rows .grow")).length > 10, "« voir plus » doit afficher d'autres résultats");
+    expect(await p.isVisible("#domains .domain-tile"), "sans recherche, les domaines sont proposés");
+    await p.click("#filters summary");
     await p.selectOption("#f-diff", "Difficile");
     const diffs = await p.$$eval("#results .grow .dots", els => els.map(e => e.getAttribute("aria-label")));
     expect(diffs.length && diffs.every(d => d.includes("Difficile")), "le filtre de difficulté doit s'appliquer");
@@ -117,7 +119,12 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     expect((await p.textContent("#pct")).trim() === "17 %", "progression attendue 17 %, obtenu " + await p.textContent("#pct"));
     expect(/Reprendre à l'étape 2/.test(await p.textContent("#coach-label")), "le bouton doit proposer de reprendre à l'étape 2");
     await p.click("#fav");
-    expect(await p.textContent("#fav-badge") === "1", "le compteur de favoris doit passer à 1");
+    expect(await p.evaluate(() => getFavs().size) === 1 && await p.getAttribute("#fav", "aria-pressed") === "true", "la fiche doit passer en favori");
+    await p.click("#tab-outils");
+    expect(await p.isVisible("#outils") && await p.isHidden("#etapes"), "l'onglet Outils doit n'afficher que les outils");
+    await p.keyboard.press("ArrowRight");
+    expect(await p.isVisible("#pieces") && await p.evaluate(() => document.activeElement.id) === "tab-pieces", "les flèches du clavier changent d'onglet");
+    await p.click("#tab-etapes");
     await p.click('[data-star="4"]');
     expect((await p.$$(".star.on")).length === 4, "4 étoiles attendues");
     await p.fill("#qa-text", "Faut-il couper l'eau pour démonter le siphon ?");
@@ -183,26 +190,61 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
   });
 
   /* ---------- 5. Diagnostic guidé ---------- */
-  await test("Diagnostic : description libre → questions → causes classées → fiche", async () => {
+  await test("Diagnostic : description libre → questions → causes probables → guide recommandé", async () => {
     const ctx = await newCtx(); const p = await ctx.newPage(); const errs = []; watch(p, errs);
     await p.goto(B + "diagnostic.html");
+    expect((await p.textContent("h1")).includes("Quel est le problème"), "titre du diagnostic");
     await p.fill("#symptom", "ma voiture ne démarre plus, j'entends juste un clic");
     await p.click("#describe button[type=submit]");
-    for (const a of ["oui", "oui", "non", "oui"]) { await p.click(`.msg:last-child [data-answer="${a}"]`); }
+    expect(/Question 1 sur 4/.test(await p.textContent(".q-progress")), "une question à la fois, avec la progression");
+    for (const a of ["oui", "oui", "non", "oui"]) await p.click(`[data-answer="${a}"]`);
     await p.waitForSelector(".hyp");
-    expect(/Batterie/i.test(await p.textContent(".hyp h3")), "la batterie doit arriver en tête");
-    await p.click(".hyp .btn-primary");
+    expect((await p.textContent("h1")).includes("Voici ce que nous avons trouvé"), "titre des résultats");
+    expect(/Batterie/i.test(await p.textContent(".hyp h2")), "la batterie doit arriver en tête");
+    expect(/Probabilité/.test(await p.textContent(".hyp-prob")) && await p.isVisible(".advice"), "probabilité et conseil attendus");
+    await p.click("[data-prev]");
+    expect(/Question 4 sur 4/.test(await p.textContent(".q-progress")), "« Modifier mes réponses » ramène à la dernière question");
+    await p.click('[data-answer="oui"]');
+    await p.click("#reco-guide");
     await p.waitForURL(/voiture-ne-demarre-plus/);
     await p.goto(B + "diagnostic.html");
     await p.fill("#symptom", "ma machine à coudre fait des nœuds");
     await p.click("#describe button[type=submit]");
-    expect(/ne connais pas encore/.test(await p.textContent(".msg:last-child")), "une panne inconnue doit être signalée honnêtement");
+    expect(/ne connaissons pas encore/.test(await p.textContent("#diag-root")), "une panne inconnue doit être signalée honnêtement");
     await p.goto(B + "diagnostic.html");
     await p.click('[data-device="Lave-linge"]');
     await p.click('[data-diag="lave-linge-bruit-essorage"]');
-    for (const a of ["non", "oui", "non", "oui"]) { await p.click(`.msg:last-child [data-answer="${a}"]`); }
-    expect(/Amortisseurs/.test(await p.textContent(".hyp h3")), "l'exemple du document (claquement + rebond) doit donner les amortisseurs");
+    for (const a of ["non", "oui", "non", "oui"]) await p.click(`[data-answer="${a}"]`);
+    expect(/Amortisseurs/.test(await p.textContent(".hyp h2")), "l'exemple du document (claquement + rebond) doit donner les amortisseurs");
     expect(!errs.length, errs.join(" | "));
+    await ctx.close();
+  });
+  await test("Accueil : description du problème → diagnostic ; quatre choix ; navigation", async () => {
+    const ctx = await newCtx({ viewport: { width: 390, height: 844 } }); const p = await ctx.newPage(); const errs = []; watch(p, errs);
+    await p.goto(B + "index.html");
+    const cards = await p.$$eval(".action-card .ac-kicker", k => k.map(x => x.textContent.trim().split(/\s/)[0].toLowerCase()));
+    expect(cards.join() === "réparer,entretenir,mon,explorer", "quatre choix attendus : " + cards);
+    const tabs = await p.$$eval(".tabbar a", a => a.map(x => x.textContent.trim()));
+    expect(tabs.join() === "Accueil,Diagnostic,Guides,Matériel,Plus", "barre de navigation : " + tabs);
+    await p.fill("#hero-q", "Mon lave-linge fait beaucoup de bruit");
+    await Promise.all([p.waitForNavigation(), p.press("#hero-q", "Enter")]);
+    expect(/diagnostic\.html/.test(p.url()) && /lave-linge/i.test(await p.textContent("#diag-root")), "la description mène au diagnostic du lave-linge");
+    await p.goto(B + "materiel.html");
+    expect((await p.textContent(".tabbar a.active")).trim() === "Matériel", "l'onglet actif doit être Matériel");
+    expect(!errs.length, errs.join(" | "));
+    await ctx.close();
+  });
+  await test("Plus : thème automatique, clair ou sombre, mémorisé", async () => {
+    const ctx = await newCtx(); const p = await ctx.newPage();
+    await p.goto(B + "plus.html");
+    expect(await p.getAttribute('[data-theme-choice="auto"]', "aria-checked") === "true", "automatique par défaut");
+    await p.click('[data-theme-choice="dark"]');
+    expect(await p.evaluate(() => document.documentElement.dataset.theme) === "dark", "le thème sombre doit s'appliquer");
+    await p.goto(B + "guides.html");
+    expect(await p.evaluate(() => document.documentElement.dataset.theme) === "dark" && await p.evaluate(() => getComputedStyle(document.body).backgroundColor) === "rgb(10, 20, 38)", "le choix doit être mémorisé");
+    await p.goto(B + "plus.html");
+    await p.click('[data-theme-choice="auto"]');
+    expect(await p.evaluate(() => !document.documentElement.dataset.theme && localStorage.getItem("lpb-theme") === null), "automatique : aucun thème imposé");
     await ctx.close();
   });
 
@@ -291,6 +333,9 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
   await test("Mon matériel : lave-linge LG 2020 et Audi A3 2012 → fiches dédiées, diagnostic, filtre", async () => {
     const ctx = await newCtx(); const p = await ctx.newPage();
     const errs = []; watch(p, errs);
+    await p.goto(B + "materiel.html");
+    expect((await p.textContent("h1")).includes("Mon matériel") && (await p.textContent("main")).includes("Vos appareils, véhicules et objets en un seul endroit."), "titre et sous-titre de la liste");
+    await Promise.all([p.waitForNavigation(), p.click('a[href="materiel.html?ajouter=1"]')]);
     await p.goto(B + "materiel.html?type=lave-linge");
     expect(await p.inputValue("#m-type") === "lave-linge", "le type passé dans l'adresse doit être présélectionné");
     expect(await p.$$eval("#brand-list option", o => o.some(x => x.value === "LG")), "LG doit être proposé pour les lave-linge");
@@ -298,20 +343,23 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     await p.dispatchEvent("#m-brand", "input");
     await p.waitForFunction(() => /plaque signalétique/.test(document.getElementById("model-hint").textContent), null, { timeout: 15000 });
     await p.fill("#m-year", "2020");
-    await p.click("#mat-form [type=submit]");
-    await p.click('[data-kind="voiture"]');
+    await Promise.all([p.waitForNavigation(), p.click("#mat-form [type=submit]")]);
+    expect((await p.textContent("h1")) === "Lave-linge LG", "après l'ajout, la page du matériel s'ouvre");
+    const nWasher = parseInt(await p.textContent(".mat-count"), 10);
+    await p.goto(B + "materiel.html?kind=voiture");
     await p.click("#mat-form [type=submit]");
     expect(!(await p.isHidden("#mat-err")), "une voiture sans marque doit être refusée");
     await p.selectOption("#m-make", "Audi");
     const a3 = await p.$$eval("#m-car option", o => o.find(x => x.textContent === "A3").value);
     await p.selectOption("#m-car", a3);
     await p.fill("#m-year", "2012");
-    await p.click("#mat-form [type=submit]");
-    const names = await p.$$eval(".mat-card .mat-head h3", h => h.map(x => x.textContent));
-    expect(names.join("|") === "Audi A3|Lave-linge LG", "les deux matériels doivent être listés : " + names.join("|"));
-    const counts = await p.$$eval(".mat-count", e => e.map(x => parseInt(x.textContent, 10)));
+    await Promise.all([p.waitForNavigation(), p.click("#mat-form [type=submit]")]);
+    const nCar = parseInt(await p.textContent(".mat-count"), 10);
     const expected = await p.evaluate(() => [GUIDES.filter(g => g.category === "automobile" && !(g.devices || []).length).length, GUIDES.filter(g => (g.devices || []).includes("lave-linge")).length]);
-    expect(counts.join() === expected.join(), `nombre de fiches : ${counts} au lieu de ${expected}`);
+    expect([nCar, nWasher].join() === expected.join(), `nombre de fiches : ${[nCar, nWasher]} au lieu de ${expected}`);
+    await p.goto(B + "materiel.html");
+    const names = await p.$$eval(".mat-row .mat-name", h => h.map(x => x.textContent));
+    expect(names.join("|") === "Audi A3|Lave-linge LG", "les deux matériels doivent être listés : " + names.join("|"));
     const ids = await p.evaluate(() => loadMateriel().map(m => m.id));
     await p.goto(B + "guides.html?materiel=" + ids[1]);
     const shown = await p.$$eval("#guide-rows .grow h3", h => h.map(x => x.textContent));
@@ -319,13 +367,13 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     await p.goto(B + "fiches/courroie-lave-linge.html");
     expect((await p.textContent(".guide-tags")).includes("Pour votre lave-linge LG"), "la fiche doit indiquer qu'elle concerne l'appareil");
     await p.goto(B + "diagnostic.html?d=Lave-linge");
-    expect((await p.textContent("#chat")).includes("Quel est le problème avec : lave-linge"), "le diagnostic doit partir de l'appareil");
+    expect((await p.textContent("#diag-root")).includes("Lave-linge : quel est le problème"), "le diagnostic doit partir de l'appareil");
     await p.goto(B + "index.html");
-    expect((await p.textContent("#mat-strip")).includes("Audi A3"), "l'accueil doit montrer le matériel enregistré");
-    await p.goto(B + "materiel.html");
+    expect(/^2/.test(await p.textContent("#home-mat-count")), "l'accueil doit indiquer le nombre de matériels");
+    await p.goto(B + "materiel.html?id=" + ids[0]);
     await p.click(`[data-del="${ids[0]}"]`);
-    await p.click("#confirm-del");
-    expect((await p.$$(".mat-card")).length === 1, "la suppression doit retirer la voiture");
+    await Promise.all([p.waitForNavigation(), p.click("#confirm-del")]);
+    expect((await p.$$(".mat-row")).length === 1, "la suppression doit retirer la voiture");
     expect(!errs.length, errs.join(" | "));
     await ctx.close();
   });
@@ -348,18 +396,21 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     await p.dispatchEvent("#m-brand", "input");
     expect(await p.$$eval("#model-list option", o => o.some(x => x.value === "PlayStation 5")), "les modèles de consoles Sony doivent être proposés");
     await p.fill("#m-model", "PlayStation 5");
-    await p.click("#mat-form [type=submit]");
+    await Promise.all([p.waitForNavigation(), p.click("#mat-form [type=submit]")]);
+    const nConsole = parseInt(await p.textContent(".mat-count"), 10);
+    await p.goto(B + "materiel.html?ajouter=1");
     await p.click('[data-kind="moto"]');
     await p.selectOption("#m-make", "Yamaha");
     const mt = await p.$$eval("#m-car option", o => o.find(x => x.textContent.startsWith("MT-07"))?.value);
     expect(mt, "le MT-07 de Yamaha doit être proposé");
     await p.selectOption("#m-car", mt);
-    await p.click("#mat-form [type=submit]");
-    const names = await p.$$eval(".mat-card .mat-head h3", h => h.map(x => x.textContent));
+    await Promise.all([p.waitForNavigation(), p.click("#mat-form [type=submit]")]);
+    const nMoto = parseInt(await p.textContent(".mat-count"), 10);
+    await p.goto(B + "materiel.html");
+    const names = await p.$$eval(".mat-row .mat-name", h => h.map(x => x.textContent));
     expect(names[0].startsWith("Yamaha MT-07") && names[1] === "Console de jeux Sony", "matériels enregistrés : " + names.join(" | "));
-    const counts = await p.$$eval(".mat-count", e => e.map(x => parseInt(x.textContent, 10)));
     const expected = await p.evaluate(() => [GUIDES.filter(g => g.category === "moto").length, GUIDES.filter(g => (g.devices || []).includes("console")).length]);
-    expect(counts.join() === expected.join(), `fiches : ${counts} au lieu de ${expected}`);
+    expect([nMoto, nConsole].join() === expected.join(), `fiches : ${[nMoto, nConsole]} au lieu de ${expected}`);
     expect(!errs.length, errs.join(" | "));
     await ctx.close();
   });
@@ -398,7 +449,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
       localStorage.setItem("lpb-materiel", JSON.stringify([{ kind: "moto", type: "moto", typeName: "Moto", category: "automobile", icon: "moto", brand: "Yamaha", model: "MT-07", id: "m1" }]));
       localStorage.setItem("lpb-carnet-m1", JSON.stringify({ log: [{ id: "a", date: d(30), kind: "compteur", km: 10000 }] }));
     });
-    await p.reload();
+    await p.goto(B + "materiel.html?id=m1");
     await Promise.all([p.waitForNavigation(), p.click(".mat-carnet")]);
     expect((await p.textContent("h1")).includes("Yamaha MT-07"), "titre du carnet");
     expect(await p.$('[data-log-task="graissage-chaine"]'), "le graissage de chaîne doit être proposé");
@@ -417,6 +468,10 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     expect((await p.textContent(".cstats")).includes("12 €"), "statistiques : coût total");
     await p.goto(B + "index.html");
     expect((await p.textContent("#home-due")).includes("Pression des pneus"), "l'accueil doit signaler le contrôle défaillant");
+    await p.goto(B + "entretien.html");
+    expect((await p.textContent("#h-todo")).includes("À faire") && (await p.textContent("#entretien-root")).includes("Pression des pneus"), "la page Entretien doit classer le contrôle défaillant dans « À faire »");
+    await Promise.all([p.waitForNavigation(), p.click('#entretien-root a[href*="task=pression-pneus"]')]);
+    expect(await p.$("#entry-form"), "depuis Entretien, la saisie de l'entretien doit s'ouvrir");
     await p.goto(B + "fiches/entretien-chaine-moto.html");
     await p.click('[data-result="ok"]');
     await Promise.all([p.waitForNavigation(), p.click('a[href*="carnet.html?id=m1&fiche=entretien-chaine-moto"]')]);
@@ -464,7 +519,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
     for (const theme of ["dark", "light"]) {
       const ctx = await newCtx();
       await ctx.addInitScript(t => localStorage.setItem("lpb-theme", JSON.stringify(t)), theme);
-      for (const u of ["index.html", "guides.html?q=frein", "fiches/courroie-lave-linge.html", "diagnostic.html", "ajouter.html", "communaute.html", "profil.html", "materiel.html", "carnet.html", "categories.html", "categories/jardin.html", "a-propos.html"]) {
+      for (const u of ["index.html", "guides.html?q=frein", "fiches/courroie-lave-linge.html", "diagnostic.html", "ajouter.html", "communaute.html", "profil.html", "materiel.html", "materiel.html?ajouter=1", "entretien.html", "plus.html", "carnet.html", "categories.html", "categories/jardin.html", "a-propos.html"]) {
         const p = await ctx.newPage();
         await p.goto(B + u, { waitUntil: "load" });
         await p.addScriptTag({ content: axe });
@@ -486,7 +541,7 @@ function expect(cond, msg) { if (!cond) throw new Error(msg); }
         window.__cls = 0;
         new PerformanceObserver(l => { for (const e of l.getEntries()) if (!e.hadRecentInput) window.__cls += e.value; }).observe({ type: "layout-shift", buffered: true });
       });
-      for (const u of ["index.html", "guides.html?q=frein", "categories.html", "diagnostic.html", "profil.html", "communaute.html", "fiches/deboucher-toilettes.html"]) {
+      for (const u of ["index.html", "guides.html", "guides.html?q=frein", "categories.html", "diagnostic.html", "materiel.html", "plus.html", "profil.html", "communaute.html", "fiches/deboucher-toilettes.html"]) {
         const p = await ctx.newPage();
         await p.goto(B + u, { waitUntil: "load" });
         await p.waitForTimeout(600);

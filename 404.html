@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Page introuvable — Les Pages Bleues</title>
   <meta name="description" content="Cette page n'existe pas.">
-  <meta name="theme-color" content="#050b18">
-  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1426" media="(prefers-color-scheme: dark)">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var c=t==="dark"?"#0a1426":"#f4f7fb";document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",c)})}}catch(e){}})()</script>
   <link rel="icon" href="/LesPagesBleues/assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/LesPagesBleues/manifest.webmanifest">
   <link rel="apple-touch-icon" href="/LesPagesBleues/assets/img/icon-180.png">
@@ -24,14 +26,14 @@
 <body>
   <header id="site-header"></header>
   <main id="main" tabindex="-1">
-    <section class="section blueprint" style="min-height:60vh;display:grid;place-items:center">
-      <div class="container" style="text-align:center;max-width:560px">
-        <p class="handwritten" style="position:static;transform:rotate(-4deg);text-align:center;color:var(--blue)">Pièce manquante !</p>
-        <h1 style="font-size:clamp(3rem,10vw,6rem);font-weight:800;color:var(--blue)">404</h1>
-        <p class="muted" style="margin:.8rem 0 1.6rem">Cette page n'existe pas… ou elle attend encore d'être réparée.</p>
+    <section class="page-404">
+      <div class="narrow">
+        <span data-logo></span>
+        <h1>Page introuvable</h1>
+        <p>Cette page n'existe pas, ou elle a changé d'adresse.</p>
         <div class="empty-actions">
           <a class="btn btn-primary" href="/LesPagesBleues/index.html">Retour à l'accueil</a>
-          <a class="btn btn-ghost" href="/LesPagesBleues/guides.html">Voir tous les guides</a>
+          <a class="btn btn-ghost" href="/LesPagesBleues/guides.html">Voir les guides</a>
         </div>
       </div>
     </section>

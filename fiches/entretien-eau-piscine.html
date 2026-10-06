@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Piscine : pH, chlore et filtration au quotidien : guide pas à pas — Les Pages Bleues</title>
   <meta name="description" content="Une eau claire tient à trois réglages : un pH entre 7,2 et 7,6, un taux de chlore suffisant et une filtration adaptée à la température. Difficulté : facile, durée : 20 min.">
-  <meta name="theme-color" content="#050b18">
-  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+<meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1426" media="(prefers-color-scheme: dark)">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var c=t==="dark"?"#0a1426":"#f4f7fb";document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",c)})}}catch(e){}})()</script>
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="../manifest.webmanifest">
   <link rel="apple-touch-icon" href="../assets/img/icon-180.png">
@@ -27,257 +29,243 @@
   <header id="site-header"></header>
   <main id="main" tabindex="-1">
     <div id="guide">
-  <div class="guide-top">
-    <div class="container guide-top-inner">
-      <div>
-        <nav class="breadcrumb" aria-label="Fil d'Ariane">
-          <a href="../index.html"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg> Accueil</a><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-          
-          <a href="../categories/jardin.html">Jardin &amp; Extérieur</a><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-          <span aria-current="page">Piscine : pH, chlore et filtration au quotidien</span>
-        </nav>
-        <div class="guide-tags" style="display:flex;flex-wrap:wrap;gap:.4rem">
-          <span class="tag tag-soft">Jardin</span>
-          <span class="tag tag-soft"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg> Vérifiée</span>
-          
-          
-        </div>
-        <h1>Piscine : pH, chlore et filtration au quotidien</h1>
-        <p class="lead">Une eau claire tient à trois réglages : un pH entre 7,2 et 7,6, un taux de chlore suffisant et une filtration adaptée à la température.</p>
-        <div class="guide-facts">
-          <span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 20 min</span>
-          <span><span class="bars lvl-1" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></span> Facile</span>
-          <span><svg class="ico leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20c0-9 6-15 16-16-1 10-7 16-16 16z"/><path d="M4 20 13 11"/></svg> Économie : environ 200 €</span>
-        </div>
-        <div class="guide-actions">
-          <a class="btn btn-primary btn-coach" id="coach-start" href="../fiches/entretien-eau-piscine.html?coach=1"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg> <span id="coach-label">Lancer l'accompagnement</span></a>
-          <button class="btn btn-ghost fav-btn" id="fav" type="button" aria-pressed="false"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-8-4.8-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 6.2-8 11-8 11z"/></svg><span>Favori</span></button>
-          <button class="icon-btn icon-btn-line" id="share" type="button" aria-label="Partager la fiche" title="Partager"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5"/></svg></button>
-        </div>
-        <p class="coach-hint"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg> Mode accompagnement : une étape à la fois, en grand, avec lecture à voix haute, minuteurs et commandes vocales.</p>
+  <div class="guide-head">
+    <div class="container guide-wrap guide-head-inner">
+      <nav class="breadcrumb" aria-label="Fil d'Ariane">
+        <a href="../index.html"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg> Accueil</a><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        
+        <a href="../categories/jardin.html">Jardin &amp; Extérieur</a>
+      </nav>
+      <div class="guide-tags">
+        <span class="tag tag-soft">Jardin</span>
+        <span class="tag tag-green"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg> Vérifiée</span>
+        
+        
       </div>
-      <figure class="guide-photo" style="margin:0">
-        <img src="../assets/img/photos/jardin.webp" srcset="../assets/img/photos/jardin-480.webp 480w, ../assets/img/photos/jardin.webp 1000w" sizes="(max-width: 900px) 100vw, 560px" alt="" width="1000" height="667">
-        <p class="handwritten">Réparer<br>plutôt que<br>remplacer !</p>
+      <h1>Piscine : pH, chlore et filtration au quotidien</h1>
+      <figure class="guide-photo">
+        <img src="../assets/img/photos/jardin.webp" srcset="../assets/img/photos/jardin-480.webp 480w, ../assets/img/photos/jardin.webp 1000w" sizes="(max-width: 900px) 100vw, 400px" alt="" width="1000" height="667">
       </figure>
+      <div class="guide-facts">
+        <div class="fact"><small><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 18a8 8 0 1 1 16 0"/><path d="m12 18 4-6"/></svg> Difficulté</small><strong><span class="dots lvl-1" role="img" aria-label="Difficulté : Facile"><i class="on"></i><i class=""></i><i class=""></i></span> Facile</strong></div>
+        <div class="fact"><small><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Durée</small><strong>20 min</strong></div>
+        <div class="fact"><small><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg> Économie</small><strong>≈ 200 €</strong></div>
+      </div>
+      <p class="lead">Une eau claire tient à trois réglages : un pH entre 7,2 et 7,6, un taux de chlore suffisant et une filtration adaptée à la température.</p>
+      <div class="guide-actions">
+        <a class="btn btn-primary btn-lg btn-coach" id="coach-start" href="../fiches/entretien-eau-piscine.html?coach=1"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4.5v15l12-7.5z"/></svg> <span id="coach-label">Commencer le guide</span></a>
+        <button class="btn btn-ghost btn-lg fav-btn" id="fav" type="button" aria-pressed="false"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-8-4.8-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 6.2-8 11-8 11z"/></svg><span>Favori</span></button>
+        <button class="icon-btn icon-btn-line" id="share" type="button" aria-label="Partager la fiche" title="Partager"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="m8.2 10.8 7.6-4.5M8.2 13.2l7.6 4.5"/></svg></button>
+      </div>
+      <p class="coach-hint"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg><span>Mode accompagnement : une étape à la fois, en grand, avec lecture à voix haute et minuteurs.</span></p>
     </div>
   </div>
 
   <nav class="guide-tabs no-print" aria-label="Sections de la fiche">
-    <div class="container tabs">
-      <a class="tab" href="#etapes" aria-current="true">Étapes</a>
-      <a class="tab" href="#materiel">Matériel</a>
-      <a class="tab" href="#conseils">Conseils</a>
-      <a class="tab" href="#qa">Questions</a>
-    </div>
+    <div class="container guide-wrap"><div class="tabs" id="guide-tabs">
+      <a class="tab" href="#etapes" id="tab-etapes" data-panel="etapes" aria-current="true">Étapes</a><a class="tab" href="#outils" id="tab-outils" data-panel="outils">Outils<span class="chip-n">3</span></a><a class="tab" href="#pieces" id="tab-pieces" data-panel="pieces">Pièces<span class="chip-n">1</span></a><a class="tab" href="#securite" id="tab-securite" data-panel="securite">Sécurité</a>
+    </div></div>
   </nav>
 
-  <div class="container guide-layout">
-    <article class="guide-main">
-      <section id="etapes" aria-labelledby="h-etapes">
-        <h2 id="h-etapes"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h8l5 5v15H6z"/><path d="M14 2v5h5M9 12h7M9 16h7"/></svg> Les étapes</h2>
-        <div class="safety-box"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><div><strong>Avant de commencer</strong><p>Ne mélangez jamais deux produits de traitement entre eux, et versez toujours le produit dans l&#39;eau, jamais l&#39;inverse. Rangez-les hors de portée des enfants.</p></div></div>
-        <ol class="step-list">
-          
-            <li class="step-item  " data-i="0">
-              <button class="step-check" type="button" aria-pressed="false" aria-label="Étape 1 faite">1</button>
-              <div>
-                <h3>Analyser l&#39;eau </h3>
-                <p>Mesurez le pH et le chlore libre une fois par semaine si la piscine sert peu, deux à trois fois par semaine en pleine saison.</p>
-                
-                
-              </div>
-              
-            </li>
-            <li class="step-item  " data-i="1">
-              <button class="step-check" type="button" aria-pressed="false" aria-label="Étape 2 faite">2</button>
-              <div>
-                <h3>Régler le pH d&#39;abord </h3>
-                <p>Visez un pH entre 7,2 et 7,6 : en dehors, le chlore agit mal et l&#39;eau irrite les yeux.</p>
-                
-                
-              </div>
-              
-            </li>
-            <li class="step-item  " data-i="2">
-              <button class="step-check" type="button" aria-pressed="false" aria-label="Étape 3 faite">3</button>
-              <div>
-                <h3>Ajuster le chlore </h3>
-                <p>Maintenez le chlore libre au taux conseillé par le fabricant de vos produits, souvent autour de 1 mg/l (environ 0,5 à 1,5 mg/l).</p>
-                
-                
-              </div>
-              
-            </li>
-            <li class="step-item  " data-i="3">
-              <button class="step-check" type="button" aria-pressed="false" aria-label="Étape 4 faite">4</button>
-              <div>
-                <h3>Adapter la filtration </h3>
-                <p>Plus l&#39;eau est chaude, plus il faut filtrer longtemps. Règle courante : autant d&#39;heures par jour que la moitié de la température de l&#39;eau (28 °C → 14 h).</p>
-                
-                
-              </div>
-              
-            </li>
-            <li class="step-item  " data-i="4">
-              <button class="step-check" type="button" aria-pressed="false" aria-label="Étape 5 faite">5</button>
-              <div>
-                <h3>Vider skimmers et préfiltre </h3>
-                <p>Videz les paniers des skimmers et le préfiltre de la pompe au moins deux fois par semaine en saison, et nettoyez le filtre (contre-lavage pour un filtre à sable) toutes les 2 à 4 semaines.</p>
-                
-                
-              </div>
-              
-            </li>
-        </ol>
-        <div class="done-box" id="done-box">
-          <svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>
-          <div><strong>C'est terminé !</strong><p>Dernière étape faite ? Dites-nous si la réparation a fonctionné.</p></div>
-          <div class="btns no-print">
-            <button class="btn btn-sm btn-ghost" type="button" data-result="ok"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg> Ça a marché</button>
-            <button class="btn btn-sm btn-ghost" type="button" data-result="ko"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.5v.5"/></svg> Pas encore</button>
-          </div>
-          
-        </div>
-      </section>
-
-      <section id="materiel" aria-labelledby="h-materiel">
-        <h2 id="h-materiel"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6 4-4 4 4-4 4zM16 8 5 19l-2 2M3 21l-1-1"/></svg> Le matériel nécessaire</h2>
-        <div class="kit-cols">
-          <div><h3 style="font-size:1rem;margin-bottom:.6rem">Outils</h3><ul class="kit-list"><li><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6 4-4 4 4-4 4zM16 8 5 19l-2 2M3 21l-1-1"/></svg><span>Trousse d&#39;analyse pH et chlore (bandelettes ou pastilles)</span></li><li><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6 4-4 4 4-4 4zM16 8 5 19l-2 2M3 21l-1-1"/></svg><span>Épuisette</span></li><li><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6 4-4 4 4-4 4zM16 8 5 19l-2 2M3 21l-1-1"/></svg><span>Brosse de ligne d&#39;eau</span></li></ul></div>
-          <div><h3 style="font-size:1rem;margin-bottom:.6rem">Pièces</h3><ul class="kit-list"><li><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg><span>Produits pH plus / pH moins et désinfectant</span></li></ul>
-            <p class="muted" style="font-size:.85rem;margin-top:.6rem">Relevez la référence sur l'ancienne pièce ou la plaque signalétique de l'appareil avant de commander.</p></div>
-        </div>
-      </section>
-
-      <section id="conseils" aria-labelledby="h-conseils">
-        <h2 id="h-conseils"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/></svg> Conseils</h2>
-        
-        
-          <h3 style="margin:1.2rem 0 .6rem">Ça ne marche toujours pas ?</h3>
-          <ul class="tips-list" id="troubleshoot"><li><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.5v.5"/></svg><span>Eau verte : pH trop haut ou manque de chlore, souvent après un orage ou une forte chaleur. Corrigez le pH, faites un traitement choc et filtrez en continu.</span></li><li><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.5v.5"/></svg><span>Pression du filtre qui monte : il est encrassé, faites un contre-lavage.</span></li></ul>
-        
-        <div class="sources-box" style="margin-top:1.2rem">
-          <strong><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg> Vérification de la fiche</strong>
-          <p class="muted" style="margin-top:.4rem">Consignes et chiffres vérifiés le 23 septembre 2026 à partir de :</p>
-               <ul><li><a href="https://www.generationpiscine.com/comment-bien-entretenir-sa-piscine-au-chlore/" rel="noopener" target="_blank">Génération Piscine — entretenir sa piscine au chlore</a></li><li><a href="https://www.piscines-france.fr/pdf/Guide_utilisation_et_entretien_piscine.pdf" rel="noopener" target="_blank">Piscines France — guide d&#39;utilisation et d&#39;entretien d&#39;une piscine</a></li></ul>
-          <div class="status">
-            <span class="tag tag-green"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg> Vérification documentaire</span>
-            <span class="tag tag-orange"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Relecture par un réparateur : à venir</span>
-          </div>
-          <p style="margin-top:.8rem"><a class="link-arrow" href="../communaute.html?ask=1&amp;type=erreur&amp;guide=entretien-eau-piscine">Signaler une erreur ou proposer une amélioration <svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
-          <p class="muted licence-note">Texte original des Pages Bleues, rédigé avec nos mots d'après les sources citées, sous licence <a href="../conditions-utilisation.html#licence">CC BY-SA 4.0</a>.</p>
-        </div>
-      </section>
-
-      <section id="qa" aria-labelledby="h-qa">
-        <h2 id="h-qa"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg> Questions sur cette fiche</h2>
-        <form class="qa-form" id="qa-form">
-          <label class="sr-only" for="qa-text">Votre question</label>
-          <textarea class="input" id="qa-text" rows="2" maxlength="500" placeholder="Une question sur une étape ? Posez-la ici."></textarea>
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:.6rem;margin-top:.5rem;flex-wrap:wrap">
-            <small class="muted">Pour l'instant, les questions sont enregistrées sur cet appareil (les comptes arrivent bientôt).</small>
-            <button class="btn btn-primary btn-sm" type="submit"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12 20 4l-4 16-4-7z"/><path d="m12 13 8-9"/></svg> Publier</button>
-          </div>
-        </form>
-        <div class="qa-list" id="qa-list">
-          
-        </div>
-      </section>
-
-      
-    </article>
-
-    <aside class="guide-aside">
-      <div class="card facts-card">
-        <div class="fact-row"><span class="bars lvl-1" aria-hidden="true"><i class="on"></i><i class=""></i><i class=""></i></span><div><small>Difficulté</small><strong>Facile</strong></div></div>
-        <div class="fact-row"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><small>Durée</small><strong>20 min</strong></div></div>
-        <div class="fact-row"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg><div><small>Économie estimée</small><strong>environ 200 €</strong></div></div>
-        <div class="fact-row"><svg class="ico leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20c0-9 6-15 16-16-1 10-7 16-16 16z"/><path d="M4 20 13 11"/></svg><div><small>Impact</small><strong>Un objet de moins à la poubelle</strong></div></div>
-      </div>
-      <div class="card progress-card no-print">
-        <h3><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg> Progression <span class="muted" id="pct" style="margin-left:auto;font-weight:500">0 %</span></h3>
+  <div class="container guide-wrap guide-body">
+    <section class="tab-panel" id="etapes" aria-labelledby="h-etapes">
+      <h2 id="h-etapes"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h8l5 5v15H6z"/><path d="M14 2v5h5M9 12h7M9 16h7"/></svg> Les étapes</h2>
+      <div class="safety-box"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><div><strong>Avant de commencer</strong><p>Ne mélangez jamais deux produits de traitement entre eux, et versez toujours le produit dans l&#39;eau, jamais l&#39;inverse. Rangez-les hors de portée des enfants.</p></div></div>
+      <div class="progress-line no-print">
+        <strong>Progression</strong>
         <div class="progress"><div id="bar"></div></div>
-        <button class="link-btn" id="reset" type="button" style="margin-top:10px" hidden><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg> Tout décocher</button>
+        <span id="pct">0 %</span>
+        <button class="link-btn" id="reset" type="button" hidden><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg> Tout décocher</button>
       </div>
-      <div class="card help-card no-print">
-        <h3><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg> Besoin d'aide ?</h3>
-        <p class="muted" style="font-size:.9rem">Diagnostic guidé, question à la communauté ou réparateur près de chez vous.</p>
-        <div style="display:grid;gap:.5rem;margin-top:.8rem">
-          <a class="btn btn-ghost btn-sm" href="../diagnostic.html?q=Piscine%20%3A%20pH%2C%20chlore%20et%20filtration%20au%20quotidien"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-3"/><circle cx="20" cy="10" r="2"/></svg> Diagnostic guidé</a>
-          <a class="btn btn-ghost btn-sm" href="#qa"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg> Poser une question</a>
-          <a class="btn btn-ghost btn-sm" href="https://www.e-reparation.eco/" target="_blank" rel="noopener"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg> Réparateur labellisé QualiRépar</a>
+      <ol class="step-list">
+        
+          <li class="step-item  " data-i="0">
+            <button class="step-check" type="button" aria-pressed="false" aria-label="Étape 1 faite">1</button>
+            <div>
+              <h3>Analyser l&#39;eau </h3>
+              <p>Mesurez le pH et le chlore libre une fois par semaine si la piscine sert peu, deux à trois fois par semaine en pleine saison.</p>
+              
+              
+            </div>
+            
+          </li>
+          <li class="step-item  " data-i="1">
+            <button class="step-check" type="button" aria-pressed="false" aria-label="Étape 2 faite">2</button>
+            <div>
+              <h3>Régler le pH d&#39;abord </h3>
+              <p>Visez un pH entre 7,2 et 7,6 : en dehors, le chlore agit mal et l&#39;eau irrite les yeux.</p>
+              
+              
+            </div>
+            
+          </li>
+          <li class="step-item  " data-i="2">
+            <button class="step-check" type="button" aria-pressed="false" aria-label="Étape 3 faite">3</button>
+            <div>
+              <h3>Ajuster le chlore </h3>
+              <p>Maintenez le chlore libre au taux conseillé par le fabricant de vos produits, souvent autour de 1 mg/l (environ 0,5 à 1,5 mg/l).</p>
+              
+              
+            </div>
+            
+          </li>
+          <li class="step-item  " data-i="3">
+            <button class="step-check" type="button" aria-pressed="false" aria-label="Étape 4 faite">4</button>
+            <div>
+              <h3>Adapter la filtration </h3>
+              <p>Plus l&#39;eau est chaude, plus il faut filtrer longtemps. Règle courante : autant d&#39;heures par jour que la moitié de la température de l&#39;eau (28 °C → 14 h).</p>
+              
+              
+            </div>
+            
+          </li>
+          <li class="step-item  " data-i="4">
+            <button class="step-check" type="button" aria-pressed="false" aria-label="Étape 5 faite">5</button>
+            <div>
+              <h3>Vider skimmers et préfiltre </h3>
+              <p>Videz les paniers des skimmers et le préfiltre de la pompe au moins deux fois par semaine en saison, et nettoyez le filtre (contre-lavage pour un filtre à sable) toutes les 2 à 4 semaines.</p>
+              
+              
+            </div>
+            
+          </li>
+      </ol>
+      <div class="done-box" id="done-box">
+        <svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>
+        <div><strong>Ça a marché ?</strong><p>Dernière étape faite ? Dites-nous si la réparation a fonctionné.</p></div>
+        <div class="btns no-print">
+          <button class="btn btn-sm btn-ghost" type="button" data-result="ok"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg> Oui, ça marche</button>
+          <button class="btn btn-sm btn-ghost" type="button" data-result="ko"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.5v.5"/></svg> Pas encore</button>
         </div>
+        
       </div>
-      <div class="card no-print">
-        <h3><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 19h16"/></svg> Télécharger le guide</h3>
-        <p class="muted" style="font-size:.9rem">Version imprimable, ou « Enregistrer au format PDF » dans la fenêtre d'impression.</p>
-        <button class="btn btn-soft btn-sm btn-block" id="print" type="button" style="margin-top:.8rem"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg> Imprimer / PDF</button>
+    </section>
+
+    <section class="tab-panel" id="outils" aria-labelledby="h-outils">
+      <h2 id="h-outils"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6 4-4 4 4-4 4zM16 8 5 19l-2 2M3 21l-1-1"/></svg> Outils</h2>
+      <ul class="kit-list"><li><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6 4-4 4 4-4 4zM16 8 5 19l-2 2M3 21l-1-1"/></svg><span>Trousse d&#39;analyse pH et chlore (bandelettes ou pastilles)</span></li><li><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6 4-4 4 4-4 4zM16 8 5 19l-2 2M3 21l-1-1"/></svg><span>Épuisette</span></li><li><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m14 6 4-4 4 4-4 4zM16 8 5 19l-2 2M3 21l-1-1"/></svg><span>Brosse de ligne d&#39;eau</span></li></ul>
+    </section>
+
+    <section class="tab-panel" id="pieces" aria-labelledby="h-pieces">
+      <h2 id="h-pieces"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg> Pièces</h2>
+      <ul class="kit-list"><li><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg><span>Produits pH plus / pH moins et désinfectant</span></li></ul>
+      <p class="kit-note">Relevez la référence sur l'ancienne pièce ou sur la plaque signalétique de l'appareil avant de commander.</p>
+    </section>
+
+    <section class="tab-panel" id="securite" aria-labelledby="h-securite">
+      <h2 id="h-securite"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg> Sécurité</h2>
+      <div class="safety-box"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><div><strong>Avant de commencer</strong><p>Ne mélangez jamais deux produits de traitement entre eux, et versez toujours le produit dans l&#39;eau, jamais l&#39;inverse. Rangez-les hors de portée des enfants.</p></div></div>
+      
+      <div class="notice" style="margin-top:12px"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><p>En cas de doute (électricité, gaz, freins, batterie qui gonfle ou chauffe, appareil sous garantie), confiez la réparation à un professionnel. <a href="https://www.e-reparation.eco/" rel="noopener" target="_blank">Trouver un réparateur labellisé</a>.</p></div>
+    </section>
+
+    
+    <section class="guide-sec" id="depannage" aria-labelledby="h-depannage">
+      <h2 id="h-depannage"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.5v.5"/></svg> Ça ne marche toujours pas ?</h2>
+      <ul class="tips-list" id="troubleshoot"><li><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.5v.5"/></svg><span>Eau verte : pH trop haut ou manque de chlore, souvent après un orage ou une forte chaleur. Corrigez le pH, faites un traitement choc et filtrez en continu.</span></li><li><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.5v.5"/></svg><span>Pression du filtre qui monte : il est encrassé, faites un contre-lavage.</span></li></ul>
+    </section>
+
+    <section class="guide-sec help-sec no-print" id="aide" aria-labelledby="h-aide">
+      <h2 id="h-aide"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg> Besoin d'aide ?</h2>
+      <ul class="lgroup help-list">
+        <li><a class="lrow" href="../diagnostic.html?q=Piscine%20%3A%20pH%2C%20chlore%20et%20filtration%20au%20quotidien"><span class="tile-ico"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-3"/><circle cx="20" cy="10" r="2"/></svg></span><span class="lrow-text"><strong>Décrire mon problème</strong><small>Le diagnostic cherche la cause avec vous</small></span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a></li>
+        <li><a class="lrow" href="#qa"><span class="tile-ico"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg></span><span class="lrow-text"><strong>Poser une question</strong><small>Sur une étape de cette fiche</small></span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a></li>
+        <li><a class="lrow" href="https://www.e-reparation.eco/" target="_blank" rel="noopener"><span class="tile-ico"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span class="lrow-text"><strong>Trouver un réparateur</strong><small>Labellisé QualiRépar, près de chez vous</small></span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a></li>
+      </ul>
+      
+    </section>
+
+    <section class="guide-sec" id="verification" aria-labelledby="h-verif">
+      <h2 id="h-verif" class="sr-only">Vérification de la fiche</h2>
+      <div class="sources-box">
+        <strong><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg> Vérification de la fiche</strong>
+        <p class="muted" style="margin-top:.4rem">Consignes et chiffres vérifiés le 23 septembre 2026 à partir de :</p>
+             <ul><li><a href="https://www.generationpiscine.com/comment-bien-entretenir-sa-piscine-au-chlore/" rel="noopener" target="_blank">Génération Piscine — entretenir sa piscine au chlore</a></li><li><a href="https://www.piscines-france.fr/pdf/Guide_utilisation_et_entretien_piscine.pdf" rel="noopener" target="_blank">Piscines France — guide d&#39;utilisation et d&#39;entretien d&#39;une piscine</a></li></ul>
+        <div class="status-tags">
+          <span class="tag tag-green"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg> Vérification documentaire</span>
+          <span class="tag tag-soft"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg> Relecture par un réparateur : à venir</span>
+        </div>
+        <p style="margin-top:.8rem"><a class="link-arrow" href="../communaute.html?ask=1&amp;type=erreur&amp;guide=entretien-eau-piscine">Signaler une erreur ou proposer une amélioration <svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+        <p class="muted licence-note">Texte original des Pages Bleues, rédigé avec nos mots d'après les sources citées, sous licence <a href="../conditions-utilisation.html#licence">CC BY-SA 4.0</a>.</p>
       </div>
-      <div class="card rating-card no-print">
-        <h3><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-8-4.8-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 9c0 6.2-8 11-8 11z"/></svg> Ce guide vous a été utile ?</h3>
+    </section>
+
+    <section class="guide-sec" id="qa" aria-labelledby="h-qa">
+      <h2 id="h-qa"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg> Questions sur cette fiche</h2>
+      <form class="qa-form" id="qa-form">
+        <label class="sr-only" for="qa-text">Votre question</label>
+        <textarea class="input" id="qa-text" rows="2" maxlength="500" placeholder="Une question sur une étape ? Posez-la ici."></textarea>
+        <div class="qa-form-foot">
+          <small>Pour l'instant, les questions restent sur cet appareil.</small>
+          <button class="btn btn-primary btn-sm" type="submit"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12 20 4l-4 16-4-7z"/><path d="m12 13 8-9"/></svg> Publier</button>
+        </div>
+      </form>
+      <div class="qa-list" id="qa-list">
+        
+      </div>
+    </section>
+
+    <section class="guide-sec rating-sec no-print" aria-labelledby="h-avis">
+      <h2 id="h-avis"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z"/></svg> Ce guide vous a été utile ?</h2>
+      <div class="rating">
         <div class="stars" id="stars" role="radiogroup" aria-label="Votre note">
           <button class="star" type="button" role="radio" aria-checked="false" data-star="1" aria-label="1 sur 5"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z"/></svg></button><button class="star" type="button" role="radio" aria-checked="false" data-star="2" aria-label="2 sur 5"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z"/></svg></button><button class="star" type="button" role="radio" aria-checked="false" data-star="3" aria-label="3 sur 5"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z"/></svg></button><button class="star" type="button" role="radio" aria-checked="false" data-star="4" aria-label="4 sur 5"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z"/></svg></button><button class="star" type="button" role="radio" aria-checked="false" data-star="5" aria-label="5 sur 5"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3 6.4 20.2l1.1-6.2L3 9.6l6.2-.9z"/></svg></button>
         </div>
         <small class="muted" id="rating-note">Votre note reste sur cet appareil.</small>
       </div>
-    </aside>
-  </div>
-
-  
-    <section class="container related">
-      <div class="section-head"><h2>Guides <span class="accent">similaires</span></h2>
-        <a class="link-arrow" href="../categories/jardin.html">Voir plus de guides <svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
-      <div class="guide-grid">
-    <a class="gcard" href="../fiches/fil-coupe-bordure.html">
-      <div class="gcard-media">
-        <img src="../assets/img/photos/jardin.webp" srcset="../assets/img/photos/jardin-480.webp 480w, ../assets/img/photos/jardin.webp 1000w" sizes="(max-width: 600px) 82vw, 300px" alt="" loading="lazy" decoding="async">
-        <span class="tag">Jardin</span>
-        
-        
-        <h3>Recharger le fil d&#39;un coupe-bordure</h3>
-        <span class="round-btn"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="guide-tools" style="margin-top:12px">
+        <button class="btn btn-ghost btn-sm" id="print" type="button"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M7 14h10v7H7z"/></svg> Imprimer ou enregistrer en PDF</button>
       </div>
-      <div class="gcard-meta">
-        <span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 15 min</span>
-        <span>Difficulté <span class="dots lvl-1" role="img" aria-label="Difficulté : Facile"><i class="on"></i><i class=""></i><i class=""></i></span></span>
-        <span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 6.5A6.5 6.5 0 1 0 17 17.5"/><path d="M4 10.5h9M4 13.5h9"/></svg> 15 €</span>
+    </section>
+
+    
+
+    
+      <section class="guide-sec related" aria-labelledby="h-related">
+        <div class="section-head"><h2 id="h-related">Fiches similaires</h2>
+          <a class="link-arrow" href="../categories/jardin.html">Jardin &amp; Extérieur <svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <div class="guide-grid">
+    <a class="gcard" href="../fiches/fil-coupe-bordure.html">
+      <div class="gcard-media"><img src="../assets/img/photos/jardin.webp" srcset="../assets/img/photos/jardin-480.webp 480w, ../assets/img/photos/jardin.webp 1000w" sizes="(max-width: 600px) 82vw, 300px" alt="" loading="lazy" decoding="async"></div>
+      <div class="gcard-body">
+        <h3>Recharger le fil d&#39;un coupe-bordure</h3>
+        <div class="gcard-meta">
+          <span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 15 min</span>
+          <span><span class="dots lvl-1" role="img" aria-label="Difficulté : Facile"><i class="on"></i><i class=""></i><i class=""></i></span> Facile</span>
+          
+          
+        </div>
       </div>
       
     </a>
     <a class="gcard" href="../fiches/tondeuse-ne-demarre-pas.html">
-      <div class="gcard-media">
-        <img src="../assets/img/photos/jardin.webp" srcset="../assets/img/photos/jardin-480.webp 480w, ../assets/img/photos/jardin.webp 1000w" sizes="(max-width: 600px) 82vw, 300px" alt="" loading="lazy" decoding="async">
-        <span class="tag">Jardin</span>
-        
-        
+      <div class="gcard-media"><img src="../assets/img/photos/jardin.webp" srcset="../assets/img/photos/jardin-480.webp 480w, ../assets/img/photos/jardin.webp 1000w" sizes="(max-width: 600px) 82vw, 300px" alt="" loading="lazy" decoding="async"></div>
+      <div class="gcard-body">
         <h3>Tondeuse thermique qui ne démarre pas</h3>
-        <span class="round-btn"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </div>
-      <div class="gcard-meta">
-        <span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 40 min</span>
-        <span>Difficulté <span class="dots lvl-2" role="img" aria-label="Difficulté : Moyen"><i class="on"></i><i class="on"></i><i class=""></i></span></span>
-        <span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 6.5A6.5 6.5 0 1 0 17 17.5"/><path d="M4 10.5h9M4 13.5h9"/></svg> 60 €</span>
+        <div class="gcard-meta">
+          <span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 40 min</span>
+          <span><span class="dots lvl-2" role="img" aria-label="Difficulté : Moyen"><i class="on"></i><i class="on"></i><i class=""></i></span> Moyen</span>
+          
+          
+        </div>
       </div>
       
     </a>
     <a class="gcard" href="../fiches/affuter-secateur.html">
-      <div class="gcard-media">
-        <img src="../assets/img/photos/jardin.webp" srcset="../assets/img/photos/jardin-480.webp 480w, ../assets/img/photos/jardin.webp 1000w" sizes="(max-width: 600px) 82vw, 300px" alt="" loading="lazy" decoding="async">
-        <span class="tag">Jardin</span>
-        
-        
+      <div class="gcard-media"><img src="../assets/img/photos/jardin.webp" srcset="../assets/img/photos/jardin-480.webp 480w, ../assets/img/photos/jardin.webp 1000w" sizes="(max-width: 600px) 82vw, 300px" alt="" loading="lazy" decoding="async"></div>
+      <div class="gcard-body">
         <h3>Nettoyer et affûter un sécateur</h3>
-        <span class="round-btn"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </div>
-      <div class="gcard-meta">
-        <span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 20 min</span>
-        <span>Difficulté <span class="dots lvl-1" role="img" aria-label="Difficulté : Facile"><i class="on"></i><i class=""></i><i class=""></i></span></span>
-        <span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 6.5A6.5 6.5 0 1 0 17 17.5"/><path d="M4 10.5h9M4 13.5h9"/></svg> 30 €</span>
+        <div class="gcard-meta">
+          <span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 20 min</span>
+          <span><span class="dots lvl-1" role="img" aria-label="Difficulté : Facile"><i class="on"></i><i class=""></i><i class=""></i></span> Facile</span>
+          
+          
+        </div>
       </div>
       
     </a></div>
-    </section></div>
+      </section>
+  </div></div>
   </main>
   <footer id="site-footer"></footer>
 

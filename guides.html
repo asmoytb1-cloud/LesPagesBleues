@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Rechercher un guide de réparation — Les Pages Bleues</title>
-  <meta name="description" content="Tous les guides de réparation des Pages Bleues : recherchez une panne ou un objet, filtrez par domaine, difficulté et durée.">
-  <meta name="theme-color" content="#050b18">
-  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+  <title>Guides de réparation et d'entretien — Les Pages Bleues</title>
+  <meta name="description" content="Tous les guides des Pages Bleues : cherchez un objet ou une panne, parcourez les domaines, filtrez par difficulté et par durée.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1426" media="(prefers-color-scheme: dark)">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var c=t==="dark"?"#0a1426":"#f4f7fb";document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",c)})}}catch(e){}})()</script>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="assets/img/icon-180.png">
   <link rel="canonical" href="https://asmoytb1-cloud.github.io/LesPagesBleues/guides.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Les Pages Bleues">
-  <meta property="og:title" content="Rechercher un guide de réparation — Les Pages Bleues">
-  <meta property="og:description" content="Tous les guides de réparation des Pages Bleues : recherchez une panne ou un objet, filtrez par domaine, difficulté et durée.">
+  <meta property="og:title" content="Guides de réparation et d'entretien — Les Pages Bleues">
+  <meta property="og:description" content="Tous les guides des Pages Bleues : cherchez un objet ou une panne, parcourez les domaines, filtrez par difficulté et par durée.">
   <meta property="og:image" content="https://asmoytb1-cloud.github.io/LesPagesBleues/assets/img/og-image.png">
   <meta property="og:locale" content="fr_FR">
   <meta name="twitter:card" content="summary_large_image">
@@ -24,50 +26,70 @@
 <body>
   <header id="site-header"></header>
   <main id="main" tabindex="-1">
-    <section class="page-hero search-page">
+    <section class="page-hero">
       <div class="container">
-        <h1 id="page-title">Tous les <span class="accent">guides</span></h1>
-        <p>Cherchez un objet ou une panne, puis affinez par domaine, difficulté ou durée.</p>
-        <form class="search-bar" id="search-form" role="search" style="margin-top:1.2rem">
+        <h1 id="page-title">Guides</h1>
+        <p id="page-sub">Cherchez un objet ou une panne, ou parcourez les domaines.</p>
+        <form class="search-bar explore-search" id="search-form" role="search">
           <span data-icon="search"></span>
-          <input type="search" name="q" id="q" placeholder="Ex. : lave-linge ne démarre plus" aria-label="Rechercher un guide ou une panne" autocomplete="off">
-          <button class="btn btn-primary" type="submit" aria-label="Rechercher"><span data-icon="search"></span><span>Rechercher</span></button>
+          <input type="search" name="q" id="q" placeholder="Ex. : lave-linge, pneu, fuite…" aria-label="Rechercher un guide ou une panne" autocomplete="off" enterkeyhint="search">
+          <button class="btn btn-primary" type="submit"><span data-icon="search"></span><span>Rechercher</span></button>
         </form>
-        <div class="tabs" role="tablist" id="tabs" aria-label="Type de résultats"></div>
       </div>
     </section>
     <section class="section section-tight">
       <div class="container">
-        <div class="filterbar" id="filterbar">
-          <label class="sr-only" for="f-cat">Domaine</label>
-          <select id="f-cat" class="input input-sm"></select>
-          <label class="sr-only" for="f-diff">Difficulté</label>
-          <select id="f-diff" class="input input-sm">
-            <option value="">Toutes difficultés</option><option>Facile</option><option>Moyen</option><option>Difficile</option>
-          </select>
-          <label class="sr-only" for="f-time">Durée</label>
-          <select id="f-time" class="input input-sm">
-            <option value="">Toutes durées</option><option value="20">20 min ou moins</option><option value="45">45 min ou moins</option><option value="90">1 h 30 ou moins</option>
-          </select>
-          <button class="chip" id="fav-toggle" type="button" aria-pressed="false"><span data-icon="heart"></span> Mes favoris</button>
-          <label class="sort"><span data-icon="sort"></span><span class="sr-only">Trier</span>
-            <select id="sort" class="input input-sm">
-              <option value="pertinence">Pertinence</option>
-              <option value="duree">Les plus rapides</option>
-              <option value="facile">Les plus faciles</option>
-              <option value="economie">Plus grosse économie</option>
-              <option value="az">A → Z</option>
-            </select>
-          </label>
+        <div id="domains">
+    <h2 class="h2" style="margin-bottom:12px">Domaines</h2>
+    <div class="domain-grid">
+      <a class="domain-tile" href="categories/automobile.html"><span class="tile-ico"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 16V11l2-5h10l2 5v5"/><path d="M3 16h18v2H3z"/><path d="M5 11h14"/><circle cx="7.5" cy="13.5" r=".8"/><circle cx="16.5" cy="13.5" r=".8"/><path d="M6 18v2M18 18v2"/></svg></span>
+        <span><strong>Auto / Moto</strong><small>16 fiches</small></span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="domain-tile" href="categories/electromenager.html"><span class="tile-ico"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2.5" width="16" height="19" rx="2"/><path d="M4 7h16"/><circle cx="12" cy="14" r="4.5"/><path d="M9.5 14.5c1-1 2-1 3 0s2 1 2.5 0"/><circle cx="7" cy="4.8" r=".5"/></svg></span>
+        <span><strong>Électroménager</strong><small>43 fiches</small></span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="domain-tile" href="categories/telephonie.html"><span class="tile-ico"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20l-2-4H4z"/></svg></span>
+        <span><strong>Téléphonie &amp; Informatique</strong><small>14 fiches</small></span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="domain-tile" href="categories/maison.html"><span class="tile-ico"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h11v6H3z"/><path d="M14 8h4M18 9h3"/><path d="M7 12l-1 8h5l1-8"/></svg></span>
+        <span><strong>Maison &amp; Bricolage</strong><small>20 fiches</small></span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="domain-tile" href="categories/velo.html"><span class="tile-ico"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="16" r="3.5"/><circle cx="18.5" cy="16" r="3.5"/><path d="M5.5 16 9 9h6l3.5 7M9 9l3 7h-6.5M12 16l3-7M8 6h3M15 9l-1-3h2"/></svg></span>
+        <span><strong>Vélo &amp; Mobilité</strong><small>7 fiches</small></span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="domain-tile" href="categories/jardin.html"><span class="tile-ico"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20c0-9 6-15 16-16-1 10-7 16-16 16z"/><path d="M4 20 13 11"/></svg></span>
+        <span><strong>Jardin &amp; Extérieur</strong><small>13 fiches</small></span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="domain-tile" href="categories/loisirs.html"><span class="tile-ico"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10a5 5 0 0 1 4.9 6l-.8 4a2.5 2.5 0 0 1-4.3 1.1L14.5 16h-5l-2.3 2.1a2.5 2.5 0 0 1-4.3-1.1l-.8-4A5 5 0 0 1 7 7z"/><path d="M7.5 10.5v3M6 12h3"/><circle cx="16" cy="11" r=".6"/><circle cx="17.5" cy="13" r=".6"/></svg></span>
+        <span><strong>Jeux &amp; Loisirs</strong><small>5 fiches</small></span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a>
+      <a class="domain-tile" href="categories/autres.html"><span class="tile-ico"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="18" cy="12" r="1.2"/></svg></span>
+        <span><strong>Autres</strong><small>6 fiches</small></span><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></a></div>
+    <h2 class="h2" style="margin-top:28px">Toutes les fiches</h2></div><!-- /domains -->
+        <div class="tabs" role="tablist" id="tabs" aria-label="Type de résultats"></div>
+        <script>(function(){var s=location.search;document.getElementById("tabs").hidden=!/[?&]q=[^&]/.test(s);document.getElementById("domains").hidden=/[?&](q|materiel|type|fav|cat|diff|time)=[^&]/.test(s)})()</script>
+        <div class="list-tools">
+          <p class="result-count" id="count" aria-live="polite"></p>
         </div>
-        <p class="result-count muted" id="count" aria-live="polite"></p>
+        <details class="filters" id="filters">
+          <summary><span data-icon="filter"></span>Filtrer et trier<span data-icon="chevron"></span></summary>
+          <div class="filterbar" id="filterbar">
+            <div class="field"><label for="f-cat">Domaine</label><select id="f-cat" class="input input-sm"></select></div>
+            <div class="field"><label for="f-diff">Difficulté</label>
+              <select id="f-diff" class="input input-sm"><option value="">Toutes</option><option>Facile</option><option>Moyen</option><option>Difficile</option></select></div>
+            <div class="field"><label for="f-time">Durée</label>
+              <select id="f-time" class="input input-sm"><option value="">Toutes</option><option value="20">20 min ou moins</option><option value="45">45 min ou moins</option><option value="90">1 h 30 ou moins</option></select></div>
+            <div class="field"><label for="sort">Trier par</label>
+              <select id="sort" class="input input-sm">
+                <option value="pertinence">Pertinence</option>
+                <option value="duree">Les plus rapides</option>
+                <option value="facile">Les plus faciles</option>
+                <option value="economie">Plus grosse économie</option>
+                <option value="az">A → Z</option>
+              </select></div>
+            <button class="chip" id="fav-toggle" type="button" aria-pressed="false"><span data-icon="heart"></span> Mes favoris</button>
+          </div>
+        </details>
         <div id="results"></div>
         <div class="ask-band">
           <span data-icon="chat"></span>
-          <div><strong>Vous ne trouvez pas la solution ?</strong><small>Le diagnostic guidé vous aide à trouver la cause, ou posez votre question à la communauté.</small></div>
+          <div><strong>Vous ne trouvez pas ?</strong><small>Décrivez votre problème : on cherche la cause avec vous. Ou demandez à la communauté.</small></div>
           <div class="btns">
-            <a class="btn btn-ghost" id="ask-diag" href="diagnostic.html">Diagnostic guidé</a>
-            <a class="btn btn-primary" id="ask-q" href="communaute.html?ask=1">Poser une question</a>
+            <a class="btn btn-primary" id="ask-diag" href="diagnostic.html">Décrire mon problème</a>
+            <a class="btn btn-ghost" id="ask-q" href="communaute.html?ask=1">Poser une question</a>
           </div>
         </div>
       </div>

@@ -20,18 +20,41 @@ quotidien au lieu de les jeter, gratuitement.
 
 ## 2. Ce que fait le site aujourd'hui
 
+**Principe :** « Je rencontre un problème → Les Pages Bleues m'aident à trouver une solution. » Interface refaite en
+octobre 2026 pour être un compagnon simple et calme (voir § 2 bis).
+
 | Fonction | Détail |
 |---|---|
 | **124 fiches vérifiées** | 11 domaines (Automobile, Moto, Électroménager, Téléphonie & informatique, Maison & bricolage, Vélo & mobilité, Jardin, Jeux & loisirs, Mode, Instruments, Autres). Chaque fiche : difficulté, durée, économie estimée, précautions de sécurité, outils, pièces, étapes (avec astuces et minuteurs), dépannage, **sources citées** (245 au total) et date de vérification. Au moins une fiche pour chacun des 85 types d'équipement. |
 | **Mode accompagnement** | Une étape à la fois, en grand, lecture à voix haute, minuteurs, commandes vocales. |
-| **Diagnostic guidé** | 26 pannes courantes : description libre → questions → causes classées → fiche. Sans IA (règles pondérées). |
+| **Diagnostic** | 26 pannes courantes : description libre (ou choix de l'équipement) → questions une par une → « Voici ce que nous avons trouvé » (causes avec probabilité estimée, « Notre conseil ») → guide recommandé. Sans IA (règles pondérées). Photo jointe possible pour une question à la communauté (non analysée). |
+| **Entretien** | Page qui rassemble les entretiens de tout le matériel : À faire, Bientôt, À venir (objet, entretien, échéance). |
 | **Mon matériel** | L'utilisateur enregistre ses appareils, sa voiture, sa moto, et ne voit que les fiches qui les concernent. Catalogue de 85 types, marques courantes, modèles courants, saisie libre. |
 | **Carnet d'entretien** | Par matériel : entretiens et contrôles à venir, intervalles tirés des fiches (réglables), prévision au kilométrage moyen, historique avec factures en photo, statistiques, impression, export pour la revente, rappels agenda (.ics). 85 plans d'entretien. |
 | **Bonus réparation** | Encadré sur les fiches concernées : montant déduit chez un réparateur labellisé QualiRépar (barème ecosystem). |
 | **Fin de vie** | Sur les domaines électriques : faire réparer avec le bonus, donner (outil ADEME), reprise « un pour un » / « un pour zéro ». |
 | **Contribution** | Rédiger une fiche en 4 étapes (avec photos), poser des questions, signaler une erreur. Pendant la bêta, tout reste sur l'appareil (pas encore de partage). |
 | **Bêta** | Badge « Bêta », page d'avis (envoyé par e-mail à l'éditeur). |
-| **Qualité** | Thème clair/sombre, mobile, hors ligne, accessibilité (WCAG AA, axe-core), une page statique par fiche pour le référencement, impression/PDF. |
+| **Qualité** | Thème automatique (clair par défaut, sombre bleu nuit), mobile, hors ligne, accessibilité (WCAG AA, axe-core), une page statique par fiche pour le référencement, impression/PDF. |
+
+## 2 bis. Design et ergonomie (refonte d'octobre 2026)
+
+- **Navigation identique partout** : Accueil · Diagnostic · Guides · Matériel · Plus (barre du bas sur mobile, en-tête
+  sur ordinateur). « Plus » range le reste : carnet d'entretien, favoris, réparations, profil, communauté, ajouter une
+  fiche, avis sur la bêta, apparence (automatique / clair / sombre), données, à propos et pages légales.
+- **Accueil** : « Bonjour 👋 », « Que voulez-vous faire aujourd'hui ? », grande recherche « Décrivez votre problème… »
+  (elle mène au diagnostic) et quatre cartes : Réparer, Entretenir, Mon matériel, Explorer. En dessous, seulement ce qui
+  concerne l'utilisateur : la réparation en cours et les entretiens à prévoir.
+- **Couleurs** : fond blanc légèrement bleuté, bleu pour l'accent (réparer, liens, boutons), vert pour l'entretien,
+  ambre pour le matériel, rouge seulement pour le danger. Thème sombre : la même interface en bleu nuit.
+- **Accessibilité cognitive** : mots simples, une action par élément, grandes zones à toucher (44 px et plus), aucune
+  animation décorative, contrastes WCAG AA, et jamais une couleur seule (toujours un mot et une icône : « À faire »,
+  « Bientôt », « À venir »).
+- **Logo** : une page au coin replié bleu, d'où l'on a découpé une clé ; mot « Bleues » en bleu. Dessin unique dans
+  `tools/icons.js` (favicon, icônes web, image de partage, icônes iPhone claire, sombre et teintée). Le coin replié revient,
+  discrètement, sur les quatre cartes de l'accueil.
+- **Système de design** dans `assets/css/style.css` : variables de couleur (thème clair sur `:root`, sombre via
+  `prefers-color-scheme` ou `data-theme="dark"`), cartes, listes groupées, boutons, états, onglets.
 
 ## 3. Architecture technique
 
@@ -43,12 +66,12 @@ quotidien au lieu de les jeter, gratuitement.
 ### Arborescence
 
 ```
-index.html, guides.html, guide.html, categories.html, diagnostic.html, materiel.html, carnet.html,
-communaute.html, ajouter.html, profil.html, a-propos.html, beta.html, mentions-legales.html,
+index.html, guides.html, guide.html, categories.html, diagnostic.html, materiel.html, carnet.html, entretien.html,
+plus.html, communaute.html, ajouter.html, profil.html, a-propos.html, beta.html, mentions-legales.html,
 conditions-utilisation.html, confidentialite.html, 404.html     ← pages générées par tools/pages.py
 fiches/*.html          ← une page statique par fiche (générée par tools/build.js)
 categories/*.html      ← une page d'introduction par domaine (générée par tools/build.js)
-assets/css/style.css   ← tout le style (variables de thème sur :root, thème clair via [data-theme="light"])
+assets/css/style.css   ← système de design (thème clair sur :root ; sombre via prefers-color-scheme ou [data-theme="dark"])
 assets/js/
   data.js              ← CATEGORIES et GUIDES (les 124 fiches) — LA source du contenu
   common.js            ← utilitaires partagés : store (localStorage), icônes, en-tête/pied de page, matériel,
@@ -66,9 +89,10 @@ tools/
   materiel.js          ← génère materiel-data.js depuis tools/data/
   data/                ← types.json, marques.json, modeles.json, vehicules.txt (listes rédigées par l'équipe)
   fetch-wikidata.py    ← (facultatif) complète les modèles depuis Wikidata (CC0)
+  icons.js             ← logo, favicon, icônes web et iPhone, image de partage (Playwright)
 tests/
   validate.js          ← contrôles de cohérence (fiches, sources, liens, catalogue, plans d'entretien…)
-  e2e.js               ← 24 tests de bout en bout Playwright (toutes les pages, mobile, thèmes, accessibilité…)
+  e2e.js               ← 26 tests de bout en bout Playwright (toutes les pages, mobile, thèmes, accessibilité…)
 ios/                   ← application iPhone (voir § 5)
 ```
 
@@ -133,8 +157,8 @@ Après chaque modification : `pages.py` → `build.js` → `validate.js` → `e2
   l'app (dossier `Site`). Il est servi sous l'adresse `lpb://app/…` par `SiteSchemeHandler.swift`, pour que le
   `localStorage`, `fetch()` et les liens relatifs fonctionnent hors ligne.
 - `SiteView.swift` fait le lien avec iOS : liens externes et e-mails ouverts dans Safari/Mail, `confirm()` natif,
-  `window.print()` → impression iOS, fichiers exportés → feuille de partage. Le site sait qu'il est dans l'app
-  grâce à `window.LPB_APP = "ios"`.
+  `window.print()` → impression iOS, fichiers exportés → feuille de partage, thème choisi sur le site → barre d'état
+  et fond de l'app (message `theme`). Le site sait qu'il est dans l'app grâce à `window.LPB_APP = "ios"`.
 - `PrivacyInfo.xcprivacy` : aucun suivi, aucune donnée collectée.
 - Testée et fonctionnelle sur l'iPhone de l'éditeur.
 

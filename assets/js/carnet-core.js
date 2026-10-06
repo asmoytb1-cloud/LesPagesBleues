@@ -95,3 +95,39 @@ function intervalText(t) {
   const txt = parts.join(" ou ");
   return txt ? txt.charAt(0).toUpperCase() + txt.slice(1) : "Intervalle libre (selon la notice)";
 }
+
+/* ---------- États lisibles : couleur + icône + mot, partout les mêmes ----------
+   À faire (rouge) : en retard ou contrôle défaillant · Bientôt (ambre) · À venir (vert) · À renseigner (gris) */
+const STATE_INFO = {
+  defaillant: { group: "todo", label: "À faire", detail: "Contrôle défaillant", icon: "alert" },
+  retard: { group: "todo", label: "À faire", detail: "En retard", icon: "alert" },
+  bientot: { group: "soon", label: "Bientôt", icon: "clock" },
+  ok: { group: "ok", label: "À venir", icon: "check" },
+  inconnu: { group: "unknown", label: "À renseigner", icon: "pencil" },
+  libre: { group: "free", label: "Selon la notice", icon: "doc" }
+};
+function statusPill(state) {
+  const s = STATE_INFO[state] || STATE_INFO.libre;
+  return `<span class="status status-${s.group}">${icon(s.icon)}${s.label}</span>`;
+}
+// Échéance en clair : « dans 12 jours », « en retard de 3 mois », « à 10 800 km »
+function dueText(st) {
+  if (st.state === "defaillant") return "dès que possible";
+  if (st.days != null) return st.days < 0 ? `en retard de ${relDays(st.days).replace("il y a ", "")}` : relDays(st.days);
+  if (st.dueKm) return `à ${Math.round(st.dueKm).toLocaleString("fr-FR")} km`;
+  if (st.state === "inconnu") return "date inconnue";
+  return "";
+}
+// Tous les entretiens suivis, tous matériels confondus : [{ m, t, st }]
+function careItems(list = loadMateriel()) {
+  const out = [];
+  for (const m of list) {
+    const c = loadCarnet(m.id);
+    for (const t of carnetPlan(m, c)) if (!t.off) out.push({ m, t, st: taskStatus(m, c, t) });
+  }
+  return out;
+}
+const STATE_RANK = { defaillant: 0, retard: 1, bientot: 2, ok: 3, inconnu: 4, libre: 5 };
+function byUrgency(a, b) {
+  return STATE_RANK[a.st.state] - STATE_RANK[b.st.state] || (a.st.days ?? 1e9) - (b.st.days ?? 1e9);
+}

@@ -4,6 +4,11 @@ import pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SITE = "https://asmoytb1-cloud.github.io/LesPagesBleues/"
 
+# Thème : automatique (réglage du téléphone) sauf choix explicite, appliqué avant l'affichage (pas de flash)
+THEME_JS = ('(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t==="light"||t==="dark"){'
+            'document.documentElement.dataset.theme=t;var c=t==="dark"?"#0a1426":"#f4f7fb";'
+            'document.querySelectorAll(\'meta[name="theme-color"]\').forEach(function(m){m.setAttribute("content",c)})}}catch(e){}})()')
+
 HEAD = """<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,8 +16,10 @@ HEAD = """<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{title}</title>
   <meta name="description" content="{desc}">
-  <meta name="theme-color" content="#050b18">
-  <script>(function(){{try{{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t)document.documentElement.dataset.theme=t}}catch(e){{}}}})()</script>
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1426" media="(prefers-color-scheme: dark)">
+  <script>{theme}</script>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="assets/img/icon-180.png">
@@ -48,218 +55,100 @@ PAGES = {}
 
 PAGES["index.html"] = dict(
   title="Les Pages Bleues — Réparer. Comprendre. Transmettre.",
-  desc="L'encyclopédie collaborative de l'entretien et de la réparation, en français : guides vérifiés pas à pas, diagnostic guidé, carnet d'entretien et mode accompagnement pour réparer au lieu de jeter.",
-  scripts=["entretien-data.js", "carnet-core.js", "home.js"],
-  body="""    <section class="hero theme-dark">
-      <img class="hero-photo" src="assets/img/photos/hero.webp" srcset="assets/img/photos/hero-480.webp 480w, assets/img/photos/hero-800.webp 800w, assets/img/photos/hero.webp 1024w" sizes="100vw" alt="" fetchpriority="high">
-      <div class="container hero-inner">
-        <div>
-          <h1>Réparer.<span class="accent">Comprendre.</span>Transmettre.</h1>
-          <p class="hero-lead">L'encyclopédie collaborative de l'entretien et de la réparation. Des guides concrets, vérifiés, écrits pour ceux qui n'ont jamais tenu un tournevis.</p>
-          <div class="search-wrap">
-            <form class="search-bar" action="guides.html" role="search">
-              <span data-icon="search"></span>
-              <input type="search" name="q" id="hero-q" placeholder="Quel est votre souci aujourd'hui ?" aria-label="Quel est votre souci aujourd'hui ?" autocomplete="off"
-                     role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="hero-suggest">
-              <button class="btn btn-primary" type="submit" aria-label="Rechercher"><span data-icon="search"></span><span>Rechercher</span></button>
-            </form>
-            <div class="suggest-box" id="hero-suggest" role="listbox" aria-label="Fiches suggérées" hidden></div>
-          </div>
-          <div class="suggestions">
-            <span>Essayez :</span>
-            <a class="chip" href="guides.html?q=lave-linge">Lave-linge</a>
-            <a class="chip" href="guides.html?q=voiture">Voiture</a>
-            <a class="chip" href="guides.html?q=smartphone">Smartphone</a>
-            <a class="chip" href="guides.html?q=tondeuse">Tondeuse</a>
-            <a class="chip" href="guides.html?q=fuite">Fuite d'eau</a>
-            <a class="chip" href="guides.html?q=vélo">Vélo</a>
-          </div>
+  desc="Réparer, entretenir et faire durer vos objets : décrivez votre problème, Les Pages Bleues vous aident à trouver la solution. Guides vérifiés pas à pas, diagnostic simple, carnet d'entretien.",
+  scripts=["entretien-data.js", "carnet-core.js", "home.js"], active="accueil",
+  body="""    <section class="home">
+      <div class="narrow home-inner">
+        <p class="home-hello"><span id="hello">Bonjour</span> <span aria-hidden="true">👋</span></p>
+        <h1 class="home-title">Que voulez-vous faire aujourd'hui&nbsp;?</h1>
+        <p class="home-sub">On vous aide à réparer, entretenir et faire durer vos objets.</p>
+        <div class="search-wrap home-search">
+          <form class="search-bar search-xl" action="diagnostic.html" role="search">
+            <span data-icon="search"></span>
+            <input type="search" name="q" id="hero-q" placeholder="Décrivez votre problème…" aria-label="Décrivez votre problème" autocomplete="off" enterkeyhint="search"
+                   role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="hero-suggest">
+            <button class="btn btn-primary" type="submit" aria-label="Analyser mon problème"><span data-icon="arrow"></span></button>
+          </form>
+          <div class="suggest-box" id="hero-suggest" role="listbox" aria-label="Fiches suggérées" hidden></div>
         </div>
-        <div class="hero-side">
-          <p class="handwritten">Le savoir<br>pour réparer<br>dure plus longtemps.</p>
-          <a class="hero-card" href="diagnostic.html">
-            <span data-icon="leaf"></span>
-            <span><strong>Réparer, pas remplacer.</strong><small>Pas sûr de la panne ? Lancez le diagnostic guidé.</small></span>
-            <span class="round-btn"><span data-icon="chevron"></span></span>
-          </a>
-        </div>
-      </div>
-      <div class="container benefits">
-        <div class="benefit"><span data-icon="wrench"></span><div><strong>Guides pas à pas</strong><small>Simples et détaillés</small></div></div>
-        <div class="benefit"><span data-icon="shield"></span><div><strong>Informations vérifiées</strong><small>Sources citées dans chaque fiche</small></div></div>
-        <div class="benefit"><span data-icon="users"></span><div><strong>Une communauté ouverte</strong><small>Passionnés et professionnels</small></div></div>
-        <div class="benefit"><span data-icon="leaf"></span><div><strong>Moins de déchets</strong><small>Pour une planète plus durable</small></div></div>
-      </div>
-    </section>
-
-    <section class="section section-tight" id="resume" hidden>
-      <div class="container">
-        <div class="section-head"><h2>Reprendre ma <span class="accent">réparation</span></h2></div>
-        <div class="resume-list" id="resume-list"></div>
-      </div>
-    </section>
-
-    <section class="section" id="categories">
-      <div class="container">
-        <div class="section-head">
-          <h2>Choisissez un <span class="accent">domaine</span></h2>
-          <a class="link-arrow" href="categories.html">Voir tous les domaines ARROW</a>
-        </div>
-        <div class="cat-grid" id="cat-grid"></div>
-        <div class="stats" id="stats"></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Problème <span class="accent">du moment</span></h2>
-          <a class="link-arrow" href="guides.html">Tous les guides ARROW</a>
-        </div>
-        <div class="carousel" id="carousel">
-          <button class="carousel-btn prev" type="button" aria-label="Guides précédents"><span data-icon="chevronLeft"></span></button>
-          <div class="carousel-track" id="popular" tabindex="0" aria-label="Guides populaires"></div>
-          <button class="carousel-btn next" type="button" aria-label="Guides suivants"><span data-icon="chevron"></span></button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <div class="section-head">
-          <h2>Comment <span class="accent">ça marche ?</span></h2>
-          <a class="link-arrow" href="a-propos.html">Découvrir en détail ARROW</a>
-        </div>
-        <ol class="how">
-          <li><span class="how-ico"><span data-icon="search"></span></span><div><strong><b>1.</b> Recherchez</strong><small>Décrivez votre panne ou votre objet, ou lancez le diagnostic guidé.</small></div></li>
-          <li><span class="how-ico"><span data-icon="doc"></span></span><div><strong><b>2.</b> Suivez</strong><small>Des étapes claires, avec les outils, les pièces et la sécurité.</small></div></li>
-          <li><span class="how-ico"><span data-icon="wrench"></span></span><div><strong><b>3.</b> Réparez</strong><small>Le mode accompagnement vous guide, une étape à la fois.</small></div></li>
-          <li><span class="how-ico"><span data-icon="users"></span></span><div><strong><b>4.</b> Partagez</strong><small>Ajoutez vos astuces et vos réparations pour aider les autres.</small></div></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section section-tight">
-      <div class="container">
-        <div class="section-head">
-          <h2>Mon <span class="accent">matériel</span></h2>
-          <a class="link-arrow" href="materiel.html">Gérer mon matériel ARROW</a>
-        </div>
-        <p class="muted" style="margin:-6px 0 14px">Enregistrez vos appareils et votre voiture : vous ne verrez que les fiches qui les concernent.</p>
-        <div class="mat-strip" id="mat-strip">
-          <a class="mat-chip" href="materiel.html?type=lave-linge"><span data-icon="washer"></span>Ajouter un lave-linge</a>
-          <a class="mat-chip" href="materiel.html?type=refrigerateur"><span data-icon="fridge"></span>Ajouter un réfrigérateur</a>
-          <a class="mat-chip" href="materiel.html?kind=voiture"><span data-icon="car"></span>Ajouter ma voiture</a>
-          <a class="mat-chip" href="materiel.html"><span data-icon="plus"></span>Autre appareil</a>
-        </div>
-        <div class="home-due" id="home-due" hidden></div>
-      </div>
-    </section>
-
-    <section class="section section-tight">
-      <div class="container">
-        <div class="diag-band">
-          <span class="diag-band-ico"><span data-icon="stethoscope"></span></span>
-          <div>
-            <h2>Vous ne savez pas ce qui est en panne ?</h2>
-            <p>Décrivez le symptôme : le diagnostic guidé vous pose quelques questions, classe les causes possibles et vous oriente vers la bonne fiche… ou vers un réparateur.</p>
-          </div>
-          <a class="btn btn-primary btn-lg" href="diagnostic.html"><span data-icon="play"></span>Lancer le diagnostic</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="join theme-dark">
-      <img class="join-photo" src="assets/img/photos/terre.webp" srcset="assets/img/photos/terre-480.webp 480w, assets/img/photos/terre-800.webp 800w, assets/img/photos/terre.webp 1024w" sizes="100vw" alt="" loading="lazy">
-      <div class="container join-inner">
-        <div>
-          <h2>Un monde qui se <strong>répare</strong><br>va plus loin.</h2>
-          <a class="btn btn-primary btn-lg" href="communaute.html" style="margin-top:1.4rem">Rejoindre la communauté</a>
-        </div>
-        <div class="join-card">
-          <h3>Rejoignez <span class="accent">Les Pages Bleues</span></h3>
-          <p>Partagez vos connaissances, posez vos questions, aidez d'autres personnes à réparer et faites vivre le savoir-faire.</p>
-          <div class="join-perks">
-            <span><span data-icon="wrench"></span>Gratuit</span>
-            <span><span data-icon="shield"></span>Sans publicité intrusive</span>
-            <span><span data-icon="user"></span>Ouvert à tous</span>
-          </div>
-        </div>
+        <p class="home-example">Par exemple : <a href="diagnostic.html?q=Mon%20lave-linge%20fait%20beaucoup%20de%20bruit">« Mon lave-linge fait beaucoup de bruit »</a></p>
+        <nav class="action-grid" aria-label="Que voulez-vous faire ?">
+          <a class="action-card ac-repair" href="diagnostic.html"><span class="tile-ico"><span data-icon="wrench"></span></span><span class="ac-kicker">Réparer</span><span class="ac-title">J'ai un problème</span><span data-icon="chevron"></span></a>
+          <a class="action-card ac-care" href="entretien.html"><span class="tile-ico"><span data-icon="calendar"></span></span><span class="ac-kicker">Entretenir</span><span class="ac-title">Éviter les pannes</span><span data-icon="chevron"></span></a>
+          <a class="action-card ac-stuff" href="materiel.html"><span class="tile-ico"><span data-icon="box"></span></span><span class="ac-kicker">Mon matériel <span class="ac-count" id="home-mat-count" hidden></span></span><span class="ac-title">Mes appareils et véhicules</span><span data-icon="chevron"></span></a>
+          <a class="action-card ac-explore" href="guides.html"><span class="tile-ico"><span data-icon="book"></span></span><span class="ac-kicker">Explorer</span><span class="ac-title">Tous les guides</span><span data-icon="chevron"></span></a>
+        </nav>
+        <div class="home-more" id="home-more"></div>
       </div>
     </section>""")
 
 PAGES["guides.html"] = dict(
-  title="Rechercher un guide de réparation — Les Pages Bleues",
-  desc="Tous les guides de réparation des Pages Bleues : recherchez une panne ou un objet, filtrez par domaine, difficulté et durée.",
+  title="Guides de réparation et d'entretien — Les Pages Bleues",
+  desc="Tous les guides des Pages Bleues : cherchez un objet ou une panne, parcourez les domaines, filtrez par difficulté et par durée.",
   scripts=["diagnostics-data.js", "materiel-data.js", "guides.js"], active="guides",
-  body="""    <section class="page-hero search-page">
+  body="""    <section class="page-hero">
       <div class="container">
-        <h1 id="page-title">Tous les <span class="accent">guides</span></h1>
-        <p>Cherchez un objet ou une panne, puis affinez par domaine, difficulté ou durée.</p>
-        <form class="search-bar" id="search-form" role="search" style="margin-top:1.2rem">
+        <h1 id="page-title">Guides</h1>
+        <p id="page-sub">Cherchez un objet ou une panne, ou parcourez les domaines.</p>
+        <form class="search-bar explore-search" id="search-form" role="search">
           <span data-icon="search"></span>
-          <input type="search" name="q" id="q" placeholder="Ex. : lave-linge ne démarre plus" aria-label="Rechercher un guide ou une panne" autocomplete="off">
-          <button class="btn btn-primary" type="submit" aria-label="Rechercher"><span data-icon="search"></span><span>Rechercher</span></button>
+          <input type="search" name="q" id="q" placeholder="Ex. : lave-linge, pneu, fuite…" aria-label="Rechercher un guide ou une panne" autocomplete="off" enterkeyhint="search">
+          <button class="btn btn-primary" type="submit"><span data-icon="search"></span><span>Rechercher</span></button>
         </form>
-        <div class="tabs" role="tablist" id="tabs" aria-label="Type de résultats"></div>
       </div>
     </section>
     <section class="section section-tight">
       <div class="container">
-        <div class="filterbar" id="filterbar">
-          <label class="sr-only" for="f-cat">Domaine</label>
-          <select id="f-cat" class="input input-sm"></select>
-          <label class="sr-only" for="f-diff">Difficulté</label>
-          <select id="f-diff" class="input input-sm">
-            <option value="">Toutes difficultés</option><option>Facile</option><option>Moyen</option><option>Difficile</option>
-          </select>
-          <label class="sr-only" for="f-time">Durée</label>
-          <select id="f-time" class="input input-sm">
-            <option value="">Toutes durées</option><option value="20">20 min ou moins</option><option value="45">45 min ou moins</option><option value="90">1 h 30 ou moins</option>
-          </select>
-          <button class="chip" id="fav-toggle" type="button" aria-pressed="false"><span data-icon="heart"></span> Mes favoris</button>
-          <label class="sort"><span data-icon="sort"></span><span class="sr-only">Trier</span>
-            <select id="sort" class="input input-sm">
-              <option value="pertinence">Pertinence</option>
-              <option value="duree">Les plus rapides</option>
-              <option value="facile">Les plus faciles</option>
-              <option value="economie">Plus grosse économie</option>
-              <option value="az">A → Z</option>
-            </select>
-          </label>
+        <div id="domains"></div><!-- /domains -->
+        <div class="tabs" role="tablist" id="tabs" aria-label="Type de résultats"></div>
+        <script>(function(){var s=location.search;document.getElementById("tabs").hidden=!/[?&]q=[^&]/.test(s);document.getElementById("domains").hidden=/[?&](q|materiel|type|fav|cat|diff|time)=[^&]/.test(s)})()</script>
+        <div class="list-tools">
+          <p class="result-count" id="count" aria-live="polite"></p>
         </div>
-        <p class="result-count muted" id="count" aria-live="polite"></p>
+        <details class="filters" id="filters">
+          <summary><span data-icon="filter"></span>Filtrer et trier<span data-icon="chevron"></span></summary>
+          <div class="filterbar" id="filterbar">
+            <div class="field"><label for="f-cat">Domaine</label><select id="f-cat" class="input input-sm"></select></div>
+            <div class="field"><label for="f-diff">Difficulté</label>
+              <select id="f-diff" class="input input-sm"><option value="">Toutes</option><option>Facile</option><option>Moyen</option><option>Difficile</option></select></div>
+            <div class="field"><label for="f-time">Durée</label>
+              <select id="f-time" class="input input-sm"><option value="">Toutes</option><option value="20">20 min ou moins</option><option value="45">45 min ou moins</option><option value="90">1 h 30 ou moins</option></select></div>
+            <div class="field"><label for="sort">Trier par</label>
+              <select id="sort" class="input input-sm">
+                <option value="pertinence">Pertinence</option>
+                <option value="duree">Les plus rapides</option>
+                <option value="facile">Les plus faciles</option>
+                <option value="economie">Plus grosse économie</option>
+                <option value="az">A → Z</option>
+              </select></div>
+            <button class="chip" id="fav-toggle" type="button" aria-pressed="false"><span data-icon="heart"></span> Mes favoris</button>
+          </div>
+        </details>
         <div id="results"></div>
         <div class="ask-band">
           <span data-icon="chat"></span>
-          <div><strong>Vous ne trouvez pas la solution ?</strong><small>Le diagnostic guidé vous aide à trouver la cause, ou posez votre question à la communauté.</small></div>
+          <div><strong>Vous ne trouvez pas ?</strong><small>Décrivez votre problème : on cherche la cause avec vous. Ou demandez à la communauté.</small></div>
           <div class="btns">
-            <a class="btn btn-ghost" id="ask-diag" href="diagnostic.html">Diagnostic guidé</a>
-            <a class="btn btn-primary" id="ask-q" href="communaute.html?ask=1">Poser une question</a>
+            <a class="btn btn-primary" id="ask-diag" href="diagnostic.html">Décrire mon problème</a>
+            <a class="btn btn-ghost" id="ask-q" href="communaute.html?ask=1">Poser une question</a>
           </div>
         </div>
       </div>
     </section>""")
 
 PAGES["categories.html"] = dict(
-  title="Toutes les catégories de réparation — Les Pages Bleues",
-  desc="Explorez les domaines de réparation : automobile, électroménager, téléphonie, maison, vélo, jardin, loisirs, mode et instruments.",
+  title="Tous les domaines de réparation — Les Pages Bleues",
+  desc="Les domaines des Pages Bleues : automobile et moto, électroménager, téléphonie, maison, vélo, jardin, loisirs, mode et instruments.",
   scripts=["categories.js"], active="categories",
   body="""    <section class="page-hero">
       <div class="container">
-        <h1>Toutes les <span class="accent">catégories</span></h1>
-        <p>Explorez nos domaines de réparation.</p>
+        <h1>Domaines</h1>
+        <p>Choisissez un domaine : ses équipements, ses pannes fréquentes et ses fiches.</p>
       </div>
     </section>
-    <section class="section">
+    <section class="section section-tight">
       <div class="container">
-        <div class="cat-big-grid" id="cat-main"></div>
-        <div class="section-head" style="margin-top:36px"><h2>Autres catégories</h2></div>
-        <div class="cat-small-grid" id="cat-other"></div>
-        <div class="earth-band">
-          <img src="assets/img/photos/terre.webp" srcset="assets/img/photos/terre-480.webp 480w, assets/img/photos/terre-800.webp 800w, assets/img/photos/terre.webp 1024w" sizes="(max-width: 1200px) 100vw, 1200px" alt="" loading="lazy">
-          <div><span data-icon="leaf"></span><span>Réparer aujourd'hui,<br>un demain plus durable.</span></div>
-        </div>
+        <div class="cat-list-grid" id="cat-main"></div>
       </div>
     </section>""")
 
@@ -270,13 +159,13 @@ PAGES["guide.html"] = dict(
   body="""    <div id="guide"></div>""")
 
 PAGES["ajouter.html"] = dict(
-  title="Partager un guide — Les Pages Bleues",
+  title="Ajouter une fiche — Les Pages Bleues",
   desc="Transmettez votre savoir-faire : rédigez une fiche de réparation en quatre étapes.",
   scripts=["ajouter.js"], active="ajouter",
   body="""    <section class="page-hero">
       <div class="container">
-        <h1>Partager un <span class="accent">guide</span></h1>
-        <p>Transmettez votre savoir-faire à la communauté, en quatre étapes.</p>
+        <h1>Ajouter une fiche</h1>
+        <p>Transmettez une réparation que vous savez faire, en quatre étapes.</p>
       </div>
     </section>
     <section class="section">
@@ -290,8 +179,8 @@ PAGES["communaute.html"] = dict(
   body="""    <section class="page-hero">
       <div class="container page-hero-row">
         <div>
-          <h1>La <span class="accent">communauté</span></h1>
-          <p>Des passionnés et des professionnels qui s'entraident au quotidien.</p>
+          <h1>Communauté</h1>
+          <p>Questions, astuces et retours de réparateurs : on s'entraide pour réparer.</p>
         </div>
         <button class="btn btn-primary btn-lg" id="new-post" type="button"><span data-icon="plus"></span>Poser une question</button>
       </div>
@@ -299,7 +188,7 @@ PAGES["communaute.html"] = dict(
     <section class="section">
       <div class="container two-cols">
         <div>
-          <div class="tabs" role="tablist" id="post-tabs" aria-label="Type de message" style="margin-top:0"></div>
+          <div class="tabs" role="tablist" id="post-tabs" aria-label="Type de message"></div>
           <h2 class="sr-only">Discussions</h2>
           <div class="post-list" id="posts" style="margin-top:16px"></div>
         </div>
@@ -319,17 +208,11 @@ PAGES["profil.html"] = dict(
     </section>""")
 
 PAGES["materiel.html"] = dict(
-  title="Mon matériel : vos appareils et votre voiture — Les Pages Bleues",
-  desc="Enregistrez votre électroménager et votre voiture (marque, modèle, année) : Les Pages Bleues vous montrent les fiches de réparation qui les concernent.",
+  title="Mon matériel — Les Pages Bleues",
+  desc="Vos appareils, véhicules et objets en un seul endroit : les fiches qui les concernent, leur carnet d'entretien et un diagnostic adapté.",
   scripts=["materiel-data.js", "entretien-data.js", "carnet-core.js", "materiel.js"], active="materiel",
-  body="""    <section class="page-hero">
-      <div class="container">
-        <h1>Mon <span class="accent">matériel</span></h1>
-        <p>Un lave-linge LG de 2020, une Audi A3 de 2012… Enregistrez ce que vous possédez : on vous montre les fiches qui le concernent.</p>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container" id="materiel-root"></div>
+  body="""    <section class="section section-tight">
+      <div class="narrow" id="materiel-root"></div>
     </section>""")
 
 PAGES["carnet.html"] = dict(
@@ -339,30 +222,93 @@ PAGES["carnet.html"] = dict(
   body="""    <div id="carnet-root"></div>""")
 
 PAGES["diagnostic.html"] = dict(
-  title="Diagnostic guidé : trouver ce qui est en panne — Les Pages Bleues",
-  desc="Décrivez le symptôme : le diagnostic guidé pose quelques questions, classe les causes possibles et vous oriente vers la bonne réparation.",
+  title="Diagnostic : quel est le problème ? — Les Pages Bleues",
+  desc="Décrivez ce qui se passe : quelques questions simples, les causes les plus probables, puis le guide qui convient.",
   scripts=["diagnostics-data.js", "diagnostic.js"], active="diagnostic",
+  body="""    <section class="diag">
+      <div class="narrow" id="diag-root"></div>
+      <noscript><div class="narrow"><h1 class="diag-title">Quel est le problème ?</h1><p class="diag-sub">Le diagnostic a besoin de JavaScript. Vous pouvez aussi <a href="guides.html">parcourir les guides</a>.</p></div></noscript>
+    </section>""")
+
+PAGES["entretien.html"] = dict(
+  title="Entretien : vos prochains entretiens — Les Pages Bleues",
+  desc="Les entretiens à faire, bientôt et à venir pour tout votre matériel, d'après ses carnets d'entretien.",
+  scripts=["entretien-data.js", "carnet-core.js", "entretien.js"], active="entretien",
   body="""    <section class="page-hero">
-      <div class="container">
-        <h1>Diagnostic <span class="accent">guidé</span></h1>
-        <p>« Qu'est-ce qui est en panne ? » Décrivez le symptôme, on cherche la cause ensemble.</p>
+      <div class="narrow">
+        <h1>Entretien</h1>
+        <p>Vos prochains entretiens à venir.</p>
       </div>
     </section>
-    <section class="section">
-      <div class="container diag-shell">
-        <h2 class="sr-only">Conversation avec le diagnostic</h2>
-        <div class="chat" id="chat" aria-live="polite"></div>
-        <aside id="diag-side"></aside>
+    <section class="section section-tight">
+      <div class="narrow" id="entretien-root"></div>
+    </section>""")
+
+PAGES["plus.html"] = dict(
+  title="Plus — Les Pages Bleues",
+  desc="Votre suivi, la communauté, les réglages et les informations sur Les Pages Bleues.",
+  scripts=["plus.js"], active="plus",
+  body="""    <section class="page-hero">
+      <div class="narrow">
+        <h1>Plus</h1>
+        <p>Votre suivi, la communauté et les réglages.</p>
+      </div>
+    </section>
+    <section class="section section-tight">
+      <div class="narrow plus-groups">
+        <section aria-labelledby="g-suivi">
+          <h2 class="lgroup-title" id="g-suivi">Mon suivi</h2>
+          <ul class="lgroup">
+            <li><a class="lrow" href="entretien.html"><span class="tile-ico tint-green"><span data-icon="calendar"></span></span><span class="lrow-text"><strong>Carnet d'entretien</strong><small>Vos prochains entretiens à venir</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="guides.html?fav=1"><span class="tile-ico tint-red"><span data-icon="heart"></span></span><span class="lrow-text"><strong>Mes favoris</strong><small id="plus-favs">Les fiches gardées sous la main, même sans réseau</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="profil.html?tab=repairs"><span class="tile-ico"><span data-icon="wrench"></span></span><span class="lrow-text"><strong>Mes réparations</strong><small id="plus-repairs">En cours et réussies</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="profil.html"><span class="tile-ico tint-slate"><span data-icon="user"></span></span><span class="lrow-text"><strong>Mon profil</strong><small>Pseudo, fiches publiées et badges</small></span><span data-icon="chevron"></span></a></li>
+          </ul>
+        </section>
+        <section aria-labelledby="g-participer">
+          <h2 class="lgroup-title" id="g-participer">Participer</h2>
+          <ul class="lgroup">
+            <li><a class="lrow" href="communaute.html"><span class="tile-ico"><span data-icon="users"></span></span><span class="lrow-text"><strong>Communauté</strong><small>Questions, astuces et retours de réparateurs</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="ajouter.html"><span class="tile-ico"><span data-icon="plus"></span></span><span class="lrow-text"><strong>Ajouter une fiche</strong><small>Transmettre une réparation que vous savez faire</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="beta.html"><span class="tile-ico"><span data-icon="chat"></span></span><span class="lrow-text"><strong>Donner mon avis sur la bêta</strong><small>Ce qui marche, ce qui manque</small></span><span data-icon="chevron"></span></a></li>
+          </ul>
+        </section>
+        <section aria-labelledby="g-reglages">
+          <h2 class="lgroup-title" id="g-reglages">Réglages</h2>
+          <div class="lgroup">
+            <div class="theme-row">
+              <span class="tile-ico tint-slate"><span data-icon="contrast"></span></span>
+              <span class="lrow-text"><strong id="theme-label">Apparence</strong><small>« Automatique » suit le réglage de votre appareil.</small></span>
+              <div class="seg" role="radiogroup" aria-labelledby="theme-label" id="theme-choice">
+                <button type="button" role="radio" data-theme-choice="auto" aria-checked="true">Automatique</button>
+                <button type="button" role="radio" data-theme-choice="light" aria-checked="false">Clair</button>
+                <button type="button" role="radio" data-theme-choice="dark" aria-checked="false">Sombre</button>
+              </div>
+            </div>
+            <a class="lrow" href="profil.html?tab=data"><span class="tile-ico tint-slate"><span data-icon="shield"></span></span><span class="lrow-text"><strong>Mes données</strong><small>Tout reste sur cet appareil : exporter, importer ou effacer</small></span><span data-icon="chevron"></span></a>
+          </div>
+        </section>
+        <section aria-labelledby="g-apropos">
+          <h2 class="lgroup-title" id="g-apropos">À propos</h2>
+          <ul class="lgroup">
+            <li><a class="lrow" href="a-propos.html"><span class="tile-ico tint-slate"><span data-icon="info"></span></span><span class="lrow-text"><strong>À propos des Pages Bleues</strong><small>La mission, la méthode, les crédits</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="a-propos.html#verification"><span class="tile-ico tint-slate"><span data-icon="check"></span></span><span class="lrow-text"><strong>Comment on vérifie les fiches</strong><small>Sources citées, relecture</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="mentions-legales.html"><span class="tile-ico tint-slate"><span data-icon="doc"></span></span><span class="lrow-text"><strong>Mentions légales</strong></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="conditions-utilisation.html"><span class="tile-ico tint-slate"><span data-icon="doc"></span></span><span class="lrow-text"><strong>Conditions d'utilisation</strong></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="confidentialite.html"><span class="tile-ico tint-slate"><span data-icon="lock"></span></span><span class="lrow-text"><strong>Confidentialité</strong><small>Aucune donnée envoyée, aucun cookie</small></span><span data-icon="chevron"></span></a></li>
+          </ul>
+        </section>
+        <p class="plus-foot">Les Pages Bleues · version bêta · Réparer. Comprendre. Transmettre.</p>
       </div>
     </section>""")
 
 PAGES["a-propos.html"] = dict(
   title="À propos des Pages Bleues — mission, vérification, crédits",
   desc="La mission des Pages Bleues, notre méthode de vérification des fiches, où trouver un réparateur et les crédits des photos.",
-  scripts=["apropos.js"], active="",
+  scripts=["apropos.js"], active="apropos",
   body="""    <section class="page-hero">
       <div class="container">
-        <h1>À propos des <span class="accent">Pages Bleues</span></h1>
+        <h1>À propos des Pages Bleues</h1>
         <p>Donner à chacun les moyens de réparer ses objets, gratuitement.</p>
       </div>
     </section>
@@ -373,9 +319,9 @@ PAGES["a-propos.html"] = dict(
 PAGES["mentions-legales.html"] = dict(
   title="Mentions légales — Les Pages Bleues",
   desc="Mentions légales du site Les Pages Bleues : éditeur, hébergement, propriété intellectuelle, contact.",
-  scripts=[], active="",
+  scripts=[], active="legal",
   body="""    <section class="page-hero">
-      <div class="container"><h1>Mentions <span class="accent">légales</span></h1></div>
+      <div class="container"><h1>Mentions légales</h1></div>
     </section>
     <section class="section">
       <div class="narrow prose">
@@ -399,9 +345,9 @@ PAGES["mentions-legales.html"] = dict(
 PAGES["conditions-utilisation.html"] = dict(
   title="Conditions d'utilisation — Les Pages Bleues",
   desc="Conditions d'utilisation des Pages Bleues : service gratuit en bêta, responsabilité, contributions, licence des contenus, signalement.",
-  scripts=[], active="",
+  scripts=[], active="legal",
   body="""    <section class="page-hero">
-      <div class="container"><h1>Conditions <span class="accent">d'utilisation</span></h1><p>Les règles du jeu, en clair. Version du 5 octobre 2026.</p></div>
+      <div class="container"><h1>Conditions d'utilisation</h1><p>Les règles du jeu, en clair. Version du 5 octobre 2026.</p></div>
     </section>
     <section class="section">
       <div class="narrow prose">
@@ -440,9 +386,9 @@ PAGES["conditions-utilisation.html"] = dict(
 PAGES["confidentialite.html"] = dict(
   title="Confidentialité — Les Pages Bleues",
   desc="Comment Les Pages Bleues traite vos données : tout reste sur votre appareil.",
-  scripts=[], active="",
+  scripts=[], active="legal",
   body="""    <section class="page-hero">
-      <div class="container"><h1><span class="accent">Confidentialité</span></h1><p>En bref : vos données restent sur votre appareil.</p></div>
+      <div class="container"><h1>Confidentialité</h1><p>En bref : vos données restent sur votre appareil.</p></div>
     </section>
     <section class="section">
       <div class="narrow prose">
@@ -466,9 +412,9 @@ PAGES["confidentialite.html"] = dict(
 PAGES["beta.html"] = dict(
   title="Bêta ouverte — Les Pages Bleues",
   desc="Les Pages Bleues est en bêta ouverte et gratuite : ce qui marche déjà, ce qui arrive, et comment nous aider en donnant votre avis.",
-  scripts=["beta.js"], active="",
+  scripts=["beta.js"], active="beta",
   body="""    <section class="page-hero">
-      <div class="container"><h1>Bêta <span class="accent">ouverte</span></h1><p>Gratuite, sans inscription. Testez, cassez, dites-nous tout.</p></div>
+      <div class="container"><h1>Bêta ouverte</h1><p>Gratuite, sans inscription. Testez, cassez, dites-nous tout.</p></div>
     </section>
     <section class="section">
       <div class="narrow prose" id="beta-root"></div>
@@ -478,14 +424,14 @@ PAGES["404.html"] = dict(
   title="Page introuvable — Les Pages Bleues",
   desc="Cette page n'existe pas.",
   scripts=[], active="",
-  body="""    <section class="section blueprint" style="min-height:60vh;display:grid;place-items:center">
-      <div class="container" style="text-align:center;max-width:560px">
-        <p class="handwritten" style="position:static;transform:rotate(-4deg);text-align:center;color:var(--blue)">Pièce manquante !</p>
-        <h1 style="font-size:clamp(3rem,10vw,6rem);font-weight:800;color:var(--blue)">404</h1>
-        <p class="muted" style="margin:.8rem 0 1.6rem">Cette page n'existe pas… ou elle attend encore d'être réparée.</p>
+  body="""    <section class="page-404">
+      <div class="narrow">
+        <span data-logo></span>
+        <h1>Page introuvable</h1>
+        <p>Cette page n'existe pas, ou elle a changé d'adresse.</p>
         <div class="empty-actions">
           <a class="btn btn-primary" href="index.html">Retour à l'accueil</a>
-          <a class="btn btn-ghost" href="guides.html">Voir tous les guides</a>
+          <a class="btn btn-ghost" href="guides.html">Voir les guides</a>
         </div>
       </div>
     </section>""")
@@ -496,7 +442,7 @@ def build():
         if not p["scripts"]:
             scripts = f'  <script>renderHeader("{p.get("active","")}"); renderFooter(); hydrateIcons();</script>'
         path = "" if name == "index.html" else name
-        html = HEAD.format(title=p["title"], desc=p["desc"], body=p["body"].replace("ARROW", arrow()), scripts=scripts, site=SITE, path=path)
+        html = HEAD.format(title=p["title"], desc=p["desc"], body=p["body"].replace("ARROW", arrow()), scripts=scripts, site=SITE, path=path, theme=THEME_JS)
         if name == "404.html":
             # la page 404 peut être servie depuis n'importe quel dossier : chemins absolus depuis la racine du dépôt
             html = html.replace('<script>renderHeader', '<script>window.LPB_ROOT = "/LesPagesBleues/";</script>\n  <script>renderHeader')

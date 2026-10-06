@@ -9,7 +9,7 @@ struct LesPagesBleuesApp: App {
         WindowGroup {
             SiteView()
                 .ignoresSafeArea()               // le site gère lui-même les zones sûres (viewport-fit=cover)
-                .background(Color(red: 5 / 255, green: 11 / 255, blue: 24 / 255))
+                .background(Color(uiColor: .lpbBackground))   // clair ou bleu nuit, comme le site
         }
     }
 }

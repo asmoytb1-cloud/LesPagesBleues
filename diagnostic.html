@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Diagnostic guidé : trouver ce qui est en panne — Les Pages Bleues</title>
-  <meta name="description" content="Décrivez le symptôme : le diagnostic guidé pose quelques questions, classe les causes possibles et vous oriente vers la bonne réparation.">
-  <meta name="theme-color" content="#050b18">
-  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+  <title>Diagnostic : quel est le problème ? — Les Pages Bleues</title>
+  <meta name="description" content="Décrivez ce qui se passe : quelques questions simples, les causes les plus probables, puis le guide qui convient.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1426" media="(prefers-color-scheme: dark)">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var c=t==="dark"?"#0a1426":"#f4f7fb";document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",c)})}}catch(e){}})()</script>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="apple-touch-icon" href="assets/img/icon-180.png">
   <link rel="canonical" href="https://asmoytb1-cloud.github.io/LesPagesBleues/diagnostic.html">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Les Pages Bleues">
-  <meta property="og:title" content="Diagnostic guidé : trouver ce qui est en panne — Les Pages Bleues">
-  <meta property="og:description" content="Décrivez le symptôme : le diagnostic guidé pose quelques questions, classe les causes possibles et vous oriente vers la bonne réparation.">
+  <meta property="og:title" content="Diagnostic : quel est le problème ? — Les Pages Bleues">
+  <meta property="og:description" content="Décrivez ce qui se passe : quelques questions simples, les causes les plus probables, puis le guide qui convient.">
   <meta property="og:image" content="https://asmoytb1-cloud.github.io/LesPagesBleues/assets/img/og-image.png">
   <meta property="og:locale" content="fr_FR">
   <meta name="twitter:card" content="summary_large_image">
@@ -24,18 +26,9 @@
 <body>
   <header id="site-header"></header>
   <main id="main" tabindex="-1">
-    <section class="page-hero">
-      <div class="container">
-        <h1>Diagnostic <span class="accent">guidé</span></h1>
-        <p>« Qu'est-ce qui est en panne ? » Décrivez le symptôme, on cherche la cause ensemble.</p>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container diag-shell">
-        <h2 class="sr-only">Conversation avec le diagnostic</h2>
-        <div class="chat" id="chat" aria-live="polite"></div>
-        <aside id="diag-side"></aside>
-      </div>
+    <section class="diag">
+      <div class="narrow" id="diag-root"></div>
+      <noscript><div class="narrow"><h1 class="diag-title">Quel est le problème ?</h1><p class="diag-sub">Le diagnostic a besoin de JavaScript. Vous pouvez aussi <a href="guides.html">parcourir les guides</a>.</p></div></noscript>
     </section>
   </main>
   <footer id="site-footer"></footer>

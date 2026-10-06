@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Mode &amp; Accessoires : réparer soi-même, 4 guides — Les Pages Bleues</title>
   <meta name="description" content="Bouton arraché, fermeture éclair qui déraille, jean troué, semelle décollée : quelques gestes de couture et de collage prolongent la vie de vos vêtements e">
-  <meta name="theme-color" content="#050b18">
-  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+<meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1426" media="(prefers-color-scheme: dark)">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var c=t==="dark"?"#0a1426":"#f4f7fb";document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",c)})}}catch(e){}})()</script>
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="../manifest.webmanifest">
   <link rel="apple-touch-icon" href="../assets/img/icon-180.png">
@@ -26,33 +28,30 @@
   <header id="site-header"></header>
   <main id="main" tabindex="-1">
     <section class="cat-hero">
-      <div class="container cat-hero-inner">
-        <div class="cat-hero-text">
-          <nav class="breadcrumb" aria-label="Fil d'Ariane">
-            <a href="../index.html"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg> Accueil</a><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-            <a href="../categories.html">Catégories</a><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-            <a href="autres.html">Autres</a><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-            <span aria-current="page">Mode &amp; Accessoires</span>
-          </nav>
-          <h1>Mode &amp; Accessoires</h1>
-          <p class="lead">Bouton arraché, fermeture éclair qui déraille, jean troué, semelle décollée : quelques gestes de couture et de collage prolongent la vie de vos vêtements et chaussures.</p>
-          <ul class="cat-stats">
-            <li><strong>4</strong> fiches vérifiées</li>
-            <li><strong>0</strong> panne diagnostiquée</li>
-            
-          </ul>
-          <div class="cat-actions">
-            <a class="btn btn-primary btn-lg" href="../guides.html?cat=mode"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h8l5 5v15H6z"/><path d="M14 2v5h5M9 12h7M9 16h7"/></svg> Voir les 4 fiches</a>
-            
-          </div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="../index.html"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg> Accueil</a><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+          <a href="../categories.html">Domaines</a><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+          <a href="autres.html">Autres</a><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+          <span aria-current="page">Mode &amp; Accessoires</span>
+        </nav>
+        <div class="cat-hero-head"><span class="tile-ico tile-lg"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3 4 5 2 10l3 1.5V21h14v-9.5L22 10l-2-5-4-2c0 2-1.8 3-4 3S8 5 8 3z"/></svg></span><h1>Mode &amp; Accessoires</h1></div>
+        <p class="lead">Bouton arraché, fermeture éclair qui déraille, jean troué, semelle décollée : quelques gestes de couture et de collage prolongent la vie de vos vêtements et chaussures.</p>
+        <ul class="cat-stats">
+          <li><strong>4</strong> fiches vérifiées</li>
+          <li><strong>0</strong> panne diagnostiquée</li>
+          
+        </ul>
+        <div class="cat-actions">
+          <a class="btn btn-primary btn-lg" href="../guides.html?cat=mode"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 5.5C4.5 4 8 4 12 6v14c-4-2-7.5-2-10-.5z"/><path d="M22 5.5C19.5 4 16 4 12 6v14c4-2 7.5-2 10-.5z"/></svg> Voir les 4 fiches</a>
+          
         </div>
-        <figure class="cat-hero-photo"><img src="../assets/img/photos/mode.webp" srcset="../assets/img/photos/mode-480.webp 480w, ../assets/img/photos/mode.webp 1000w" sizes="(max-width: 900px) 100vw, 480px" alt="" width="960" height="640" fetchpriority="high"></figure>
       </div>
     </section>
 
     <section class="section section-tight" id="cat-mine" hidden>
       <div class="container">
-        <div class="section-head"><h2>Mon matériel <span class="accent">dans ce domaine</span></h2><a class="link-arrow" href="../materiel.html">Gérer <svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+        <div class="section-head"><h2>Mon matériel dans ce domaine</h2><a class="link-arrow" href="../materiel.html">Gérer <svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         <div class="mat-strip" id="cat-mine-list"></div>
       </div>
     </section>
@@ -66,7 +65,7 @@
         <div class="card">
           <h2><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-3"/><circle cx="20" cy="10" r="2"/></svg> Pannes fréquentes</h2>
           <p class="muted">Pas encore de diagnostic guidé dans ce domaine. Décrivez votre panne : le diagnostic cherchera parmi toutes les fiches.</p>
-          <p style="margin-top:12px"><a class="btn btn-ghost btn-sm" href="../diagnostic.html"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-3"/><circle cx="20" cy="10" r="2"/></svg> Décrire ma panne</a></p>
+          <p style="margin-top:12px"><a class="btn btn-ghost btn-sm" href="../diagnostic.html"><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v6a4 4 0 0 0 8 0V3"/><path d="M10 13v2a5 5 0 0 0 10 0v-3"/><circle cx="20" cy="10" r="2"/></svg> Décrire mon problème</a></p>
         </div>
         <div class="card">
           <h2><svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg> Avant de commencer</h2>
@@ -82,8 +81,8 @@
           <svg class="ico " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></svg>
           <div><strong>Vous connaissez une réparation qui manque ?</strong><small>Partagez-la : elle aidera les prochains à ne pas jeter.</small></div>
           <div class="btns">
+            <a class="btn btn-primary" href="../ajouter.html">Ajouter une fiche</a>
             <a class="btn btn-ghost" href="../communaute.html?ask=1">Poser une question</a>
-            <a class="btn btn-primary" href="../ajouter.html">Partager une fiche</a>
           </div>
         </div>
       </div>

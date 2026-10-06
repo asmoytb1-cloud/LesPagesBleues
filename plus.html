@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Plus — Les Pages Bleues</title>
+  <meta name="description" content="Votre suivi, la communauté, les réglages et les informations sur Les Pages Bleues.">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1426" media="(prefers-color-scheme: dark)">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var c=t==="dark"?"#0a1426":"#f4f7fb";document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",c)})}}catch(e){}})()</script>
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/img/icon-180.png">
+  <link rel="canonical" href="https://asmoytb1-cloud.github.io/LesPagesBleues/plus.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Les Pages Bleues">
+  <meta property="og:title" content="Plus — Les Pages Bleues">
+  <meta property="og:description" content="Votre suivi, la communauté, les réglages et les informations sur Les Pages Bleues.">
+  <meta property="og:image" content="https://asmoytb1-cloud.github.io/LesPagesBleues/assets/img/og-image.png">
+  <meta property="og:locale" content="fr_FR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <main id="main" tabindex="-1">
+    <section class="page-hero">
+      <div class="narrow">
+        <h1>Plus</h1>
+        <p>Votre suivi, la communauté et les réglages.</p>
+      </div>
+    </section>
+    <section class="section section-tight">
+      <div class="narrow plus-groups">
+        <section aria-labelledby="g-suivi">
+          <h2 class="lgroup-title" id="g-suivi">Mon suivi</h2>
+          <ul class="lgroup">
+            <li><a class="lrow" href="entretien.html"><span class="tile-ico tint-green"><span data-icon="calendar"></span></span><span class="lrow-text"><strong>Carnet d'entretien</strong><small>Vos prochains entretiens à venir</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="guides.html?fav=1"><span class="tile-ico tint-red"><span data-icon="heart"></span></span><span class="lrow-text"><strong>Mes favoris</strong><small id="plus-favs">Les fiches gardées sous la main, même sans réseau</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="profil.html?tab=repairs"><span class="tile-ico"><span data-icon="wrench"></span></span><span class="lrow-text"><strong>Mes réparations</strong><small id="plus-repairs">En cours et réussies</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="profil.html"><span class="tile-ico tint-slate"><span data-icon="user"></span></span><span class="lrow-text"><strong>Mon profil</strong><small>Pseudo, fiches publiées et badges</small></span><span data-icon="chevron"></span></a></li>
+          </ul>
+        </section>
+        <section aria-labelledby="g-participer">
+          <h2 class="lgroup-title" id="g-participer">Participer</h2>
+          <ul class="lgroup">
+            <li><a class="lrow" href="communaute.html"><span class="tile-ico"><span data-icon="users"></span></span><span class="lrow-text"><strong>Communauté</strong><small>Questions, astuces et retours de réparateurs</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="ajouter.html"><span class="tile-ico"><span data-icon="plus"></span></span><span class="lrow-text"><strong>Ajouter une fiche</strong><small>Transmettre une réparation que vous savez faire</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="beta.html"><span class="tile-ico"><span data-icon="chat"></span></span><span class="lrow-text"><strong>Donner mon avis sur la bêta</strong><small>Ce qui marche, ce qui manque</small></span><span data-icon="chevron"></span></a></li>
+          </ul>
+        </section>
+        <section aria-labelledby="g-reglages">
+          <h2 class="lgroup-title" id="g-reglages">Réglages</h2>
+          <div class="lgroup">
+            <div class="theme-row">
+              <span class="tile-ico tint-slate"><span data-icon="contrast"></span></span>
+              <span class="lrow-text"><strong id="theme-label">Apparence</strong><small>« Automatique » suit le réglage de votre appareil.</small></span>
+              <div class="seg" role="radiogroup" aria-labelledby="theme-label" id="theme-choice">
+                <button type="button" role="radio" data-theme-choice="auto" aria-checked="true">Automatique</button>
+                <button type="button" role="radio" data-theme-choice="light" aria-checked="false">Clair</button>
+                <button type="button" role="radio" data-theme-choice="dark" aria-checked="false">Sombre</button>
+              </div>
+            </div>
+            <a class="lrow" href="profil.html?tab=data"><span class="tile-ico tint-slate"><span data-icon="shield"></span></span><span class="lrow-text"><strong>Mes données</strong><small>Tout reste sur cet appareil : exporter, importer ou effacer</small></span><span data-icon="chevron"></span></a>
+          </div>
+        </section>
+        <section aria-labelledby="g-apropos">
+          <h2 class="lgroup-title" id="g-apropos">À propos</h2>
+          <ul class="lgroup">
+            <li><a class="lrow" href="a-propos.html"><span class="tile-ico tint-slate"><span data-icon="info"></span></span><span class="lrow-text"><strong>À propos des Pages Bleues</strong><small>La mission, la méthode, les crédits</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="a-propos.html#verification"><span class="tile-ico tint-slate"><span data-icon="check"></span></span><span class="lrow-text"><strong>Comment on vérifie les fiches</strong><small>Sources citées, relecture</small></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="mentions-legales.html"><span class="tile-ico tint-slate"><span data-icon="doc"></span></span><span class="lrow-text"><strong>Mentions légales</strong></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="conditions-utilisation.html"><span class="tile-ico tint-slate"><span data-icon="doc"></span></span><span class="lrow-text"><strong>Conditions d'utilisation</strong></span><span data-icon="chevron"></span></a></li>
+            <li><a class="lrow" href="confidentialite.html"><span class="tile-ico tint-slate"><span data-icon="lock"></span></span><span class="lrow-text"><strong>Confidentialité</strong><small>Aucune donnée envoyée, aucun cookie</small></span><span data-icon="chevron"></span></a></li>
+          </ul>
+        </section>
+        <p class="plus-foot">Les Pages Bleues · version bêta · Réparer. Comprendre. Transmettre.</p>
+      </div>
+    </section>
+  </main>
+  <footer id="site-footer"></footer>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/plus.js"></script>
+</body>
+</html>

@@ -32,6 +32,7 @@ function postHTML(p) {
             ${p.level ? `<dt>Difficulté</dt><dd>${escapeHtml(p.level)}/5</dd>` : ""}
           </dl>` : ""}
         ${p.body ? `<p>${escapeHtml(p.body)}</p>` : ""}
+        ${p.photo ? `<img class="post-photo" src="${p.photo}" alt="Photo jointe au message">` : ""}
         <div class="post-meta">
           <span class="tag tag-soft">${icon(t.icon)} ${t.label}</span>
           ${cat ? `<span>${escapeHtml(cat.name)}</span>` : ""}
@@ -81,7 +82,7 @@ function render() {
     </div>`;
   if (location.hash.startsWith("#post-")) {
     const el = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-    if (el) { el.style.borderColor = "var(--blue)"; el.scrollIntoView({ block: "center" }); }
+    if (el) { el.classList.add("hl"); el.scrollIntoView({ block: "center" }); }
   }
 }
 
@@ -110,6 +111,13 @@ function newPost(type = "question", preset = {}) {
       </div>
       <div class="field"><label for="p-body">Message</label>
         <textarea class="input" id="p-body" rows="4" maxlength="2000" placeholder="Décrivez le contexte : depuis quand, ce que vous avez déjà essayé…">${escapeHtml(preset.body || "")}</textarea></div>
+      <div class="field"><span class="label">Photo <small>(facultatif)</small></span>
+        <div class="mat-photo-field">
+          <span class="mat-thumb" id="p-photo-preview">${preset.photo ? `<img src="${preset.photo}" alt="Photo jointe">` : icon("camera")}</span>
+          <label class="btn btn-ghost btn-sm" for="p-photo">${icon("image")} ${preset.photo ? "Changer la photo" : "Ajouter une photo"}</label>
+          <input type="file" id="p-photo" accept="image/*" class="sr-only">
+        </div>
+        ${preset.photo ? `<p class="field-hint">Photo jointe depuis le diagnostic.</p>` : ""}</div>
       <p class="muted" style="font-size:.85rem">Enregistré sur cet appareil en attendant l'ouverture des comptes. Signé : <strong>${escapeHtml(getProfile().name || "Vous")}</strong> (modifiable dans <a class="accent" href="profil.html">votre profil</a>).</p>
       <div class="form-actions"><button class="btn btn-ghost" type="button" data-close>Annuler</button><button class="btn btn-primary" type="submit">${icon("send")} Publier</button></div>
     </form>`, (wrap, close) => {
@@ -125,12 +133,19 @@ function newPost(type = "question", preset = {}) {
       const g = guideById(e.target.value);
       if (g) wrap.querySelector("#p-cat").value = g.category;
     });
-    wrap.querySelector("#post-form").addEventListener("submit", e => {
+    const photoInput = wrap.querySelector("#p-photo");
+    photoInput.addEventListener("change", () => {
+      const file = photoInput.files[0];
+      if (file) wrap.querySelector("#p-photo-preview").innerHTML = `<img src="${URL.createObjectURL(file)}" alt="Photo choisie">`;
+    });
+    wrap.querySelector("#post-form").addEventListener("submit", async e => {
       e.preventDefault();
       const v = id => wrap.querySelector(id).value.trim();
       if (!v("#p-title")) { wrap.querySelector("#p-title").focus(); return; }
+      let photo = preset.photo || undefined;
+      if (photoInput.files[0]) { try { photo = await compressImage(photoInput.files[0], 900, .7); } catch { toast("Cette photo n'a pas pu être lue."); } }
       const post = { id: "p" + Date.now().toString(36), type: current, title: v("#p-title"), body: v("#p-body"), category: v("#p-cat"),
-        guide: v("#p-guide") || undefined, author: getProfile().name || "Vous", date: new Date().toISOString(), replies: [] };
+        guide: v("#p-guide") || undefined, author: getProfile().name || "Vous", date: new Date().toISOString(), replies: [], ...(photo && { photo }) };
       if (current === "intervention") Object.assign(post, { device: v("#p-device"), symptom: v("#p-symptom"), cause: v("#p-cause"), fix: v("#p-fix"), time: v("#p-time"), level: v("#p-level") });
       if (!savePosts([post, ...loadPosts()])) { toast("Stockage plein : impossible d'enregistrer."); return; }
       close();
@@ -169,5 +184,7 @@ if (params.get("ask")) {
   const preset = params.get("type") === "erreur" && g
     ? { title: `Correction proposée pour « ${g.title} »`, guide: g.id, category: g.category, body: "Étape concernée :\nCe qui est inexact :\nCe que je propose :" }
     : { title: params.get("q") || "" };
+  // Photo prise pendant le diagnostic : jointe à la question (elle n'a été envoyée nulle part)
+  if (params.get("photo")) { try { preset.photo = sessionStorage.getItem("lpb-diag-photo") || undefined; } catch {} }
   newPost(params.get("type") === "erreur" ? "astuce" : "question", preset);
 }

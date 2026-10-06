@@ -8,6 +8,8 @@ const params = new URLSearchParams(location.search);
 const guideId = (typeof window !== "undefined" && window.LPB_GUIDE_ID) || params.get("id");
 const guide = guideById(guideId);
 const root = document.getElementById("guide");
+// Onglet affiché (gardé quand la fiche se redessine) ; #outils, #pieces… dans l'adresse ouvrent le bon onglet
+let activeTab = GUIDE_TABS.some(([id]) => "#" + id === location.hash) ? location.hash.slice(1) : "etapes";
 
 const fmtTime = sec => {
   sec = Math.max(0, Math.round(sec));
@@ -51,7 +53,7 @@ function renderGuide() {
     document.getElementById("pct").textContent = pct === 100 ? "Terminé ✓" : pct + " %";
     document.getElementById("reset").hidden = !done.size;
     document.getElementById("coach-label").textContent =
-      done.size && pct < 100 ? `Reprendre à l'étape ${guide.steps.findIndex((_, i) => !done.has(i)) + 1}` : "Lancer l'accompagnement";
+      done.size && pct < 100 ? `Reprendre à l'étape ${guide.steps.findIndex((_, i) => !done.has(i)) + 1}` : "Commencer le guide";
   };
 
   // Coche / décoche une étape, dans la liste comme dans le mode accompagnement
@@ -86,7 +88,7 @@ function renderGuide() {
     if (b.dataset.result === "ok") guide.steps.forEach((_, i) => done.has(i) || setDone(i, true));
     toast(b.dataset.result === "ok" ? "Bravo ! Un objet de plus sauvé de la poubelle." : "Voici les pistes à vérifier.");
     renderGuide();
-    if (b.dataset.result === "ko") document.getElementById("conseils").scrollIntoView({ behavior: "smooth" });
+    if (b.dataset.result === "ko") (document.getElementById("depannage") || document.getElementById("aide")).scrollIntoView({ behavior: "smooth" });
   }));
 
   // Favori
@@ -136,18 +138,7 @@ function renderGuide() {
     document.getElementById("qa").scrollIntoView();
   });
 
-  // Onglets de section : suit le défilement
-  const tabs = [...root.querySelectorAll(".guide-tabs .tab")];
-  const sections = tabs.map(t => document.querySelector(t.getAttribute("href")));
-  if ("IntersectionObserver" in window) {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (!en.isIntersecting) return;
-        tabs.forEach(t => t.getAttribute("href") === "#" + en.target.id ? t.setAttribute("aria-current", "true") : t.removeAttribute("aria-current"));
-      });
-    }, { rootMargin: "-45% 0px -50% 0px" });
-    sections.forEach(s => s && io.observe(s));
-  }
+  setupTabs();
 
   document.getElementById("print").addEventListener("click", () => window.print());
   document.getElementById("share").addEventListener("click", async () => {
@@ -176,6 +167,49 @@ function renderGuide() {
   });
 }
 
+/* Onglets de la fiche : un seul panneau visible à la fois (sans JavaScript, tout reste affiché) */
+function setupTabs() {
+  const bar = document.getElementById("guide-tabs");
+  const tabs = [...bar.querySelectorAll("[data-panel]")];
+  bar.setAttribute("role", "tablist");
+  bar.setAttribute("aria-label", "Sections de la fiche");
+  tabs.forEach(t => { t.setAttribute("role", "tab"); t.setAttribute("aria-controls", t.dataset.panel); t.removeAttribute("aria-current"); });
+  GUIDE_TABS.forEach(([id]) => document.getElementById(id).setAttribute("role", "tabpanel"));
+  const select = (id, focus = false) => {
+    activeTab = id;
+    tabs.forEach(t => {
+      const on = t.dataset.panel === id;
+      t.setAttribute("aria-selected", on);
+      t.tabIndex = on ? 0 : -1;
+      if (on && focus) t.focus();
+    });
+    GUIDE_TABS.forEach(([pid]) => { document.getElementById(pid).hidden = pid !== id; });
+  };
+  // Le panneau choisi commence juste sous la barre d'onglets
+  const reveal = () => {
+    const panel = document.getElementById(activeTab);
+    const offset = bar.closest(".guide-tabs").getBoundingClientRect().bottom + 8;
+    const top = panel.getBoundingClientRect().top;
+    if (top < offset) window.scrollBy({ top: top - offset });
+  };
+  bar.addEventListener("click", e => {
+    const t = e.target.closest("[data-panel]");
+    if (!t) return;
+    e.preventDefault();
+    select(t.dataset.panel);
+    reveal();
+  });
+  bar.addEventListener("keydown", e => {
+    const i = tabs.findIndex(t => t.dataset.panel === activeTab);
+    const to = e.key === "ArrowRight" ? (i + 1) % tabs.length : e.key === "ArrowLeft" ? (i - 1 + tabs.length) % tabs.length
+      : e.key === "Home" ? 0 : e.key === "End" ? tabs.length - 1 : -1;
+    if (to < 0) return;
+    e.preventDefault();
+    select(tabs[to].dataset.panel, true);
+  });
+  select(activeTab);
+}
+
 /* ==========================================================
    Mode accompagnement : une étape à la fois, en plein écran
    ========================================================== */
@@ -196,7 +230,7 @@ function startCoach(guide, done, setDone, onClose) {
   let ticker = null;
 
   const el = document.createElement("div");
-  el.className = "coach theme-dark";
+  el.className = "coach";
   el.setAttribute("role", "dialog");
   el.setAttribute("aria-modal", "true");
   el.setAttribute("aria-label", "Accompagnement : " + guide.title);
@@ -261,7 +295,12 @@ function startCoach(guide, done, setDone, onClose) {
     toast(`⏱ Temps écoulé — étape ${timer.step + 1}`);
   }
   function paintTimer() {
-    el.querySelectorAll("[data-timer-display]").forEach(d => { d.textContent = fmtTime(timeLeft()); });
+    // Le cadran d'une étape affiche sa durée tant que son minuteur n'a pas démarré
+    el.querySelectorAll("[data-timer-display]").forEach(d => {
+      const box = d.closest(".coach-timer");
+      const idle = box && !(timer && +box.dataset.step === timer.step);
+      d.textContent = fmtTime(idle ? steps[+box.dataset.step].timer : timeLeft());
+    });
     const box = el.querySelector(".coach-timer");
     if (box) {
       const mine = timer && +box.dataset.step === timer.step;
@@ -413,7 +452,7 @@ function startCoach(guide, done, setDone, onClose) {
     const isStep = pos >= 1 && pos <= total;
     const nextLabel = pos === 0 ? "C'est prêt, on commence"
       : pos === total ? "C'est fait, terminer"
-      : pos > total ? "Fermer" : "C'est fait, étape suivante";
+      : pos > total ? "Fermer" : "Étape suivante";
     el.innerHTML = `
       <div class="coach-top">
         <div class="coach-title"><small>Accompagnement</small><strong>${escapeHtml(guide.title)}</strong></div>

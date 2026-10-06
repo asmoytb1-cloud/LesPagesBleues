@@ -23,6 +23,11 @@ const { GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryB
   "({ GUIDES, CATEGORIES, REVIEWED_ON, guidePageHTML, relatedGuides, categoryById, escapeHtml, guideRow, inCategory, subCategories, icon, DIAGNOSTICS, APPLIANCE_TYPES, MATERIEL_SOURCES, CAR_MAKES, MOTO_MAKES, guidesForType, imgSrc, photoUrl, bonusFor, bonusText, BONUS_REPARATION })", sandbox);
 
 const esc = s => escapeHtml(s);
+// Thème automatique (réglage du téléphone) sauf choix explicite, appliqué avant l'affichage — comme tools/pages.py
+const THEME_HEAD = `<meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f4f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a1426" media="(prefers-color-scheme: dark)">
+  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;var c=t==="dark"?"#0a1426":"#f4f7fb";document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute("content",c)})}}catch(e){}})()</script>`;
 const iso = m => m ? `PT${Math.floor(m / 60) ? Math.floor(m / 60) + "H" : ""}${m % 60 ? m % 60 + "M" : ""}` : undefined;
 
 function jsonLd(g) {
@@ -67,8 +72,7 @@ function head({ title, desc, canonical, image, type = "website", extra = "" }) {
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(desc)}">
-  <meta name="theme-color" content="#050b18">
-  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+${THEME_HEAD}
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="../manifest.webmanifest">
   <link rel="apple-touch-icon" href="../assets/img/icon-180.png">
@@ -155,40 +159,37 @@ function categoryPage(c) {
   <header id="site-header"></header>
   <main id="main" tabindex="-1">
     <section class="cat-hero">
-      <div class="container cat-hero-inner">
-        <div class="cat-hero-text">
-          <nav class="breadcrumb" aria-label="Fil d'Ariane">
-            <a href="../index.html">${icon("home")} Accueil</a>${icon("chevron")}
-            <a href="../categories.html">Catégories</a>${icon("chevron")}
-            ${parent ? `<a href="${parent.id}.html">${esc(parent.name)}</a>${icon("chevron")}` : ""}
-            <span aria-current="page">${esc(c.name)}</span>
-          </nav>
-          <h1>${esc(c.name)}</h1>
-          <p class="lead">${esc(c.intro || c.desc)}</p>
-          <ul class="cat-stats">
-            <li><strong>${n}</strong> ${n > 1 ? "fiches vérifiées" : "fiche vérifiée"}</li>
-            <li><strong>${diags.length}</strong> ${diags.length > 1 ? "pannes diagnostiquées" : "panne diagnostiquée"}</li>
-            ${types.length ? `<li><strong>${types.length}</strong> ${types.length > 1 ? "types d'équipement" : "type d'équipement"}</li>` : ""}
-          </ul>
-          <div class="cat-actions">
-            <a class="btn btn-primary btn-lg" href="../guides.html?cat=${c.id}">${icon("doc")} Voir les ${plural(n, "fiche")}</a>
-            ${types.length ? `<a class="btn btn-ghost btn-lg" href="../materiel.html?${types.length === 1 ? `type=${types[0].id}` : `cat=${c.id}`}">${icon("box")} Enregistrer mon matériel</a>` : ""}
-          </div>
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Fil d'Ariane">
+          <a href="../index.html">${icon("home")} Accueil</a>${icon("chevron")}
+          <a href="../categories.html">Domaines</a>${icon("chevron")}
+          ${parent ? `<a href="${parent.id}.html">${esc(parent.name)}</a>${icon("chevron")}` : ""}
+          <span aria-current="page">${esc(c.name)}</span>
+        </nav>
+        <div class="cat-hero-head"><span class="tile-ico tile-lg">${icon(c.icon)}</span><h1>${esc(c.name)}</h1></div>
+        <p class="lead">${esc(c.intro || c.desc)}</p>
+        <ul class="cat-stats">
+          <li><strong>${n}</strong> ${n > 1 ? "fiches vérifiées" : "fiche vérifiée"}</li>
+          <li><strong>${diags.length}</strong> ${diags.length > 1 ? "pannes diagnostiquées" : "panne diagnostiquée"}</li>
+          ${types.length ? `<li><strong>${types.length}</strong> ${types.length > 1 ? "types d'équipement" : "type d'équipement"}</li>` : ""}
+        </ul>
+        <div class="cat-actions">
+          <a class="btn btn-primary btn-lg" href="../guides.html?cat=${c.id}">${icon("book")} Voir les ${plural(n, "fiche")}</a>
+          ${types.length ? `<a class="btn btn-ghost btn-lg" href="../materiel.html?${types.length === 1 ? `type=${types[0].id}` : `cat=${c.id}`}">${icon("box")} Ajouter mon matériel</a>` : ""}
         </div>
-        <figure class="cat-hero-photo"><img ${imgSrc(photoUrl(photo), "(max-width: 900px) 100vw, 480px")} alt="" width="960" height="640" fetchpriority="high"></figure>
       </div>
     </section>
 
     <section class="section section-tight" id="cat-mine" hidden>
       <div class="container">
-        <div class="section-head"><h2>Mon matériel <span class="accent">dans ce domaine</span></h2><a class="link-arrow" href="../materiel.html">Gérer ${icon("arrow")}</a></div>
+        <div class="section-head"><h2>Mon matériel dans ce domaine</h2><a class="link-arrow" href="../materiel.html">Gérer ${icon("arrow")}</a></div>
         <div class="mat-strip" id="cat-mine-list"></div>
       </div>
     </section>
 
     ${types.length ? `<section class="section">
       <div class="container">
-        <div class="section-head"><h2>Que voulez-vous <span class="accent">réparer ?</span></h2></div>
+        <div class="section-head"><h2>Équipements</h2><p>Choisissez le vôtre pour voir ses fiches.</p></div>
         ${groups.map(gr => `${groups.length > 1 ? `<h3 class="type-group">${esc(gr)}</h3>` : ""}
         <div class="type-grid">${types.filter(t => t.group === gr).map(typeTile).join("")}
         </div>`).join("")}
@@ -211,7 +212,7 @@ function categoryPage(c) {
           ${diags.length ? `<ul class="diag-links">${diags.map(d => `
             <li><a href="../diagnostic.html?s=${d.id}">${esc(d.title)}${icon("chevron")}</a></li>`).join("")}</ul>`
           : `<p class="muted">Pas encore de diagnostic guidé dans ce domaine. Décrivez votre panne : le diagnostic cherchera parmi toutes les fiches.</p>`}
-          <p style="margin-top:12px"><a class="btn btn-ghost btn-sm" href="../diagnostic.html">${icon("stethoscope")} Décrire ma panne</a></p>
+          <p style="margin-top:12px"><a class="btn btn-ghost btn-sm" href="../diagnostic.html">${icon("stethoscope")} Décrire mon problème</a></p>
         </div>
         <div class="card">
           <h2>${icon("shield")} Avant de commencer</h2>
@@ -227,8 +228,8 @@ ${ELECTRIC.has(c.parent || c.id) ? endOfLife(types) : ""}
           ${icon("chat")}
           <div><strong>Vous connaissez une réparation qui manque ?</strong><small>Partagez-la : elle aidera les prochains à ne pas jeter.</small></div>
           <div class="btns">
+            <a class="btn btn-primary" href="../ajouter.html">Ajouter une fiche</a>
             <a class="btn btn-ghost" href="../communaute.html?ask=1">Poser une question</a>
-            <a class="btn btn-primary" href="../ajouter.html">Partager une fiche</a>
           </div>
         </div>
       </div>
@@ -261,8 +262,7 @@ function page(g) {
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(desc)}">
-  <meta name="theme-color" content="#050b18">
-  <script>(function(){try{var t=JSON.parse(localStorage.getItem("lpb-theme"));if(t)document.documentElement.dataset.theme=t}catch(e){}})()</script>
+${THEME_HEAD}
   <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="../manifest.webmanifest">
   <link rel="apple-touch-icon" href="../assets/img/icon-180.png">
@@ -303,7 +303,18 @@ fs.mkdirSync(CAT_OUT, { recursive: true });
 for (const f of fs.readdirSync(CAT_OUT)) if (f.endsWith(".html")) fs.unlinkSync(path.join(CAT_OUT, f));
 for (const c of CATEGORIES) fs.writeFileSync(path.join(CAT_OUT, `${c.id}.html`), categoryPage(c));
 
-const pages = ["", "categories.html", "guides.html", "diagnostic.html", "materiel.html", "communaute.html", "a-propos.html", "ajouter.html", "mentions-legales.html", "conditions-utilisation.html", "confidentialite.html", "beta.html"];
+// Page des guides : les tuiles des domaines sont écrites dans la page (affichage immédiat, sans saut au chargement)
+const domainTiles = `
+    <h2 class="h2" style="margin-bottom:12px">Domaines</h2>
+    <div class="domain-grid">${CATEGORIES.filter(c => !c.parent).map(c => `
+      <a class="domain-tile" href="categories/${c.id}.html"><span class="tile-ico">${icon(c.icon)}</span>
+        <span><strong>${esc(c.name)}</strong><small>${GUIDES.filter(g => inCategory(g, c.id)).length} fiches</small></span>${icon("chevron")}</a>`).join("")}</div>
+    <h2 class="h2" style="margin-top:28px">Toutes les fiches</h2>`;
+const guidesPage = path.join(ROOT_DIR, "guides.html");
+fs.writeFileSync(guidesPage, fs.readFileSync(guidesPage, "utf8")
+  .replace(/<div id="domains">[\s\S]*?<\/div><!-- \/domains -->/, () => `<div id="domains">${domainTiles}</div><!-- /domains -->`));
+
+const pages = ["", "categories.html", "guides.html", "diagnostic.html", "materiel.html", "entretien.html", "communaute.html", "a-propos.html", "ajouter.html", "mentions-legales.html", "conditions-utilisation.html", "confidentialite.html", "beta.html"];
 const urls = [
   ...pages.map(p => `  <url><loc>${SITE}${p}</loc><lastmod>${REVIEWED_ON}</lastmod></url>`),
   ...CATEGORIES.map(c => `  <url><loc>${SITE}categories/${c.id}.html</loc><lastmod>${REVIEWED_ON}</lastmod></url>`),

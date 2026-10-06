@@ -1,5 +1,6 @@
-/* Les Pages Bleues — « Mon matériel » : l'utilisateur enregistre ses équipements, sa voiture ou sa moto
-   (catalogue : assets/js/materiel-data.js) et ne voit ensuite que les fiches qui les concernent. */
+/* Les Pages Bleues — « Mon matériel » : vos appareils, véhicules et objets en un seul endroit.
+   Trois écrans : la liste (par défaut), le détail d'un matériel (?id=…) et l'ajout (?ajouter=1,
+   ou ?type=lave-linge, ?kind=voiture, ?cat=jardin). Catalogue : assets/js/materiel-data.js. */
 
 renderHeader("materiel");
 renderFooter();
@@ -17,6 +18,9 @@ const typeById = id => APPLIANCE_TYPES.find(t => t.id === id);
 const domains = () => CATEGORIES.filter(c => APPLIANCE_TYPES.some(t => t.category === c.id));
 const years = m => m.from ? (m.to && m.to !== m.from ? `${m.from}–${m.to}` : m.to ? `${m.from}` : `à partir de ${m.from}`) : "";
 const newId = () => "m" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+const plural = (n, w) => `${n} ${w}${n > 1 ? "s" : ""}`;
+const details = m => [!isVehicle(m) && m.model ? m.model : "", m.engine || "", m.year ? `${m.year}` : ""].filter(Boolean).join(" · ");
+const thumb = m => `<span class="mat-thumb">${m.photo ? `<img src="${m.photo}" alt="">` : icon(m.icon || typeById(m.type)?.icon || "box")}</span>`;
 
 // Index de recherche d'un type : [texte affiché, forme simplifiée, marque] pour toutes les marques
 const modelIndex = new Map();
@@ -31,7 +35,100 @@ async function typeIndex(t) {
 // Forme simplifiée pour la recherche : « F4WV-309 S0 » → « f4wv309s0 »
 const squash = s => normalize(s).replace(/[^a-z0-9]/g, "");
 
-// Point de départ : ?type=lave-linge, ?type=voiture, ?kind=moto, ?cat=jardin
+/* ==================== Liste ==================== */
+function worstState(m) {
+  const items = careItems([m]);
+  return items.length ? items.sort(byUrgency)[0].st.state : null;
+}
+
+function listView() {
+  const list = loadMateriel();
+  const care = careItems(list);
+  const todo = care.filter(x => STATE_INFO[x.st.state].group === "todo").length;
+  const soon = care.filter(x => x.st.state === "bientot").length;
+  root.innerHTML = `
+    <div class="mat-view">
+      <header>
+        <h1 class="diag-title">Mon matériel</h1>
+        <p class="diag-sub" style="margin-top:4px">Vos appareils, véhicules et objets en un seul endroit.</p>
+      </header>
+      ${list.length ? `
+        <a class="care-summary" href="entretien.html">
+          <span class="tile-ico tint-green">${icon("calendar")}</span>
+          <span class="lrow-text"><strong>Entretien</strong>
+            ${todo || soon ? `<span class="pills">${todo ? `<span class="status status-todo">${icon("alert")}${todo} à faire</span>` : ""}${soon ? `<span class="status status-soon">${icon("clock")}${soon} bientôt</span>` : ""}</span>`
+              : `<small>Rien d'urgent. Voir les prochains entretiens.</small>`}
+          </span>${icon("chevron")}
+        </a>
+        <ul class="lgroup mat-list">${list.map(m => {
+          const worst = worstState(m);
+          return `
+          <li><a class="lrow mat-row" id="mat-${m.id}" href="materiel.html?id=${m.id}">
+            ${thumb(m)}
+            <span class="lrow-text"><strong class="mat-name">${escapeHtml(materielName(m))}</strong>${details(m) ? `<small>${escapeHtml(details(m))}</small>` : ""}</span>
+            ${worst && ["defaillant", "retard", "bientot"].includes(worst) ? statusPill(worst) : ""}
+            ${icon("chevron")}
+          </a></li>`;
+        }).join("")}</ul>` : `
+        <div class="empty">${icon("box")}<h2>Rien d'enregistré pour l'instant</h2>
+          <p>Ajoutez votre lave-linge, votre voiture ou votre vélo : vous retrouverez ici les fiches qui les concernent, leur entretien et un diagnostic adapté.</p></div>`}
+      <a class="btn btn-primary btn-lg btn-block" href="materiel.html?ajouter=1">${icon("plus")} Ajouter un matériel</a>
+      <p class="mat-import"><label class="link-btn" for="carnet-file">${icon("upload")} Importer un carnet d'entretien</label>
+        <input type="file" id="carnet-file" accept="application/json" hidden>
+        <small class="muted">Vous achetez d'occasion ? Importez le carnet exporté par le vendeur.</small></p>
+      <p class="muted mat-note">${icon("shield")}<span>Enregistré sur cet appareil uniquement.</span></p>
+    </div>`;
+}
+
+/* ==================== Détail ==================== */
+function carnetText(m) {
+  const s = carnetSummary(m);
+  const pills = [
+    s.defaillant + s.retard ? `<span class="status status-todo">${icon("alert")}${s.defaillant + s.retard} à faire</span>` : "",
+    s.bientot ? `<span class="status status-soon">${icon("clock")}${s.bientot} bientôt</span>` : "",
+    s.ok ? `<span class="status status-ok">${icon("check")}${s.ok} à jour</span>` : "",
+    s.inconnu ? `<span class="status status-unknown">${icon("pencil")}${s.inconnu} à renseigner</span>` : ""
+  ].filter(Boolean);
+  return pills.length ? `<span class="pills">${pills.join("")}</span>`
+    : `<small>${s.entries ? plural(s.entries, "entrée") : "Suivre les entretiens et garder l'historique"}</small>`;
+}
+
+function detailView(m) {
+  const guides = guidesForMateriel(m);
+  const t = typeById(m.type);
+  const diagDevice = m.kind === "voiture" ? "Voiture" : t?.diag;
+  const forWhat = m.kind === "voiture" ? "votre voiture" : m.kind === "moto" ? "votre moto" : "cet appareil";
+  document.title = `${materielName(m)} — Mon matériel — Les Pages Bleues`;
+  root.innerHTML = `
+    <div class="mat-view">
+      <a class="back-link" href="materiel.html">${icon("back")} Mon matériel</a>
+      <header class="mat-detail-head">
+        ${thumb(m)}
+        <div><h1>${escapeHtml(materielName(m))}</h1>${details(m) ? `<p>${escapeHtml(details(m))}</p>` : ""}</div>
+      </header>
+      <ul class="lgroup">
+        <li><a class="lrow mat-carnet" href="carnet.html?id=${m.id}"><span class="tile-ico tint-green">${icon("calendar")}</span>
+          <span class="lrow-text"><strong>Carnet d'entretien</strong>${carnetText(m)}</span>${icon("chevron")}</a></li>
+        ${diagDevice ? `<li><a class="lrow" href="diagnostic.html?d=${encodeURIComponent(diagDevice)}"><span class="tile-ico">${icon("stethoscope")}</span>
+          <span class="lrow-text"><strong>Diagnostiquer une panne</strong><small>Quelques questions pour trouver la cause</small></span>${icon("chevron")}</a></li>` : ""}
+        <li><a class="lrow" href="communaute.html?ask=1&amp;q=${encodeURIComponent(materielLabel(m).replace(/ · /g, " "))}"><span class="tile-ico">${icon("chat")}</span>
+          <span class="lrow-text"><strong>Poser une question</strong><small>À la communauté</small></span>${icon("chevron")}</a></li>
+        <li><label class="lrow" for="mat-photo" style="cursor:pointer"><span class="tile-ico tint-amber">${icon("camera")}</span>
+          <span class="lrow-text"><strong>${m.photo ? "Changer la photo" : "Ajouter une photo"}</strong><small>Pour le reconnaître d'un coup d'œil</small></span>
+          <input type="file" id="mat-photo" accept="image/*" class="sr-only"></label></li>
+      </ul>
+      <section aria-labelledby="fiches-h">
+        <h2 class="h2 mat-count" id="fiches-h">${guides.length ? `${plural(guides.length, "fiche")} pour ${forWhat}` : "Pas encore de fiche dédiée"}</h2>
+        ${guides.length ? `<div class="rows">${guides.slice(0, 4).map(g => guideRow(g)).join("")}</div>
+          ${guides.length > 4 ? `<p style="margin-top:12px"><a class="btn btn-ghost btn-block" href="guides.html?materiel=${m.id}">${icon("list")} Voir les ${guides.length} fiches</a></p>` : ""}`
+          : `<p class="muted">Vous savez réparer ce type de matériel ? <a class="accent" href="ajouter.html">Partagez votre méthode</a>.</p>`}
+      </section>
+      <p><button class="btn btn-danger btn-sm" type="button" data-del="${m.id}">${icon("trash")} Retirer ce matériel</button></p>
+    </div>`;
+}
+
+/* ==================== Ajout ==================== */
+// Point de départ : ?type=lave-linge, ?kind=voiture, ?cat=jardin
 let preType = params.get("type") || "";
 let kind = VEHICLES[preType] ? preType : VEHICLES[params.get("kind")] ? params.get("kind") : "appareil";
 let domain = typeById(preType)?.category || (domains().some(c => c.id === params.get("cat")) ? params.get("cat") : "electromenager");
@@ -66,10 +163,10 @@ function vehicleFields() {
     <div class="form-row form-row-2">
       <div class="field"><label for="m-make">Marque</label>
         <select class="input" id="m-make" required><option value="">Choisissez…</option>${v.makes.map(c => `<option>${escapeHtml(c.name)}</option>`).join("")}<option value="${OTHER}">Autre marque</option></select>
-        <input class="input" id="m-make-other" maxlength="40" placeholder="Nom de la marque" aria-label="Autre marque" hidden style="margin-top:8px"></div>
+        <input class="input" id="m-make-other" maxlength="40" placeholder="Nom de la marque" aria-label="Autre marque" hidden></div>
       <div class="field"><label for="m-car">Modèle</label>
         <select class="input" id="m-car" disabled><option value="">Choisissez d'abord la marque</option></select>
-        <input class="input" id="m-car-other" maxlength="40" placeholder="Nom du modèle" aria-label="Autre modèle" hidden style="margin-top:8px"></div>
+        <input class="input" id="m-car-other" maxlength="40" placeholder="Nom du modèle" aria-label="Autre modèle" hidden></div>
     </div>
     <div class="form-row form-row-2">
       ${yearField()}
@@ -85,82 +182,38 @@ function yearField() {
     <p class="field-hint" id="year-hint" aria-live="polite"></p></div>`;
 }
 
-function formHtml() {
-  const kinds = [["appareil", "plug", "Équipement"], ["voiture", "car", "Voiture"], ["moto", "moto", "Moto"]];
-  return `
-    <form class="form-card mat-form" id="mat-form" novalidate>
-      <h2>${icon("plus")} Ajouter du matériel</h2>
-      <div class="seg" role="radiogroup" aria-label="Type de matériel">${kinds.map(([k, ic, label]) =>
-        `<button type="button" role="radio" data-kind="${k}" aria-checked="${kind === k}">${icon(ic)} ${label}</button>`).join("")}</div>
-      ${kind === "appareil" ? applianceFields() : vehicleFields()}
-      <p class="field-err" id="mat-err" hidden></p>
-      <div><button class="btn btn-primary" type="submit">${icon("check")} Enregistrer</button></div>
-    </form>`;
-}
-
-// Résumé du carnet d'entretien
-function carnetLine(m) {
-  const s = carnetSummary(m);
-  const parts = [
-    s.defaillant && `<span class="st st-defaillant">${s.defaillant} défaillant${s.defaillant > 1 ? "s" : ""}</span>`,
-    s.retard && `<span class="st st-retard">${s.retard} en retard</span>`,
-    s.bientot && `<span class="st st-bientot">${s.bientot} bientôt</span>`,
-    s.ok && `<span class="st st-ok">${s.ok} à jour</span>`,
-    s.inconnu && `<span class="st st-inconnu">${s.inconnu} à renseigner</span>`
-  ].filter(Boolean);
-  return `<a class="mat-carnet" href="carnet.html?id=${m.id}">${icon("wrench")}<span><strong>Carnet d'entretien</strong>
-    <small>${parts.length ? parts.join("") : s.entries ? `${s.entries} entrée${s.entries > 1 ? "s" : ""}` : "Suivre les entretiens et garder l'historique"}</small></span>${icon("chevron")}</a>`;
-}
-
-function cardHtml(m) {
-  const guides = guidesForMateriel(m);
-  const t = typeById(m.type);
-  const diagDevice = m.kind === "voiture" ? "Voiture" : t?.diag;
-  const details = [!isVehicle(m) && m.model ? m.model : "", m.engine || "", m.year ? `${m.year}` : ""].filter(Boolean).join(" · ");
-  const forWhat = m.kind === "voiture" ? "votre voiture" : m.kind === "moto" ? "votre moto" : "cet équipement";
-  return `
-    <article class="mat-card" id="mat-${m.id}">
-      <header class="mat-head">
-        <span class="mat-ico">${icon(m.icon || t?.icon || "box")}</span>
-        <div><h3>${escapeHtml(materielName(m))}</h3>${details ? `<p class="muted">${escapeHtml(details)}</p>` : ""}</div>
-        <button class="icon-btn" type="button" data-del="${m.id}" aria-label="Retirer ${escapeHtml(materielName(m))}">${icon("trash")}</button>
-      </header>
-      ${carnetLine(m)}
-      ${guides.length ? `
-        <p class="mat-count"><strong>${guides.length} fiche${guides.length > 1 ? "s" : ""}</strong> pour ${forWhat}</p>
-        <div class="rows">${guides.slice(0, 4).map(g => guideRow(g)).join("")}</div>`
-      : `<p class="muted mat-count">Pas encore de fiche dédiée à ce type de matériel. Vous savez le réparer ? Partagez votre méthode.</p>`}
-      <div class="mat-actions">
-        ${guides.length > 4 ? `<a class="btn btn-ghost btn-sm" href="guides.html?materiel=${m.id}">${icon("list")} Voir les ${guides.length} fiches</a>` : ""}
-        ${diagDevice ? `<a class="btn btn-ghost btn-sm" href="diagnostic.html?d=${encodeURIComponent(diagDevice)}">${icon("stethoscope")} Diagnostiquer une panne</a>` : ""}
-        <a class="btn btn-ghost btn-sm" href="communaute.html?ask=1&q=${encodeURIComponent(materielLabel(m).replace(/ · /g, " "))}">${icon("chat")} Poser une question</a>
-        ${guides.length ? "" : `<a class="btn btn-ghost btn-sm" href="ajouter.html">${icon("plus")} Partager une fiche</a>`}
-      </div>
-    </article>`;
-}
-
 // Wikidata n'est cité que s'il a réellement complété le catalogue
 function sourcesNote() {
   const wd = APPLIANCE_TYPES.some(t => t.sources.includes("wikidata"));
   return wd ? ` Certains modèles viennent de <a href="${MATERIEL_SOURCES.wikidata.url}" target="_blank" rel="noopener">Wikidata</a> (domaine public).` : "";
 }
 
-function render() {
-  const list = loadMateriel();
+function addView() {
+  const kinds = [["appareil", "plug", "Un appareil"], ["voiture", "car", "Une voiture"], ["moto", "moto", "Une moto"]];
+  document.title = "Ajouter un matériel — Les Pages Bleues";
   root.innerHTML = `
-    <div class="mat-layout">
-      <div>${formHtml()}
-        <p class="mat-import"><label class="btn btn-ghost btn-sm" for="carnet-file">${icon("upload")} Importer un carnet d'entretien</label>
-          <input type="file" id="carnet-file" accept="application/json" hidden>
-          <small class="muted">Vous achetez un objet d'occasion ? Importez le carnet que le vendeur a exporté.</small></p>
-        <p class="muted mat-note">${icon("shield")}<span>Enregistré dans ce navigateur uniquement. Les marques et modèles proposés sont une liste de départ rédigée par Les Pages Bleues.${sourcesNote()} Votre modèle n'y est pas ? Tapez-le simplement.</span></p>
-      </div>
-      <section aria-labelledby="mat-list-title">
-        <h2 id="mat-list-title">Mon matériel <span class="chip-n">${list.length}</span></h2>
-        ${list.length ? `<div class="mat-list">${list.map(cardHtml).join("")}</div>` : `
-          <div class="empty">${icon("box")}<h3>Rien d'enregistré pour l'instant</h3>
-            <p>Ajoutez par exemple « lave-linge LG de 2020 », « Audi A3 de 2012 » ou votre moto : vous retrouverez ici les fiches qui les concernent, et un raccourci vers le bon diagnostic.</p></div>`}
-      </section>
+    <div class="mat-view">
+      <a class="back-link" href="materiel.html">${icon("back")} Mon matériel</a>
+      <header>
+        <h1 class="diag-title">Ajouter un matériel</h1>
+        <p class="diag-sub" style="margin-top:4px">On vous montrera ensuite les fiches et l'entretien qui le concernent.</p>
+      </header>
+      <form class="form-card mat-form" id="mat-form" novalidate>
+        <div class="field"><span class="label" id="kind-label">C'est…</span>
+          <div class="kind-choice" role="radiogroup" aria-labelledby="kind-label">${kinds.map(([k, ic, label]) =>
+            `<button type="button" role="radio" data-kind="${k}" aria-checked="${kind === k}">${icon(ic)}${label}</button>`).join("")}</div></div>
+        ${kind === "appareil" ? applianceFields() : vehicleFields()}
+        <div class="field"><span class="label">Photo <small>(facultatif)</small></span>
+          <div class="mat-photo-field">
+            <span class="mat-thumb" id="m-photo-preview">${icon("camera")}</span>
+            <label class="btn btn-ghost btn-sm" for="m-photo">${icon("image")} Choisir une photo</label>
+            <input type="file" id="m-photo" accept="image/*" class="sr-only">
+          </div>
+          <p class="field-hint">Pour le reconnaître d'un coup d'œil. Elle reste sur cet appareil.</p></div>
+        <p class="field-err" id="mat-err" hidden></p>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">${icon("check")} Enregistrer</button>
+      </form>
+      <p class="muted mat-note">${icon("shield")}<span>Enregistré dans ce navigateur uniquement. Les marques et modèles proposés sont une liste de départ rédigée par Les Pages Bleues.${sourcesNote()} Votre modèle n'y est pas ? Tapez-le simplement.</span></p>
     </div>`;
   wireForm();
 }
@@ -182,6 +235,10 @@ function wireForm() {
     }
   };
   $("m-year").addEventListener("input", yearHint);
+  $("m-photo").addEventListener("change", () => {
+    const f = $("m-photo").files[0];
+    $("m-photo-preview").innerHTML = f ? `<img src="${URL.createObjectURL(f)}" alt="Photo choisie">` : icon("camera");
+  });
 
   if (kind === "appareil") {
     let rows = [], request = 0;
@@ -222,7 +279,7 @@ function wireForm() {
       $("brand-hint").textContent = t ? (t.brands.length ? `${t.brands.length} marque${t.brands.length > 1 ? "s" : ""} proposée${t.brands.length > 1 ? "s" : ""}, ou tapez la vôtre.` : "Tapez la marque.") : "";
       fillModels();
     };
-    $("m-domain").addEventListener("change", () => { domain = $("m-domain").value; preType = ""; render(); $("m-type").focus(); });
+    $("m-domain").addEventListener("change", () => { domain = $("m-domain").value; preType = ""; addView(); $("m-type").focus(); });
     $("m-type").addEventListener("change", fill);
     $("m-brand").addEventListener("input", fillModels);
     $("m-model").addEventListener("input", () => { suggest(); pickModel(); });
@@ -248,7 +305,7 @@ function wireForm() {
     });
   }
 
-  $("mat-form").addEventListener("submit", e => {
+  $("mat-form").addEventListener("submit", async e => {
     e.preventDefault();
     const err = $("mat-err");
     const fail = (msg, el) => { err.textContent = msg; err.hidden = false; el.focus(); };
@@ -276,32 +333,40 @@ function wireForm() {
       item = { kind, type: kind, typeName: v.label, category: "automobile", icon: v.icon, brand, model, engine: $("m-engine").value.trim() };
     }
     Object.assign(item, { id: newId(), year, added: new Date().toISOString() });
+    const file = $("m-photo").files[0];
+    if (file) { try { item.photo = await compressImage(file, 600, .72); } catch { toast("Cette photo n'a pas pu être lue : le matériel est enregistré sans photo."); } }
     if (!saveMateriel([item, ...loadMateriel()])) return fail("Enregistrement impossible : le stockage du navigateur est plein ou bloqué.", $("mat-form").querySelector("[type=submit]"));
-    preType = "";
-    render();
-    const n = guidesForMateriel(item).length;
-    toast(`${materielName(item)} enregistré${n ? ` : ${n} fiche${n > 1 ? "s" : ""} dédiée${n > 1 ? "s" : ""}` : ""}.`);
-    document.getElementById("mat-" + item.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    location.href = `materiel.html?id=${item.id}&nouveau=1`;
   });
 }
 
+/* ==================== Actions ==================== */
 root.addEventListener("change", async e => {
-  if (e.target.id !== "carnet-file" || !e.target.files[0]) return;
-  try {
-    const data = JSON.parse(await e.target.files[0].text());
-    if (data.format !== "carnet-entretien" || !data.materiel || !data.carnet) throw new Error();
-    const item = { ...data.materiel, id: newId(), added: new Date().toISOString() };
-    saveMateriel([item, ...loadMateriel()]);
-    saveCarnet(item.id, data.carnet);
-    location.href = `carnet.html?id=${item.id}`;
-  } catch { toast("Ce fichier n'est pas un carnet d'entretien des Pages Bleues."); }
+  if (e.target.id === "carnet-file" && e.target.files[0]) {
+    try {
+      const data = JSON.parse(await e.target.files[0].text());
+      if (data.format !== "carnet-entretien" || !data.materiel || !data.carnet) throw new Error();
+      const item = { ...data.materiel, id: newId(), added: new Date().toISOString() };
+      saveMateriel([item, ...loadMateriel()]);
+      saveCarnet(item.id, data.carnet);
+      location.href = `carnet.html?id=${item.id}`;
+    } catch { toast("Ce fichier n'est pas un carnet d'entretien des Pages Bleues."); }
+  } else if (e.target.id === "mat-photo" && e.target.files[0]) {
+    const m = materielById(params.get("id"));
+    try {
+      const photo = await compressImage(e.target.files[0], 600, .72);
+      if (!saveMateriel(loadMateriel().map(x => x.id === m.id ? { ...x, photo } : x))) throw new Error();
+      detailView(materielById(m.id));
+      toast("Photo enregistrée.");
+    } catch { toast("Photo impossible à enregistrer : stockage plein, ou image illisible."); }
+  }
 });
 
 root.addEventListener("click", e => {
   const seg = e.target.closest("[data-kind]");
   if (seg && seg.dataset.kind !== kind) {
     kind = seg.dataset.kind;
-    render();
+    addView();
     document.querySelector(`[data-kind="${kind}"]`).focus();
     return;
   }
@@ -311,20 +376,32 @@ root.addEventListener("click", e => {
     if (!m) return;
     openModal("Retirer ce matériel ?", `
       <p>${escapeHtml(materielLabel(m))} sera retiré de votre liste, avec son carnet d'entretien. Vos fiches, favoris et réparations ne sont pas touchés.</p>
-      ${carnetSummary(m).entries ? `<p class="muted">Pensez à exporter le carnet avant (page du carnet) si vous voulez le garder ou le transmettre.</p>` : ""}
-      <div class="form-actions"><button class="btn btn-ghost" type="button" data-close>Annuler</button>
+      ${carnetSummary(m).entries ? `<p class="muted" style="margin-top:8px">Pensez à exporter le carnet avant (page du carnet) si vous voulez le garder ou le transmettre.</p>` : ""}
+      <div class="form-actions" style="margin-top:16px"><button class="btn btn-ghost" type="button" data-close>Annuler</button>
         <button class="btn btn-danger" type="button" id="confirm-del">${icon("trash")} Retirer</button></div>`, (wrap, close) => {
       wrap.querySelector("#confirm-del").addEventListener("click", () => {
         saveMateriel(loadMateriel().filter(x => x.id !== m.id));
         store.remove("lpb-carnet-" + m.id);
         close();
-        render();
-        document.getElementById("mat-list-title").setAttribute("tabindex", "-1");
-        document.getElementById("mat-list-title").focus();
-        toast("Matériel retiré.");
+        location.href = "materiel.html?retire=1";
       });
     });
   }
 });
 
-render();
+/* ==================== Écran affiché ==================== */
+const current = params.get("id") && materielById(params.get("id"));
+if (current) {
+  detailView(current);
+  if (params.get("nouveau")) {
+    const n = guidesForMateriel(current).length;
+    toast(`${materielName(current)} enregistré${n ? ` : ${plural(n, "fiche")} pour ${current.kind === "voiture" ? "votre voiture" : current.kind === "moto" ? "votre moto" : "cet appareil"}` : ""}.`);
+    history.replaceState(null, "", `materiel.html?id=${current.id}`);
+  }
+} else if (params.get("ajouter") || params.get("type") || params.get("kind") || params.get("cat")) {
+  addView();
+} else {
+  listView();
+  if (params.get("retire")) { toast("Matériel retiré."); history.replaceState(null, "", "materiel.html"); }
+  else if (params.get("id")) toast("Ce matériel n'existe pas sur cet appareil.");
+}

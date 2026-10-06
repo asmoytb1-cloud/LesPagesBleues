@@ -78,11 +78,32 @@ const ICONS = {
   pin: '<path d="M12 22s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/>',
   link: '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>',
   send: '<path d="M4 12 20 4l-4 16-4-7z"/><path d="m12 13 8-9"/>',
-  eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>'
+  eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/><path d="m9 15 2 2 4-4"/>',
+  grid: '<rect x="4" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.8"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.8"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.8"/>',
+  image: '<rect x="3" y="4.5" width="18" height="15" rx="2.5"/><circle cx="8.5" cy="9.5" r="1.8"/><path d="m21 16-5-5-8.5 8.5"/>',
+  pencil: '<path d="M4 20h4L19 9a2.8 2.8 0 0 0-4-4L4 16z"/><path d="m13.5 6.5 4 4"/>',
+  info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.6v.4"/>',
+  lock: '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+  flag: '<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+  contrast: '<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>',
+  drop: '<path d="M12 3s6.5 6.6 6.5 11.2a6.5 6.5 0 0 1-13 0C5.5 9.6 12 3 12 3z"/><path d="M9 14.5a3 3 0 0 0 3 3"/>'
 };
 
 function icon(name, cls = "") {
   return `<svg class="ico ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ""}</svg>`;
+}
+
+/* Logo : une page au coin replié, d'où l'on a découpé une clé (le dessin vient de tools/icons.js).
+   Les couleurs suivent le thème (variables --logo-page et --logo-fold). */
+let logoCount = 0;
+function logoMark(cls = "brand-mark") {
+  const id = "lpb-cut-" + (++logoCount);
+  return `<svg class="${cls}" viewBox="0 0 48 48" aria-hidden="true" focusable="false"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48">` +
+    `<rect width="48" height="48" fill="#fff"/><g transform="translate(23.5 26.5) rotate(45)"><circle cx="-8" cy="0" r="6" fill="#000"/>` +
+    `<path d="M-4 0H12" stroke="#000" stroke-width="4.6" stroke-linecap="round"/><rect x="-16" y="-2.4" width="8.6" height="4.8" fill="#fff"/></g></mask></defs>` +
+    `<path d="M14 4H30L40 14V38A6 6 0 0 1 34 44H14A6 6 0 0 1 8 38V10A6 6 0 0 1 14 4Z" fill="var(--logo-page)" mask="url(#${id})"/>` +
+    `<path d="M30 4V11A3 3 0 0 0 33 14H40Z" fill="var(--logo-fold)"/></svg>`;
 }
 
 function escapeHtml(s) {
@@ -129,13 +150,13 @@ function categoryUrl(c) { return `${ROOT}categories/${typeof c === "string" ? c 
 function photoUrl(name) { return name ? `${ROOT}assets/img/photos/${name}.webp` : null; }
 /* Les photos du site existent aussi en 480 px (et 800 px pour les grandes) : le navigateur choisit
    la plus légère qui suffit à l'écran. sizes = largeur affichée de l'image. */
-const PHOTO_FULL = { hero: 1024, terre: 1024, velo: 960 };
+const PHOTO_FULL = { hero: 1024, velo: 960 };
 function imgSrc(src, sizes) {
   const m = src && src.match(/^(.*assets\/img\/photos\/)([a-z]+)\.webp$/);
   if (!m) return `src="${src}"`;
   const [, dir, name] = m;
   const full = PHOTO_FULL[name] || 1000;
-  const set = [`${dir}${name}-480.webp 480w`, ...(full > 1000 || name === "terre" ? [`${dir}${name}-800.webp 800w`] : []), `${src} ${full}w`];
+  const set = [`${dir}${name}-480.webp 480w`, ...(full > 1000 ? [`${dir}${name}-800.webp 800w`] : []), `${src} ${full}w`];
   return `src="${src}" srcset="${set.join(", ")}" sizes="${sizes}"`;
 }
 function guidePhoto(g) {
@@ -218,7 +239,7 @@ function renderCategoryMine(catId) {
   document.getElementById("cat-mine").hidden = false;
   document.getElementById("cat-mine-list").innerHTML = mine.map(m => {
     const n = guidesForMateriel(m).length;
-    return `<a class="mat-chip" href="${ROOT}${n ? "guides.html?materiel=" + m.id : "materiel.html#mat-" + m.id}">${icon(m.icon || "box")}${escapeHtml(materielName(m))} <small>· ${n} fiche${n > 1 ? "s" : ""}</small></a>`;
+    return `<a class="mat-chip" href="${ROOT}${n ? "guides.html?materiel=" + m.id : "materiel.html?id=" + m.id}">${icon(m.icon || "box")}${escapeHtml(materielName(m))} <small>· ${n} fiche${n > 1 ? "s" : ""}</small></a>`;
   }).join("");
 }
 
@@ -278,25 +299,23 @@ function media(g, alt = "", sizes = "(max-width: 600px) 82vw, 300px") {
     : `<div class="gcard-icon">${icon(categoryById(g.category).icon)}</div>`;
 }
 
-/* Carte photo (grilles, carrousel) */
+const favMark = g => isFav(g.id) ? `<span class="fav-mark">${icon("heart", "fill")}<span class="sr-only">Dans vos favoris</span></span>` : "";
+
+/* Carte avec photo (fiches similaires, favoris) */
 function guideCard(g) {
-  const c = categoryById(g.category);
   const done = getProgress(g.id).size;
   const pct = Math.round(done / g.steps.length * 100);
   return `
     <a class="gcard" href="${guideUrl(g)}">
-      <div class="gcard-media">
-        ${media(g)}
-        <span class="tag">${escapeHtml(c.short || c.name)}</span>
-        ${isFav(g.id) ? `<span class="card-fav" title="Dans vos favoris">${icon("heart", "fill")}</span>` : ""}
-        ${g.user ? `<span class="tag tag-green card-user">Ma fiche</span>` : ""}
+      <div class="gcard-media">${media(g)}</div>
+      <div class="gcard-body">
         <h3>${escapeHtml(g.title)}</h3>
-        <span class="round-btn">${icon("arrow")}</span>
-      </div>
-      <div class="gcard-meta">
-        <span>${icon("clock")} ${escapeHtml(g.duration)}</span>
-        <span>Difficulté ${dots(g)}</span>
-        ${g.savings ? `<span>${icon("euro")} ${escapeHtml(g.savings.replace("≈", "").trim())}</span>` : ""}
+        <div class="gcard-meta">
+          <span>${icon("clock")} ${escapeHtml(g.duration)}</span>
+          <span>${dots(g)} ${escapeHtml(g.difficulty)}</span>
+          ${favMark(g)}
+          ${g.user ? `<span class="tag tag-user">Ma fiche</span>` : ""}
+        </div>
       </div>
       ${done && pct < 100 ? `<div class="card-progress" title="${pct} % fait"><div style="width:${pct}%"></div></div>` : ""}
     </a>`;
@@ -334,12 +353,28 @@ function guideRow(g, words = []) {
           <span class="tag tag-soft">${escapeHtml(c.short || c.name)}</span>
           <span>${icon("clock")} ${escapeHtml(g.duration)}</span>
           <span>${dots(g)} ${escapeHtml(g.difficulty)}</span>
-          ${isFav(g.id) ? `<span style="color:var(--pink)">${icon("heart", "fill")}</span>` : ""}
+          ${favMark(g)}
           ${g.user ? `<span class="tag tag-user">Ma fiche</span>` : ""}
         </div>
       </div>
       ${icon("chevron")}
     </a>`;
+}
+
+/* Photo réduite (JPEG) avant d'être gardée dans ce navigateur : le stockage local est limité */
+async function compressImage(file, max = 1000, quality = .72) {
+  const url = URL.createObjectURL(file);
+  try {
+    const img = new Image();
+    img.src = url;
+    await img.decode();
+    const scale = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
+    const cv = document.createElement("canvas");
+    cv.width = Math.round(img.naturalWidth * scale);
+    cv.height = Math.round(img.naturalHeight * scale);
+    cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+    return cv.toDataURL("image/jpeg", quality);
+  } finally { URL.revokeObjectURL(url); }
 }
 
 /* ---------- Messages temporaires ---------- */
@@ -383,16 +418,35 @@ function openModal(title, bodyHtml, onReady) {
   return close;
 }
 
-/* ---------- Thème clair / sombre ---------- */
-function currentTheme() { return document.documentElement.dataset.theme === "light" ? "light" : "dark"; }
-function setTheme(t) {
-  document.documentElement.dataset.theme = t;
-  store.set("lpb-theme", t);
-  document.querySelector('meta[name="theme-color"]')?.setAttribute("content", t === "light" ? "#f3f6fb" : "#050b18");
-  document.querySelectorAll("[data-theme-toggle]").forEach(b => {
-    b.innerHTML = icon(t === "light" ? "moon" : "sun");
-    b.setAttribute("aria-label", t === "light" ? "Passer au thème sombre" : "Passer au thème clair");
+/* ---------- Thème : automatique (comme le téléphone), clair ou sombre ---------- */
+const THEME_COLORS = { light: "#f4f7fb", dark: "#0a1426" };
+function themePref() {
+  const t = store.get("lpb-theme", "auto");
+  return t === "light" || t === "dark" ? t : "auto";
+}
+// Thème réellement affiché
+function currentTheme() {
+  const t = document.documentElement.dataset.theme;
+  if (t === "light" || t === "dark") return t;
+  return typeof matchMedia === "function" && matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+function applyTheme() {
+  const pref = themePref();
+  document.querySelectorAll('meta[name="theme-color"]').forEach(m => {
+    m.setAttribute("content", THEME_COLORS[pref !== "auto" ? pref : /dark/.test(m.media) ? "dark" : "light"]);
   });
+  // Application iPhone : la barre d'état et le fond suivent le thème choisi
+  try { window.webkit?.messageHandlers?.theme?.postMessage(pref); } catch {}
+}
+function setTheme(pref) {
+  if (pref === "light" || pref === "dark") {
+    document.documentElement.dataset.theme = pref;
+    store.set("lpb-theme", pref);
+  } else {
+    delete document.documentElement.dataset.theme;
+    store.remove("lpb-theme");
+  }
+  applyTheme();
 }
 
 /* ---------- Suggestions de recherche (en-tête et accueil) ---------- */
@@ -470,13 +524,19 @@ function bonusFor(types) {
 }
 const bonusText = b => b.min === b.max ? `${b.min} €` : `${b.min} à ${b.max} €`;
 
+/* Navigation : les cinq mêmes destinations partout (en-tête sur ordinateur, barre du bas sur mobile) */
+const NAV = [
+  ["accueil", "home", "Accueil", "index.html"],
+  ["diagnostic", "stethoscope", "Diagnostic", "diagnostic.html"],
+  ["guides", "book", "Guides", "guides.html"],
+  ["materiel", "box", "Matériel", "materiel.html"],
+  ["plus", "grid", "Plus", "plus.html"]
+];
+// Rubrique de la navigation à laquelle appartient chaque page
+const NAV_OF = { categories: "guides", carnet: "materiel", entretien: "materiel", communaute: "plus", profil: "plus", ajouter: "plus", apropos: "plus", beta: "plus", legal: "plus" };
+
 function renderHeader(active) {
-  const links = [
-    ["categories", "Catégories", "categories.html"],
-    ["guides", "Guides", "guides.html"],
-    ["diagnostic", "Diagnostic", "diagnostic.html"],
-    ["communaute", "Communauté", "communaute.html"]
-  ];
+  const tab = NAV_OF[active] || active;
   const skip = document.createElement("a");
   skip.className = "skip-link";
   skip.href = "#main";
@@ -488,61 +548,33 @@ function renderHeader(active) {
   el.className = "site-header";
   el.innerHTML = `
     <div class="container header-inner">
-      <a class="brand" href="${ROOT}index.html" aria-label="Les Pages Bleues — accueil">
-        ${icon("book", "brand-ico")}
-        <span><strong>Les Pages <em>Bleues</em></strong><small>Réparer. Comprendre. Transmettre.</small></span>
-      </a>
+      <a class="brand" href="${ROOT}index.html" aria-label="Les Pages Bleues, accueil">${logoMark()}<span class="brand-name" aria-hidden="true">Les Pages <span>Bleues</span></span></a>
       <a class="beta-pill" href="${ROOT}beta.html" title="Version bêta ouverte et gratuite : donnez votre avis">Bêta</a>
-      <nav class="main-nav" id="main-nav" aria-label="Navigation principale">
-        ${links.map(([k, t, h]) => `<a href="${ROOT}${h}" ${k === active ? 'class="active" aria-current="page"' : ""}>${t}</a>`).join("")}
-        <a class="nav-extra" href="${ROOT}a-propos.html">À propos</a>
-        <a class="nav-extra" href="${ROOT}materiel.html">Mon matériel</a>
-        <a class="nav-extra" href="${ROOT}guides.html?fav=1">Mes favoris</a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        ${NAV.map(([k, , t, h]) => `<a href="${ROOT}${h}"${k === tab ? ' class="active" aria-current="page"' : ""}>${t}</a>`).join("")}
       </nav>
       <div class="header-search search-wrap" role="search">
         <form class="search-bar" action="${ROOT}guides.html">
           ${icon("search")}
-          <input type="search" name="q" id="header-q" placeholder="Rechercher un guide, un problème…" aria-label="Rechercher un guide ou un problème"
+          <input type="search" name="q" id="header-q" placeholder="Rechercher un guide" aria-label="Rechercher un guide"
                  autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="header-suggest">
         </form>
         <div class="suggest-box" id="header-suggest" role="listbox" aria-label="Fiches suggérées" hidden></div>
       </div>
-      <div class="header-actions">
-        <button class="icon-btn" type="button" data-theme-toggle></button>
-        <a class="icon-btn hide-xs" href="${ROOT}guides.html?fav=1" aria-label="Mes favoris">${icon("heart")}<span class="badge" id="fav-badge" hidden></span></a>
-        <a class="icon-btn hide-md" href="${ROOT}profil.html" aria-label="Mon profil">${prof.name ? `<span class="avatar">${escapeHtml(initials(prof.name))}</span>` : icon("user")}</a>
-        <a class="btn btn-primary hide-md" href="${ROOT}ajouter.html">${icon("plus")}<span>Ajouter une fiche</span></a>
-        <button class="icon-btn menu-btn" type="button" aria-label="Menu" aria-controls="main-nav" aria-expanded="false">${icon("menu")}</button>
-      </div>
+      <a class="icon-btn header-find" href="${ROOT}guides.html?focus=1" aria-label="Rechercher un guide">${icon("search")}</a>
+      <a class="avatar-link" href="${ROOT}profil.html" aria-label="Mon profil">${prof.name ? `<span class="avatar">${escapeHtml(initials(prof.name))}</span>` : icon("user")}</a>
     </div>`;
-  const btn = el.querySelector(".menu-btn");
-  const setOpen = open => {
-    el.classList.toggle("nav-open", open);
-    btn.setAttribute("aria-expanded", open);
-    btn.innerHTML = icon(open ? "close" : "menu");
-  };
-  btn.addEventListener("click", () => setOpen(!el.classList.contains("nav-open")));
-  el.querySelectorAll(".main-nav a").forEach(a => a.addEventListener("click", () => setOpen(false)));
-  el.querySelector("[data-theme-toggle]").addEventListener("click", () => setTheme(currentTheme() === "light" ? "dark" : "light"));
-  setTheme(currentTheme());
+  applyTheme();
   attachSuggest(document.getElementById("header-q"), document.getElementById("header-suggest"));
-  updateFavBadge();
-  renderTabbar(active);
+  renderTabbar(tab);
 }
 
-function renderTabbar(active) {
+function renderTabbar(tab) {
   const nav = document.createElement("nav");
   nav.className = "tabbar";
-  nav.setAttribute("aria-label", "Navigation mobile");
-  const items = [
-    ["accueil", "home", "Accueil", "index.html"],
-    ["guides", "search", "Rechercher", "guides.html?focus=1"],
-    ["ajouter", "plus", "Ajouter", "ajouter.html"],
-    ["diagnostic", "stethoscope", "Diagnostic", "diagnostic.html"],
-    ["profil", "user", "Profil", "profil.html"]
-  ];
-  nav.innerHTML = items.map(([k, ic, t, h]) =>
-    `<a href="${ROOT}${h}" class="${k === active ? "active" : ""} ${k === "ajouter" ? "tab-add" : ""}" ${k === active ? 'aria-current="page"' : ""}>${icon(ic)}<span>${t}</span></a>`).join("");
+  nav.setAttribute("aria-label", "Navigation");
+  nav.innerHTML = NAV.map(([k, ic, t, h]) =>
+    `<a href="${ROOT}${h}"${k === tab ? ' class="active" aria-current="page"' : ""}>${icon(ic)}<span>${t}</span></a>`).join("");
   document.body.appendChild(nav);
 }
 
@@ -559,41 +591,31 @@ function renderFooter() {
   const el = document.getElementById("site-footer");
   el.className = "site-footer";
   el.innerHTML = `
-    <div class="container footer-inner">
-      <div>
-        <a class="brand" href="${ROOT}index.html">${icon("book", "brand-ico")}<span><strong>Les Pages <em>Bleues</em></strong><small>Réparer. Comprendre. Transmettre.</small></span></a>
-        <p class="muted">L'encyclopédie collaborative de l'entretien et de la réparation, en français. Un monde plus durable commence par un geste.</p>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="brand" href="${ROOT}index.html" aria-label="Les Pages Bleues, accueil">${logoMark()}<span class="brand-name" aria-hidden="true">Les Pages <span>Bleues</span></span></a>
+          <p>Réparer. Comprendre. Transmettre.</p>
+        </div>
+        <nav class="footer-links" aria-label="Le projet et informations légales">
+          <a href="${ROOT}a-propos.html">À propos</a>
+          <a href="${ROOT}a-propos.html#verification">Comment on vérifie</a>
+          <a href="${ROOT}beta.html">Bêta : donner mon avis</a>
+          <a href="${ROOT}mentions-legales.html">Mentions légales</a>
+          <a href="${ROOT}conditions-utilisation.html">Conditions d'utilisation</a>
+          <a href="${ROOT}confidentialite.html">Confidentialité</a>
+          <a href="${ROOT}a-propos.html#credits">Crédits photos</a>
+        </nav>
       </div>
-      <div class="footer-cols">
-        <div><h2>Explorer</h2>
-          <a href="${ROOT}categories.html">Catégories</a><a href="${ROOT}guides.html">Tous les guides</a>
-          <a href="${ROOT}diagnostic.html">Diagnostic guidé</a><a href="${ROOT}materiel.html">Mon matériel</a>
-          <a href="${ROOT}guides.html?fav=1">Mes favoris</a></div>
-        <div><h2>Participer</h2>
-          <a href="${ROOT}ajouter.html">Ajouter une fiche</a><a href="${ROOT}communaute.html">Communauté</a>
-          <a href="${ROOT}profil.html">Mon profil</a></div>
-        <div><h2>Le projet</h2>
-          <a href="${ROOT}a-propos.html">À propos</a><a href="${ROOT}a-propos.html#verification">Comment on vérifie</a>
-          <a href="${ROOT}a-propos.html#reparateur">Trouver un réparateur</a>
-          <a href="${ROOT}beta.html">Bêta : donner mon avis</a></div>
-      </div>
-    </div>
-    <div class="container footer-bottom muted">
-      <span>© ${new Date().getFullYear()} Les Pages Bleues — textes sous licence <a href="${ROOT}conditions-utilisation.html#licence">CC BY-SA 4.0</a>, sauf mention contraire.</span>
-      <nav aria-label="Informations légales">
-        <a href="${ROOT}mentions-legales.html">Mentions légales</a>
-        <a href="${ROOT}conditions-utilisation.html">Conditions d'utilisation</a>
-        <a href="${ROOT}confidentialite.html">Confidentialité</a>
-        <a href="${ROOT}a-propos.html#credits">Crédits photos</a>
-      </nav>
+      <p class="footer-bottom">© ${new Date().getFullYear()} Les Pages Bleues — textes sous licence <a href="${ROOT}conditions-utilisation.html#licence">CC BY-SA 4.0</a>, sauf mention contraire.</p>
     </div>`;
 }
 
-// Remplace les <span data-icon="…"> par l'icône SVG correspondante
+// Remplace les <span data-icon="…"> par l'icône SVG correspondante, et <span data-logo> par le logo
 function hydrateIcons(root = document) {
-  root.querySelectorAll("[data-icon]").forEach(el => {
+  root.querySelectorAll("[data-icon], [data-logo]").forEach(el => {
     const tpl = document.createElement("template");
-    tpl.innerHTML = icon(el.dataset.icon, el.hasAttribute("data-fill") ? "fill" : "").trim();
+    tpl.innerHTML = (el.hasAttribute("data-logo") ? logoMark() : icon(el.dataset.icon, el.hasAttribute("data-fill") ? "fill" : "")).trim();
     el.replaceWith(tpl.content.firstChild);
   });
 }

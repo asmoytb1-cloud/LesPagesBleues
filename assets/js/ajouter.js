@@ -48,7 +48,7 @@ root.innerHTML = `
         <li>${icon("check")}<span><strong>Pensez sécurité</strong> : courant coupé, gants, lunettes, chandelles…</span></li>
         <li>${icon("check")}<span><strong>Partagez votre expérience</strong> : les astuces font gagner du temps aux autres.</span></li>
       </ul>
-      <div class="notice" style="margin-top:1rem">${icon("leaf")}<p><strong>Chaque guide compte !</strong> Vous aidez des milliers de personnes à réparer plutôt qu'à jeter.</p></div>
+      <div class="notice" style="margin-top:1rem">${icon("leaf")}<p><strong>Chaque fiche compte.</strong> Elle aidera d'autres personnes à réparer plutôt qu'à jeter.</p></div>
     </aside>
   </div>`;
 
